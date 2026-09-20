@@ -1,0 +1,49 @@
+name: Korea Bio Map Collector
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout selected branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        working-directory: "0. korea bio map"
+        run: pip install -r requirements.txt
+
+      - name: Run Korea Bio Map pipeline
+        working-directory: "0. korea bio map"
+        run: python src/main.py all
+
+      - name: Upload generated CSV files
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-bio-map-output
+          path: "0. korea bio map/output/*.csv"
+          if-no-files-found: error
+
+      - name: Commit generated CSV files back to branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "0. korea bio map/output/"*.csv
+          if git diff --cached --quiet; then
+            echo "No output changes to commit."
+          else
+            git commit -m "Update Korea Bio Map generated data"
+            git push
+          fi
