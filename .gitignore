@@ -4,6 +4,7 @@ __pycache__/
 venv/
 .env
 .DS_Store
-output/*.csv
-output/*.xlsx
-!output/.gitkeep
+
+**/output/*.csv
+**/output/*.xlsx
+!**/output/.gitkeep
