@@ -2,6 +2,11 @@ name: Korea Bio Map Collector
 
 on:
   workflow_dispatch:
+    inputs:
+      target_branch:
+        description: "Branch containing Korea Bio Map code"
+        required: true
+        default: "about-bio-v0.1"
 
 permissions:
   contents: write
@@ -11,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout selected branch
+      - name: Checkout Korea Bio Map branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ inputs.target_branch }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,7 +41,7 @@ jobs:
           path: "0. korea bio map/output/*.csv"
           if-no-files-found: error
 
-      - name: Commit generated CSV files back to branch
+      - name: Commit generated CSV files back to target branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -45,5 +50,5 @@ jobs:
             echo "No output changes to commit."
           else
             git commit -m "Update Korea Bio Map generated data"
-            git push
+            git push origin HEAD:"${{ inputs.target_branch }}"
           fi
