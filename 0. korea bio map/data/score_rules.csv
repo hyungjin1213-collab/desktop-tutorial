@@ -1,0 +1,4 @@
+relationship_type,weight,graph_color
+collaboration,1,#60A5FA
+advisor_student,5,#FBBF24
+postdoc_mentor,3,#C084FC
