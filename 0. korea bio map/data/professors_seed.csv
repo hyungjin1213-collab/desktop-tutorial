@@ -1,5 +1,5 @@
 professor_id,name_ko,name_en,university,department,primary_field,openalex_id,source_url
-P0001,도준상,junsang doh,서울대학교,공과대학,면역항암,,https://bmie.snu.ac.kr/
-P0002,서상우,sangwoo seo,서울대학교,공과대학,합성생물학,,https://seolab.snu.ac.kr/
-P0003,서형석,hyungseok Seo,서울대학교,약학대학,세포치료,,https://cgt.snu.ac.kr/home
-P0004,김원종,wonjong kim,포항공과대학교,화학과,의료용 고분자,,http://bmpl.postech.ac.kr/
+P0001,도준상,junsang doh,seoul national university,공과대학,면역항암,,https://bmie.snu.ac.kr/
+P0002,서상우,sangwoo seo,seoul national university,공과대학,합성생물학,,https://seolab.snu.ac.kr/
+P0003,서형석,hyungseok Seo,seoul national university,약학대학,세포치료,,https://cgt.snu.ac.kr/home
+P0004,김원종,wonjong kim,postech,화학과,의료용 고분자,,http://bmpl.postech.ac.kr/
