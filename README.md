@@ -1,57 +1,34 @@
 # About Bio
 
-바이오 연구자의 **연구실 선택과 커리어 결정**을 돕는 데이터 기반 플랫폼입니다.
+바이오 연구자의 **연구실 선택, 학계 네트워크, 커리어 결정**을 돕는 데이터 기반 프로젝트입니다.
 
-## 핵심 구조
-
-**LAB → SKILL → JOB**
-
-연구실의 공개 정보와 논문 데이터를 수집해 다음을 연결합니다.
-
-- 연구실 / 교수 정보
-- 연구 분야
-- 핵심 실험 및 분석 기술
-- 논문 생산성
-- 관련 산업 분야
-- 관련 직무와 커리어 경로
-
-## v0.1 목표
-
-교수명과 소속을 입력하면 공개 데이터를 기반으로 다음 정보를 수집합니다.
-
-1. 교수 기본 정보
-2. OpenAlex 기반 논문 목록
-3. 최근 연구 주제
-4. 주요 skill 키워드
-5. CSV 형태의 정형 데이터
-
-## 프로젝트 구조
+## Modules
 
 ```text
-.
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── data/
-│   └── labs.csv
-├── output/
-│   └── .gitkeep
-├── src/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── main.py
-│   ├── collectors/
-│   │   ├── __init__.py
-│   │   └── openalex.py
-│   └── analysis/
-│       ├── __init__.py
-│       └── skill_extractor.py
-└── tests/
-    └── __init__.py
+About Bio
+├── 0. korea bio map/
+│   └── 한국 바이오 교수/PI의 공동연구·학문 계보 네트워크
+└── 1.lab/
+    └── 연구실/교수/연구 분야/skill 데이터
 ```
+
+### 0. Korea Bio Map
+
+교수를 node, 교수 간 관계를 link로 저장합니다.
+
+- OpenAlex 기반 공동연구 관계 자동 수집
+- 지도교수 → 제자 교수 관계 수동 검증
+- 관계 종류별 색상
+- 관계 DB에서 Academic Network Score 자동 계산
+- 향후 3d-force-graph 기반 3D 연구자 은하에 연결
+
+### 1. Lab
+
+기존 About Bio의 LAB → SKILL → JOB 데이터 수집 모듈입니다.
 
 ## 데이터 원칙
 
 - 확인 가능한 사실과 About Bio 자체 분석값을 분리합니다.
-- 졸업기간, 급여, 졸업생 진로처럼 근거가 부족한 값은 임의로 추정하지 않습니다.
+- 지도교수/제자, 교수 여부처럼 OpenAlex만으로 확정하기 어려운 정보는 자동 확정하지 않습니다.
 - 가능한 경우 source URL / source ID를 함께 저장합니다.
+- Score는 직접 입력하지 않고 관계 데이터에서 계산합니다.
