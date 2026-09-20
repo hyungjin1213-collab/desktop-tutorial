@@ -1,1 +1,3 @@
-relationship_id,professor_a_id,professor_b_id,relationship_type,collaboration_paper_count,evidence_url,verified,notes
+relationship_id,professor_a_id,professor_b_id,relationship_type,collaboration_paper_count,evidence_url,verified,notes,source,target,color,directed
+AUTO000001,P0001,P0002,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,P0001,P0002,#60A5FA,no
+AUTO000002,P0001,P0005,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,P0001,P0005,#60A5FA,no
