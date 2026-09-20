@@ -22,9 +22,12 @@ PROFESSOR_COLUMNS = [
 
 
 def _read_csv(path: Path, columns: list[str] | None = None) -> pd.DataFrame:
-    if not path.exists():
+    if not path.exists() or path.stat().st_size == 0:
         return pd.DataFrame(columns=columns or [])
-    df = pd.read_csv(path, dtype=str).fillna("")
+    try:
+        df = pd.read_csv(path, dtype=str).fillna("")
+    except pd.errors.EmptyDataError:
+        return pd.DataFrame(columns=columns or [])
     if columns:
         for column in columns:
             if column not in df.columns:
@@ -158,8 +161,28 @@ def collect_collaborations(
             }
         )
 
-    auto_df = pd.DataFrame(auto_rows)
-    candidate_df = pd.DataFrame(candidates)
+    auto_columns = [
+        "relationship_id",
+        "professor_a_id",
+        "professor_b_id",
+        "relationship_type",
+        "collaboration_paper_count",
+        "evidence_url",
+        "verified",
+        "notes",
+    ]
+    candidate_columns = [
+        "openalex_id",
+        "display_name",
+        "shared_paper_count",
+        "institutions",
+        "country_codes",
+        "korea_affiliated",
+        "example_work",
+        "review_status",
+    ]
+    auto_df = pd.DataFrame(auto_rows, columns=auto_columns)
+    candidate_df = pd.DataFrame(candidates, columns=candidate_columns)
 
     if not candidate_df.empty:
         candidate_df = candidate_df.sort_values(
