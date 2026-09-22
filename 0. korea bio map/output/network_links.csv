@@ -1,2 +1,16 @@
 relationship_id,professor_a_id,professor_b_id,relationship_type,collaboration_paper_count,evidence_url,verified,notes,source,target
 AUTO000001,P0001,P0002,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,P0001,P0002
+AUTO000002,P0001,P0006,collaboration,8,,auto,OpenAlex coauthorship between confirmed professors,P0001,P0006
+AUTO000003,P0001,P0007,collaboration,2,,auto,OpenAlex coauthorship between confirmed professors,P0001,P0007
+AUTO000004,P0001,P0009,collaboration,17,,auto,OpenAlex coauthorship between confirmed professors,P0001,P0009
+AUTO000005,P0001,P0011,collaboration,5,,auto,OpenAlex coauthorship between confirmed professors,P0001,P0011
+AUTO000006,P0002,P0007,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,P0002,P0007
+AUTO000007,P0002,P0008,collaboration,45,,auto,OpenAlex coauthorship between confirmed professors,P0002,P0008
+AUTO000008,P0002,P0010,collaboration,17,,auto,OpenAlex coauthorship between confirmed professors,P0002,P0010
+AUTO000009,P0002,P0012,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,P0002,P0012
+AUTO000010,P0003,P0006,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,P0003,P0006
+AUTO000011,P0003,P0007,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,P0003,P0007
+AUTO000012,P0006,P0009,collaboration,8,,auto,OpenAlex coauthorship between confirmed professors,P0006,P0009
+AUTO000013,P0008,P0010,collaboration,9,,auto,OpenAlex coauthorship between confirmed professors,P0008,P0010
+AUTO000014,P0008,P0012,collaboration,2,,auto,OpenAlex coauthorship between confirmed professors,P0008,P0012
+AUTO000015,P0010,P0012,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,P0010,P0012

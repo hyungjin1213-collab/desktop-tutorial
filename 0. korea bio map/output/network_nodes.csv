@@ -1,6 +1,13 @@
 professor_id,name_ko,name_en,university,department,primary_field,openalex_id,source_url,collaborator_count,faculty_trainee_count,postdoc_PI_count,network_score
-P0001,도준상,junsang doh,seoul national university,공과대학,면역항암,A5086462999,https://bmie.snu.ac.kr/,1,0,0,1
-P0002,서상우,sangwoo seo,seoul national university,공과대학,합성생물학,A5066692256,https://seolab.snu.ac.kr/,1,0,0,1
-P0003,서형석,hyungseok Seo,seoul national university,약학대학,세포치료,A5102852128,https://cgt.snu.ac.kr/home,0,0,0,0
+P0001,도준상,junsang doh,seoul national university,공과대학,면역항암,A5086462999,https://bmie.snu.ac.kr/,5,0,0,5
+P0002,서상우,sangwoo seo,seoul national university,공과대학,합성생물학,A5066692256,https://seolab.snu.ac.kr/,5,0,0,5
+P0003,서형석,hyungseok Seo,seoul national university,약학대학,세포치료,A5102852128,https://cgt.snu.ac.kr/home,2,0,0,2
 P0004,김원종,wonjong kim,postech,화학과,의료용 고분자,,http://bmpl.postech.ac.kr/,0,0,0,0
 P0005,김성은,seongeun kim,kookmin university,화학과,체외면역 평가,,https://cite.kookmin.ac.kr/cite/index.do,0,0,0,0
+P0006,조덕,Duck Cho,Samsung Medical Center; Sungkyunkwan University,,,A5068463807,,3,0,0,3
+P0007,김병수,Byung-Soo Kim,,,,A5100642851,,3,0,0,3
+P0008,양진아,Jina Yang,Jeju National University,,,A5007222103,,3,0,0,3
+P0009,박지훈,Jeehun Park,Kangwon National University,,,A5007880310,,2,0,0,2
+P0010,임현규,Hyun Gyu Lim,Inha University,,,A5014839787,,3,0,0,3
+P0011,김태돈,Tae-Don Kim,Yonsei University,,,A5019115055,,1,0,0,1
+P0012,김성철,Seong-Cheol Kim,Yeungnam University,,,A5086409096,,3,0,0,3
