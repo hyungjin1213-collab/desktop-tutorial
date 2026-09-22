@@ -236,55 +236,19 @@ def collect_collaborations(
 
 def promote_approved_candidates() -> int:
     professors_path = DATA_DIR / "professors_seed.csv"
-    approvals_path = DATA_DIR / "candidate_approvals.csv"
-    review_template_path = OUTPUT_DIR / "candidate_approval_template.csv"
+    decisions_path = DATA_DIR / "candidate_decisions.csv"
 
     professors = _read_csv(professors_path, PROFESSOR_COLUMNS).copy()
+    decisions = _read_csv(decisions_path, ["openalex_id", "decision"])
 
-    approval_columns = [
-        "openalex_id",
-        "approved",
-        "name_ko",
-        "name_en",
-        "university",
-        "department",
-        "primary_field",
-        "source_url",
-    ]
-
-    # Prefer the human-reviewed output template so the normal workflow is:
-    # edit candidate_approval_template.csv -> run promote-and-all.
-    # Fall back to data/candidate_approvals.csv for backwards compatibility.
-    if review_template_path.exists() and review_template_path.stat().st_size:
-        try:
-            approvals = pd.read_csv(
-                review_template_path,
-                dtype=str,
-                encoding="utf-8-sig",
-            ).fillna("")
-        except UnicodeDecodeError:
-            approvals = pd.read_csv(
-                review_template_path,
-                dtype=str,
-                encoding="cp949",
-            ).fillna("")
-        for column in approval_columns:
-            if column not in approvals.columns:
-                approvals[column] = ""
-        approvals = approvals[approval_columns]
-    else:
-        approvals = _read_csv(approvals_path, approval_columns)
-
-    if approvals.empty:
+    if decisions.empty:
         return 0
 
-    candidate_lookup = {}
-    # Prefer the triaged review file because it contains the resolved current
-    # affiliation (Google Scholar via SerpApi when available, otherwise OpenAlex).
     candidate_path = OUTPUT_DIR / "candidate_review.csv"
     if not candidate_path.exists():
         candidate_path = OUTPUT_DIR / "collaborator_candidates_all.csv"
 
+    candidate_lookup = {}
     if candidate_path.exists():
         candidate_df = _read_csv(candidate_path)
         if not candidate_df.empty and "openalex_id" in candidate_df.columns:
@@ -301,27 +265,25 @@ def promote_approved_candidates() -> int:
     existing_ids = set(professors["professor_id"])
     new_rows = []
 
-    for _, approval in approvals.iterrows():
-        if str(approval.get("approved", "")).strip().casefold() not in {
-            "yes", "y", "true", "1", "approve", "approved"
-        }:
+    for _, decision in decisions.iterrows():
+        if str(decision.get("decision", "")).strip().casefold() != "yes":
             continue
 
-        oid = normalize_openalex_id(approval.get("openalex_id", ""))
+        oid = normalize_openalex_id(decision.get("openalex_id", ""))
         if not oid or oid in existing_openalex:
             continue
 
         candidate = candidate_lookup.get(oid, {})
-        name_en = approval.get("name_en", "") or candidate.get("display_name", "")
-        # A manually entered university always wins. If it is left blank,
-        # use the current affiliation resolved during candidate review.
+        name_en = candidate.get("display_name", "")
         university = (
-            approval.get("university", "")
-            or candidate.get("current_affiliation", "")
+            candidate.get("current_affiliation", "")
             or candidate.get("institutions", "")
         )
-        if not name_en or not university:
-            continue
+
+        # OpenAlex ID is the durable identity key. Missing/uncertain metadata
+        # must not block a user-approved professor from entering the graph.
+        if not name_en:
+            name_en = oid
 
         pid = _next_professor_id(existing_ids)
         existing_ids.add(pid)
@@ -330,13 +292,14 @@ def promote_approved_candidates() -> int:
         new_rows.append(
             {
                 "professor_id": pid,
-                "name_ko": approval.get("name_ko", ""),
+                "name_ko": "",
                 "name_en": name_en,
                 "university": university,
-                "department": approval.get("department", ""),
-                "primary_field": approval.get("primary_field", ""),
+                "department": "",
+                "primary_field": "",
                 "openalex_id": oid,
-                "source_url": approval.get("source_url", ""),
+                "source_url": candidate.get("web_url", "")
+                or candidate.get("scholar_profile_url", ""),
             }
         )
 
@@ -345,10 +308,9 @@ def promote_approved_candidates() -> int:
             [professors, pd.DataFrame(new_rows, columns=PROFESSOR_COLUMNS)],
             ignore_index=True,
         )
-        professors.to_csv(professors_path, index=False)
+        professors.to_csv(professors_path, index=False, encoding="utf-8-sig")
 
     return len(new_rows)
-
 
 def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
