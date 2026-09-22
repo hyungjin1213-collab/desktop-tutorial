@@ -1,26 +1,26 @@
 openalex_id,approved,name_ko,name_en,university,department,primary_field,source_url,triage_tier,shared_paper_count,connected_seed_professor_ids,triage_reason
-A5068463807,,,Duck Cho,Samsung (South Korea); Samsung Medical Center; Sungkyunkwan University,,,,A_review_first,9,P0001; P0003,strong collaboration signal + academic affiliation + bio relevance
-A5100642851,,,Byung‚ÄêSoo Kim,Inje University; Ulsan College; Daejeon University; Pohang University of Science and Technology; University of Seoul; SK Group (South Korea); Seoul National University; Incheon National University; Illinois College; Inha University; Yonsei University; Chungnam National University; Korea Electrotechnology Research Institute; Korea University; Samsung (South Korea); Konkuk University; Severance Hospital; Korea University Medical Center; Seoul Metropolitan Government; Asan Medical Center; New Generation University College; Seoul National University Bundang Hospital; Kyungpook National University; Kyung Hee University; University of Illinois Chicago; Gwangju Institute of Science and Technology; University of Ulsan; Konkuk University Medical Center; SNUH SMG-SNU Boramae Medical Center; Kangbuk Samsung Hospital; Institute for Basic Science; Pusan National University Hospital; Health Insurance Review and Assessment Service; National Cancer Center; National University College; Cancer Research Center; Keimyung University Dongsan Medical Center; Regenerative Medicine Institute; Gangnam Severance Hospital; Korea Research Institute of Chemical Technology; Hanyang University; Pusan National University; Dong-A University; University of Virginia; Keimyung University; Jeonbuk National University; Sungkyunkwan University; Catholic University of Korea; Korea University of Science and Technology; Korea Institute of Industrial Technology,,,,A_review_first,4,P0001; P0002; P0003,strong collaboration signal + academic affiliation + bio relevance
-A5101235628,,,Hyungjin Sun,Seoul National University; Bioengineering Center,,,,A_review_first,5,P0001; P0002,strong collaboration signal + academic affiliation + bio relevance
-A5007222103,,,Jina Yang,Jeju National University,,,,A_review_first,45,P0002,strong collaboration signal + academic affiliation + bio relevance
-A5089200258,,,Eun‚ÄêAh Bae,Discovery Institute; Sanford Burnham Prebys Medical Discovery Institute; Seoul National University; Seoul National University of Science and Technology,,,,A_review_first,21,P0003,strong collaboration signal + academic affiliation + bio relevance
-A5007880310,,,Jeehun Park,Kangwon National University,,,,A_review_first,17,P0001,strong collaboration signal + academic affiliation + bio relevance
-A5014839787,,,Hyun Gyu Lim,Inha University; University of California San Diego; La Jolla Bioengineering Institute; Joint BioEnergy Institute,,,,A_review_first,17,P0002,strong collaboration signal + academic affiliation + bio relevance
-A5102323160,,,Jong‚ÄêCheol Choi,In-Q-Tel; Pohang University of Science and Technology; Seoul National University,,,,A_review_first,16,P0001,strong collaboration signal + academic affiliation + bio relevance
+A5068463807,yes,¡∂¥ˆ,Duck Cho,Samsung (South Korea); Samsung Medical Center; Sungkyunkwan University,,,,A_review_first,9,P0001; P0003,strong collaboration signal + academic affiliation + bio relevance
+A5100642851,yes,±Ë∫¥ºˆ,Byung soo Kim,,,,,A_review_first,4,P0001; P0002; P0003,strong collaboration signal + academic affiliation + bio relevance
+A5101235628,no,º±«¸¡¯,Hyungjin Sun,Seoul National University; Bioengineering Center,,,,A_review_first,5,P0001; P0002,strong collaboration signal + academic affiliation + bio relevance
+A5007222103,yes,æÁ¡¯æ∆,Jina Yang,Jeju National University,,,,A_review_first,45,P0002,strong collaboration signal + academic affiliation + bio relevance
+A5089200258,no,πË¿∫æ∆,Eun ah Bae,,,,,A_review_first,21,P0003,strong collaboration signal + academic affiliation + bio relevance
+A5007880310,yes,π⁄¡ˆ»∆,Jeehun Park,Kangwon National University,,,,A_review_first,17,P0001,strong collaboration signal + academic affiliation + bio relevance
+A5014839787,yes,¿”«ˆ±‘,Hyun Gyu Lim,Inha University,,,,A_review_first,17,P0002,strong collaboration signal + academic affiliation + bio relevance
+A5102323160,no,√÷¡æ√∂,Jong cheol Choi,In-Q-Tel; Pohang University of Science and Technology; Seoul National University,,,,A_review_first,16,P0001,strong collaboration signal + academic affiliation + bio relevance
 A5072950930,,,Byung Eun Min,Pohang University of Science and Technology,,,,A_review_first,15,P0002,strong collaboration signal + academic affiliation + bio relevance
 A5077539926,,,Sungho Jang,Incheon National University,,,,A_review_first,15,P0002,strong collaboration signal + academic affiliation + bio relevance
-A5100694944,,,Seong‚ÄêEun Kim,Seoul National University of Science and Technology,,,,A_review_first,14,P0001,strong collaboration signal + academic affiliation + bio relevance
+A5100694944,,,Seong?êEun Kim,Seoul National University of Science and Technology,,,,A_review_first,14,P0001,strong collaboration signal + academic affiliation + bio relevance
 A5083853234,,,Yong Hee Han,Chonnam National University,,,,A_review_first,13,P0002,strong collaboration signal + academic affiliation + bio relevance
-A5101950062,,,Byung‚ÄêSeok Kim,Incheon National University,,,,A_review_first,12,P0003,strong collaboration signal + academic affiliation + bio relevance
+A5101950062,,,Byung?êSeok Kim,Incheon National University,,,,A_review_first,12,P0003,strong collaboration signal + academic affiliation + bio relevance
 A5100398117,,,Jinwoo Lee,Korea Advanced Institute of Science and Technology; National NanoFab Center,,,,A_review_first,4,P0001; P0002,strong collaboration signal + academic affiliation + bio relevance
 A5000137293,,,Seongyeon Cho,Seoul National University,,,,A_review_first,2,P0001; P0002,strong collaboration signal + academic affiliation + bio relevance
-A5087989423,,,Jae‚ÄêHyung Jeon,Pohang University of Science and Technology; Korea Post; Asia Pacific Center for Theoretical Physics,,,,A_review_first,2,P0001; P0003,strong collaboration signal + academic affiliation + bio relevance
+A5087989423,,,Jae?êHyung Jeon,Pohang University of Science and Technology; Korea Post; Asia Pacific Center for Theoretical Physics,,,,A_review_first,2,P0001; P0003,strong collaboration signal + academic affiliation + bio relevance
 A5028790314,,,Dong Keun Han,Samjin Pharm (South Korea); Bukwang Pharmaceutical (South Korea); CHA University; Jeil Pharmaceutical (South Korea),,,,A_review_first,2,P0001; P0002,strong collaboration signal + academic affiliation + bio relevance
 A5108631421,,,Young-Jun Park,Seoul National University,,,,A_review_first,2,P0001; P0003,strong collaboration signal + academic affiliation + bio relevance
-A5003546968,,,Sang‚ÄêJun Ha,Yonsei University,,,,A_review_first,2,P0001; P0003,strong collaboration signal + academic affiliation + bio relevance
-A5000177690,,,Mi‚ÄêJu Kim,Kyung Hee University,,,,A_review_first,17,P0001,strong collaboration signal + academic affiliation + bio relevance
+A5003546968,,,Sang?êJun Ha,Yonsei University,,,,A_review_first,2,P0001; P0003,strong collaboration signal + academic affiliation + bio relevance
+A5000177690,,,Mi?êJu Kim,Kyung Hee University,,,,A_review_first,17,P0001,strong collaboration signal + academic affiliation + bio relevance
 A5069610959,,,Insu Jeon,Chonnam National University,,,,A_review_first,15,P0003,strong collaboration signal + academic affiliation + bio relevance
-A5080552007,,,Il‚ÄêKyu Kim,Gachon University; Immune Regulation (United Kingdom),,,,A_review_first,13,P0003,strong collaboration signal + academic affiliation + bio relevance
+A5080552007,,,Il?êKyu Kim,Gachon University; Immune Regulation (United Kingdom),,,,A_review_first,13,P0003,strong collaboration signal + academic affiliation + bio relevance
 A5020867342,,,Boyeong Song,New Generation University College; Cellid (South Korea),,,,A_review_first,12,P0003,strong collaboration signal + academic affiliation + bio relevance
 A5102910953,,,Kwangsoo Shin,Inha University; Yale University; Cellid (South Korea); Shanghai Cell Therapy Research Institute,,,,A_review_first,11,P0003,strong collaboration signal + academic affiliation + bio relevance
 A5020449635,,,Hyoungjun Park,Korea University,,,,A_review_first,10,P0001,strong collaboration signal + academic affiliation + bio relevance
@@ -37,12 +37,12 @@ A5052784878,,,Myoung Ho Jang,SK Group (South Korea); GI Innovation (South Korea)
 A5100682313,,,Donghyuk Kim,Ulsan National Institute of Science and Technology,,,,B_review,6,P0002,moderate collaboration signal + academic affiliation + bio relevance
 A5000328867,,,Myung Hyun Noh,University of San Diego; University of California San Diego; La Jolla Bioengineering Institute; Korea Research Institute of Chemical Technology; Korea Research Institute of Bioscience and Biotechnology,,,,B_review,6,P0002,moderate collaboration signal + academic affiliation + bio relevance
 A5017124041,,,Dowon Moon,Seoul National University; National University,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
-A5103187813,,,Hye‚ÄêMi Kim,Korea Institute of Nuclear Safety; Kyungpook National University; Korea Basic Science Institute; Bio-Medical Science (South Korea),,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
-A5019115055,,,Tae‚ÄêDon Kim,Biocon (Switzerland); Yonsei University; Korea Research Institute of Bioscience and Biotechnology; Korea University of Science and Technology,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
-A5111681185,,,Kahp‚ÄêYang Suh,Pohang University of Science and Technology; Seoul National University,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
-A5037009590,,,Kyung‚ÄêMi Lee,Korea University; Intercollege,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
+A5103187813,,,Hye?êMi Kim,Korea Institute of Nuclear Safety; Kyungpook National University; Korea Basic Science Institute; Bio-Medical Science (South Korea),,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
+A5019115055,yes,±Ë≈¬µ∑,Tae don Kim,Yonsei University,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
+A5111681185,,,Kahp?êYang Suh,Pohang University of Science and Technology; Seoul National University,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
+A5037009590,,,Kyung?êMi Lee,Korea University; Intercollege,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
 A5071699799,,,Gibyuck Byun,Seoul National University; National University,,,,B_review,5,P0002,moderate collaboration signal + academic affiliation + bio relevance
 A5103177724,,,Giho Kim,Seoul National University; National University,,,,B_review,5,P0002,moderate collaboration signal + academic affiliation + bio relevance
-A5086409096,,,Seong‚ÄêCheol Kim,Yeungnam University,,,,B_review,6,P0002,moderate collaboration signal + academic affiliation + bio relevance
-A5010733573,,,Jae‚ÄêHyun Lee,Seoul National University; Sungkyunkwan University,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
+A5086409096,yes,±Ëº∫√∂,Seong cheol Kim,Yeungnam University,,,,B_review,6,P0002,moderate collaboration signal + academic affiliation + bio relevance
+A5010733573,,,Jae?êHyun Lee,Seoul National University; Sungkyunkwan University,,,,B_review,5,P0001,moderate collaboration signal + academic affiliation + bio relevance
 A5023738566,,,Byung Seok Kim,The Catholic University of Korea Incheon St. Mary's Hospital; Sungkyunkwan University; Catholic University of Korea,,,,B_review,5,P0003,moderate collaboration signal + academic affiliation + bio relevance
