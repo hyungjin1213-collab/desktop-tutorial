@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 
 from candidate_review import classify_candidates
+from department_discovery import discover_departments
+from faculty_scraper import scrape_faculty
 from openalex_client import OpenAlexClient
 from pipeline import (
     build_network,
@@ -38,12 +40,32 @@ def main() -> None:
             "promote",
             "promote-and-all",
             "all",
+            "discover-departments",
+            "scrape-faculty",
+            "discover-and-scrape-faculty",
         ],
         help="Pipeline step to run",
     )
     args = parser.parse_args()
 
     client = OpenAlexClient()
+
+    if args.command == "discover-departments":
+        df = discover_departments()
+        print(f"Department candidates: {len(df)}")
+        return
+
+    if args.command == "scrape-faculty":
+        df = scrape_faculty()
+        print(f"Faculty rows: {len(df)}")
+        return
+
+    if args.command == "discover-and-scrape-faculty":
+        departments = discover_departments()
+        faculty = scrape_faculty()
+        print(f"Department candidates: {len(departments)}")
+        print(f"Faculty rows: {len(faculty)}")
+        return
 
     if args.command == "resolve":
         professors = resolve_professors(client)
