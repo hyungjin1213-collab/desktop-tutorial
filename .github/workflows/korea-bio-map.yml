@@ -7,6 +7,14 @@ on:
         description: "Branch containing Korea Bio Map code"
         required: true
         default: "about-bio-v0.1"
+      mode:
+        description: "What should this run do?"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - promote-and-all
 
 permissions:
   contents: write
@@ -20,6 +28,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.target_branch }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,23 +41,47 @@ jobs:
 
       - name: Run Korea Bio Map pipeline
         working-directory: "0. korea bio map"
-        run: python src/main.py all
+        run: python src/main.py "${{ inputs.mode }}"
 
-      - name: Upload generated CSV files
+      - name: Upload generated files
         uses: actions/upload-artifact@v4
         with:
           name: korea-bio-map-output
-          path: "0. korea bio map/output/*.csv"
+          path: |
+            0. korea bio map/output/*.csv
+            0. korea bio map/web/network-data.js
           if-no-files-found: error
 
-      - name: Commit generated CSV files back to target branch
+      - name: Commit generated data back to target branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f "0. korea bio map/output/"*.csv
+          git add "0. korea bio map/web/network-data.js"
+          git add "0. korea bio map/data/professors_seed.csv"
           if git diff --cached --quiet; then
-            echo "No output changes to commit."
+            echo "No generated data changes to commit."
           else
             git commit -m "Update Korea Bio Map generated data"
             git push origin HEAD:"${{ inputs.target_branch }}"
+          fi
+
+      - name: Publish latest map to gh-pages
+        run: |
+          rm -rf /tmp/korea-bio-map-pages
+          mkdir -p /tmp/korea-bio-map-pages
+          cp "0. korea bio map/web/index.html" /tmp/korea-bio-map-pages/index.html
+          cp "0. korea bio map/web/network-data.js" /tmp/korea-bio-map-pages/network-data.js
+
+          git fetch origin gh-pages
+          git switch gh-pages
+          cp /tmp/korea-bio-map-pages/index.html ./index.html
+          cp /tmp/korea-bio-map-pages/network-data.js ./network-data.js
+          git add index.html network-data.js
+
+          if git diff --cached --quiet; then
+            echo "Pages already up to date."
+          else
+            git commit -m "Publish latest Korea Bio Map"
+            git push origin gh-pages
           fi
