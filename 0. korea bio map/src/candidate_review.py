@@ -34,6 +34,19 @@ NONBIO_WORDS = (
 )
 
 
+def _read_csv_flexible(path) -> pd.DataFrame:
+    """Read CSVs edited by Excel/GitHub regardless of common Korean encodings."""
+    last_error = None
+    for encoding in ("utf-8-sig", "utf-8", "cp949", "euc-kr"):
+        try:
+            return pd.read_csv(path, dtype=str, encoding=encoding).fillna("")
+        except (UnicodeDecodeError, pd.errors.ParserError) as exc:
+            last_error = exc
+    if last_error:
+        raise last_error
+    return pd.DataFrame()
+
+
 def _safe_int(value: object) -> int:
     try:
         return int(float(str(value)))
@@ -257,7 +270,7 @@ def classify_candidates(
     previous = {}
     if previous_path.exists() and previous_path.stat().st_size:
         try:
-            prev_df = pd.read_csv(previous_path, dtype=str).fillna("")
+            prev_df = _read_csv_flexible(previous_path)
             previous = {
                 row["openalex_id"]: row.to_dict()
                 for _, row in prev_df.iterrows()
@@ -300,7 +313,8 @@ def classify_candidates(
         })
 
     approval_template = pd.DataFrame(rows)
-    approval_template.to_csv(previous_path, index=False)
+    # Write UTF-8 with BOM so Korean names open cleanly in Excel next time.
+    approval_template.to_csv(previous_path, index=False, encoding="utf-8-sig")
 
     # Excel version for painless human review.
     xlsx_path = OUTPUT_DIR / "candidate_approval_template.xlsx"
