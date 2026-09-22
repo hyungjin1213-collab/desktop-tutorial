@@ -1,13 +1,32 @@
 professor_id,name_ko,name_en,university,department,primary_field,openalex_id,source_url,collaborator_count,faculty_trainee_count,postdoc_PI_count,network_score
-P0001,도준상,junsang doh,seoul national university,공과대학,면역항암,A5086462999,https://bmie.snu.ac.kr/,5,0,0,5
-P0002,서상우,sangwoo seo,seoul national university,공과대학,합성생물학,A5066692256,https://seolab.snu.ac.kr/,5,0,0,5
-P0003,서형석,hyungseok Seo,seoul national university,약학대학,세포치료,A5102852128,https://cgt.snu.ac.kr/home,2,0,0,2
+P0001,도준상,junsang doh,seoul national university,공과대학,면역항암,A5086462999,https://bmie.snu.ac.kr/,17,0,0,17
+P0002,서상우,sangwoo seo,seoul national university,공과대학,합성생물학,A5066692256,https://seolab.snu.ac.kr/,10,0,0,10
+P0003,서형석,hyungseok Seo,seoul national university,약학대학,세포치료,A5102852128,https://cgt.snu.ac.kr/home,3,0,0,3
 P0004,김원종,wonjong kim,postech,화학과,의료용 고분자,,http://bmpl.postech.ac.kr/,0,0,0,0
 P0005,김성은,seongeun kim,kookmin university,화학과,체외면역 평가,,https://cite.kookmin.ac.kr/cite/index.do,0,0,0,0
-P0006,조덕,Duck Cho,Samsung Medical Center; Sungkyunkwan University,,,A5068463807,,3,0,0,3
-P0007,김병수,Byung-Soo Kim,,,,A5100642851,,3,0,0,3
-P0008,양진아,Jina Yang,Jeju National University,,,A5007222103,,3,0,0,3
-P0009,박지훈,Jeehun Park,Kangwon National University,,,A5007880310,,2,0,0,2
-P0010,임현규,Hyun Gyu Lim,Inha University,,,A5014839787,,3,0,0,3
-P0011,김태돈,Tae-Don Kim,Yonsei University,,,A5019115055,,1,0,0,1
-P0012,김성철,Seong-Cheol Kim,Yeungnam University,,,A5086409096,,3,0,0,3
+P0006,조덕,Duck Cho,Samsung Medical Center; Sungkyunkwan University,,,A5068463807,,15,0,0,15
+P0007,김병수,Byung-Soo Kim,,,,A5100642851,,14,0,0,14
+P0008,양진아,Jina Yang,Jeju National University,,,A5007222103,,7,0,0,7
+P0009,박지훈,Jeehun Park,Kangwon National University,,,A5007880310,,13,0,0,13
+P0010,임현규,Hyun Gyu Lim,Inha University,,,A5014839787,,5,0,0,5
+P0011,김태돈,Tae-Don Kim,Yonsei University,,,A5019115055,,2,0,0,2
+P0012,김성철,Seong-Cheol Kim,Yeungnam University,,,A5086409096,,5,0,0,5
+P0013,,Je‐Jung Lee,Yonsei University; Seoul National University Bundang Hospital; Oxford Biotherapeutics (United Kingdom); Gachon University Gil Medical Center; Chonnam National University Hospital; Palmetto Hematology Oncology; Chonnam National University Hwasun Hospital; Dong-A University,,,A5102970348,https://medicine.jnu.ac.kr/english/xprofessor/index.php?mode=view&number=201&smode=1&div1=2&div2=1&div3=6,10,0,0,10
+P0014,,Hyeoung‐Joon Kim,Chonnam National University; The Catholic University of Korea Seoul St. Mary's Hospital; Catholic University of Korea,,,A5064161026,,10,0,0,10
+P0015,,Sungho Jang,Incheon National University,,,A5077539926,https://www.inu.ac.kr/engineeringlife_eng/10517/subview.do,6,0,0,6
+P0016,,Sang‐Ki Kim,Kongju National University; Chonnam National University Hwasun Hospital,,,A5063762312,,9,0,0,9
+P0017,,Seong‐Eun Kim,Seoul National University of Science and Technology,,,A5100694944,https://aai.seoultech.ac.kr/en/intro/faculty,3,0,0,3
+P0018,,Yong Hee Han,Chonnam National University,,,A5083853234,https://scholar.google.com/citations?user=_b6kiX0AAAAJ&hl=en,4,0,0,4
+P0019,,Seo-Yeon Ahn,Chonnam National University Hospital; Chonnam National University Hwasun Hospital,,,A5059129862,,9,0,0,9
+P0020,,Sung‐Hoon Jung,Chonnam National University Hwasun Hospital,,,A5068416755,,9,0,0,9
+P0021,,Dong Keun Han,Samjin Pharm (South Korea); Bukwang Pharmaceutical (South Korea); CHA University; Jeil Pharmaceutical (South Korea),,,A5028790314,,4,0,0,4
+P0022,,Sungjee Kim,Pohang University of Science and Technology; Bioscience Research,,,A5069444992,https://nanotrio.postech.ac.kr/,3,0,0,3
+P0023,,Sanguk Kim,Pohang University of Science and Technology,,,A5047859685,https://postech.ac.kr/eng/research/research_results.do?mode=view&articleNo=14194&title=Deciphering+Cell-to-Cell+Conversations%3A+AI+Predicts+Anti-Cancer+Immunotherapy+Response,4,0,0,4
+P0024,,Sangbin Han,Samsung Medical Center; Sungkyunkwan University,,,A5022299245,,4,0,0,4
+P0025,,Byoung‐Gie Kim,Korea University; Samsung Medical Center; Sungkyunkwan University,,,A5057234589,,4,0,0,4
+P0026,,Wooram Park,Sungkyunkwan University,,,A5075962780,,4,0,0,4
+P0027,,Ilwoong Hwang,Konkuk University; Konkuk University Chungju Hospital; Seoul National University; Soonchunhyang University Hospital Seoul,,,A5068736163,,9,0,0,9
+P0028,,Woong‐Yang Park,Samsung (South Korea); Samsung Medical Center; Sungkyunkwan University,,,A5003283147,,5,0,0,5
+P0029,,Youngil Koh,Seoul National University; Cancer Research Institute; Seoul National University Hospital,,,A5076271673,,6,0,0,6
+P0030,,Seung‐Hwan Lee,Gangnam Severance Hospital; Inje University Ilsan Paik Hospital; Inje University Seoul Paik Hospital; Kwangju Christian Hospital; National Health Insurance Service Ilsan Hospital; Samsung Medical Center; Severance Hospital; Sungkyunkwan University; University of Ottawa; Wonju Severance Christian Hospital; Yonsei University; Yonsei University Health System,,,A5100410174,,6,0,0,6
+P0031,,Joung Eun Lim,Samsung Medical Center; Methodist Richardson Medical Center; Sungkyunkwan University,,,A5101642438,,6,0,0,6
