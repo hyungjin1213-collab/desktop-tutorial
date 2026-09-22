@@ -3,8 +3,13 @@ from __future__ import annotations
 import re
 
 import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.formatting.rule import FormulaRule
+from openpyxl.styles import PatternFill
+from openpyxl.worksheet.datavalidation import DataValidation
 
-from config import OUTPUT_DIR
+from candidate_web_verifier import verify_candidates_with_web
+from config import AUTO_NO_CONFIDENCE, AUTO_YES_CONFIDENCE, OUTPUT_DIR
 from openalex_client import OpenAlexClient, normalize_openalex_id
 from scholar_client import SCHOLAR_LOOKUP_LIMIT, ScholarClient
 
@@ -185,29 +190,144 @@ def classify_candidates(
         ascending=[True, False, False],
     ).drop(columns=["_tier_order"])
 
+    # Second pass: verify likely candidates against current web evidence.
+    result = verify_candidates_with_web(result)
+
+    # Conservative auto-decision. "yes" requires explicit professor/PI evidence
+    # on an academic/official domain. "no" requires explicit trainee evidence or
+    # strong non-PI/noise signals. Everything else stays blank for human review.
+    auto_decisions = []
+    auto_confidences = []
+    auto_reasons = []
+
+    for _, row in result.iterrows():
+        tier = row.get("triage_tier", "")
+        official = row.get("official_domain_signal", "") == "yes"
+        prof = row.get("professor_title_signal", "") == "yes"
+        trainee = row.get("trainee_title_signal", "") == "yes"
+        academic = row.get("academic_affiliation_signal", "") == "yes"
+        bio = row.get("bio_relevance_signal", "") == "yes"
+        conflict = row.get("affiliation_conflict_warning", "") == "yes"
+        shared = _safe_int(row.get("shared_paper_count", 0))
+        seed_count = _safe_int(row.get("seed_connection_count", 0))
+
+        decision = ""
+        confidence = 0.50
+        reason = "manual review needed"
+
+        if official and prof and not trainee:
+            decision = "yes"
+            confidence = 0.98
+            reason = "official academic page/search result explicitly indicates professor/PI"
+        elif official and trainee and not prof:
+            decision = "no"
+            confidence = 0.98
+            reason = "official academic page/search result explicitly indicates trainee/postdoc"
+        elif prof and academic and not trainee and not conflict:
+            decision = "yes"
+            confidence = 0.92
+            reason = "professor/PI title signal + academic affiliation"
+        elif trainee and not prof:
+            decision = "no"
+            confidence = 0.95
+            reason = "trainee/postdoc title signal"
+        elif tier == "D_noise_check" and not bio and seed_count <= 1:
+            decision = "no"
+            confidence = 0.93
+            reason = "field mismatch/noise pattern without independent PI evidence"
+        elif not academic and shared <= 3:
+            decision = "no"
+            confidence = 0.92
+            reason = "non-academic current affiliation + weak collaboration signal"
+        elif tier == "A_review_first" and academic and bio and seed_count >= 2 and not conflict:
+            confidence = 0.82
+            reason = "strong network signal, but no explicit professor title evidence"
+
+        auto_decisions.append(decision)
+        auto_confidences.append(round(confidence, 2))
+        auto_reasons.append(reason)
+
+    result["auto_decision"] = auto_decisions
+    result["auto_confidence"] = auto_confidences
+    result["auto_reason"] = auto_reasons
     result.to_csv(OUTPUT_DIR / "candidate_review.csv", index=False)
 
-    # Human-friendly approval sheet. Only A/B candidates are surfaced here.
-    # The user only needs to change approved from blank to yes for confirmed PIs.
-    shortlist = result[result["triage_tier"].isin(["A_review_first", "B_review"])].copy()
-    approval_template = pd.DataFrame(
-        {
-            "openalex_id": shortlist.get("openalex_id", ""),
-            "approved": "",
-            "name_ko": "",
-            "name_en": shortlist.get("display_name", ""),
-            "university": shortlist.get("current_affiliation", ""),
-            "department": "",
-            "primary_field": "",
-            "source_url": shortlist.get("scholar_profile_url", ""),
-            "triage_tier": shortlist.get("triage_tier", ""),
-            "shared_paper_count": shortlist.get("shared_paper_count", ""),
-            "connected_seed_professor_ids": shortlist.get("connected_seed_professor_ids", ""),
-            "triage_reason": shortlist.get("triage_reason", ""),
-        }
-    )
-    approval_template.to_csv(
-        OUTPUT_DIR / "candidate_approval_template.csv",
-        index=False,
-    )
+    # Preserve any manual yes/no choices already made in the previous template.
+    previous_path = OUTPUT_DIR / "candidate_approval_template.csv"
+    previous = {}
+    if previous_path.exists() and previous_path.stat().st_size:
+        try:
+            prev_df = pd.read_csv(previous_path, dtype=str).fillna("")
+            previous = {
+                row["openalex_id"]: row.to_dict()
+                for _, row in prev_df.iterrows()
+                if row.get("openalex_id", "")
+            }
+        except pd.errors.EmptyDataError:
+            pass
+
+    shortlist = result[result["triage_tier"].isin(["A_review_first", "B_review", "C_manual"])].copy()
+    rows = []
+    for _, row in shortlist.iterrows():
+        oid = row.get("openalex_id", "")
+        prior = previous.get(oid, {})
+        approved = prior.get("approved", "")
+        if not approved:
+            auto_decision = row.get("auto_decision", "")
+            auto_conf = float(row.get("auto_confidence", 0) or 0)
+            if auto_decision == "yes" and auto_conf >= AUTO_YES_CONFIDENCE:
+                approved = "yes"
+            elif auto_decision == "no" and auto_conf >= AUTO_NO_CONFIDENCE:
+                approved = "no"
+
+        rows.append({
+            "openalex_id": oid,
+            "approved": approved,
+            "name_ko": prior.get("name_ko", ""),
+            "name_en": prior.get("name_en", "") or row.get("display_name", ""),
+            "university": prior.get("university", "") or row.get("current_affiliation", ""),
+            "department": prior.get("department", ""),
+            "primary_field": prior.get("primary_field", ""),
+            "source_url": prior.get("source_url", "") or row.get("web_url", "") or row.get("scholar_profile_url", ""),
+            "auto_decision": row.get("auto_decision", ""),
+            "auto_confidence": row.get("auto_confidence", ""),
+            "auto_reason": row.get("auto_reason", ""),
+            "triage_tier": row.get("triage_tier", ""),
+            "shared_paper_count": row.get("shared_paper_count", ""),
+            "connected_seed_professor_ids": row.get("connected_seed_professor_ids", ""),
+            "web_title": row.get("web_title", ""),
+            "current_affiliation": row.get("current_affiliation", ""),
+        })
+
+    approval_template = pd.DataFrame(rows)
+    approval_template.to_csv(previous_path, index=False)
+
+    # Excel version for painless human review.
+    xlsx_path = OUTPUT_DIR / "candidate_approval_template.xlsx"
+    approval_template.to_excel(xlsx_path, index=False, sheet_name="Candidates")
+    wb = load_workbook(xlsx_path)
+    ws = wb["Candidates"]
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = ws.dimensions
+
+    widths = {
+        "A": 16, "B": 12, "C": 14, "D": 24, "E": 42, "F": 24, "G": 20,
+        "H": 45, "I": 14, "J": 14, "K": 48, "L": 16, "M": 14, "N": 24,
+        "O": 45, "P": 42,
+    }
+    for col, width in widths.items():
+        ws.column_dimensions[col].width = width
+
+    dv = DataValidation(type="list", formula1='"yes,no"', allow_blank=True)
+    ws.add_data_validation(dv)
+    dv.add(f"B2:B{max(ws.max_row, 2)}")
+
+    green = PatternFill("solid", fgColor="C6EFCE")
+    red = PatternFill("solid", fgColor="FFC7CE")
+    yellow = PatternFill("solid", fgColor="FFEB9C")
+    ws.conditional_formatting.add(f"B2:B{ws.max_row}", FormulaRule(formula=['B2="yes"'], fill=green))
+    ws.conditional_formatting.add(f"B2:B{ws.max_row}", FormulaRule(formula=['B2="no"'], fill=red))
+    ws.conditional_formatting.add(f"B2:B{ws.max_row}", FormulaRule(formula=['B2=""'], fill=yellow))
+    wb.save(xlsx_path)
+
     return result
