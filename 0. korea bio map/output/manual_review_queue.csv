@@ -1,35 +1,5 @@
 ﻿openalex_id,display_name,current_affiliation,shared_paper_count,seed_connection_count,connected_seed_professor_ids,web_title,web_url,auto_confidence,auto_reason,triage_tier
-A5102970348,Je‐Jung Lee,Yonsei University; Seoul National University Bundang Hospital; Oxford Biotherapeutics (United Kingdom); Gachon University Gil Medical Center; Chonnam National University Hospital; Palmetto Hematology Oncology; Chonnam National University Hwasun Hospital; Dong-A University,49,4,P0001; P0006; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5064161026,Hyeoung‐Joon Kim,Chonnam National University; The Catholic University of Korea Seoul St. Mary's Hospital; Catholic University of Korea,32,4,P0001; P0006; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5077539926,Sungho Jang,Incheon National University,20,4,P0002; P0008; P0010; P0012,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5072950930,no,Pohang University of Science and Technology,17,4,P0002; P0008; P0010; P0012,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5063762312,Sang‐Ki Kim,Kongju National University; Chonnam National University Hwasun Hospital,30,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5000328867,no,University of San Diego; University of California San Diego; La Jolla Bioengineering Institute; Korea Research Institute of Chemical Technology; Korea Research Institute of Bioscience and Biotechnology,30,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5045222188,no,Samsung (South Korea); Sungkyunkwan University,26,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5100739943,no,Samsung Medical Center; Seoul National University Hospital; Pusan National University Hospital; Sungkyunkwan University,23,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5100694944,Seong‐Eun Kim,Seoul National University of Science and Technology,14,3,P0001; P0009; P0011,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5083853234,Yong Hee Han,Chonnam National University,13,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5059129862,Seo-Yeon Ahn,Palmetto Hematology Oncology; Chonnam National University Hwasun Hospital,4,4,P0001; P0006; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5100366805,no,Yeungnam University; Sungkyunkwan University,8,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5026607578,no,Institute of Immunology; Chonnam National University Hwasun Hospital,8,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5068416755,Sung‐Hoon Jung,Chonnam National University Hwasun Hospital,8,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5028790314,Dong Keun Han,CHA University; Jeil Pharmaceutical (South Korea),8,3,P0001; P0002; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5082510130,no,Pohang University of Science and Technology,3,4,P0002; P0008; P0010; P0012,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5069444992,Sungjee Kim,Pohang University of Science and Technology; Bioscience Research,7,3,P0001; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5028222807,no,Duy Tan University; Chonnam National University Hwasun Hospital,7,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5047859685,Sanguk Kim,Pohang University of Science and Technology,7,3,P0002; P0008; P0012,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5012598761,no,Pohang University of Science and Technology,2,4,P0002; P0008; P0010; P0012,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5055907176,no,Kangwon National University; Cornell University; Weill Cornell Medicine,6,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5022299245,Sangbin Han,Samsung Medical Center; Sungkyunkwan University,6,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5016925154,no,Pohang University of Science and Technology,6,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5057234589,Byoung‐Gie Kim,Samsung Medical Center; Sungkyunkwan University,6,3,P0003; P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5075962780,Wooram Park,Sungkyunkwan University,5,3,P0001; P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5068736163,Ilwoong Hwang,Konkuk University; Konkuk University Chungju Hospital; Seoul National University; Soonchunhyang University Hospital Seoul,5,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5063559979,no,Texas Woman's University; Sungkyunkwan University,5,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5003283147,Woong‐Yang Park,Samsung (South Korea); Samsung Medical Center; ToolGen (South Korea); Kashiwa Municipal Hospital; Sungkyunkwan University,5,3,P0001; P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5076271673,Youngil Koh,Seoul National University; Cancer Research Institute; Seoul National University Hospital,5,3,P0002; P0007; P0008,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5100410174,Seung‐Hwan Lee,Hanyang University,5,3,P0006; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5101642438,Joung Eun Lim,Samsung Medical Center; Methodist Richardson Medical Center; Sungkyunkwan University,5,3,P0006; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5010238674,Yongbum Cho,Pohang University of Science and Technology; Seoul National University,6,3,P0001; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5004166441,Seok Jin Kim,Samsung (South Korea); Samsung Medical Center; Seoul National University Bundang Hospital; Abeona Therapeutics (United States); Sungkyunkwan University,47,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5103473970,Cha Yong Choi,Seoul National University,41,2,P0002; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5021758819,Suk Ran Yoon,Korea Research Institute of Bioscience and Biotechnology,38,2,P0001; P0011,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
@@ -65,34 +35,36 @@ A5083816200,Sohyun Yun,Chungnam National University; Korea Research Institute of
 A5100353399,Kihyun Kım,Seoul National University; Samsung Medical Center; Jeonbuk National University; Sungkyunkwan University,11,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5051983148,Sang Joon Shin,Yonsei University; National Cancer Center; Sungkyunkwan University,10,2,P0003; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5037602360,Hong Nam Kim,Yonsei University; Korea Institute of Brain Science; Korean Association Of Science and Technology Studies; Bio-Medical Science (South Korea); Korea Institute of Science and Technology; Korea University of Science and Technology,9,2,P0001; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5054573839,Yeung‐Chul Mun,Ewha Womans University,9,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5054573839,Yeung‐Chul Mun,Ewha Womans University; Ewha Womans University Medical Center; Ewha Womans University Mokdong Hospital; Yonsei University,9,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5101634067,Dae Sik Kim,Korea University Medical Center,9,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5070182290,Soo‐Young Yoon,Korea University,9,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5114400787,Seok‐Ho Kim,Kyung Hee University; Korea Pharma (South Korea); Dong-A University; Korea Research Institute of Bioscience and Biotechnology; Korea University of Science and Technology,4,3,P0001; P0006; P0011,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5100410160,Seung Hwan Lee,"Chonnam National University; University of Ottawa; Inha University; Yonsei University; Chungnam National University; Konkuk University; Severance Hospital; New Generation University College; Seoul National University Hospital; Kyungpook National University; Seoul Medical Center; National Cancer Center; National Institute of Biological Resources; National Cancer Center; National University College; Centre for Infection, Immunity and Inflammation; Konkuk University Chungju Hospital; Nakdonggang National Institute of Biological Resources; Chung-Ang University Gwangmyeong Hospital; Hanyang University; Korea Institute of Science and Technology; Chung-Ang University",4,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5014715024,Chun Gwon Park,Gyeonggi Research Institute; Advanced Institute of Convergence Technology; Korea Institute of Science and Technology; Sungkyunkwan University,4,3,P0001; P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5059045953,Yujin Baek,Seoul National University,4,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5054323976,Bohwa Han,Seoul National University; Dong-A University,4,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5054323976,Bohwa Han,Dong-A University; New Generation University College; Seoul National University; Seoul National University of Science and Technology,4,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5003546968,Sang‐Jun Ha,Yonsei University,4,3,P0001; P0003; P0011,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5022393389,Dong Hun Kwak,Pohang University of Science and Technology,4,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5043539796,Sungwoo Park,Seoul National University,4,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5019410379,Beomhee Kim,Seoul National University,4,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5034565125,Seungjin Kim,Pohang University of Science and Technology; Inha University,4,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5034565125,Seungjin Kim,Inha University; Pohang University of Science and Technology,4,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5079772051,Chung Ryul Jung,Incheon National University; Korea Forest Service; Institute of Forest Science,8,2,P0001; P0011,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5100682311,Donghyuk Kim,Korea University; Ulsan National Institute of Science and Technology,8,2,P0002; P0008,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5100682311,Donghyuk Kim,Kyung Hee University; La Jolla Bioengineering Institute; Ulsan National Institute of Science and Technology; University of California San Diego,8,2,P0002; P0008,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5109103981,Su Jin Song,Hanyang University,8,2,P0002; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5061006522,Chel Hun Choi,Samsung Medical Center; Kangbuk Samsung Hospital; Sungkyunkwan University,8,2,P0003; P0006,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5061006522,Chel Hun Choi,Samsung Medical Center; Sungkyunkwan University,8,2,P0003; P0006,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5025726619,Kyeong‐Hee Kim,Dong-A University,8,2,P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5064386987,Kyunga Kim,Samsung Medical Center; Sungkyunkwan University,8,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5102924577,Chang‐Ki Min,The Catholic University of Korea Seoul St. Mary's Hospital,8,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5024933039,Min Sang Kwon,Korea Institute for Advanced Study; Seoul National University; Korea Research Institute of Standards and Science; National University; Korea University of Science and Technology,3,3,P0001; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5102924577,Chang‐Ki Min,Catholic University of Korea; St Mary's Hospital; The Catholic University of Korea Seoul St. Mary's Hospital,8,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5024933039,Min Sang Kwon,Seoul National University,3,3,P0001; P0007; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5020574847,Ga‐Young Song,Chonnam National University Hwasun Hospital,3,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5075932421,Sung Yong Oh,Korea University Medical Center; Dong-A University Hospital; Dong-A University,3,3,P0001; P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5089708483,Hantae Jo,Samsung Medical Center; Sungkyunkwan University,3,3,P0001; P0006; P0009,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5075932421,Sung Yong Oh,Dong-A University; Dong-A University Hospital; Osong Medical Innovation Foundation,3,3,P0001; P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5003848690,Joo Yeon Seok,Pohang University of Science and Technology,3,3,P0002; P0008; P0010,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5075710060,Nathaniel Suk-Yeon Hwang,Seoul National University; National University; Bioengineering Center,7,2,P0001; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5111681185,Kahp‐Yang Suh,New Generation University College; Pohang University of Science and Technology; Seoul National University,7,2,P0001; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5032246267,Su Ui Lee,Korea Research Institute of Bioscience and Biotechnology,7,2,P0001; P0011,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5051796736,Noo Li Jeon,Seoul National University; Qarshi University; Institute of Agricultural Machinery; Bioengineering Center,7,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5056221486,Yeo‐Kyeoung Kim,Chonnam National University; Chonnam National University Hwasun Hospital,7,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5109599649,Jihye Hong,Kyungpook National University; Massachusetts General Hospital; Center for Systems Biology,19,2,P0001; P0007,,,0.5,manual review needed,A_review_first
 A5057408888,Jin Han,Inje University,19,2,P0001; P0007,,,0.5,manual review needed,A_review_first
 A5086508893,Seok‐min Kim,Chung-Ang University,19,2,P0001; P0011,,,0.5,manual review needed,A_review_first
@@ -105,8 +77,9 @@ A5109987655,Keon Woo Kwon,Korea Research Institute of Bioscience and Biotechnolo
 A5100669495,Sun‐Young Lee,IntraHealth International; Konkuk University; Konkuk University Medical Center; Keimyung College University; Ajou University Hospital; Precision for Medicine (United States); Keimyung University; Ajou University; Daegu University,9,2,P0001; P0011,,,0.5,manual review needed,A_review_first
 A5057787860,Kyoo‐Hyung Lee,Seoul National University; Ewha Womans University Medical Center,9,2,P0007; P0011,,,0.5,manual review needed,A_review_first
 A5102155701,In-Hwan Jang,Korea Research Institute of Bioscience and Biotechnology,6,2,P0001; P0011,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5068036652,Myung Hwan Park,Cellid (South Korea); Namseoul University; Nation University; NovaCell Technology (South Korea); Seoul National University; Seoul National University of Science and Technology,6,2,P0003; P0006,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5083300612,Hoon Hyun,Chonnam National University Hwasun Hospital,6,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
-A5100725750,Mi‐Hyun Kim,Gachon University,6,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
+A5100725750,Mi‐Hyun Kim,Chonnam National University Hwasun Hospital; Gachon University; Seoul National University,6,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5018386699,Myung‐Hyun Nam,Korea University; Korea University Medical Center; Korea University,6,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5100715666,Joon Seong Park,Seoul National University; University of Suwon; Ajou University,6,2,P0006; P0007,,,0.82,"strong network signal, but no explicit professor title evidence",A_review_first
 A5050010599,Suk Ho Bhang,Sungkyunkwan University,85,1,P0007,,,0.5,manual review needed,A_review_first
@@ -119,7 +92,6 @@ A5090832721,Hyun Cheol Chung,Yonsei University; Yonsei University Health System,
 A5030367192,Madhappan Santhamoorthy,Yeungnam University; Karpagam Academy of Higher Education; Saveetha University,41,1,P0012,,,0.5,manual review needed,A_review_first
 A5100708869,Tae‐Jin Lee,Yeungnam University; Sungkyunkwan University,38,1,P0007,,,0.5,manual review needed,A_review_first
 A5031068192,Seung‐Woo Cho,Kangwon National University; Yonsei University; Cell Biotech (South Korea); Institute for Basic Science,36,1,P0007,,,0.5,manual review needed,A_review_first
-A5089708483,Hantae Jo,Yonsei University; The Catholic University of Korea Seoul St. Mary's Hospital; Catholic University of Korea,3,3,P0001; P0006; P0009,,,0.5,manual review needed,A_review_first
 A5024676627,Sun Young Rha,Yonsei University; Yonsei University Health System; Indiana University Melvin and Bren Simon Comprehensive Cancer Center,29,1,P0007,,,0.5,manual review needed,A_review_first
 A5045695329,Vinit Raj,Pandit Bhagwat Dayal Sharma Post Graduate Institute of Medical Sciences; Dongguk University; Yeungnam University; Chung-Ang University,22,1,P0012,,,0.5,manual review needed,A_review_first
 A5053871036,Gun‐Jae Jeong,Korea National University of Transportation; Catholic University of Korea,20,1,P0007,,,0.5,manual review needed,A_review_first
@@ -136,18 +108,16 @@ A5055596433,Seona Jo,Biocon (Switzerland); Korea Research Institute of Bioscienc
 A5070300049,Sang Eun Yoon,Samsung Medical Center; Sungkyunkwan University,11,1,P0006,,,0.5,manual review needed,A_review_first
 A5100417563,Sun‐Hee Kim,Ewha Womans University; Korea National Institute of Health; Yeungnam University College; Yeungnam University; Hongik University,11,1,P0006,,,0.5,manual review needed,A_review_first
 A5025901845,Taeghwan Hyeon,Seoul National University; National University; Institute for Basic Science,11,1,P0007,,,0.5,manual review needed,A_review_first
-A5008942832,Yangsoo Jang,Yonsei University; Severance Hospital; CHA University Bundang Medical Center; CHA University; Yonsei University Health System; CHA University Gangnam Medical Center,11,1,P0007,,,0.5,manual review needed,A_review_first
+A5008942832,Yangsoo Jang,Gangnam Severance Hospital; Severance Hospital; Yonsei University; Yonsei University Health System,11,1,P0007,,,0.5,manual review needed,A_review_first
 A5057610578,Sung Hoon Noh,Yonsei University; Gangnam Severance Hospital,11,1,P0007,,,0.5,manual review needed,A_review_first
-A5073866582,Ick Chan Kwon,Harvard University; Korea University; Dana-Farber Cancer Institute; PRG S&Tech (South Korea); Korea Institute of Science and Technology,11,1,P0007,,,0.5,manual review needed,A_review_first
-A5070142225,Yong Rok Lee,Yeungnam University,11,1,P0012,,,0.5,manual review needed,A_review_first
+A5073866582,Ick Chan Kwon,Korea Institute of Science and Technology; Korea University; PRG S&Tech (South Korea),11,1,P0007,,,0.5,manual review needed,A_review_first
+A5070142225,Yong Rok Lee,Government of the Republic of Korea; Yeungnam University,11,1,P0012,,,0.5,manual review needed,A_review_first
 A5083227579,Junhun Cho,Samsung Medical Center; Sungkyunkwan University,10,1,P0006,,,0.5,manual review needed,A_review_first
-A5100780621,Jin Seok Kim,Yonsei University; Severance Hospital; University of Ulsan; Gangnam Severance Hospital; Yonsei University Health System,10,1,P0007,,,0.5,manual review needed,A_review_first
+A5100780621,Jin Seok Kim,Hallym University Medical Center; Hallym University Sacred Heart Hospital; Severance Hospital; Soonchunhyang University Hospital Seoul; Ulsan College; Ulsan University Hospital; University of Ulsan; Yonsei University,10,1,P0007,,,0.5,manual review needed,A_review_first
 A5043824226,June‐Won Cheong,Yonsei University; Severance Hospital; Gangnam Severance Hospital; Yonsei University Health System,10,1,P0007,,,0.5,manual review needed,A_review_first
 A5021055204,Ji‐Yoon Noh,Korea Research Institute of Bioscience and Biotechnology; Korea University of Science and Technology,10,1,P0011,,,0.5,manual review needed,A_review_first
 A5064340989,Kuppu Sakthi Velu,Yeungnam University,10,1,P0012,,,0.5,manual review needed,A_review_first
-A5056221486,Yeo‐Kyeoung Kim,Veterans Health Service Medical Center,7,2,P0006; P0007,,,0.5,manual review needed,A_review_first
 A5010733573,Jae‐Hyun Lee,Seoul National University; Sungkyunkwan University,6,2,P0001; P0006,,,0.5,manual review needed,A_review_first
-A5068036652,Myung Hwan Park,Chungbuk National University,6,2,P0003; P0006,,,0.5,manual review needed,A_review_first
 A5038504707,Young Hyeh Ko,Korea University Medical Center; Cheju Halla General Hospital; Korea University; University of Manitoba,6,2,P0006; P0007,,,0.5,manual review needed,A_review_first
 A5106559017,Joo Hang Kim,CHA University Bundang Medical Center,20,1,P0007,,,0.5,manual review needed,A_review_first
 A5000726733,So‐Jung Gwak,Wonkwang University,18,1,P0007,,,0.5,manual review needed,A_review_first
@@ -161,14 +131,15 @@ A5111532540,Kyong Sik Lee,CHA University Bundang Medical Center; CHA University,
 A5079172054,Seokhyeong Go,Yonsei University,11,1,P0007,,,0.5,manual review needed,A_review_first
 A5012519000,Dong‐Ik Kim,Korea Institute of Science and Technology,11,1,P0007,,,0.5,manual review needed,A_review_first
 A5032584755,Tae Gi Uhm,Catholic University of Korea,10,1,P0007,,,0.5,manual review needed,A_review_first
-A5056525061,Byung Soh Min,Yonsei University; Severance Hospital,9,1,P0003,,,0.5,manual review needed,B_review
+A5056525061,Byung Soh Min,Yonsei University,9,1,P0003,,,0.5,manual review needed,B_review
 A5046647594,Yoon Dae Han,Yonsei University; Severance Hospital; Gangnam Severance Hospital,9,1,P0003,,,0.5,manual review needed,B_review
-A5100692942,Hee‐Jin Kim,Samsung Medical Center; Seoul National University Hospital; Pusan National University Hospital; Sungkyunkwan University,9,1,P0006,,,0.5,manual review needed,B_review
+A5100692942,Hee‐Jin Kim,Samsung Medical Center; Sungkyunkwan University,9,1,P0006,,,0.5,manual review needed,B_review
 A5109964987,Wan-Geun La,Seoul National University; New Generation University College; National University,9,1,P0007,,,0.5,manual review needed,B_review
 A5044958787,Cheolwon Suh,Asan Medical Center; Severance Hospital; Ulsan College; University of Ulsan,9,1,P0007,,,0.5,manual review needed,B_review
 A5089409725,Sangjun Moon,Seoul National University,9,1,P0007,,,0.5,manual review needed,B_review
 A5023814391,Myungkyung Noh,Seoul National University,9,1,P0007,,,0.5,manual review needed,B_review
 A5047221908,Dong Oh Kim,Korea Research Institute of Chemical Technology,9,1,P0011,,,0.5,manual review needed,B_review
+A5010727414,Kyung‐Chul Woo,Korea Research Institute of Bioscience and Biotechnology; Pohang University of Science and Technology,9,1,P0011,,,0.5,manual review needed,B_review
 A5038796410,Hyun-Woo Choi,Chonnam National University Hospital,8,1,P0006,,,0.5,manual review needed,B_review
 A5042247857,Jin Ho Yoo,Seoul National University of Science and Technology; Ministry of National Defense; Bio-Medical Science (South Korea); Korea Institute of Science and Technology; Korea University of Science and Technology,8,1,P0007,,,0.5,manual review needed,B_review
 A5100387458,Jae Hoon Lee,Yonsei University; Gachon University Gil Medical Center; Dong-A University,8,1,P0007,,,0.5,manual review needed,B_review
@@ -180,7 +151,6 @@ A5012351591,Sonaimuthu Mohandoss,Yeungnam University,8,1,P0012,,,0.5,manual revi
 A5024815594,Vijayalaxmi K. Mishra,Yeungnam University,8,1,P0012,,,0.5,manual review needed,B_review
 A5100450425,Sung Hyun Kim,Yonsei University; Severance Hospital; Yonsei University Health System; Ajou University,9,1,P0007,,,0.5,manual review needed,B_review
 A5044234730,Eun Hee Koh,Asan Medical Center; University of Ulsan,9,1,P0007,,,0.5,manual review needed,B_review
-A5010727414,Kyung‐Chul Woo,Jeonbuk National University,9,1,P0011,,,0.5,manual review needed,B_review
 A5084590075,Eun Young Song,Seoul National University; New Generation University College; Seoul National University Hospital,9,1,P0012,,,0.5,manual review needed,B_review
 A5038474427,Jae‐Seong Yang,Center for Research in Agricultural Genomics,11,4,P0002; P0008; P0010; P0012,,,0.5,manual review needed,C_manual
 A5045269587,Minh‐Trang Thi Phan,Ho Chi Minh City University of Technology,19,3,P0001; P0006; P0009,,,0.5,manual review needed,C_manual
@@ -194,7 +164,6 @@ A5012450211,Chang‐Yuil Kang,Cellid (South Korea),27,2,P0003; P0006,,,0.5,manua
 A5076505324,Hee Su Sohn,Brigham and Women's Hospital; Harvard University,14,2,P0001; P0007,,,0.5,manual review needed,C_manual
 A5025699504,Jaya Lakshmi Thangaraj,University of California San Diego,4,3,P0001; P0006; P0009,,,0.5,manual review needed,C_manual
 A5057879843,Sungyeon Jang,The University of Texas at Austin,4,3,P0002; P0008; P0010,,,0.5,manual review needed,C_manual
-A5010238674,Yongbum Cho,LG (United States),6,3,P0001; P0007; P0009,,,0.5,manual review needed,C_manual
 A5062046221,Seong-Eun Kim,Georgia State University; Institute of Infection and Immunity,3,3,P0001; P0006; P0011,,,0.5,manual review needed,C_manual
 A5042344146,Young Ho Ban,University of Virginia,3,3,P0001; P0003; P0011,,,0.5,manual review needed,C_manual
 A5112228786,Se Ryeon Lee,Korea University,16,2,P0006; P0007,,,0.5,manual review needed,C_manual
