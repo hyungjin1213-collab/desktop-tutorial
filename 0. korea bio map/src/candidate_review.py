@@ -303,9 +303,24 @@ def classify_candidates(
     # Only unresolved people appear here. The user no longer edits this file;
     # it is simply the short checklist used to decide which IDs to add to
     # data/candidate_decisions.csv.
+    reviewed_path = OUTPUT_DIR.parent / "data" / "manual_reviewed.csv"
+    reviewed_ids = set()
+    if reviewed_path.exists() and reviewed_path.stat().st_size:
+        try:
+            reviewed_df = _read_csv_flexible(reviewed_path)
+            if "openalex_id" in reviewed_df.columns:
+                reviewed_ids = {
+                    str(x).strip()
+                    for x in reviewed_df["openalex_id"]
+                    if str(x).strip()
+                }
+        except (UnicodeDecodeError, pd.errors.ParserError):
+            reviewed_ids = set()
+
     queue = result[
         (result["suggested_decision"] == "review")
         & (~result["human_decision"].isin(["yes", "no"]))
+        & (~result["openalex_id"].isin(reviewed_ids))
     ].copy()
 
     queue_columns = [
