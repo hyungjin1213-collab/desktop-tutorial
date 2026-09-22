@@ -52,7 +52,6 @@ jobs:
           name: korea-bio-map-output
           path: |
             0. korea bio map/output/*.csv
-            0. korea bio map/output/*.xlsx
             0. korea bio map/web/network-data.js
           if-no-files-found: error
 
@@ -61,7 +60,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f "0. korea bio map/output/"*.csv
-          git add -f "0. korea bio map/output/"*.xlsx
           git add "0. korea bio map/web/network-data.js"
           git add "0. korea bio map/data/professors_seed.csv"
           if [ -f "0. korea bio map/data/candidate_web_cache.csv" ]; then
