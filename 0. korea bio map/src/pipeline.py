@@ -237,21 +237,43 @@ def collect_collaborations(
 def promote_approved_candidates() -> int:
     professors_path = DATA_DIR / "professors_seed.csv"
     approvals_path = DATA_DIR / "candidate_approvals.csv"
+    review_template_path = OUTPUT_DIR / "candidate_approval_template.csv"
 
     professors = _read_csv(professors_path, PROFESSOR_COLUMNS).copy()
-    approvals = _read_csv(
-        approvals_path,
-        [
-            "openalex_id",
-            "approved",
-            "name_ko",
-            "name_en",
-            "university",
-            "department",
-            "primary_field",
-            "source_url",
-        ],
-    )
+
+    approval_columns = [
+        "openalex_id",
+        "approved",
+        "name_ko",
+        "name_en",
+        "university",
+        "department",
+        "primary_field",
+        "source_url",
+    ]
+
+    # Prefer the human-reviewed output template so the normal workflow is:
+    # edit candidate_approval_template.csv -> run promote-and-all.
+    # Fall back to data/candidate_approvals.csv for backwards compatibility.
+    if review_template_path.exists() and review_template_path.stat().st_size:
+        try:
+            approvals = pd.read_csv(
+                review_template_path,
+                dtype=str,
+                encoding="utf-8-sig",
+            ).fillna("")
+        except UnicodeDecodeError:
+            approvals = pd.read_csv(
+                review_template_path,
+                dtype=str,
+                encoding="cp949",
+            ).fillna("")
+        for column in approval_columns:
+            if column not in approvals.columns:
+                approvals[column] = ""
+        approvals = approvals[approval_columns]
+    else:
+        approvals = _read_csv(approvals_path, approval_columns)
 
     if approvals.empty:
         return 0
