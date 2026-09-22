@@ -3,10 +3,6 @@ from __future__ import annotations
 import re
 
 import pandas as pd
-from openpyxl import load_workbook
-from openpyxl.formatting.rule import FormulaRule
-from openpyxl.styles import PatternFill
-from openpyxl.worksheet.datavalidation import DataValidation
 
 from candidate_web_verifier import verify_candidates_with_web
 from config import AUTO_NO_CONFIDENCE, AUTO_YES_CONFIDENCE, OUTPUT_DIR
@@ -263,85 +259,75 @@ def classify_candidates(
     result["auto_decision"] = auto_decisions
     result["auto_confidence"] = auto_confidences
     result["auto_reason"] = auto_reasons
-    result.to_csv(OUTPUT_DIR / "candidate_review.csv", index=False)
 
-    # Preserve any manual yes/no choices already made in the previous template.
-    previous_path = OUTPUT_DIR / "candidate_approval_template.csv"
-    previous = {}
-    if previous_path.exists() and previous_path.stat().st_size:
+    # Human decisions live in one tiny durable file only. Generated review
+    # outputs are read-only and can be regenerated safely at any time.
+    decisions_path = OUTPUT_DIR.parent / "data" / "candidate_decisions.csv"
+    human_map = {}
+    if decisions_path.exists() and decisions_path.stat().st_size:
         try:
-            prev_df = _read_csv_flexible(previous_path)
-            previous = {
-                row["openalex_id"]: row.to_dict()
-                for _, row in prev_df.iterrows()
-                if row.get("openalex_id", "")
-            }
-        except pd.errors.EmptyDataError:
-            pass
+            decisions = _read_csv_flexible(decisions_path)
+            if "openalex_id" in decisions.columns and "decision" in decisions.columns:
+                human_map = {
+                    str(row["openalex_id"]).strip(): str(row["decision"]).strip().casefold()
+                    for _, row in decisions.iterrows()
+                    if str(row.get("openalex_id", "")).strip()
+                }
+        except (UnicodeDecodeError, pd.errors.ParserError):
+            human_map = {}
 
-    shortlist = result[result["triage_tier"].isin(["A_review_first", "B_review", "C_manual"])].copy()
-    rows = []
-    for _, row in shortlist.iterrows():
-        oid = row.get("openalex_id", "")
-        prior = previous.get(oid, {})
-        approved = prior.get("approved", "")
-        if not approved:
-            auto_decision = row.get("auto_decision", "")
-            auto_conf = float(row.get("auto_confidence", 0) or 0)
-            if auto_decision == "yes" and auto_conf >= AUTO_YES_CONFIDENCE:
-                approved = "yes"
-            elif auto_decision == "no" and auto_conf >= AUTO_NO_CONFIDENCE:
-                approved = "no"
+    result["human_decision"] = result["openalex_id"].map(
+        lambda oid: human_map.get(str(oid).strip(), "")
+    )
 
-        rows.append({
-            "openalex_id": oid,
-            "approved": approved,
-            "name_ko": prior.get("name_ko", ""),
-            "name_en": prior.get("name_en", "") or row.get("display_name", ""),
-            "university": prior.get("university", "") or row.get("current_affiliation", ""),
-            "department": prior.get("department", ""),
-            "primary_field": prior.get("primary_field", ""),
-            "source_url": prior.get("source_url", "") or row.get("web_url", "") or row.get("scholar_profile_url", ""),
-            "auto_decision": row.get("auto_decision", ""),
-            "auto_confidence": row.get("auto_confidence", ""),
-            "auto_reason": row.get("auto_reason", ""),
-            "triage_tier": row.get("triage_tier", ""),
-            "shared_paper_count": row.get("shared_paper_count", ""),
-            "connected_seed_professor_ids": row.get("connected_seed_professor_ids", ""),
-            "web_title": row.get("web_title", ""),
-            "current_affiliation": row.get("current_affiliation", ""),
-        })
+    def suggested(row):
+        human = str(row.get("human_decision", "")).strip().casefold()
+        if human in {"yes", "no"}:
+            return human
+        auto = str(row.get("auto_decision", "")).strip().casefold()
+        conf = float(row.get("auto_confidence", 0) or 0)
+        official = str(row.get("official_domain_signal", "")).strip().casefold() == "yes"
+        if auto == "yes" and conf >= AUTO_YES_CONFIDENCE and official:
+            return "yes"
+        if auto == "no" and conf >= AUTO_NO_CONFIDENCE:
+            return "no"
+        return "review"
 
-    approval_template = pd.DataFrame(rows)
-    # Write UTF-8 with BOM so Korean names open cleanly in Excel next time.
-    approval_template.to_csv(previous_path, index=False, encoding="utf-8-sig")
+    result["suggested_decision"] = result.apply(suggested, axis=1)
+    result.to_csv(
+        OUTPUT_DIR / "candidate_review.csv",
+        index=False,
+        encoding="utf-8-sig",
+    )
 
-    # Excel version for painless human review.
-    xlsx_path = OUTPUT_DIR / "candidate_approval_template.xlsx"
-    approval_template.to_excel(xlsx_path, index=False, sheet_name="Candidates")
-    wb = load_workbook(xlsx_path)
-    ws = wb["Candidates"]
-    ws.freeze_panes = "A2"
-    ws.auto_filter.ref = ws.dimensions
+    # Only unresolved people appear here. The user no longer edits this file;
+    # it is simply the short checklist used to decide which IDs to add to
+    # data/candidate_decisions.csv.
+    queue = result[
+        (result["suggested_decision"] == "review")
+        & (~result["human_decision"].isin(["yes", "no"]))
+    ].copy()
 
-    widths = {
-        "A": 16, "B": 12, "C": 14, "D": 24, "E": 42, "F": 24, "G": 20,
-        "H": 45, "I": 14, "J": 14, "K": 48, "L": 16, "M": 14, "N": 24,
-        "O": 45, "P": 42,
-    }
-    for col, width in widths.items():
-        ws.column_dimensions[col].width = width
-
-    dv = DataValidation(type="list", formula1='"yes,no"', allow_blank=True)
-    ws.add_data_validation(dv)
-    dv.add(f"B2:B{max(ws.max_row, 2)}")
-
-    green = PatternFill("solid", fgColor="C6EFCE")
-    red = PatternFill("solid", fgColor="FFC7CE")
-    yellow = PatternFill("solid", fgColor="FFEB9C")
-    ws.conditional_formatting.add(f"B2:B{ws.max_row}", FormulaRule(formula=['B2="yes"'], fill=green))
-    ws.conditional_formatting.add(f"B2:B{ws.max_row}", FormulaRule(formula=['B2="no"'], fill=red))
-    ws.conditional_formatting.add(f"B2:B{ws.max_row}", FormulaRule(formula=['B2=""'], fill=yellow))
-    wb.save(xlsx_path)
+    queue_columns = [
+        "openalex_id",
+        "display_name",
+        "current_affiliation",
+        "shared_paper_count",
+        "seed_connection_count",
+        "connected_seed_professor_ids",
+        "web_title",
+        "web_url",
+        "auto_confidence",
+        "auto_reason",
+        "triage_tier",
+    ]
+    for column in queue_columns:
+        if column not in queue.columns:
+            queue[column] = ""
+    queue[queue_columns].to_csv(
+        OUTPUT_DIR / "manual_review_queue.csv",
+        index=False,
+        encoding="utf-8-sig",
+    )
 
     return result
