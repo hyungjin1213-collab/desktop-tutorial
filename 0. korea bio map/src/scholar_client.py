@@ -52,18 +52,29 @@ class ScholarClient:
         if not self.enabled or not name:
             return None
 
-        response = self.session.get(
-            "https://serpapi.com/search.json",
-            params={
-                "engine": "google_scholar_profiles",
-                "mauthors": name,
-                "hl": "en",
-                "api_key": self.api_key,
-            },
-            timeout=REQUEST_TIMEOUT,
-        )
-        response.raise_for_status()
-        profiles = response.json().get("profiles") or []
+        try:
+            response = self.session.get(
+                "https://serpapi.com/search.json",
+                params={
+                    "engine": "google_scholar_profiles",
+                    "mauthors": name,
+                    "hl": "en",
+                    "api_key": self.api_key,
+                },
+                timeout=REQUEST_TIMEOUT,
+            )
+            response.raise_for_status()
+            payload = response.json()
+        except (requests.RequestException, ValueError):
+            # Never fail the whole GitHub Actions run because Scholar lookup
+            # is rate-limited, unavailable, or the SerpApi quota is exhausted.
+            return None
+
+        # SerpApi may return an error payload with HTTP 200.
+        if payload.get("error"):
+            return None
+
+        profiles = payload.get("profiles") or []
         if not profiles:
             return None
 
