@@ -15,6 +15,9 @@ on:
         options:
           - all
           - promote-and-all
+          - discover-departments
+          - scrape-faculty
+          - discover-and-scrape-faculty
 
 permissions:
   contents: write
