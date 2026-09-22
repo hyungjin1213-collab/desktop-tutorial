@@ -1,11 +1,20 @@
 from __future__ import annotations
 
+import json
+import re
 from collections import defaultdict
 from pathlib import Path
 
 import pandas as pd
 
-from config import DATA_DIR, OUTPUT_DIR
+from config import (
+    DATA_DIR,
+    KOREA_COUNTRY_CODE,
+    MAX_REVIEW_CANDIDATES,
+    MIN_SHARED_PAPERS,
+    OUTPUT_DIR,
+    WEB_DIR,
+)
 from openalex_client import OpenAlexClient, normalize_openalex_id
 
 
@@ -18,6 +27,17 @@ PROFESSOR_COLUMNS = [
     "primary_field",
     "openalex_id",
     "source_url",
+]
+
+REL_COLUMNS = [
+    "relationship_id",
+    "professor_a_id",
+    "professor_b_id",
+    "relationship_type",
+    "collaboration_paper_count",
+    "evidence_url",
+    "verified",
+    "notes",
 ]
 
 
@@ -41,6 +61,15 @@ def _safe_int(value: object, default: int = 0) -> int:
         return int(float(str(value)))
     except (TypeError, ValueError):
         return default
+
+
+def _next_professor_id(existing_ids: set[str]) -> str:
+    nums = []
+    for pid in existing_ids:
+        match = re.fullmatch(r"P(\d+)", str(pid).strip(), flags=re.I)
+        if match:
+            nums.append(int(match.group(1)))
+    return f"P{(max(nums) if nums else 0) + 1:04d}"
 
 
 def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
@@ -110,12 +139,14 @@ def collect_collaborations(
                         "openalex_id": coauthor_openalex_id,
                         "display_name": author.get("display_name", ""),
                         "shared_work_ids": set(),
+                        "seed_professor_ids": set(),
                         "institutions": set(),
                         "country_codes": set(),
                         "example_work": "",
                     },
                 )
                 stats["shared_work_ids"].add(work_id or work_title)
+                stats["seed_professor_ids"].add(professor_id)
 
                 if not stats["example_work"] and work_title:
                     stats["example_work"] = work_title
@@ -146,60 +177,185 @@ def collect_collaborations(
             }
         )
 
-    candidates = []
+    candidate_rows = []
     for stats in candidate_stats.values():
-        candidates.append(
+        shared = len(stats["shared_work_ids"])
+        seed_count = len(stats["seed_professor_ids"])
+        country_codes = sorted(stats["country_codes"])
+        is_korea = KOREA_COUNTRY_CODE in country_codes
+        candidate_rows.append(
             {
                 "openalex_id": stats["openalex_id"],
                 "display_name": stats["display_name"],
-                "shared_paper_count": len(stats["shared_work_ids"]),
+                "shared_paper_count": shared,
+                "seed_connection_count": seed_count,
+                "connected_seed_professor_ids": "; ".join(sorted(stats["seed_professor_ids"])),
                 "institutions": "; ".join(sorted(stats["institutions"])),
-                "country_codes": "; ".join(sorted(stats["country_codes"])),
-                "korea_affiliated": "yes" if "KR" in stats["country_codes"] else "no",
+                "country_codes": "; ".join(country_codes),
+                "korea_affiliated": "yes" if is_korea else "no",
+                "review_priority": shared + max(seed_count - 1, 0) * 3,
                 "example_work": stats["example_work"],
-                "review_status": "",
+                "review_status": "needs_review" if is_korea else "out_of_scope",
             }
         )
 
-    auto_columns = [
-        "relationship_id",
-        "professor_a_id",
-        "professor_b_id",
-        "relationship_type",
-        "collaboration_paper_count",
-        "evidence_url",
-        "verified",
-        "notes",
-    ]
     candidate_columns = [
         "openalex_id",
         "display_name",
         "shared_paper_count",
+        "seed_connection_count",
+        "connected_seed_professor_ids",
         "institutions",
         "country_codes",
         "korea_affiliated",
+        "review_priority",
         "example_work",
         "review_status",
     ]
-    auto_df = pd.DataFrame(auto_rows, columns=auto_columns)
-    candidate_df = pd.DataFrame(candidates, columns=candidate_columns)
 
-    if not candidate_df.empty:
-        candidate_df = candidate_df.sort_values(
-            by=["korea_affiliated", "shared_paper_count"],
-            ascending=[False, False],
+    auto_df = pd.DataFrame(auto_rows, columns=REL_COLUMNS)
+    all_candidates_df = pd.DataFrame(candidate_rows, columns=candidate_columns)
+
+    if not all_candidates_df.empty:
+        all_candidates_df = all_candidates_df.sort_values(
+            by=["korea_affiliated", "review_priority", "shared_paper_count"],
+            ascending=[False, False, False],
         )
+
+    review_df = all_candidates_df[
+        (all_candidates_df["korea_affiliated"] == "yes")
+        & (all_candidates_df["shared_paper_count"].map(_safe_int) >= MIN_SHARED_PAPERS)
+    ].head(MAX_REVIEW_CANDIDATES).copy()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     auto_df.to_csv(OUTPUT_DIR / "relationships_auto.csv", index=False)
-    candidate_df.to_csv(OUTPUT_DIR / "collaborator_candidates.csv", index=False)
-    return auto_df, candidate_df
+    all_candidates_df.to_csv(OUTPUT_DIR / "collaborator_candidates_all.csv", index=False)
+    review_df.to_csv(OUTPUT_DIR / "collaborator_candidates.csv", index=False)
+    return auto_df, review_df
+
+
+def promote_approved_candidates() -> int:
+    professors_path = DATA_DIR / "professors_seed.csv"
+    approvals_path = DATA_DIR / "candidate_approvals.csv"
+
+    professors = _read_csv(professors_path, PROFESSOR_COLUMNS).copy()
+    approvals = _read_csv(
+        approvals_path,
+        [
+            "openalex_id",
+            "approved",
+            "name_ko",
+            "name_en",
+            "university",
+            "department",
+            "primary_field",
+            "source_url",
+        ],
+    )
+
+    if approvals.empty:
+        return 0
+
+    candidate_lookup = {}
+    candidate_path = OUTPUT_DIR / "collaborator_candidates_all.csv"
+    if candidate_path.exists():
+        candidate_df = _read_csv(candidate_path)
+        if not candidate_df.empty and "openalex_id" in candidate_df.columns:
+            candidate_lookup = {
+                normalize_openalex_id(row["openalex_id"]): row.to_dict()
+                for _, row in candidate_df.iterrows()
+            }
+
+    existing_openalex = {
+        normalize_openalex_id(value)
+        for value in professors["openalex_id"]
+        if normalize_openalex_id(value)
+    }
+    existing_ids = set(professors["professor_id"])
+    new_rows = []
+
+    for _, approval in approvals.iterrows():
+        if str(approval.get("approved", "")).strip().casefold() not in {
+            "yes", "y", "true", "1", "approve", "approved"
+        }:
+            continue
+
+        oid = normalize_openalex_id(approval.get("openalex_id", ""))
+        if not oid or oid in existing_openalex:
+            continue
+
+        candidate = candidate_lookup.get(oid, {})
+        name_en = approval.get("name_en", "") or candidate.get("display_name", "")
+        university = approval.get("university", "")
+        if not name_en or not university:
+            continue
+
+        pid = _next_professor_id(existing_ids)
+        existing_ids.add(pid)
+        existing_openalex.add(oid)
+
+        new_rows.append(
+            {
+                "professor_id": pid,
+                "name_ko": approval.get("name_ko", ""),
+                "name_en": name_en,
+                "university": university,
+                "department": approval.get("department", ""),
+                "primary_field": approval.get("primary_field", ""),
+                "openalex_id": oid,
+                "source_url": approval.get("source_url", ""),
+            }
+        )
+
+    if new_rows:
+        professors = pd.concat(
+            [professors, pd.DataFrame(new_rows, columns=PROFESSOR_COLUMNS)],
+            ignore_index=True,
+        )
+        professors.to_csv(professors_path, index=False)
+
+    return len(new_rows)
+
+
+def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
+    WEB_DIR.mkdir(parents=True, exist_ok=True)
+
+    node_records = []
+    for _, row in nodes.iterrows():
+        node_records.append(
+            {
+                "id": row.get("professor_id", ""),
+                "name": row.get("name_ko", "") or row.get("name_en", ""),
+                "name_en": row.get("name_en", ""),
+                "university": row.get("university", ""),
+                "field": row.get("primary_field", ""),
+                "score": _safe_int(row.get("network_score", 0)),
+                "collaborator_count": _safe_int(row.get("collaborator_count", 0)),
+                "faculty_trainee_count": _safe_int(row.get("faculty_trainee_count", 0)),
+                "postdoc_PI_count": _safe_int(row.get("postdoc_PI_count", 0)),
+            }
+        )
+
+    link_records = []
+    if not links.empty:
+        for _, row in links.iterrows():
+            link_records.append(
+                {
+                    "source": row.get("professor_a_id", ""),
+                    "target": row.get("professor_b_id", ""),
+                    "type": row.get("relationship_type", ""),
+                    "paper_count": _safe_int(row.get("collaboration_paper_count", 0), 0),
+                }
+            )
+
+    payload = {"nodes": node_records, "links": link_records}
+    text = "window.KOREA_BIO_MAP = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
+    (WEB_DIR / "network-data.js").write_text(text, encoding="utf-8")
 
 
 def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    auto = _read_csv(OUTPUT_DIR / "relationships_auto.csv")
+    auto = _read_csv(OUTPUT_DIR / "relationships_auto.csv", REL_COLUMNS)
     manual = _read_csv(DATA_DIR / "relationships_manual.csv")
-    rules = _read_csv(DATA_DIR / "score_rules.csv")
 
     if not manual.empty:
         manual = manual.copy()
@@ -215,12 +371,9 @@ def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]
             & relationships["professor_b_id"].isin(valid_professor_ids)
         ].copy()
 
+    rules = _read_csv(DATA_DIR / "score_rules.csv")
     rule_weights = {
         row["relationship_type"]: _safe_int(row["weight"])
-        for _, row in rules.iterrows()
-    }
-    rule_colors = {
-        row["relationship_type"]: row.get("graph_color", "")
         for _, row in rules.iterrows()
     }
 
@@ -262,15 +415,10 @@ def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]
     if not links.empty:
         links["source"] = links["professor_a_id"]
         links["target"] = links["professor_b_id"]
-        links["color"] = links["relationship_type"].map(
-            lambda value: rule_colors.get(value, "#94A3B8")
-        )
-        links["directed"] = links["relationship_type"].map(
-            lambda value: "no" if value == "collaboration" else "yes"
-        )
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     relationships.to_csv(OUTPUT_DIR / "relationships.csv", index=False)
     nodes.to_csv(OUTPUT_DIR / "network_nodes.csv", index=False)
     links.to_csv(OUTPUT_DIR / "network_links.csv", index=False)
+    export_web_data(nodes, links)
     return nodes, links
