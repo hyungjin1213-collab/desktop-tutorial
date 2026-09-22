@@ -3,14 +3,30 @@ from __future__ import annotations
 import argparse
 
 from openalex_client import OpenAlexClient
-from pipeline import build_network, collect_collaborations, resolve_professors
+from pipeline import (
+    build_network,
+    collect_collaborations,
+    promote_approved_candidates,
+    resolve_professors,
+)
+
+
+def run_all(client: OpenAlexClient) -> None:
+    professors = resolve_professors(client)
+    auto, candidates = collect_collaborations(client, professors)
+    nodes, links = build_network(professors)
+    print(f"Professors: {len(professors)}")
+    print(f"Auto relationships: {len(auto)}")
+    print(f"Review candidates: {len(candidates)}")
+    print(f"Network nodes: {len(nodes)}")
+    print(f"Network links: {len(links)}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="About Bio - Korea Bio Map data pipeline")
     parser.add_argument(
         "command",
-        choices=["resolve", "collect", "build", "all"],
+        choices=["resolve", "collect", "build", "promote", "promote-and-all", "all"],
         help="Pipeline step to run",
     )
     args = parser.parse_args()
@@ -26,7 +42,7 @@ def main() -> None:
         professors = resolve_professors(client)
         auto, candidates = collect_collaborations(client, professors)
         print(f"Auto relationships: {len(auto)}")
-        print(f"Collaborator candidates: {len(candidates)}")
+        print(f"Review candidates: {len(candidates)}")
         return
 
     if args.command == "build":
@@ -36,14 +52,18 @@ def main() -> None:
         print(f"Network links: {len(links)}")
         return
 
-    professors = resolve_professors(client)
-    auto, candidates = collect_collaborations(client, professors)
-    nodes, links = build_network(professors)
-    print(f"Professors: {len(professors)}")
-    print(f"Auto relationships: {len(auto)}")
-    print(f"Collaborator candidates: {len(candidates)}")
-    print(f"Network nodes: {len(nodes)}")
-    print(f"Network links: {len(links)}")
+    if args.command == "promote":
+        count = promote_approved_candidates()
+        print(f"Promoted {count} approved candidates.")
+        return
+
+    if args.command == "promote-and-all":
+        count = promote_approved_candidates()
+        print(f"Promoted {count} approved candidates.")
+        run_all(client)
+        return
+
+    run_all(client)
 
 
 if __name__ == "__main__":
