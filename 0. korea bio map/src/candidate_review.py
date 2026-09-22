@@ -186,4 +186,28 @@ def classify_candidates(
     ).drop(columns=["_tier_order"])
 
     result.to_csv(OUTPUT_DIR / "candidate_review.csv", index=False)
+
+    # Human-friendly approval sheet. Only A/B candidates are surfaced here.
+    # The user only needs to change approved from blank to yes for confirmed PIs.
+    shortlist = result[result["triage_tier"].isin(["A_review_first", "B_review"])].copy()
+    approval_template = pd.DataFrame(
+        {
+            "openalex_id": shortlist.get("openalex_id", ""),
+            "approved": "",
+            "name_ko": "",
+            "name_en": shortlist.get("display_name", ""),
+            "university": shortlist.get("current_affiliation", ""),
+            "department": "",
+            "primary_field": "",
+            "source_url": shortlist.get("scholar_profile_url", ""),
+            "triage_tier": shortlist.get("triage_tier", ""),
+            "shared_paper_count": shortlist.get("shared_paper_count", ""),
+            "connected_seed_professor_ids": shortlist.get("connected_seed_professor_ids", ""),
+            "triage_reason": shortlist.get("triage_reason", ""),
+        }
+    )
+    approval_template.to_csv(
+        OUTPUT_DIR / "candidate_approval_template.csv",
+        index=False,
+    )
     return result
