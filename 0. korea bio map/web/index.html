@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>About Bio - Korea Bio Map</title>
+  <style>
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at center,#0b1230 0%,#030611 55%,#000 100%);font-family:Arial,sans-serif;color:#fff}
+    #graph{position:fixed;inset:0}
+    .panel{position:fixed;top:14px;left:14px;z-index:20;background:rgba(3,7,18,.72);backdrop-filter:blur(10px);padding:12px 14px;border:1px solid rgba(255,255,255,.10);border-radius:14px;max-width:290px;pointer-events:none}
+    .panel h1{font-size:18px;margin:0 0 4px}.panel p{font-size:12px;color:#9aa7c7;margin:0 0 7px}
+    .legend{font-size:12px;line-height:1.55;color:#d7def0;display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
+    .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;box-shadow:0 0 8px currentColor}
+    .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:20;font-size:11px;color:#7f8aa8;background:rgba(3,7,18,.55);padding:6px 9px;border-radius:999px;pointer-events:none;white-space:nowrap}
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>Korea Bio Map · 3D</h1>
+    <p>교수 = 별 · 공동연구 = 선 · score = 별 크기</p>
+    <div class="legend">
+      <div><span class="dot" style="background:#2dd4bf;color:#2dd4bf"></span>면역항암</div>
+      <div><span class="dot" style="background:#60a5fa;color:#60a5fa"></span>합성생물학</div>
+      <div><span class="dot" style="background:#f59e0b;color:#f59e0b"></span>세포치료</div>
+      <div><span class="dot" style="background:#c084fc;color:#c084fc"></span>의료용 고분자</div>
+      <div><span class="dot" style="background:#fb7185;color:#fb7185"></span>체외면역 평가</div>
+    </div>
+  </div>
+  <div class="hint">드래그: 회전 · 두 손가락: 줌 · 별 터치: 정보</div>
+  <div id="graph"></div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/3d-force-graph@1.76.1/dist/3d-force-graph.min.js"></script>
+  <script src="./network-data.js"></script>
+  <script>
+    const colors={
+      "면역항암":"#2dd4bf",
+      "합성생물학":"#60a5fa",
+      "세포치료":"#f59e0b",
+      "의료용 고분자":"#c084fc",
+      "체외면역 평가":"#fb7185"
+    };
+
+    const el=document.getElementById("graph");
+    const Graph=ForceGraph3D()(el)
+      .width(window.innerWidth)
+      .height(window.innerHeight)
+      .backgroundColor("rgba(0,0,0,0)")
+      .showNavInfo(false)
+      .graphData(window.KOREA_BIO_MAP)
+      .nodeThreeObject(node=>{
+        const group=new THREE.Group();
+        const c=colors[node.field]||"#e5e7eb";
+        const score=Number(node.score||0);
+        const r=2.8+Math.sqrt(score+1)*1.6;
+
+        const core=new THREE.Mesh(
+          new THREE.SphereGeometry(r,24,24),
+          new THREE.MeshBasicMaterial({color:c})
+        );
+        group.add(core);
+
+        const glow=new THREE.Mesh(
+          new THREE.SphereGeometry(r*1.9,24,24),
+          new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.14,depthWrite:false})
+        );
+        group.add(glow);
+
+        if(score>0){
+          const halo=new THREE.Mesh(
+            new THREE.RingGeometry(r*1.35,r*1.5,32),
+            new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false})
+          );
+          halo.rotation.x=Math.PI/2;
+          group.add(halo);
+        }
+        return group;
+      })
+      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${n.name}</b><br>${n.university}<br>${n.field}<br>Score: ${n.score}<br>Collaborators: ${n.collaborator_count}</div>`)
+      .linkColor(l=>l.type==="advisor_student"?"#fbbf24":"#60a5fa")
+      .linkWidth(l=>1.2+Math.min(Number(l.paper_count||1),6)*0.35)
+      .linkOpacity(.72)
+      .linkDirectionalParticles(l=>l.type==="collaboration"?2:1)
+      .linkDirectionalParticleWidth(1.6)
+      .linkDirectionalParticleSpeed(.003)
+      .linkDirectionalParticleColor(l=>l.type==="advisor_student"?"#fbbf24":"#93c5fd")
+      .onNodeClick(node=>{
+        const d=38;
+        const len=Math.hypot(node.x||1,node.y||1,node.z||1);
+        const ratio=1+d/len;
+        Graph.cameraPosition(
+          {x:(node.x||0)*ratio,y:(node.y||0)*ratio,z:(node.z||0)*ratio},
+          node,
+          900
+        );
+      });
+
+    Graph.d3Force("charge").strength(-170);
+    Graph.d3Force("link").distance(58);
+    Graph.cameraPosition({z:115});
+
+    const controls=Graph.controls();
+    controls.autoRotate=true;
+    controls.autoRotateSpeed=.35;
+    controls.enableDamping=true;
+    controls.dampingFactor=.08;
+
+    // starfield
+    const geo=new THREE.BufferGeometry();
+    const pts=[];
+    for(let i=0;i<500;i++){
+      const radius=180+Math.random()*420;
+      const theta=Math.random()*Math.PI*2;
+      const phi=Math.acos(2*Math.random()-1);
+      pts.push(
+        radius*Math.sin(phi)*Math.cos(theta),
+        radius*Math.sin(phi)*Math.sin(theta),
+        radius*Math.cos(phi)
+      );
+    }
+    geo.setAttribute("position",new THREE.Float32BufferAttribute(pts,3));
+    const stars=new THREE.Points(
+      geo,
+      new THREE.PointsMaterial({color:"#dbeafe",size:1.15,transparent:true,opacity:.7,sizeAttenuation:true})
+    );
+    Graph.scene().add(stars);
+
+    window.addEventListener("resize",()=>{
+      Graph.width(window.innerWidth).height(window.innerHeight);
+    });
+  </script>
+</body>
+</html>
