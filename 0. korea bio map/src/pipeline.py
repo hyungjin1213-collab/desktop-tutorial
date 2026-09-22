@@ -257,7 +257,12 @@ def promote_approved_candidates() -> int:
         return 0
 
     candidate_lookup = {}
-    candidate_path = OUTPUT_DIR / "collaborator_candidates_all.csv"
+    # Prefer the triaged review file because it contains the resolved current
+    # affiliation (Google Scholar via SerpApi when available, otherwise OpenAlex).
+    candidate_path = OUTPUT_DIR / "candidate_review.csv"
+    if not candidate_path.exists():
+        candidate_path = OUTPUT_DIR / "collaborator_candidates_all.csv"
+
     if candidate_path.exists():
         candidate_df = _read_csv(candidate_path)
         if not candidate_df.empty and "openalex_id" in candidate_df.columns:
@@ -286,7 +291,13 @@ def promote_approved_candidates() -> int:
 
         candidate = candidate_lookup.get(oid, {})
         name_en = approval.get("name_en", "") or candidate.get("display_name", "")
-        university = approval.get("university", "")
+        # A manually entered university always wins. If it is left blank,
+        # use the current affiliation resolved during candidate review.
+        university = (
+            approval.get("university", "")
+            or candidate.get("current_affiliation", "")
+            or candidate.get("institutions", "")
+        )
         if not name_en or not university:
             continue
 
