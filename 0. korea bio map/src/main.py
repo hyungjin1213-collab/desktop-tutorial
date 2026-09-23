@@ -4,6 +4,7 @@ import argparse
 
 from candidate_review import classify_candidates
 from department_discovery import discover_departments
+from faculty_identity import import_verified_faculty, match_faculty_identities
 from faculty_scraper import scrape_faculty
 from openalex_client import OpenAlexClient
 from pipeline import (
@@ -43,6 +44,10 @@ def main() -> None:
             "discover-departments",
             "scrape-faculty",
             "discover-and-scrape-faculty",
+            "match-faculty-identities",
+            "faculty-full",
+            "import-faculty",
+            "import-faculty-and-all",
         ],
         help="Pipeline step to run",
     )
@@ -65,6 +70,35 @@ def main() -> None:
         faculty = scrape_faculty()
         print(f"Department candidates: {len(departments)}")
         print(f"Faculty rows: {len(faculty)}")
+        return
+
+    if args.command == "match-faculty-identities":
+        identities = match_faculty_identities()
+        print(f"Faculty identities: {len(identities)}")
+        if not identities.empty:
+            print(f"High confidence: {(identities['identity_confidence'] == 'high').sum()}")
+            print(f"Probable: {(identities['identity_status'] == 'probable').sum()}")
+            print(f"Manual review: {(identities['identity_status'] == 'manual_review').sum()}")
+        return
+
+    if args.command == "faculty-full":
+        departments = discover_departments()
+        faculty = scrape_faculty()
+        identities = match_faculty_identities()
+        print(f"Department candidates: {len(departments)}")
+        print(f"Faculty rows: {len(faculty)}")
+        print(f"Faculty identities: {len(identities)}")
+        return
+
+    if args.command == "import-faculty":
+        count = import_verified_faculty()
+        print(f"Imported {count} faculty into professors_seed.csv")
+        return
+
+    if args.command == "import-faculty-and-all":
+        count = import_verified_faculty()
+        print(f"Imported {count} faculty into professors_seed.csv")
+        run_all(client)
         return
 
     if args.command == "resolve":
