@@ -16,8 +16,12 @@ on:
           - all
           - promote-and-all
           - discover-departments
+          - scrape-faculty-v2
+          - match-faculty-identities-v2
+          - faculty-full-v2
+          - import-faculty-v2
+          - import-faculty-v2-and-all
           - scrape-faculty
-          - discover-and-scrape-faculty
           - match-faculty-identities
           - faculty-full
           - import-faculty
@@ -34,7 +38,7 @@ jobs:
       SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
       ORCID_CLIENT_ID: ${{ secrets.ORCID_CLIENT_ID }}
       ORCID_CLIENT_SECRET: ${{ secrets.ORCID_CLIENT_SECRET }}
-      IDENTITY_BATCH_LIMIT: "25"
+      IDENTITY_BATCH_LIMIT: "20"
       SCHOLAR_LOOKUP_LIMIT: "60"
 
     steps:
@@ -73,6 +77,7 @@ jobs:
           git add -f "0. korea bio map/output/"*.csv
           git add "0. korea bio map/web/network-data.js"
           git add "0. korea bio map/data/professors_seed.csv"
+          git add "0. korea bio map/data/faculty_sources.csv"
           if [ -f "0. korea bio map/data/candidate_web_cache.csv" ]; then
             git add "0. korea bio map/data/candidate_web_cache.csv"
           fi
@@ -84,7 +89,7 @@ jobs:
           fi
 
       - name: Publish latest map to gh-pages
-        if: ${{ inputs.mode == 'all' || inputs.mode == 'promote-and-all' || inputs.mode == 'import-faculty-and-all' }}
+        if: ${{ inputs.mode == 'all' || inputs.mode == 'promote-and-all' || inputs.mode == 'import-faculty-and-all' || inputs.mode == 'import-faculty-v2-and-all' }}
         run: |
           rm -rf /tmp/korea-bio-map-pages
           mkdir -p /tmp/korea-bio-map-pages
