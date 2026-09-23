@@ -14,9 +14,17 @@ FACULTY_WORDS = [
     "교수", "교수진", "faculty", "professor", "people", "members", "연구진", "전임교원",
 ]
 TITLE_WORDS = [
-    "교수", "조교수", "부교수", "정교수", "professor", "assistant professor",
-    "associate professor", "full professor", "principal investigator", "pi",
+    "정교수", "부교수", "조교수", "교수",
+    "full professor", "associate professor", "assistant professor", "professor",
+    "principal investigator", "pi",
 ]
+
+# These categories should not become professor nodes in About Bio.
+EXCLUDED_FACULTY_CATEGORIES = [
+    "보직교수", "겸임교수", "겸임", "adjunct professor", "adjunct faculty",
+    "visiting professor", "초빙교수", "명예교수", "emeritus professor",
+]
+
 NON_FACULTY_WORDS = [
     "학생", "대학원생", "연구원", "박사후", "포닥", "postdoc", "postdoctoral",
     "student", "graduate student", "research assistant",
@@ -44,7 +52,7 @@ def _fetch(url: str) -> str:
             url,
             timeout=REQUEST_TIMEOUT,
             headers={
-                "User-Agent": "Mozilla/5.0 (compatible; AboutBioFacultyBot/0.1; research directory indexing)"
+                "User-Agent": "Mozilla/5.0 (compatible; AboutBioFacultyBot/0.2; research directory indexing)"
             },
         )
         r.raise_for_status()
@@ -63,12 +71,11 @@ def _clean(s: str) -> str:
 
 def _extract_name(text: str) -> str:
     text = _clean(text)
-    # Korean names, then latin-style names.
-    m = re.search(r"([가-힣]{2,4})\s*(?:교수|조교수|부교수|정교수)", text)
+    m = re.search(r"([가-힣]{2,4})\s*(?:정교수|부교수|조교수|교수)", text)
     if m:
         return m.group(1)
     m = re.search(
-        r"\b([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){1,3})\s*,?\s*(?:Ph\.?D\.?|M\.?D\.?)?\s*(?:Professor|Assistant Professor|Associate Professor)?",
+        r"\b([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){1,3})\s*,?\s*(?:Ph\.?D\.?|M\.?D\.?)?\s*(?:Full Professor|Professor|Assistant Professor|Associate Professor)?",
         text,
     )
     return m.group(1).strip() if m else ""
@@ -82,9 +89,10 @@ def _candidate_faculty_pages(base_url: str, html: str) -> list[str]:
         href = urljoin(base_url, a["href"])
         if not _same_site(base_url, href):
             continue
+        if any(x.casefold() in label for x in EXCLUDED_FACULTY_CATEGORIES):
+            continue
         if any(w.casefold() in label for w in FACULTY_WORDS):
             urls.append(href)
-    # stable de-dup, cap crawl surface
     return list(dict.fromkeys(urls))[:8]
 
 
@@ -107,6 +115,8 @@ def _extract_cards(page_url: str, html: str, university: str, department: str) -
         text = _clean(block.get_text(" ", strip=True))
         low = text.casefold()
         if len(text) < 3 or len(text) > 1200:
+            continue
+        if any(x.casefold() in low for x in EXCLUDED_FACULTY_CATEGORIES):
             continue
         if not any(w.casefold() in low for w in TITLE_WORDS):
             continue
@@ -202,7 +212,11 @@ def scrape_faculty() -> pd.DataFrame:
                 seen_people.add(key)
                 all_rows.append(person)
 
-    out = pd.DataFrame(all_rows)
+    columns = [
+        "name", "title", "university", "department", "email",
+        "profile_url", "source_page", "raw_text", "faculty_confidence",
+    ]
+    out = pd.DataFrame(all_rows, columns=columns)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     out.to_csv(OUTPUT_DIR / "faculty_directory.csv", index=False, encoding="utf-8-sig")
     return out
