@@ -1,0 +1,8 @@
+source_id,university,department,faculty_url,parser,enabled,notes
+SNU_PHARM,Seoul National University,College of Pharmacy,https://snupharm.snu.ac.kr/%EA%B5%90%EC%88%98%EC%A7%84/,generic_card,yes,official faculty page
+SNU_BIOMED,Seoul National University,Graduate School of Biomedical Sciences,http://biomed.snu.ac.kr/research-faculty/faculty,generic_card,yes,official faculty page
+SNU_BIOENG,Seoul National University,Bioengineering,https://bioeng.snu.ac.kr/%EA%B5%90%EC%88%98%EC%A7%84-%EB%AA%A9%EB%A1%9D/,generic_card,yes,official faculty page
+YONSEI_PHARM,Yonsei University,College of Pharmacy,https://pharmacy.yonsei.ac.kr/pharmacy/intro/professor1.do,generic_card,yes,official faculty page
+YONSEI_MED,Yonsei University,College of Medicine,https://medicine.yonsei.ac.kr/medicine/about/professor/basic.do,generic_card,yes,official faculty page
+KU_PHARM,Korea University,College of Pharmacy,https://pharm.korea.ac.kr/faculty/8670/subview.do,generic_card,yes,official faculty page
+KU_BIOGRAD,Korea University,Graduate School of Integrated Biotechnology,https://biograduate.korea.ac.kr/biograd/about/fac.do,generic_card,yes,official faculty page
