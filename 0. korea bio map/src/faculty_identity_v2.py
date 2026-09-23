@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from config import OUTPUT_DIR
+from config import DATA_DIR, OUTPUT_DIR
 from openalex_client import OpenAlexClient, normalize_openalex_id
 
 BATCH_LIMIT = int(os.getenv("IDENTITY_BATCH_LIMIT", "20"))
@@ -40,10 +40,7 @@ def _name_similarity(a: str, b: str) -> float:
 
 def _tokens(value: str) -> set[str]:
     stop = {"university", "college", "school", "hospital", "institute", "department", "national", "research"}
-    return {
-        t for t in re.findall(r"[a-z0-9가-힣]+", (value or "").casefold())
-        if len(t) >= 3 and t not in stop
-    }
+    return {t for t in re.findall(r"[a-z0-9가-힣]+", (value or "").casefold()) if len(t) >= 3 and t not in stop}
 
 
 def _affiliation(author: dict) -> str:
@@ -87,9 +84,8 @@ def _best_openalex(client: OpenAlexClient, name: str, university: str) -> tuple[
         return None, "no OpenAlex candidates"
 
     ranked.sort(key=lambda x: x[0], reverse=True)
-    score, overlap, best = ranked[0]
+    _, overlap, best = ranked[0]
     sim = _name_similarity(name, str(best.get("display_name", "")))
-
     if sim < 0.72:
         return None, f"best name similarity too low ({sim:.2f})"
     if university and overlap < 1:
@@ -126,10 +122,7 @@ def resolve_faculty_identities_v2() -> pd.DataFrame:
         author, reason = _best_openalex(client, name, university)
         status = "manual_review"
         confidence = "low"
-        orcid = ""
-        oa_id = ""
-        oa_name = ""
-        oa_aff = ""
+        orcid = oa_id = oa_name = oa_aff = ""
 
         if author:
             orcid = _orcid(author)
@@ -170,6 +163,52 @@ def resolve_faculty_identities_v2() -> pd.DataFrame:
     out.to_csv(out_path, index=False, encoding="utf-8-sig")
     print(f"Saved {len(out)} identity v2 rows", flush=True)
     return out
+
+
+def import_verified_faculty_v2() -> int:
+    identity = _read_csv(OUTPUT_DIR / "faculty_identity_v2.csv")
+    professors_path = DATA_DIR / "professors_seed.csv"
+    professors = _read_csv(professors_path)
+    if identity.empty or professors.empty:
+        return 0
+
+    existing_openalex = {normalize_openalex_id(x) for x in professors.get("openalex_id", []) if normalize_openalex_id(x)}
+    existing_profiles = {str(x).strip() for x in professors.get("source_url", []) if str(x).strip()}
+    nums = []
+    for pid in professors.get("professor_id", []):
+        m = re.fullmatch(r"P(\d+)", str(pid).strip(), flags=re.I)
+        if m:
+            nums.append(int(m.group(1)))
+    next_num = max(nums) + 1 if nums else 1
+
+    new_rows = []
+    for _, row in identity.iterrows():
+        if row.get("identity_status", "") != "verified":
+            continue
+        oa = normalize_openalex_id(row.get("openalex_id", ""))
+        profile = row.get("profile_url", "").strip()
+        if not oa or oa in existing_openalex or (profile and profile in existing_profiles):
+            continue
+        name = row.get("name", "")
+        new_rows.append({
+            "professor_id": f"P{next_num:04d}",
+            "name_ko": name if re.search(r"[가-힣]", name) else "",
+            "name_en": row.get("openalex_name", "") or name,
+            "university": row.get("university", ""),
+            "department": row.get("department", ""),
+            "primary_field": "",
+            "openalex_id": oa,
+            "source_url": profile or row.get("source_page", ""),
+        })
+        next_num += 1
+        existing_openalex.add(oa)
+        if profile:
+            existing_profiles.add(profile)
+
+    if new_rows:
+        professors = pd.concat([professors, pd.DataFrame(new_rows)], ignore_index=True)
+        professors.to_csv(professors_path, index=False, encoding="utf-8-sig")
+    return len(new_rows)
 
 
 if __name__ == "__main__":
