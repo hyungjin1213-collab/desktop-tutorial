@@ -5,7 +5,7 @@ import argparse
 from candidate_review import classify_candidates
 from department_discovery import discover_departments
 from faculty_identity import import_verified_faculty, match_faculty_identities
-from faculty_identity_v2 import resolve_faculty_identities_v2
+from faculty_identity_v2 import import_verified_faculty_v2, resolve_faculty_identities_v2
 from faculty_scraper import scrape_faculty
 from faculty_scraper_v2 import scrape_faculty_v2
 from openalex_client import OpenAlexClient
@@ -42,6 +42,7 @@ def main() -> None:
             "match-faculty-identities", "match-faculty-identities-v2",
             "faculty-full", "faculty-full-v2",
             "import-faculty", "import-faculty-and-all",
+            "import-faculty-v2", "import-faculty-v2-and-all",
         ],
         help="Pipeline step to run",
     )
@@ -99,6 +100,17 @@ def main() -> None:
     if args.command == "import-faculty-and-all":
         count = import_verified_faculty()
         print(f"Imported {count} faculty into professors_seed.csv")
+        run_all(client)
+        return
+
+    if args.command == "import-faculty-v2":
+        count = import_verified_faculty_v2()
+        print(f"Imported {count} verified v2 faculty into professors_seed.csv")
+        return
+
+    if args.command == "import-faculty-v2-and-all":
+        count = import_verified_faculty_v2()
+        print(f"Imported {count} verified v2 faculty into professors_seed.csv")
         run_all(client)
         return
 
