@@ -10,25 +10,24 @@ from bs4 import BeautifulSoup
 
 from config import DATA_DIR, OUTPUT_DIR, REQUEST_TIMEOUT
 
-FACULTY_WORDS = [
-    "교수", "교수진", "faculty", "professor", "people", "members", "연구진", "전임교원",
-]
+FACULTY_WORDS = ["교수", "교수진", "faculty", "professor", "people", "members", "연구진", "전임교원"]
 TITLE_WORDS = [
     "정교수", "부교수", "조교수", "교수",
     "full professor", "associate professor", "assistant professor", "professor",
     "principal investigator", "pi",
 ]
-
-# These categories should not become professor nodes in About Bio.
 EXCLUDED_FACULTY_CATEGORIES = [
     "보직교수", "겸임교수", "겸임", "adjunct professor", "adjunct faculty",
     "visiting professor", "초빙교수", "명예교수", "emeritus professor",
 ]
-
 NON_FACULTY_WORDS = [
     "학생", "대학원생", "연구원", "박사후", "포닥", "postdoc", "postdoctoral",
     "student", "graduate student", "research assistant",
 ]
+BAD_NAMES = {
+    "교수진", "교수소개", "의과학과", "공학교실", "주임", "연구실", "전임교수",
+    "교수", "학과", "대학", "의과대학", "약학대학",
+}
 
 
 def _read_csv(path: Path) -> pd.DataFrame:
@@ -50,14 +49,11 @@ def _fetch(url: str) -> str:
     try:
         r = requests.get(
             url,
-            timeout=REQUEST_TIMEOUT,
-            headers={
-                "User-Agent": "Mozilla/5.0 (compatible; AboutBioFacultyBot/0.2; research directory indexing)"
-            },
+            timeout=min(REQUEST_TIMEOUT, 15),
+            headers={"User-Agent": "Mozilla/5.0 (compatible; AboutBioFacultyBot/0.3; research directory indexing)"},
         )
         r.raise_for_status()
-        ctype = r.headers.get("content-type", "")
-        if "html" not in ctype.casefold():
+        if "html" not in r.headers.get("content-type", "").casefold():
             return ""
         r.encoding = r.apparent_encoding or r.encoding
         return r.text
@@ -69,15 +65,30 @@ def _clean(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "")).strip()
 
 
+def _valid_korean_name(value: str) -> bool:
+    return bool(re.fullmatch(r"[가-힣]{2,4}", value or "")) and value not in BAD_NAMES
+
+
 def _extract_name(text: str) -> str:
     text = _clean(text)
-    m = re.search(r"([가-힣]{2,4})\s*(?:정교수|부교수|조교수|교수)", text)
-    if m:
-        return m.group(1)
-    m = re.search(
-        r"\b([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){1,3})\s*,?\s*(?:Ph\.?D\.?|M\.?D\.?)?\s*(?:Full Professor|Professor|Assistant Professor|Associate Professor)?",
-        text,
-    )
+
+    # Most Korean faculty cards start with the person's name.
+    start = re.match(r"^([가-힣]{2,4})(?:\s|\(|$)", text)
+    if start and _valid_korean_name(start.group(1)):
+        return start.group(1)
+
+    # Common pattern: "교수 홍길동" / "부교수 홍길동".
+    after_title = re.search(r"(?:정교수|부교수|조교수|교수)\s+([가-힣]{2,4})(?:\s|\(|$)", text)
+    if after_title and _valid_korean_name(after_title.group(1)):
+        return after_title.group(1)
+
+    # Common pattern on cards: "홍길동 사이트로 이동".
+    before_site = re.search(r"([가-힣]{2,4})\s+(?:사이트로\s*이동|상세보기)", text)
+    if before_site and _valid_korean_name(before_site.group(1)):
+        return before_site.group(1)
+
+    # English fallback.
+    m = re.search(r"\b([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){1,3})\s*(?:\(|,|Professor|Ph\.?D\.?|M\.?D\.?)", text)
     return m.group(1).strip() if m else ""
 
 
@@ -101,10 +112,7 @@ def _extract_cards(page_url: str, html: str, university: str, department: str) -
     rows: list[dict[str, str]] = []
     seen_names: set[str] = set()
 
-    selectors = [
-        "article", "li", ".faculty", ".professor", ".member", ".people",
-        ".staff", ".profile", ".person", ".card", "tr",
-    ]
+    selectors = ["article", "li", ".faculty", ".professor", ".member", ".people", ".staff", ".profile", ".person", ".card", "tr"]
     blocks = []
     for sel in selectors:
         blocks.extend(soup.select(sel))
@@ -120,13 +128,11 @@ def _extract_cards(page_url: str, html: str, university: str, department: str) -
             continue
         if not any(w.casefold() in low for w in TITLE_WORDS):
             continue
-        if any(w.casefold() in low for w in NON_FACULTY_WORDS) and not any(
-            w.casefold() in low for w in ["교수", "professor"]
-        ):
+        if any(w.casefold() in low for w in NON_FACULTY_WORDS) and not any(w.casefold() in low for w in ["교수", "professor"]):
             continue
 
         name = _extract_name(text)
-        if not name or name in seen_names:
+        if not name or name in seen_names or name in BAD_NAMES:
             continue
         seen_names.add(name)
 
@@ -146,33 +152,28 @@ def _extract_cards(page_url: str, html: str, university: str, department: str) -
                 title = t
                 break
 
-        rows.append(
-            {
-                "name": name,
-                "title": title,
-                "university": university,
-                "department": department,
-                "email": email,
-                "profile_url": link or page_url,
-                "source_page": page_url,
-                "raw_text": text[:500],
-                "faculty_confidence": "high" if title else "medium",
-            }
-        )
+        rows.append({
+            "name": name,
+            "title": title,
+            "university": university,
+            "department": department,
+            "email": email,
+            "profile_url": link or page_url,
+            "source_page": page_url,
+            "raw_text": text[:500],
+            "faculty_confidence": "high" if title else "medium",
+        })
     return rows
 
 
 def scrape_faculty() -> pd.DataFrame:
     departments = _read_csv(OUTPUT_DIR / "department_candidates.csv")
     approved = _read_csv(DATA_DIR / "department_sources.csv")
+    sources = approved.copy() if not approved.empty else departments.copy()
 
-    if not approved.empty:
-        sources = approved.copy()
-    else:
-        sources = departments.copy()
-
+    columns = ["name", "title", "university", "department", "email", "profile_url", "source_page", "raw_text", "faculty_confidence"]
     if sources.empty:
-        out = pd.DataFrame()
+        out = pd.DataFrame(columns=columns)
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         out.to_csv(OUTPUT_DIR / "faculty_directory.csv", index=False, encoding="utf-8-sig")
         return out
@@ -182,15 +183,8 @@ def scrape_faculty() -> pd.DataFrame:
 
     for _, row in sources.iterrows():
         university = row.get("university", "").strip()
-        department = (
-            row.get("department_or_school", "").strip()
-            or row.get("department", "").strip()
-            or row.get("page_title", "").strip()
-        )
-        base_url = (
-            row.get("faculty_url", "").strip()
-            or row.get("department_url", "").strip()
-        )
+        department = row.get("department_or_school", "").strip() or row.get("department", "").strip() or row.get("page_title", "").strip()
+        base_url = row.get("faculty_url", "").strip() or row.get("department_url", "").strip()
         if not base_url:
             continue
 
@@ -202,20 +196,11 @@ def scrape_faculty() -> pd.DataFrame:
             if not page_html:
                 continue
             for person in _extract_cards(page_url, page_html, university, department):
-                key = (
-                    person["name"].casefold(),
-                    person["university"].casefold(),
-                    person["department"].casefold(),
-                )
-                if key in seen_people:
-                    continue
-                seen_people.add(key)
-                all_rows.append(person)
+                key = (person["name"].casefold(), person["university"].casefold(), person["department"].casefold())
+                if key not in seen_people:
+                    seen_people.add(key)
+                    all_rows.append(person)
 
-    columns = [
-        "name", "title", "university", "department", "email",
-        "profile_url", "source_page", "raw_text", "faculty_confidence",
-    ]
     out = pd.DataFrame(all_rows, columns=columns)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     out.to_csv(OUTPUT_DIR / "faculty_directory.csv", index=False, encoding="utf-8-sig")
