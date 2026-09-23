@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-import re
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -19,9 +18,9 @@ TARGET_KEYWORDS = [
     "biological science", "biotechnology", "biomedical", "의생명", "융합생명",
 ]
 
-FACULTY_HINTS = [
-    "교수", "교수진", "faculty", "people", "professor", "members", "연구진",
-]
+# Keep only pages whose Google result title itself says that this is a faculty page.
+PAGE_TITLE_REQUIRED = ["교수진", "교수소개", "교수", "faculty"]
+PAGE_TITLE_EXCLUDE = ["보직교수", "겸임교수"]
 
 
 def _read_csv(path: Path) -> pd.DataFrame:
@@ -46,6 +45,13 @@ def _looks_official(url: str, official_domain: str = "") -> bool:
     return host.endswith(".ac.kr") or host.endswith(".edu")
 
 
+def _valid_page_title(title: str) -> bool:
+    normalized = (title or "").casefold().strip()
+    if any(word.casefold() in normalized for word in PAGE_TITLE_EXCLUDE):
+        return False
+    return any(word.casefold() in normalized for word in PAGE_TITLE_REQUIRED)
+
+
 def _search_google(query: str, num: int = 10) -> list[dict]:
     if not SERPAPI_KEY:
         return []
@@ -61,7 +67,7 @@ def _search_google(query: str, num: int = 10) -> list[dict]:
                 "api_key": SERPAPI_KEY,
             },
             timeout=REQUEST_TIMEOUT,
-            headers={"User-Agent": "AboutBio-DepartmentDiscovery/0.1"},
+            headers={"User-Agent": "AboutBio-DepartmentDiscovery/0.2"},
         )
         r.raise_for_status()
         payload = r.json()
@@ -95,9 +101,12 @@ def discover_departments() -> pd.DataFrame:
                 snippet = str(item.get("snippet", ""))
                 url = str(item.get("link", ""))
                 hay = f"{title} {snippet} {url}".casefold()
+
                 if not _looks_official(url, domain):
                     continue
                 if not any(k.casefold() in hay for k in TARGET_KEYWORDS):
+                    continue
+                if not _valid_page_title(title):
                     continue
 
                 key = url.rstrip("/")
@@ -105,7 +114,6 @@ def discover_departments() -> pd.DataFrame:
                     continue
                 seen.add(key)
 
-                faculty_signal = "yes" if any(k.casefold() in hay for k in FACULTY_HINTS) else "unknown"
                 rows.append(
                     {
                         "university": university,
@@ -113,13 +121,23 @@ def discover_departments() -> pd.DataFrame:
                         "page_title": title,
                         "department_url": url,
                         "department_or_school": title,
-                        "faculty_page_signal": faculty_signal,
+                        "faculty_page_signal": "yes",
                         "search_query": query,
                         "source": "serpapi_google",
                     }
                 )
 
-    out = pd.DataFrame(rows)
+    columns = [
+        "university",
+        "official_domain",
+        "page_title",
+        "department_url",
+        "department_or_school",
+        "faculty_page_signal",
+        "search_query",
+        "source",
+    ]
+    out = pd.DataFrame(rows, columns=columns)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     out.to_csv(OUTPUT_DIR / "department_candidates.csv", index=False, encoding="utf-8-sig")
     return out
