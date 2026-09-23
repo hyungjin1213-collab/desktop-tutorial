@@ -5,7 +5,9 @@ import argparse
 from candidate_review import classify_candidates
 from department_discovery import discover_departments
 from faculty_identity import import_verified_faculty, match_faculty_identities
+from faculty_identity_v2 import resolve_faculty_identities_v2
 from faculty_scraper import scrape_faculty
+from faculty_scraper_v2 import scrape_faculty_v2
 from openalex_client import OpenAlexClient
 from pipeline import (
     build_network,
@@ -34,25 +36,16 @@ def main() -> None:
     parser.add_argument(
         "command",
         choices=[
-            "resolve",
-            "collect",
-            "review",
-            "build",
-            "promote",
-            "promote-and-all",
-            "all",
+            "resolve", "collect", "review", "build", "promote", "promote-and-all", "all",
             "discover-departments",
-            "scrape-faculty",
-            "discover-and-scrape-faculty",
-            "match-faculty-identities",
-            "faculty-full",
-            "import-faculty",
-            "import-faculty-and-all",
+            "scrape-faculty", "scrape-faculty-v2",
+            "match-faculty-identities", "match-faculty-identities-v2",
+            "faculty-full", "faculty-full-v2",
+            "import-faculty", "import-faculty-and-all",
         ],
         help="Pipeline step to run",
     )
     args = parser.parse_args()
-
     client = OpenAlexClient()
 
     if args.command == "discover-departments":
@@ -65,29 +58,37 @@ def main() -> None:
         print(f"Faculty rows: {len(df)}")
         return
 
-    if args.command == "discover-and-scrape-faculty":
-        departments = discover_departments()
-        faculty = scrape_faculty()
-        print(f"Department candidates: {len(departments)}")
-        print(f"Faculty rows: {len(faculty)}")
+    if args.command == "scrape-faculty-v2":
+        df = scrape_faculty_v2()
+        print(f"Faculty v2 rows: {len(df)}")
         return
 
     if args.command == "match-faculty-identities":
         identities = match_faculty_identities()
         print(f"Faculty identities: {len(identities)}")
+        return
+
+    if args.command == "match-faculty-identities-v2":
+        identities = resolve_faculty_identities_v2()
+        print(f"Faculty identity v2 rows: {len(identities)}")
         if not identities.empty:
-            print(f"High confidence: {(identities['identity_confidence'] == 'high').sum()}")
+            print(f"Verified: {(identities['identity_status'] == 'verified').sum()}")
             print(f"Probable: {(identities['identity_status'] == 'probable').sum()}")
             print(f"Manual review: {(identities['identity_status'] == 'manual_review').sum()}")
         return
 
     if args.command == "faculty-full":
-        departments = discover_departments()
         faculty = scrape_faculty()
         identities = match_faculty_identities()
-        print(f"Department candidates: {len(departments)}")
         print(f"Faculty rows: {len(faculty)}")
         print(f"Faculty identities: {len(identities)}")
+        return
+
+    if args.command == "faculty-full-v2":
+        faculty = scrape_faculty_v2()
+        identities = resolve_faculty_identities_v2()
+        print(f"Faculty v2 rows: {len(faculty)}")
+        print(f"Faculty identity v2 rows: {len(identities)}")
         return
 
     if args.command == "import-faculty":
