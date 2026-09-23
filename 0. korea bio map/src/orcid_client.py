@@ -7,11 +7,10 @@ from typing import Any
 
 import requests
 
-from config import REQUEST_TIMEOUT
-
 SERPAPI_KEY = os.getenv("SERPAPI_KEY", "").strip()
 ORCID_CLIENT_ID = os.getenv("ORCID_CLIENT_ID", "").strip()
 ORCID_CLIENT_SECRET = os.getenv("ORCID_CLIENT_SECRET", "").strip()
+ORCID_TIMEOUT = 10
 
 ORCID_RE = re.compile(r"(?:https?://orcid\.org/)?(\d{4}-\d{4}-\d{4}-\d{3}[\dX])", re.I)
 
@@ -43,22 +42,16 @@ def _institution_tokens(value: str) -> set[str]:
 
 
 class ORCIDClient:
-    """ORCID identity lookup.
-
-    Preferred path: official ORCID Public API when credentials are configured.
-    Practical fallback: Google/SerpApi constrained to orcid.org, which works with
-    the project's existing SERPAPI_KEY and never writes to ORCID.
-    """
-
     def __init__(self) -> None:
         self.session = requests.Session()
-        self.session.headers.update({"User-Agent": "AboutBio-ORCIDMatcher/0.1"})
+        self.session.headers.update({"User-Agent": "AboutBio-ORCIDMatcher/0.2"})
         self._token: str | None = None
 
     def _get_token(self) -> str:
-        if self._token:
+        if self._token is not None:
             return self._token
         if not ORCID_CLIENT_ID or not ORCID_CLIENT_SECRET:
+            self._token = ""
             return ""
         try:
             r = self.session.post(
@@ -70,7 +63,7 @@ class ORCIDClient:
                     "scope": "/read-public",
                 },
                 headers={"Accept": "application/json"},
-                timeout=REQUEST_TIMEOUT,
+                timeout=ORCID_TIMEOUT,
             )
             r.raise_for_status()
             self._token = str(r.json().get("access_token", ""))
@@ -93,7 +86,7 @@ class ORCIDClient:
                     "Accept": "application/vnd.orcid+json",
                     "Authorization": f"Bearer {token}",
                 },
-                timeout=REQUEST_TIMEOUT,
+                timeout=ORCID_TIMEOUT,
             )
             r.raise_for_status()
             data = r.json()
@@ -103,17 +96,14 @@ class ORCIDClient:
         results = []
         for item in data.get("expanded-result", []) or []:
             oid = normalize_orcid(str(item.get("orcid-id", "")))
-            if not oid:
-                continue
-            results.append(
-                {
+            if oid:
+                results.append({
                     "orcid": oid,
                     "name": " ".join(filter(None, [item.get("given-names", ""), item.get("family-names", "")])),
                     "institution": "; ".join(item.get("institution-name", []) or []),
                     "source": "orcid_public_api",
                     "url": f"https://orcid.org/{oid}",
-                }
-            )
+                })
         return results
 
     def _serpapi_search(self, name: str, institution: str) -> list[dict[str, Any]]:
@@ -125,14 +115,8 @@ class ORCIDClient:
         try:
             r = self.session.get(
                 "https://serpapi.com/search.json",
-                params={
-                    "engine": "google",
-                    "q": q,
-                    "hl": "en",
-                    "num": 10,
-                    "api_key": SERPAPI_KEY,
-                },
-                timeout=REQUEST_TIMEOUT,
+                params={"engine": "google", "q": q, "hl": "en", "num": 5, "api_key": SERPAPI_KEY},
+                timeout=ORCID_TIMEOUT,
             )
             r.raise_for_status()
             data = r.json()
@@ -144,20 +128,15 @@ class ORCIDClient:
         results = []
         for item in data.get("organic_results", []) or []:
             link = str(item.get("link", ""))
-            oid = normalize_orcid(link)
-            if not oid:
-                oid = normalize_orcid(str(item.get("snippet", "")))
-            if not oid:
-                continue
-            results.append(
-                {
+            oid = normalize_orcid(link) or normalize_orcid(str(item.get("snippet", "")))
+            if oid:
+                results.append({
                     "orcid": oid,
                     "name": str(item.get("title", "")),
                     "institution": str(item.get("snippet", "")),
                     "source": "serpapi_orcid_search",
                     "url": f"https://orcid.org/{oid}",
-                }
-            )
+                })
         return results
 
     def search_best(self, name: str, institution: str = "", email: str = "") -> dict[str, Any] | None:
@@ -174,8 +153,7 @@ class ORCIDClient:
             text = f"{item.get('name','')} {item.get('institution','')}".casefold()
             score = _name_score(name, str(item.get("name", ""))) * 0.65
             if inst_tokens:
-                overlap = len(inst_tokens & _institution_tokens(text))
-                score += min(overlap, 2) * 0.15
+                score += min(len(inst_tokens & _institution_tokens(text)), 2) * 0.15
             if email_domain and email_domain in text:
                 score += 0.15
             ranked.append((score, item))
