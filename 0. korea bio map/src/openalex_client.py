@@ -7,7 +7,10 @@ from typing import Any
 
 import requests
 
-from config import OPENALEX_BASE_URL, OPENALEX_EMAIL, REQUEST_TIMEOUT
+from config import OPENALEX_BASE_URL, OPENALEX_EMAIL
+
+OPENALEX_TIMEOUT = 10
+MAX_RETRY_WAIT = 8.0
 
 
 def normalize_openalex_id(value: str) -> str:
@@ -29,12 +32,12 @@ def _tokens(value: str) -> set[str]:
 class OpenAlexClient:
     def __init__(self) -> None:
         self.session = requests.Session()
-        user_agent = "AboutBio-KoreaBioMap/0.3"
+        user_agent = "AboutBio-KoreaBioMap/0.4"
         if OPENALEX_EMAIL:
             user_agent += f" (mailto:{OPENALEX_EMAIL})"
         self.session.headers.update({"User-Agent": user_agent})
-        self.min_interval_seconds = 0.20
-        self.max_retries = 6
+        self.min_interval_seconds = 0.35
+        self.max_retries = 2
         self._last_request_at = 0.0
 
     def _throttle(self) -> None:
@@ -48,16 +51,12 @@ class OpenAlexClient:
             params["mailto"] = OPENALEX_EMAIL
 
         url = f"{OPENALEX_BASE_URL}/{path.lstrip('/')}"
-        last_error: requests.RequestException | None = None
+        last_error: Exception | None = None
 
         for attempt in range(self.max_retries):
             self._throttle()
             try:
-                response = self.session.get(
-                    url,
-                    params=params,
-                    timeout=REQUEST_TIMEOUT,
-                )
+                response = self.session.get(url, params=params, timeout=OPENALEX_TIMEOUT)
                 self._last_request_at = time.monotonic()
 
                 if response.status_code == 429:
@@ -65,27 +64,31 @@ class OpenAlexClient:
                     try:
                         wait = float(retry_after)
                     except (TypeError, ValueError):
-                        wait = min(2 ** attempt, 30)
-                    time.sleep(max(wait, 1.0))
-                    continue
+                        wait = 2.0 * (attempt + 1)
+                    wait = min(max(wait, 1.0), MAX_RETRY_WAIT)
+                    if attempt < self.max_retries - 1:
+                        time.sleep(wait)
+                        continue
+                    raise requests.HTTPError("OpenAlex rate limited", response=response)
 
                 if 500 <= response.status_code < 600:
-                    time.sleep(min(2 ** attempt, 20))
-                    continue
+                    if attempt < self.max_retries - 1:
+                        time.sleep(min(2.0 * (attempt + 1), MAX_RETRY_WAIT))
+                        continue
 
                 response.raise_for_status()
                 return response.json()
 
-            except requests.RequestException as exc:
+            except (requests.RequestException, ValueError) as exc:
                 last_error = exc
                 if attempt < self.max_retries - 1:
-                    time.sleep(min(2 ** attempt, 20))
+                    time.sleep(1.0)
                     continue
-                raise
+                break
 
-        if last_error:
+        if isinstance(last_error, requests.RequestException):
             raise last_error
-        raise requests.HTTPError(f"OpenAlex request failed after {self.max_retries} retries: {url}")
+        raise requests.RequestException(f"OpenAlex request failed quickly: {url}")
 
     def get_author(self, author_id: str) -> dict[str, Any] | None:
         author_id = normalize_openalex_id(author_id)
@@ -97,27 +100,18 @@ class OpenAlexClient:
             return None
 
     def search_author(self, name: str, institution: str = "") -> dict[str, Any] | None:
-        """Conservative identity resolution.
-
-        Never falls back to the first same-name result when an institution was
-        supplied. Rate limits or transient API failures return None so one
-        identity lookup cannot kill the entire batch.
-        """
         try:
             data = self._get("authors", {"search": name, "per-page": 10})
         except requests.RequestException:
             return None
 
         results = data.get("results", [])
-        if not results:
-            return None
-        if not institution:
+        if not results or not institution:
             return None
 
         target_tokens = _tokens(institution)
         best = None
         best_overlap = 0
-
         for author in results:
             institutions = author.get("last_known_institutions") or []
             haystack = " ".join(
@@ -129,7 +123,6 @@ class OpenAlexClient:
             if overlap > best_overlap:
                 best = author
                 best_overlap = overlap
-
         return best if best_overlap >= 1 else None
 
     def iter_works_by_author(self, author_id: str) -> Iterator[dict[str, Any]]:
@@ -139,14 +132,9 @@ class OpenAlexClient:
             try:
                 data = self._get(
                     "works",
-                    {
-                        "filter": f"author.id:{author_id}",
-                        "per-page": 200,
-                        "cursor": cursor,
-                    },
+                    {"filter": f"author.id:{author_id}", "per-page": 200, "cursor": cursor},
                 )
             except requests.RequestException:
                 return
-            for work in data.get("results", []):
-                yield work
+            yield from data.get("results", [])
             cursor = (data.get("meta") or {}).get("next_cursor")
