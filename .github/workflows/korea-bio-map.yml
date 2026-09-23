@@ -18,6 +18,10 @@ on:
           - discover-departments
           - scrape-faculty
           - discover-and-scrape-faculty
+          - match-faculty-identities
+          - faculty-full
+          - import-faculty
+          - import-faculty-and-all
 
 permissions:
   contents: write
@@ -27,6 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+      ORCID_CLIENT_ID: ${{ secrets.ORCID_CLIENT_ID }}
+      ORCID_CLIENT_SECRET: ${{ secrets.ORCID_CLIENT_SECRET }}
       SCHOLAR_LOOKUP_LIMIT: "60"
 
     steps:
@@ -76,6 +82,7 @@ jobs:
           fi
 
       - name: Publish latest map to gh-pages
+        if: ${{ inputs.mode == 'all' || inputs.mode == 'promote-and-all' || inputs.mode == 'import-faculty-and-all' }}
         run: |
           rm -rf /tmp/korea-bio-map-pages
           mkdir -p /tmp/korea-bio-map-pages
