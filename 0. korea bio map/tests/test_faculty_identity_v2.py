@@ -71,7 +71,8 @@ def test_korean_name_matches_romanized_openalex_author():
     ])
     best, reason = _best_openalex(client, "김경수", "", "Seoul National University")
     assert best["id"].endswith("A1"), reason
-    assert client.queries == ["Gyeong-Su Kim", "Gyeongsu Kim"]
+    # Searched with romanized English (common spelling first), never Hangul.
+    assert client.queries == ["Kyung-Soo Kim", "Gyeong-Su Kim"]
 
 
 def test_acronym_institution_alias():

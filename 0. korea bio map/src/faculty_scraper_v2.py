@@ -328,6 +328,7 @@ def scrape_faculty_v2() -> pd.DataFrame:
         out.to_csv(OUTPUT_DIR / "faculty_directory_v2.csv", index=False, encoding="utf-8-sig")
         return out
 
+    seen_lists: dict[frozenset, str] = {}
     for _, src in sources.iterrows():
         if src.get("enabled", "yes").strip().casefold() not in {"yes", "true", "1"}:
             continue
@@ -346,6 +347,13 @@ def scrape_faculty_v2() -> pd.DataFrame:
         try:
             html = _fetch(url)
             parsed = parser(html, url, university, department, source_id)
+            # The same list is often reachable at several URLs (http/https,
+            # www.x.ac.kr/dept vs dept.x.ac.kr); scrape it once.
+            names = frozenset((university, r["name"]) for r in parsed)
+            if len(names) >= 3 and names in seen_lists:
+                print(f"  -> duplicate of {seen_lists[names]}, skipped", flush=True)
+                continue
+            seen_lists.setdefault(names, source_id)
             rows.extend(parsed)
             print(f"  -> {len(parsed)} faculty", flush=True)
         except Exception as exc:

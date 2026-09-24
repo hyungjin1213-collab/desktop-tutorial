@@ -289,14 +289,42 @@ def surname_romanizations(name_ko: str) -> list[str]:
     return ALL_ROMANIZATIONS.get(surname, [])
 
 
-def english_query_variants(name_ko: str) -> list[str]:
-    """Search strings for OpenAlex when the page has no English name."""
-    surname, given = split_korean_name(name_ko)
-    if not surname or not given:
+def conventional_syllable(ch: str) -> str:
+    """경 -> Kyung, 수 -> Soo, 성 -> Sung, 영 -> Young, 희 -> Hee (common spellings)."""
+    rr = romanize_syllable(ch)
+    if rr.startswith("g"):
+        rr = "k" + rr[1:]
+    if rr == "yeong":
+        rr = "young"
+    elif rr.startswith("yeo"):        # 여 / 연 / 열 keep Yeo-
+        pass
+    elif "yeo" in rr[1:]:            # 경 kyeong -> kyung, 현 hyeon -> hyun
+        rr = rr[0] + rr[1:].replace("yeo", "yu", 1)
+    elif "eo" in rr:                 # 성 seong -> sung, 정 jeong -> jung
+        rr = rr.replace("eo", "u", 1)
+    elif rr == "hui":
+        rr = "hee"
+    elif rr in {"yun", "yu"}:
+        rr = "yoon" if rr == "yun" else "yoo"
+    if rr in {"su", "ju", "u", "ku", "bu", "du", "hu", "mu", "nu"}:
+        rr = "woo" if rr == "u" else rr[:-1] + "oo"
+    return rr.capitalize()
+
+
+def english_query_variants(name_ko: str, surname: str = "") -> list[str]:
+    """OpenAlex search strings: common spelling first, then Revised Romanization.
+
+    김경수 -> ["Kyung-Soo Kim", "Gyeong-Su Kim"]
+    """
+    sur, given = split_korean_name(name_ko)
+    if not sur or not given:
         return []
-    romans = ALL_ROMANIZATIONS.get(surname, [])[:1]
-    parts = [romanize_syllable(c).capitalize() for c in given]
-    return [f"{'-'.join(parts)} {r}" for r in romans] + [f"{''.join(parts).capitalize()} {r}" for r in romans]
+    family = surname or ALL_ROMANIZATIONS.get(sur, [""])[0]
+    if not family:
+        return []
+    common = "-".join(conventional_syllable(c) for c in given)
+    rr = "-".join(romanize_syllable(c).capitalize() for c in given)
+    return list(dict.fromkeys([f"{common} {family}", f"{rr} {family}"]))
 
 
 def phonetic_key(text: str) -> str:

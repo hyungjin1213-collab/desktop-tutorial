@@ -170,12 +170,11 @@ def _name_matches(author: dict, name_ko: str, name_en: str) -> tuple[bool, float
 
 
 def _search_queries(name_ko: str, name_en: str, name: str, surname_hint: str = "") -> list[str]:
-    queries = [name_en] if name_en else []
-    variants = english_query_variants(name_ko)
-    if surname_hint:
-        variants = [v.rsplit(" ", 1)[0] + " " + surname_hint for v in variants] + variants
-    queries += variants if not name_en else variants[:1]
-    return [q for q in dict.fromkeys(queries or [name]) if q]
+    """At most 2 OpenAlex searches per person (each search is billed)."""
+    if name_en:
+        return [name_en]
+    queries = english_query_variants(name_ko, surname_hint) if name_ko else []
+    return queries[:2] or ([name] if name else [])
 
 
 def _best_openalex(

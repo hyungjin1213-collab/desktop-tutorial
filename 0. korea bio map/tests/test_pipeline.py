@@ -21,8 +21,9 @@ class FakeClient:
         "C1": [_work("W2", "A1", "C1")],
     }
 
-    def iter_works_by_author(self, author_id):
-        return iter(self.works.get(author_id, []))
+    def iter_works_by_authors(self, author_ids):
+        for aid in author_ids:
+            yield from self.works.get(aid, [])
 
 
 def test_collaborations_use_all_openalex_ids_and_skip_consortium_papers(tmp_path, monkeypatch):
@@ -36,3 +37,18 @@ def test_collaborations_use_all_openalex_ids_and_skip_consortium_papers(tmp_path
     pairs = {(r.professor_a_id, r.professor_b_id): r.collaboration_paper_count for r in auto.itertuples()}
     # W1 + W3 (via split profile A9); W9 has 152 authors and is ignored.
     assert pairs == {("P1", "P2"): 2, ("P1", "P3"): 1}
+
+
+def test_works_fetched_in_batches_not_per_professor(tmp_path, monkeypatch):
+    """Run #24 used up OpenAlex's daily budget with one request per professor."""
+    monkeypatch.setattr(pipeline, "OUTPUT_DIR", tmp_path)
+    calls = []
+
+    class Counting:
+        def iter_works_by_authors(self, ids):
+            calls.append(len(ids))
+            return iter([])
+
+    professors = pd.DataFrame([{"professor_id": f"P{i}", "openalex_id": f"A{i}"} for i in range(120)])
+    pipeline.collect_collaborations(Counting(), professors)
+    assert calls == [50, 50, 20]

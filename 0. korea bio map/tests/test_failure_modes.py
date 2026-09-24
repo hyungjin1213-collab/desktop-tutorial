@@ -78,7 +78,7 @@ def test_collect_does_not_write_empty_results_when_openalex_down(tmp_path, monke
     monkeypatch.setattr(pipeline, "OUTPUT_DIR", tmp_path)
 
     class Down:
-        def iter_works_by_author(self, aid):
+        def iter_works_by_authors(self, ids):
             raise OpenAlexUnavailable("HTTP 429")
 
     with pytest.raises(OpenAlexUnavailable):

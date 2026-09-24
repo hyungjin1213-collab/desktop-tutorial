@@ -48,6 +48,7 @@ class OpenAlexClient:
         self.max_retries = 4
         self._last_request_at = 0.0
         self._reported = False
+        self.request_counts: dict[str, int] = {}
 
     def _throttle(self) -> None:
         elapsed = time.monotonic() - self._last_request_at
@@ -63,6 +64,8 @@ class OpenAlexClient:
 
         url = f"{OPENALEX_BASE_URL}/{path.lstrip('/')}"
         last_error = ""
+        kind = f"{path.split('/')[0]}:{'search' if 'search' in params else 'get' if '/' in path else 'list'}"
+        self.request_counts[kind] = self.request_counts.get(kind, 0) + 1
 
         for attempt in range(self.max_retries):
             self._throttle()
@@ -153,7 +156,13 @@ class OpenAlexClient:
         return data.get("results", []) or []
 
     def iter_works_by_author(self, author_id: str) -> Iterator[dict[str, Any]]:
-        author_id = normalize_openalex_id(author_id)
+        return self.iter_works_by_authors([author_id])
+
+    def iter_works_by_authors(self, author_ids: list[str]) -> Iterator[dict[str, Any]]:
+        """Works of any of these authors, 200 per request (one OR filter)."""
+        author_id = "|".join(normalize_openalex_id(a) for a in author_ids if normalize_openalex_id(a))
+        if not author_id:
+            return
         cursor = "*"
         while cursor:
             # Errors propagate: an empty list here would silently erase

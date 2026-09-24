@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import atexit
 
 from candidate_review import classify_candidates
 from department_discovery import discover_departments
@@ -55,6 +56,8 @@ def main() -> None:
     )
     args = parser.parse_args()
     client = OpenAlexClient()
+    # OpenAlex bills per request against a daily budget: report usage even on failure.
+    atexit.register(lambda: print(f"[openalex] requests this run: {client.request_counts}", flush=True))
 
     if args.command == "galaxy-full":
         # Official pages -> names -> ORCID/OpenAlex -> professor DB -> coauthor galaxy.

@@ -77,3 +77,23 @@ def test_enrich_from_profile_page_and_email():
     enrich_from_profiles(rows, fetch=lambda url: pages[url])
     assert (rows[0]["name_en"], rows[0]["email"], rows[0]["name_en_source"]) == ("Kyung-Soo Kim", "kskim@snu.ac.kr", "profile_page")
     assert (rows[1]["name_en"], rows[1]["name_en_source"]) == ("Yeojoon Yoon", "email")
+
+
+def test_same_list_at_two_urls_scraped_once(tmp_path, monkeypatch):
+    import pandas as pd
+
+    import faculty_scraper_v2 as fs
+
+    monkeypatch.setattr(fs, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(fs, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(fs, "enrich_from_profiles", lambda rows: None)
+    pd.DataFrame([
+        {"source_id": "A", "university": "Konkuk University", "department": "Bio",
+         "faculty_url": "https://biology.konkuk.ac.kr/f", "parser": "photo_anchor", "enabled": "yes"},
+        {"source_id": "B", "university": "Konkuk University", "department": "Bio",
+         "faculty_url": "https://www.konkuk.ac.kr/biology/f", "parser": "photo_anchor", "enabled": "yes"},
+    ]).to_csv(tmp_path / "faculty_sources.csv", index=False)
+    html = "".join(_card(n, "교수", [], i) for i, n in enumerate(["강건욱", "권용태", "김경수"]))
+    monkeypatch.setattr(fs, "_fetch", lambda url: html)
+    out = fs.scrape_faculty_v2()
+    assert list(out.source_id) == ["A", "A", "A"]

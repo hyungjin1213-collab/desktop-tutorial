@@ -83,7 +83,10 @@ def test_romanization_mismatch(en, ko):
 
 
 def test_query_variants():
-    assert english_query_variants("김경수") == ["Gyeong-Su Kim", "Gyeongsu Kim"]
+    assert english_query_variants("김경수") == ["Kyung-Soo Kim", "Gyeong-Su Kim"]
+    assert english_query_variants("박영호") == ["Young-Ho Park", "Yeong-Ho Park"]
+    assert english_query_variants("윤여준", "Yoon") == ["Yeo-Jun Yoon"]
+    assert english_query_variants("진영원", "Chin")[0] == "Young-Won Chin"
 
 
 @pytest.mark.parametrize("text,name_ko,name_en", [

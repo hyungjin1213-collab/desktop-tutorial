@@ -66,6 +66,10 @@ def test_no_entitlement_disables_scopus_once():
 
 
 class FakeOpenAlex:
+    def iter_works_by_authors(self, author_ids):
+        for aid in author_ids:
+            yield from self.iter_works_by_author(aid)
+
     def iter_works_by_author(self, author_id):
         works = {
             "A1": [{"id": "https://openalex.org/W1", "doi": "https://doi.org/10.1/abc", "display_name": "p1",

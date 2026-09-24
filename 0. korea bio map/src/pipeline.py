@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 from collections import defaultdict
+from itertools import combinations
 from pathlib import Path
 
 import pandas as pd
@@ -35,6 +36,8 @@ PROFESSOR_COLUMNS = [
 ]
 
 SCOPUS_CACHE_COLUMNS = ["professor_id", "scopus_id", "reason"]
+# OpenAlex accepts up to 100 OR-ed values per filter; 50 keeps URLs short.
+AUTHOR_BATCH = 50
 
 REL_COLUMNS = [
     "relationship_id",
@@ -192,63 +195,66 @@ def collect_collaborations(
     openalex_pairs: set[tuple[str, str]] = set()
     candidate_stats: dict[str, dict[str, object]] = {}
 
-    total = len(professors)
-    for index, (_, professor) in enumerate(professors.iterrows(), start=1):
-        professor_id = professor["professor_id"]
-        own_ids = set(_openalex_ids(professor["openalex_id"]))
-        if index % 50 == 0 or index == total:
-            print(f"[collect] {index}/{total} professors", flush=True)
+    # One request covers up to AUTHOR_BATCH professors' works (OpenAlex OR
+    # filter), instead of one request per professor: far fewer billed calls.
+    all_ids = sorted(confirmed_by_openalex)
+    seen_works: set[str] = set()
+    for start in range(0, len(all_ids), AUTHOR_BATCH):
+        batch = all_ids[start:start + AUTHOR_BATCH]
+        print(f"[collect] authors {start + 1}-{start + len(batch)} of {len(all_ids)}", flush=True)
+        for work in client.iter_works_by_authors(batch):
+            work_id = normalize_openalex_id(work.get("id", ""))
+            work_title = work.get("display_name", "")
+            if work_id and work_id in seen_works:
+                continue  # already seen via another batch
+            seen_works.add(work_id)
+            # DOI as the paper key so OpenAlex and Scopus copies count once.
+            work_key = normalize_doi(work.get("doi", "") or "") or work_id or work_title
+            authorships = work.get("authorships") or []
+            # Mega-consortium papers (hundreds of authors) are not collaboration.
+            if len(authorships) > MAX_AUTHORS_PER_WORK:
+                continue
 
-        for openalex_id in own_ids:
-            for work in client.iter_works_by_author(openalex_id):
-                work_id = normalize_openalex_id(work.get("id", ""))
-                work_title = work.get("display_name", "")
-                # DOI as the paper key so OpenAlex and Scopus copies count once.
-                work_key = normalize_doi(work.get("doi", "") or "") or work_id or work_title
-                authorships = work.get("authorships") or []
-                # Mega-consortium papers (hundreds of authors) are not collaboration.
-                if len(authorships) > MAX_AUTHORS_PER_WORK:
+            profs_on_work = {
+                confirmed_by_openalex[aid]
+                for aid in (normalize_openalex_id((a.get("author") or {}).get("id", "")) for a in authorships)
+                if aid in confirmed_by_openalex
+            }
+            for pair in combinations(sorted(profs_on_work), 2):
+                pair_to_works[pair].add(work_key)
+                openalex_pairs.add(pair)
+
+            for authorship in authorships:
+                author = authorship.get("author") or {}
+                coauthor_openalex_id = normalize_openalex_id(author.get("id", ""))
+                if not coauthor_openalex_id or coauthor_openalex_id in confirmed_by_openalex:
                     continue
 
-                for authorship in authorships:
-                    author = authorship.get("author") or {}
-                    coauthor_openalex_id = normalize_openalex_id(author.get("id", ""))
-                    if not coauthor_openalex_id or coauthor_openalex_id in own_ids:
-                        continue
+                stats = candidate_stats.setdefault(
+                    coauthor_openalex_id,
+                    {
+                        "openalex_id": coauthor_openalex_id,
+                        "display_name": author.get("display_name", ""),
+                        "shared_work_ids": set(),
+                        "seed_professor_ids": set(),
+                        "institutions": set(),
+                        "country_codes": set(),
+                        "example_work": "",
+                    },
+                )
+                stats["shared_work_ids"].add(work_id or work_title)
+                stats["seed_professor_ids"].update(profs_on_work)
 
-                    confirmed_id = confirmed_by_openalex.get(coauthor_openalex_id)
-                    if confirmed_id:
-                        pair = tuple(sorted((professor_id, confirmed_id)))
-                        if pair[0] != pair[1]:
-                            pair_to_works[pair].add(work_key)
-                            openalex_pairs.add(pair)
-                        continue
+                if not stats["example_work"] and work_title:
+                    stats["example_work"] = work_title
 
-                    stats = candidate_stats.setdefault(
-                        coauthor_openalex_id,
-                        {
-                            "openalex_id": coauthor_openalex_id,
-                            "display_name": author.get("display_name", ""),
-                            "shared_work_ids": set(),
-                            "seed_professor_ids": set(),
-                            "institutions": set(),
-                            "country_codes": set(),
-                            "example_work": "",
-                        },
-                    )
-                    stats["shared_work_ids"].add(work_id or work_title)
-                    stats["seed_professor_ids"].add(professor_id)
-
-                    if not stats["example_work"] and work_title:
-                        stats["example_work"] = work_title
-
-                    for institution in authorship.get("institutions") or []:
-                        name = institution.get("display_name", "")
-                        country = institution.get("country_code", "")
-                        if name:
-                            stats["institutions"].add(name)
-                        if country:
-                            stats["country_codes"].add(country)
+                for institution in authorship.get("institutions") or []:
+                    name = institution.get("display_name", "")
+                    country = institution.get("country_code", "")
+                    if name:
+                        stats["institutions"].add(name)
+                    if country:
+                        stats["country_codes"].add(country)
 
     scopus_pairs: dict[tuple[str, str], set[str]] = {}
     if scopus is not None and scopus.enabled and "scopus_id" in professors.columns:
