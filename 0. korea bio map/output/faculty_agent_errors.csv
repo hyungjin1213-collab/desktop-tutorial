@@ -1,0 +1,3 @@
+﻿source_id,university,department,error
+SNU_PHARM,Seoul National University,College of Pharmacy,HTTPError: 429 Client Error: Too Many Requests for url: https://api.openai.com/v1/responses
+SNU_BIOMED,Seoul National University,Graduate School of Biomedical Sciences,HTTPError: 429 Client Error: Too Many Requests for url: https://api.openai.com/v1/responses
