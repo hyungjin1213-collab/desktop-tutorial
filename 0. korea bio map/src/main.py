@@ -6,6 +6,7 @@ from candidate_review import classify_candidates
 from department_discovery import discover_departments
 from faculty_identity import import_verified_faculty, match_faculty_identities
 from faculty_identity_v2 import import_verified_faculty_v2, resolve_faculty_identities_v2
+from faculty_agent import collect_faculty_with_agent
 from faculty_scraper import scrape_faculty
 from faculty_scraper_v2 import scrape_faculty_v2
 from openalex_client import OpenAlexClient
@@ -38,7 +39,7 @@ def main() -> None:
         choices=[
             "resolve", "collect", "review", "build", "promote", "promote-and-all", "all",
             "discover-departments",
-            "scrape-faculty", "scrape-faculty-v2",
+            "scrape-faculty", "scrape-faculty-v2", "collect-faculty-agent",
             "match-faculty-identities", "match-faculty-identities-v2",
             "faculty-full", "faculty-full-v2",
             "import-faculty", "import-faculty-and-all",
@@ -62,6 +63,11 @@ def main() -> None:
     if args.command == "scrape-faculty-v2":
         df = scrape_faculty_v2()
         print(f"Faculty v2 rows: {len(df)}")
+        return
+
+    if args.command == "collect-faculty-agent":
+        df = collect_faculty_with_agent()
+        print(f"Faculty agent rows: {len(df)}")
         return
 
     if args.command == "match-faculty-identities":
