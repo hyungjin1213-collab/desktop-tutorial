@@ -67,6 +67,28 @@ GitHub Actions mode:
 - adjunct / visiting / emeritus
 - 학생 / 포닥 / 연구원
 
+## 교수 이름 추출 규칙 (v2, `src/name_extraction.py`)
+
+`scrape-faculty-v2`는 카드 텍스트에서 이름을 다음 조건을 모두 만족할 때만 채택한다.
+
+- 한국 성씨로 시작하는 2~4글자 한글 (`남궁`, `황보` 등 복성 포함)
+- 분야 태그 / 메뉴 / 직위 단어가 아님 (`분자세포`, `면역`, `주소`, `소개`, `부교수` …)
+- 사람 이름 위치에 있음: `권용태 교수`, `교수 이재원`, `성명: 홍길동`, 또는 카드 첫 단어
+- 같은 페이지의 카드 3개 이상에 반복되는 단어가 아님 (분야 태그는 반복되고 이름은 반복되지 않음)
+- 뉴스/논문/게시판 항목이 아님 (`교수팀`, `[논문]`, 날짜 등)
+
+영문명은 한글 성씨의 로마자 표기와 맞을 때만 채택하고 `Given Family` 순서로 저장한다
+(`Ki, Chang Seok` → `Chang Seok Ki`). 결과 CSV에는 `name_ko`, `name_en`, `name_reason` 컬럼이 추가된다.
+
+사진 카드가 3개 미만인 페이지는 표(`tr`) / 목록(`li`, `dl`) 행도 같이 검사한다.
+
+테스트:
+
+```bash
+pip install -r requirements.txt pytest
+python -m pytest tests
+```
+
 ## Step 3. ORCID + OpenAlex 신원 매칭
 
 GitHub Actions mode:
@@ -99,6 +121,15 @@ ORCID Public API credentials가 GitHub Secrets에 있으면 공식 API를 우선
 선택적 GitHub Secrets:
 - ORCID_CLIENT_ID
 - ORCID_CLIENT_SECRET
+
+### v2 매칭 (`match-faculty-identities-v2`)
+
+OpenAlex 저자명은 영문이므로 한글 이름으로 검색하지 않는다.
+
+- 페이지에 영문명이 있으면 그 이름으로, 없으면 로마자 변환(`김경수` → `Gyeong-Su Kim`, `Gyeongsu Kim`)으로 검색
+- 이름 비교는 표기 차이를 흡수 (Kyung/Gyeong, Joon/Jun, Lee/Yi/Rhee, Woo/U …)
+- 기관은 현재 소속 + 과거 소속 모두 확인, `KAIST`/`POSTECH`/`UNIST`/`GIST`/`DGIST` 약어 처리
+- 같은 학교에 동명이인이 여러 명이면 자동 확정하지 않고 `manual_review` (`ambiguous: …`)
 
 ## Step 4. 교수 DB로 가져오기
 

@@ -8,12 +8,24 @@ from pathlib import Path
 import pandas as pd
 
 from config import DATA_DIR, OUTPUT_DIR
+from name_extraction import english_matches_korean, english_query_variants
 from openalex_client import OpenAlexClient, normalize_openalex_id
 
 BATCH_LIMIT = int(os.getenv("IDENTITY_BATCH_LIMIT", "20"))
 
+# OpenAlex spells institutions out in full; faculty pages often use acronyms.
+INSTITUTION_ALIASES = {
+    "kaist": "korea advanced institute science technology",
+    "postech": "pohang university science technology",
+    "unist": "ulsan national institute science technology",
+    "gist": "gwangju institute science technology",
+    "dgist": "daegu gyeongbuk institute science technology",
+    "skku": "sungkyunkwan",
+    "snu": "seoul",
+}
+
 COLUMNS = [
-    "source_id", "name", "title", "university", "department", "email",
+    "source_id", "name", "name_ko", "name_en", "title", "university", "department", "email",
     "profile_url", "source_page", "orcid", "openalex_id", "openalex_name",
     "openalex_affiliation", "identity_confidence", "identity_status", "identity_reason",
 ]
@@ -39,8 +51,13 @@ def _name_similarity(a: str, b: str) -> float:
 
 
 def _tokens(value: str) -> set[str]:
-    stop = {"university", "college", "school", "hospital", "institute", "department", "national", "research"}
-    return {t for t in re.findall(r"[a-z0-9가-힣]+", (value or "").casefold()) if len(t) >= 3 and t not in stop}
+    stop = {"university", "college", "school", "hospital", "institute", "department", "national",
+            "research", "science", "technology", "and", "of", "the"}
+    text = (value or "").casefold()
+    for short, full in INSTITUTION_ALIASES.items():
+        if re.search(rf"\b{short}\b", text):
+            text += " " + full
+    return {t for t in re.findall(r"[a-z0-9가-힣]+", text) if len(t) >= 3 and t not in stop}
 
 
 def _affiliation(author: dict) -> str:
@@ -49,6 +66,15 @@ def _affiliation(author: dict) -> str:
         x.get("display_name", "") for x in institutions
         if isinstance(x, dict) and x.get("display_name")
     )
+
+
+def _all_affiliations(author: dict) -> str:
+    names = [_affiliation(author)]
+    for aff in author.get("affiliations") or []:
+        inst = aff.get("institution") if isinstance(aff, dict) else None
+        if isinstance(inst, dict) and inst.get("display_name"):
+            names.append(inst["display_name"])
+    return "; ".join(n for n in names if n)
 
 
 def _orcid(author: dict) -> str:
@@ -64,33 +90,73 @@ def _key(row: pd.Series | dict) -> str:
     ])
 
 
-def _best_openalex(client: OpenAlexClient, name: str, university: str) -> tuple[dict | None, str]:
-    try:
-        data = client._get("authors", {"search": name, "per-page": 10})
-    except Exception as exc:
-        return None, f"OpenAlex unavailable: {type(exc).__name__}"
+def _name_matches(author: dict, name_ko: str, name_en: str) -> tuple[bool, float]:
+    names = [str(author.get("display_name", ""))] + [
+        str(x) for x in author.get("display_name_alternatives") or []
+    ]
+    if name_ko:
+        if name_ko in names:
+            return True, 1.0
+        if any(english_matches_korean(n, name_ko) for n in names):
+            return True, 0.95
+    if name_en:
+        sim = max(_name_similarity(name_en, n) for n in names)
+        return sim >= 0.85, sim
+    return False, 0.0
 
-    target_tokens = _tokens(university)
-    ranked: list[tuple[float, int, dict]] = []
-    for author in data.get("results", []) or []:
-        oa_name = str(author.get("display_name", ""))
-        aff = _affiliation(author)
-        overlap = len(target_tokens & _tokens(aff))
-        sim = _name_similarity(name, oa_name)
-        score = sim + min(overlap, 2) * 0.35
-        ranked.append((score, overlap, author))
 
-    if not ranked:
+def _search_queries(name_ko: str, name_en: str, name: str) -> list[str]:
+    queries = [name_en] if name_en else english_query_variants(name_ko)
+    return [q for q in dict.fromkeys(queries or [name]) if q]
+
+
+def _best_openalex(
+    client: OpenAlexClient, name_ko: str, name_en: str, university: str, fallback_name: str = "",
+) -> tuple[dict | None, str]:
+    """Pick the OpenAlex author whose romanized name and institution both fit.
+
+    OpenAlex display names are English, so searching with a Hangul name
+    returns nothing useful: search with the page's English name, or with
+    romanization variants of the Korean name when the page has none.
+    """
+    candidates: dict[str, dict] = {}
+    for query in _search_queries(name_ko, name_en, fallback_name):
+        try:
+            data = client._get("authors", {"search": query, "per-page": 25})
+        except Exception as exc:
+            return None, f"OpenAlex unavailable: {type(exc).__name__}"
+        for author in data.get("results", []) or []:
+            candidates.setdefault(str(author.get("id", "")), author)
+
+    if not candidates:
         return None, "no OpenAlex candidates"
 
-    ranked.sort(key=lambda x: x[0], reverse=True)
-    _, overlap, best = ranked[0]
-    sim = _name_similarity(name, str(best.get("display_name", "")))
-    if sim < 0.72:
-        return None, f"best name similarity too low ({sim:.2f})"
-    if university and overlap < 1:
-        return None, "name candidate found but current institution does not match"
-    return best, f"name similarity {sim:.2f}; institution overlap {overlap}"
+    target = _tokens(university)
+    passing: list[tuple[int, int, float, dict]] = []
+    name_hits = 0
+    for author in candidates.values():
+        ok, sim = _name_matches(author, name_ko, name_en)
+        if not ok:
+            continue
+        name_hits += 1
+        current = len(target & _tokens(_affiliation(author)))
+        ever = len(target & _tokens(_all_affiliations(author)))
+        if university and not ever:
+            continue
+        passing.append((current, ever, sim, author))
+
+    if not passing:
+        if name_hits:
+            return None, f"{name_hits} name match(es) but none at {university}"
+        return None, "no romanization-consistent name match"
+
+    passing.sort(key=lambda x: (x[0] > 0, x[1], x[2], x[3].get("works_count", 0)), reverse=True)
+    current, ever, sim, best = passing[0]
+    same_level = [p for p in passing if (p[0] > 0) == (current > 0) and p[1] == ever]
+    if len(same_level) > 1:
+        return None, f"ambiguous: {len(same_level)} same-name authors at {university}"
+    where = "current" if current else "past"
+    return best, f"name match {sim:.2f}; {where} institution match"
 
 
 def resolve_faculty_identities_v2() -> pd.DataFrame:
@@ -116,10 +182,15 @@ def resolve_faculty_identities_v2() -> pd.DataFrame:
 
     for i, (_, person) in enumerate(pending.iterrows(), start=1):
         name = person.get("name", "").strip()
+        name_ko = person.get("name_ko", "").strip()
+        name_en = person.get("name_en", "").strip()
+        if not name_ko and not name_en:
+            # Rows from older scraper output only have "name".
+            name_ko, name_en = (name, "") if re.search(r"[가-힣]", name) else ("", name)
         university = person.get("university", "").strip()
         print(f"[{i}/{len(pending)}] {name} | {university}", flush=True)
 
-        author, reason = _best_openalex(client, name, university)
+        author, reason = _best_openalex(client, name_ko, name_en, university, name)
         status = "manual_review"
         confidence = "low"
         orcid = oa_id = oa_name = oa_aff = ""
@@ -141,6 +212,8 @@ def resolve_faculty_identities_v2() -> pd.DataFrame:
         rows.append({
             "source_id": person.get("source_id", ""),
             "name": name,
+            "name_ko": name_ko,
+            "name_en": name_en,
             "title": person.get("title", ""),
             "university": university,
             "department": person.get("department", ""),
@@ -190,9 +263,10 @@ def import_verified_faculty_v2() -> int:
         if not oa or oa in existing_openalex or (profile and profile in existing_profiles):
             continue
         name = row.get("name", "")
+        name_ko = row.get("name_ko", "") or (name if re.search(r"[가-힣]", name) else "")
         new_rows.append({
             "professor_id": f"P{next_num:04d}",
-            "name_ko": name if re.search(r"[가-힣]", name) else "",
+            "name_ko": name_ko,
             "name_en": row.get("openalex_name", "") or name,
             "university": row.get("university", ""),
             "department": row.get("department", ""),

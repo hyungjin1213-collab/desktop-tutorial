@@ -9,23 +9,18 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 from config import DATA_DIR, OUTPUT_DIR
+from name_extraction import EXCLUDED_TITLES, extract_person, frequent_hangul_tokens
 
 REQUEST_TIMEOUT_SECONDS = 12
 
 EXCLUDED = {
     "겸임교수", "보직교수", "초빙교수", "명예교수", "emeritus",
-    "adjunct", "visiting professor", "postdoc", "postdoctoral",
+    "adjunct", "visiting professor", "postdoc", "postdoctoral", "retired",
 }
 TITLE_PATTERNS = [
     "정교수", "부교수", "조교수", "교수",
     "full professor", "associate professor", "assistant professor", "professor",
 ]
-NAME_BLACKLIST = {
-    "의과학과", "의학과", "약학과", "생명과학", "생명공학", "바이오엔지니어링",
-    "교수진", "교수소개", "연구실", "상세보기", "사이트로 이동", "주임",
-    "전공", "대학소개", "학과소개", "연구", "교육", "입학", "공지", "뉴스",
-    "faculty", "professor", "people", "profile",
-}
 IMAGE_BLACKLIST = {
     "logo", "icon", "banner", "arrow", "btn", "button", "sprite", "favicon",
     "symbol", "mark", "header", "footer", "menu", "nav", "sns", "facebook",
@@ -52,28 +47,6 @@ def _fetch(url: str) -> str:
     r.raise_for_status()
     r.encoding = r.apparent_encoding or r.encoding
     return r.text
-
-
-def _looks_like_person_name(text: str) -> bool:
-    t = _clean(text)
-    if not t or len(t) > 60:
-        return False
-
-    low = t.casefold()
-    if low in {x.casefold() for x in NAME_BLACKLIST}:
-        return False
-    if any(x.casefold() in low for x in EXCLUDED):
-        return False
-
-    # Korean personal name, optionally with English name in parentheses.
-    if re.fullmatch(r"[가-힣]{2,4}(?:\([A-Za-z .'-]{3,40}\))?", t):
-        return True
-
-    # Latin-style personal name.
-    if re.fullmatch(r"[A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){1,3}", t):
-        return True
-
-    return False
 
 
 def _extract_title(text: str) -> str:
@@ -112,41 +85,6 @@ def _is_probable_person_photo(img: Tag) -> bool:
         return False
 
     return True
-
-
-def _name_candidates(card: Tag, img: Tag | None = None) -> list[str]:
-    candidates: list[str] = []
-
-    # Image alt/title often directly contains the professor name.
-    if img is not None:
-        for attr in ("alt", "title"):
-            value = _clean(str(img.get(attr, "")))
-            if _looks_like_person_name(value):
-                candidates.append(value)
-
-    selectors = [
-        ".name", ".prof-name", ".faculty-name", ".member-name", ".person-name",
-        "h1", "h2", "h3", "h4", "h5", "strong", "b",
-    ]
-    for sel in selectors:
-        for node in card.select(sel):
-            value = _clean(node.get_text(" ", strip=True))
-            if _looks_like_person_name(value):
-                candidates.append(value)
-
-    for a in card.find_all("a", href=True):
-        value = _clean(a.get_text(" ", strip=True))
-        if _looks_like_person_name(value):
-            candidates.append(value)
-
-    # Last fallback only scans short standalone fragments.
-    if not candidates:
-        for s in card.stripped_strings:
-            value = _clean(str(s))
-            if len(value) <= 60 and _looks_like_person_name(value):
-                candidates.append(value)
-
-    return list(dict.fromkeys(candidates))
 
 
 def _best_profile_url(card: Tag, page_url: str) -> str:
@@ -188,9 +126,9 @@ def _score_card(card: Tag, img: Tag, page_url: str) -> tuple[int, str, str, str]
     if any(x.casefold() in low for x in EXCLUDED):
         return 0, "", "", ""
 
-    names = _name_candidates(card, img)
-    name = names[0] if names else ""
-    title = _extract_title(text)
+    person = extract_person(text)
+    name = person.display
+    title = person.title or _extract_title(text)
     email = _extract_email(text)
 
     score = 0
@@ -233,40 +171,90 @@ def _find_best_card_for_image(img: Tag, page_url: str) -> tuple[Tag | None, int,
     return best
 
 
-def parse_photo_anchor(html: str, page_url: str, university: str, department: str, source_id: str) -> list[dict[str, str]]:
-    soup = BeautifulSoup(html, "html.parser")
-    out: list[dict[str, str]] = []
-    seen: set[tuple[str, str]] = set()
+def _drop_nested(cards: list[tuple[Tag, Tag | None]]) -> list[tuple[Tag, Tag | None]]:
+    """Keep the smallest cards; a block that contains another card is a list wrapper."""
+    ids = {id(c) for c, _ in cards}
+    out = []
+    for card, img in cards:
+        if any(id(d) in ids for d in card.find_all(True)):
+            continue
+        out.append((card, img))
+    return list({id(c): (c, i) for c, i in out}.values())
 
+
+def _photo_cards(soup: BeautifulSoup, page_url: str) -> list[tuple[Tag, Tag | None]]:
+    cards: list[tuple[Tag, Tag | None]] = []
     for img in soup.find_all("img"):
         if not isinstance(img, Tag) or not _is_probable_person_photo(img):
             continue
+        card, score, name, title, _ = _find_best_card_for_image(img, page_url)
+        if card is not None and score >= 5 and name and title:
+            cards.append((card, img))
+    return _drop_nested(cards)
 
-        card, score, name, title, email = _find_best_card_for_image(img, page_url)
-        if card is None or score < 5 or not name or not title:
+
+def _row_cards(soup: BeautifulSoup) -> list[tuple[Tag, Tag | None]]:
+    """Fallback for table / list layouts without photos."""
+    cards: list[tuple[Tag, Tag | None]] = []
+    for node in soup.find_all(["tr", "li", "dl"]):
+        text = _clean(node.get_text(" ", strip=True))
+        if 5 <= len(text) <= 400 and _extract_title(text):
+            cards.append((node, None))
+    return _drop_nested(cards)
+
+
+def parse_photo_anchor(html: str, page_url: str, university: str, department: str, source_id: str) -> list[dict[str, str]]:
+    soup = BeautifulSoup(html, "html.parser")
+    for junk in soup.find_all(["nav", "header", "footer", "script", "style"]):
+        junk.decompose()
+
+    cards = _photo_cards(soup, page_url)
+    if len(cards) < 3:
+        cards = cards + _row_cards(soup)
+    texts = [_clean(c.get_text(" ", strip=True)) for c, _ in cards]
+    # Field tags (분자세포, 면역) repeat across cards; names do not.
+    frequent = frequent_hangul_tokens(texts)
+
+    out: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for (card, img), text in zip(cards, texts):
+        low = text.casefold()
+        if any(x.casefold() in low for x in EXCLUDED):
+            continue
+        person = extract_person(text, frequent)
+        if not person.ok or person.title in EXCLUDED_TITLES:
+            continue
+        if not person.title and person.confidence == "low":
             continue
 
-        text = _clean(card.get_text(" ", strip=True))
+        email = _extract_email(text)
         profile_url = _best_profile_url(card, page_url)
-        key = (name.casefold(), profile_url.casefold())
+        key = (person.name_ko or person.name_en).casefold()
         if key in seen:
             continue
         seen.add(key)
 
-        confidence = "high" if score >= 7 else "medium"
+        photo_url = ""
+        if img is not None:
+            photo_url = urljoin(page_url, str(img.get("src", "") or img.get("data-src", "")))
+        score = sum([2 * bool(person.display), 2 * bool(person.title), 2 * bool(email),
+                     int(profile_url != page_url), int(img is not None)])
         out.append({
             "source_id": source_id,
-            "name": name,
-            "title": title,
+            "name": person.display,
+            "name_ko": person.name_ko,
+            "name_en": person.name_en,
+            "title": person.title,
             "university": university,
             "department": department,
             "email": email,
             "profile_url": profile_url,
             "source_page": page_url,
-            "photo_url": urljoin(page_url, str(img.get("src", "") or img.get("data-src", ""))),
+            "photo_url": photo_url,
             "evidence_score": str(score),
+            "name_reason": person.reason,
             "raw_text": text[:600],
-            "faculty_confidence": confidence,
+            "faculty_confidence": person.confidence,
         })
 
     return out
@@ -319,8 +307,8 @@ def scrape_faculty_v2() -> pd.DataFrame:
             print(f"  -> ERROR: {type(exc).__name__}: {exc}", flush=True)
 
     columns = [
-        "source_id", "name", "title", "university", "department", "email",
-        "profile_url", "source_page", "photo_url", "evidence_score",
+        "source_id", "name", "name_ko", "name_en", "title", "university", "department", "email",
+        "profile_url", "source_page", "photo_url", "evidence_score", "name_reason",
         "raw_text", "faculty_confidence",
     ]
 
