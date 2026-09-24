@@ -10,6 +10,8 @@
     .panel{position:fixed;top:14px;left:14px;z-index:20;background:rgba(3,7,18,.72);backdrop-filter:blur(10px);padding:12px 14px;border:1px solid rgba(255,255,255,.10);border-radius:14px;max-width:290px;pointer-events:none}
     .panel h1{font-size:18px;margin:0 0 4px}.panel p{font-size:12px;color:#9aa7c7;margin:0 0 7px}
     .legend{font-size:12px;line-height:1.55;color:#d7def0;display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
+    .lines{font-size:11.5px;line-height:1.7;color:#d7def0;margin:0 0 8px}
+    .line{display:inline-block;width:22px;margin-right:6px;vertical-align:middle;border-radius:2px}
     .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;box-shadow:0 0 8px currentColor}
     .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:20;font-size:11px;color:#7f8aa8;background:rgba(3,7,18,.55);padding:6px 9px;border-radius:999px;pointer-events:none;white-space:nowrap}
   </style>
@@ -17,7 +19,12 @@
 <body>
   <div class="panel">
     <h1>Korea Bio Map · 3D</h1>
-    <p>교수 = 별 · 공동연구 = 선 · score = 별 크기</p>
+    <p>교수 = 별 · score = 별 크기</p>
+    <div class="lines">
+      <div><span class="line" style="background:#fbbf24;height:3px"></span>지도교수 → 제자 (PI 10점 · 제자 1점)</div>
+      <div><span class="line" style="background:#c084fc;height:2px"></span>포닥 멘토 → 포닥 (PI 3점 · 포닥 1점)</div>
+      <div><span class="line" style="background:rgba(147,197,253,.45);height:1px"></span>공동연구 (1명당 1점 · 별을 누르면 강조)</div>
+    </div>
     <div class="legend">
       <div><span class="dot" style="background:#2dd4bf;color:#2dd4bf"></span>면역항암</div>
       <div><span class="dot" style="background:#60a5fa;color:#60a5fa"></span>합성생물학</div>
@@ -26,7 +33,7 @@
       <div><span class="dot" style="background:#fb7185;color:#fb7185"></span>체외면역 평가</div>
     </div>
   </div>
-  <div class="hint">드래그: 회전 · 두 손가락: 줌 · 별 터치: 정보</div>
+  <div class="hint">드래그: 회전 · 두 손가락: 줌 · 별 터치: 정보·공동연구 강조 · 빈 곳 터치: 해제</div>
   <div id="graph"></div>
 
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
@@ -52,6 +59,31 @@
     }
     const NODE_COUNT=(window.KOREA_BIO_MAP.nodes||[]).length;
     const SEG=NODE_COUNT>800?8:NODE_COUNT>200?14:24;
+
+    // Collaboration lines are a faint background web; PhD / postdoc lineage
+    // lines are the story, drawn bright with arrows (PI -> trainee).
+    const LINK_STYLE={
+      collaboration:{color:"rgba(147,197,253,0.10)",focus:"rgba(191,219,254,0.85)",width:0,focusWidth:.9,particles:0},
+      advisor_student:{color:"#fbbf24",width:1.9,particles:3,particleColor:"#fde68a"},
+      postdoc_mentor:{color:"#c084fc",width:1.4,particles:2,particleColor:"#ede9fe"}
+    };
+    const isLineage=l=>l.type==="advisor_student"||l.type==="postdoc_mentor";
+    const endId=v=>typeof v==="object"?v.id:v;
+    let focus=null, selected=null;
+    const touchesFocus=l=>focus&&(endId(l.source)===focus.id||endId(l.target)===focus.id);
+    function linkColor(l){
+      const st=LINK_STYLE[l.type]||LINK_STYLE.collaboration;
+      return touchesFocus(l)&&st.focus?st.focus:st.color;
+    }
+    function linkWidth(l){
+      const st=LINK_STYLE[l.type]||LINK_STYLE.collaboration;
+      return touchesFocus(l)&&st.focusWidth!==undefined?st.focusWidth:st.width;
+    }
+    function setFocus(node){
+      if((node&&node.id)===(focus&&focus.id)) return;
+      focus=node||null;
+      Graph.linkColor(linkColor).linkWidth(linkWidth);  // re-evaluate accessors
+    }
 
     const el=document.getElementById("graph");
     const Graph=ForceGraph3D()(el)
@@ -88,15 +120,24 @@
         }
         return group;
       })
-      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${n.name}</b>${n.name_en&&n.name_en!==n.name?` (${n.name_en})`:""}<br>${n.university}${n.department?` · ${n.department}`:""}<br>${n.field||""}<br>Score: ${n.score}<br>Collaborators: ${n.collaborator_count}${n.orcid?`<br>ORCID: ${n.orcid}`:""}</div>`)
-      .linkColor(l=>l.type==="advisor_student"?"#fbbf24":"#60a5fa")
-      .linkWidth(l=>1.2+Math.min(Number(l.paper_count||1),6)*0.35)
-      .linkOpacity(.72)
-      .linkDirectionalParticles(l=>l.type==="collaboration"?2:1)
-      .linkDirectionalParticleWidth(1.6)
-      .linkDirectionalParticleSpeed(.003)
-      .linkDirectionalParticleColor(l=>l.type==="advisor_student"?"#fbbf24":"#93c5fd")
+      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${n.name}</b>${n.name_en&&n.name_en!==n.name?` (${n.name_en})`:""}<br>${n.university}${n.department?` · ${n.department}`:""}<br>${n.field||""}<br>Score: ${n.score} · 공동연구 ${n.collaborator_count}명${n.faculty_trainee_count?` · 교수 된 제자 ${n.faculty_trainee_count}`:""}${n.postdoc_PI_count?` · PI 된 포닥 ${n.postdoc_PI_count}`:""}${n.orcid?`<br>ORCID: ${n.orcid}`:""}</div>`)
+      .linkColor(linkColor)
+      .linkWidth(linkWidth)
+      .linkOpacity(1)
+      .linkDirectionalArrowLength(l=>isLineage(l)?4.5:0)
+      .linkDirectionalArrowRelPos(.92)
+      .linkDirectionalArrowColor(l=>LINK_STYLE[l.type]?.color||"#fff")
+      .linkDirectionalParticles(l=>LINK_STYLE[l.type]?.particles||0)
+      .linkDirectionalParticleWidth(l=>isLineage(l)?2.2:0)
+      .linkDirectionalParticleSpeed(.004)
+      .linkDirectionalParticleColor(l=>LINK_STYLE[l.type]?.particleColor||"#fff")
+      .onNodeHover(node=>{
+        if(!selected){setFocus(node);}
+        el.style.cursor=node?"pointer":"default";
+      })
+      .onBackgroundClick(()=>{selected=null;setFocus(null);})
       .onNodeClick(node=>{
+        selected=node;setFocus(node);
         const d=38;
         const len=Math.hypot(node.x||1,node.y||1,node.z||1);
         const ratio=1+d/len;
@@ -108,7 +149,10 @@
       });
 
     Graph.d3Force("charge").strength(-170);
-    Graph.d3Force("link").distance(58);
+    // Lineage pulls PI and trainees close; collaboration only loosely.
+    Graph.d3Force("link")
+      .distance(l=>isLineage(l)?28:70)
+      .strength(l=>isLineage(l)?.9:.08);
     Graph.cameraPosition({z:115});
 
     const controls=Graph.controls();

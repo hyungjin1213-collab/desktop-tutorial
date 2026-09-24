@@ -436,6 +436,8 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                 "collaborator_count": _safe_int(row.get("collaborator_count", 0)),
                 "faculty_trainee_count": _safe_int(row.get("faculty_trainee_count", 0)),
                 "postdoc_PI_count": _safe_int(row.get("postdoc_PI_count", 0)),
+                "advisor_count": _safe_int(row.get("advisor_count", 0)),
+                "postdoc_mentor_count": _safe_int(row.get("postdoc_mentor_count", 0)),
             }
         )
 
@@ -456,6 +458,20 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
     (WEB_DIR / "network-data.js").write_text(text, encoding="utf-8")
 
 
+def _score_weights() -> tuple[dict[str, int], dict[str, int]]:
+    """(PI-side, trainee-side) weights per relationship type.
+
+    Older score_rules.csv files have a single "weight" column: PI side only.
+    """
+    rules = _read_csv(DATA_DIR / "score_rules.csv")
+    pi, trainee = {}, {}
+    for _, row in rules.iterrows():
+        kind = row.get("relationship_type", "")
+        pi[kind] = _safe_int(row.get("pi_weight", "") or row.get("weight", ""))
+        trainee[kind] = _safe_int(row.get("trainee_weight", ""))
+    return pi, trainee
+
+
 def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     auto = _read_csv(OUTPUT_DIR / "relationships_auto.csv", REL_COLUMNS)
     manual = _read_csv(DATA_DIR / "relationships_manual.csv")
@@ -474,44 +490,45 @@ def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]
             & relationships["professor_b_id"].isin(valid_professor_ids)
         ].copy()
 
-    rules = _read_csv(DATA_DIR / "score_rules.csv")
-    rule_weights = {
-        row["relationship_type"]: _safe_int(row["weight"])
-        for _, row in rules.iterrows()
-    }
+    pi_weight, trainee_weight = _score_weights()
 
     collaborator_sets: dict[str, set[str]] = defaultdict(set)
-    faculty_trainees: dict[str, set[str]] = defaultdict(set)
-    postdoc_pi: dict[str, set[str]] = defaultdict(set)
+    faculty_trainees: dict[str, set[str]] = defaultdict(set)   # PI -> students now PIs
+    advisors: dict[str, set[str]] = defaultdict(set)           # student -> their PhD advisor
+    postdoc_pi: dict[str, set[str]] = defaultdict(set)         # mentor -> former postdocs now PIs
+    postdoc_mentors: dict[str, set[str]] = defaultdict(set)    # former postdoc -> mentor
 
     for _, edge in relationships.iterrows():
         edge_type = edge.get("relationship_type", "")
         a = edge.get("professor_a_id", "")
         b = edge.get("professor_b_id", "")
-        verified = str(edge.get("verified", "")).casefold()
+        verified = str(edge.get("verified", "")).casefold() in {"yes", "true", "1", "verified"}
 
         if edge_type == "collaboration":
             collaborator_sets[a].add(b)
             collaborator_sets[b].add(a)
-        elif edge_type == "advisor_student" and verified in {"yes", "true", "1", "verified"}:
+        elif edge_type == "advisor_student" and verified:
             faculty_trainees[a].add(b)
-        elif edge_type == "postdoc_mentor" and verified in {"yes", "true", "1", "verified"}:
+            advisors[b].add(a)
+        elif edge_type == "postdoc_mentor" and verified:
             postdoc_pi[a].add(b)
+            postdoc_mentors[b].add(a)
 
     nodes = professors.copy()
-    nodes["collaborator_count"] = nodes["professor_id"].map(
-        lambda pid: len(collaborator_sets[pid])
-    )
-    nodes["faculty_trainee_count"] = nodes["professor_id"].map(
-        lambda pid: len(faculty_trainees[pid])
-    )
-    nodes["postdoc_PI_count"] = nodes["professor_id"].map(
-        lambda pid: len(postdoc_pi[pid])
-    )
+    pid = nodes["professor_id"]
+    nodes["collaborator_count"] = pid.map(lambda p: len(collaborator_sets[p]))
+    nodes["faculty_trainee_count"] = pid.map(lambda p: len(faculty_trainees[p]))
+    nodes["advisor_count"] = pid.map(lambda p: len(advisors[p]))
+    nodes["postdoc_PI_count"] = pid.map(lambda p: len(postdoc_pi[p]))
+    nodes["postdoc_mentor_count"] = pid.map(lambda p: len(postdoc_mentors[p]))
+    # PI side and trainee side of a lineage link score differently
+    # (data/score_rules.csv: advisor_student PI 10 / student 1, postdoc PI 3 / postdoc 1).
     nodes["network_score"] = (
-        nodes["collaborator_count"] * rule_weights.get("collaboration", 0)
-        + nodes["faculty_trainee_count"] * rule_weights.get("advisor_student", 0)
-        + nodes["postdoc_PI_count"] * rule_weights.get("postdoc_mentor", 0)
+        nodes["collaborator_count"] * pi_weight.get("collaboration", 0)
+        + nodes["faculty_trainee_count"] * pi_weight.get("advisor_student", 0)
+        + nodes["advisor_count"] * trainee_weight.get("advisor_student", 0)
+        + nodes["postdoc_PI_count"] * pi_weight.get("postdoc_mentor", 0)
+        + nodes["postdoc_mentor_count"] * trainee_weight.get("postdoc_mentor", 0)
     )
 
     links = relationships.copy()

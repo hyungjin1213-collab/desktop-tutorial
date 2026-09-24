@@ -52,3 +52,28 @@ def test_works_fetched_in_batches_not_per_professor(tmp_path, monkeypatch):
     professors = pd.DataFrame([{"professor_id": f"P{i}", "openalex_id": f"A{i}"} for i in range(120)])
     pipeline.collect_collaborations(Counting(), professors)
     assert calls == [50, 50, 20]
+
+
+def test_lineage_scores_pi_and_trainee_differently(tmp_path, monkeypatch):
+    out, data, web = tmp_path / "out", tmp_path / "data", tmp_path / "web"
+    out.mkdir(); data.mkdir()
+    monkeypatch.setattr(pipeline, "OUTPUT_DIR", out)
+    monkeypatch.setattr(pipeline, "DATA_DIR", data)
+    monkeypatch.setattr(pipeline, "WEB_DIR", web)
+    (data / "score_rules.csv").write_text(
+        (Path(__file__).resolve().parents[1] / "data" / "score_rules.csv").read_text(encoding="utf-8-sig"))
+    pd.DataFrame([
+        {"relationship_id": "M1", "professor_a_id": "PI", "professor_b_id": "STU", "relationship_type": "advisor_student", "verified": "yes"},
+        {"relationship_id": "M2", "professor_a_id": "PI", "professor_b_id": "PD", "relationship_type": "postdoc_mentor", "verified": "yes"},
+        {"relationship_id": "M3", "professor_a_id": "PI", "professor_b_id": "X", "relationship_type": "advisor_student", "verified": ""},
+    ]).to_csv(data / "relationships_manual.csv", index=False)
+    pd.DataFrame([{"relationship_id": "AUTO1", "professor_a_id": "STU", "professor_b_id": "PD",
+                   "relationship_type": "collaboration", "collaboration_paper_count": "3", "verified": "auto"}]
+                 ).to_csv(out / "relationships_auto.csv", index=False)
+    professors = pd.DataFrame([{"professor_id": p, "name_ko": p, "openalex_id": ""} for p in ["PI", "STU", "PD", "X"]])
+
+    nodes, _ = pipeline.build_network(professors)
+    score = dict(zip(nodes.professor_id, nodes.network_score))
+    # PI: 1 student (10) + 1 postdoc (3); unverified M3 ignored
+    # STU: advisor (1) + 1 collaborator (1); PD: mentor (1) + 1 collaborator (1)
+    assert score == {"PI": 13, "STU": 2, "PD": 2, "X": 0}
