@@ -1,0 +1,2 @@
+﻿source_id,faculty_url,error
+YONSEI_MED,https://medicine.yonsei.ac.kr/medicine/about/professor/basic.do,"ConnectTimeout: HTTPSConnectionPool(host='medicine.yonsei.ac.kr', port=443): Max retries exceeded with url: /medicine/about/professor/basic.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='medicine.yonsei.ac.kr', port=443) at 0x7f53361d0910>, 'Connection to medicine.yonsei.ac.kr timed out. (connect timeout=12)'))"
