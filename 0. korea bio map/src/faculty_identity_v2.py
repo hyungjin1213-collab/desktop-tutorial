@@ -26,7 +26,7 @@ from name_extraction import (
     english_query_variants,
     surname_from_email,
 )
-from openalex_client import OpenAlexClient, normalize_openalex_id
+from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from orcid_client import KoreanORCIDSearch
 
 BATCH_LIMIT = int(os.getenv("IDENTITY_BATCH_LIMIT", "300"))
@@ -35,7 +35,13 @@ IMPORT_STATUSES = {
     s.strip() for s in os.getenv("IMPORT_IDENTITY_STATUSES", "verified,probable").split(",") if s.strip()
 }
 BIO_DOMAINS = {"Life Sciences", "Health Sciences"}
+# Pharmacy and bioengineering faculty publish in these too.
+BIO_ADJACENT_FIELDS = {"Chemistry", "Chemical Engineering", "Materials Science"}
+BIO_ADJACENT_SUBFIELDS = {"Biomedical Engineering", "Bioengineering"}
 MIN_BIO_SHARE = 0.5
+# An ORCID found by name alone may belong to a same-name researcher in
+# another field (e.g. an electrical engineer at the same university).
+MIN_BIO_SHARE_ORCID = 0.3
 
 # OpenAlex spells institutions out in full; faculty pages often use acronyms.
 INSTITUTION_ALIASES = {
@@ -107,15 +113,22 @@ def _orcid(author: dict) -> str:
     return value.rstrip("/").split("/")[-1] if value else ""
 
 
-def _bio_share(author: dict) -> float:
-    """Share of the author's topic counts in Life / Health Sciences (1.0 if unknown)."""
+def _is_bio_topic(topic: dict) -> bool:
+    domain = (topic.get("domain") or {}).get("display_name", "")
+    field = (topic.get("field") or {}).get("display_name", "")
+    subfield = (topic.get("subfield") or {}).get("display_name", "")
+    return domain in BIO_DOMAINS or field in BIO_ADJACENT_FIELDS or subfield in BIO_ADJACENT_SUBFIELDS
+
+
+def _bio_share(*authors: dict) -> float:
+    """Share of topic counts in bio / bio-adjacent fields (1.0 if unknown)."""
     total = bio = 0
-    for topic in author.get("topics") or []:
-        count = int(topic.get("count", 1) or 1)
-        domain = ((topic.get("domain") or {}).get("display_name", ""))
-        total += count
-        if domain in BIO_DOMAINS:
-            bio += count
+    for author in authors:
+        for topic in author.get("topics") or []:
+            count = int(topic.get("count", 1) or 1)
+            total += count
+            if _is_bio_topic(topic):
+                bio += count
     return bio / total if total else 1.0
 
 
@@ -175,10 +188,8 @@ def _best_openalex(
     """
     candidates: dict[str, dict] = {}
     for query in _search_queries(name_ko, name_en, fallback_name, surname_hint):
-        try:
-            data = client._get("authors", {"search": query, "per-page": 25})
-        except Exception as exc:
-            return None, f"OpenAlex unavailable: {type(exc).__name__}"
+        # OpenAlexUnavailable propagates so the caller can stop and retry later.
+        data = client._get("authors", {"search": query, "per-page": 25})
         for author in data.get("results", []) or []:
             candidates.setdefault(str(author.get("id", "")), author)
 
@@ -246,6 +257,12 @@ def resolve_person(
             authors = client.authors_by_orcid(orcid)
             reasons.append(orcid_reason)
             reasons.append(f"{len(authors)} OpenAlex profile(s) by ORCID" if authors else "no OpenAlex profile for ORCID")
+            share = _bio_share(*authors)
+            if authors and "email" not in orcid_reason and share < MIN_BIO_SHARE_ORCID:
+                field = _primary_field(max(authors, key=lambda a: int(a.get("works_count", 0) or 0)))
+                reasons.append(f"ORCID holder publishes mainly in {field or 'non-bio fields'} "
+                               f"({share:.0%} bio): likely a same-name researcher")
+                status, confidence, orcid, authors = "manual_review", "low", "", []
 
     if not authors and status == "verified":
         # Many OpenAlex profiles have no ORCID attached; fall back to name +
@@ -342,7 +359,12 @@ def resolve_faculty_identities_v2(client: OpenAlexClient | None = None,
             row = dict(resolved_people[pkey])
             row.update({k: p.get(k, "") for k in ("source_id", "department", "profile_url", "source_page", "title")})
         else:
-            row = resolve_person(client, orcid_search, p)
+            try:
+                row = resolve_person(client, orcid_search, p)
+            except OpenAlexUnavailable as exc:
+                # Keep what is done; the remaining rows are retried next run.
+                print(f"Stopping identity batch early: {exc}", flush=True)
+                break
             resolved_people[pkey] = row
         rows.append(row)
 

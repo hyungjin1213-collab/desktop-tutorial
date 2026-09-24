@@ -83,6 +83,7 @@ def _source_id(domain: str, url: str) -> str:
 
 def _search_google(query: str, num: int = 10) -> list[dict]:
     if not SERPAPI_KEY:
+        _report("SERPAPI_KEY not set: department discovery skipped")
         return []
     try:
         r = requests.get(
@@ -93,11 +94,23 @@ def _search_google(query: str, num: int = 10) -> list[dict]:
         )
         r.raise_for_status()
         payload = r.json()
-    except (requests.RequestException, ValueError):
+    except (requests.RequestException, ValueError) as exc:
+        _report(f"SerpAPI request failed: {type(exc).__name__}: {exc}")
         return []
     if payload.get("error"):
+        # e.g. "Your account has run out of searches."
+        _report(f"SerpAPI error: {payload['error']}")
         return []
     return payload.get("organic_results") or []
+
+
+_reported: set[str] = set()
+
+
+def _report(message: str) -> None:
+    if message not in _reported:
+        _reported.add(message)
+        print(f"[discover] {message}", flush=True)
 
 
 def _queries(university: str, name_ko: str, domain: str) -> list[str]:

@@ -192,6 +192,10 @@ def classify_candidates(
         rows.append(item)
 
     result = pd.DataFrame(rows)
+    if result.empty:
+        # No Korean coauthor candidates this run: nothing to triage.
+        result.to_csv(OUTPUT_DIR / "candidate_review.csv", index=False, encoding="utf-8-sig")
+        return result
     order = {"A_review_first": 0, "B_review": 1, "C_manual": 2, "D_noise_check": 3}
     result["_tier_order"] = result["triage_tier"].map(order).fillna(9)
     result = result.sort_values(

@@ -9,7 +9,7 @@ from faculty_identity_v2 import import_verified_faculty_v2, resolve_faculty_iden
 from faculty_agent import collect_faculty_with_agent
 from faculty_scraper import scrape_faculty
 from faculty_scraper_v2 import scrape_faculty_v2
-from openalex_client import OpenAlexClient
+from openalex_client import OpenAlexClient, OpenAlexUnavailable
 from pipeline import (
     build_network,
     collect_collaborations,
@@ -179,4 +179,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except OpenAlexUnavailable as exc:
+        # Stop before overwriting earlier outputs with empty results.
+        print(f"Stopped: {exc}. Earlier network files were left unchanged; re-run later.", flush=True)
+        raise SystemExit(1)

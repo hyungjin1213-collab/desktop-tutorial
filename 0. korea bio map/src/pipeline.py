@@ -16,7 +16,7 @@ from config import (
     OUTPUT_DIR,
     WEB_DIR,
 )
-from openalex_client import OpenAlexClient, normalize_openalex_id
+from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
 
 
@@ -92,7 +92,17 @@ def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
         # openalex_id may hold several ";"-separated IDs (split OpenAlex profiles).
         current_id = ";".join(_openalex_ids(item.get("openalex_id", "")))
 
-        if not current_id:
+        if not current_id and item.get("orcid", ""):
+            # Imported by ORCID while OpenAlex was unavailable, or OpenAlex
+            # linked the ORCID later: an exact lookup, retried every run.
+            try:
+                current_id = ";".join(
+                    normalize_openalex_id(a.get("id", "")) for a in client.authors_by_orcid(item["orcid"])
+                )
+            except OpenAlexUnavailable:
+                pass
+
+        if not current_id and not item.get("orcid", ""):
             query_name = item.get("name_en") or item.get("name_ko")
             institution = item.get("university", "")
             match = client.search_author(query_name, institution) if query_name else None

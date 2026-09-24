@@ -9,8 +9,15 @@ import requests
 
 from config import OPENALEX_API_KEY, OPENALEX_BASE_URL, OPENALEX_EMAIL
 
-OPENALEX_TIMEOUT = 10
-MAX_RETRY_WAIT = 8.0
+OPENALEX_TIMEOUT = 20
+MAX_RETRY_WAIT = 60.0
+
+
+class OpenAlexUnavailable(requests.RequestException):
+    """OpenAlex refused or kept failing (rate limit, daily budget, outage).
+
+    Callers must not treat this as "no results": stop and retry next run.
+    """
 
 
 def normalize_openalex_id(value: str) -> str:
@@ -38,8 +45,9 @@ class OpenAlexClient:
         self.session.headers.update({"User-Agent": user_agent})
         # Polite pool (mailto) / API key allow ~10 req/s; stay under it.
         self.min_interval_seconds = 0.12 if (OPENALEX_EMAIL or OPENALEX_API_KEY) else 0.35
-        self.max_retries = 3
+        self.max_retries = 4
         self._last_request_at = 0.0
+        self._reported = False
 
     def _throttle(self) -> None:
         elapsed = time.monotonic() - self._last_request_at
@@ -54,44 +62,53 @@ class OpenAlexClient:
             params["api_key"] = OPENALEX_API_KEY
 
         url = f"{OPENALEX_BASE_URL}/{path.lstrip('/')}"
-        last_error: Exception | None = None
+        last_error = ""
 
         for attempt in range(self.max_retries):
             self._throttle()
             try:
                 response = self.session.get(url, params=params, timeout=OPENALEX_TIMEOUT)
+            except requests.RequestException as exc:
                 self._last_request_at = time.monotonic()
+                last_error = f"{type(exc).__name__}"
+                time.sleep(2.0 * (attempt + 1))
+                continue
+            self._last_request_at = time.monotonic()
 
-                if response.status_code == 429:
-                    retry_after = response.headers.get("Retry-After", "")
-                    try:
-                        wait = float(retry_after)
-                    except (TypeError, ValueError):
-                        wait = 2.0 * (attempt + 1)
-                    wait = min(max(wait, 1.0), MAX_RETRY_WAIT)
-                    if attempt < self.max_retries - 1:
-                        time.sleep(wait)
-                        continue
-                    raise requests.HTTPError("OpenAlex rate limited", response=response)
-
-                if 500 <= response.status_code < 600:
-                    if attempt < self.max_retries - 1:
-                        time.sleep(min(2.0 * (attempt + 1), MAX_RETRY_WAIT))
-                        continue
-
-                response.raise_for_status()
-                return response.json()
-
-            except (requests.RequestException, ValueError) as exc:
-                last_error = exc
-                if attempt < self.max_retries - 1:
-                    time.sleep(1.0)
+            if response.status_code == 200:
+                try:
+                    return response.json()
+                except ValueError:
+                    last_error = "invalid JSON"
                     continue
-                break
 
-        if isinstance(last_error, requests.RequestException):
-            raise last_error
-        raise requests.RequestException(f"OpenAlex request failed quickly: {url}")
+            body = (response.text or "")[:300].replace("\n", " ")
+            last_error = f"HTTP {response.status_code}: {body}"
+            if response.status_code == 429:
+                # A per-second limit clears quickly; a daily budget does not.
+                if "daily" in body.casefold() or "budget" in body.casefold() or "credit" in body.casefold():
+                    break
+                try:
+                    wait = float(response.headers.get("Retry-After", ""))
+                except (TypeError, ValueError):
+                    wait = 5.0 * (attempt + 1)
+                time.sleep(min(max(wait, 1.0), MAX_RETRY_WAIT))
+                continue
+            if 500 <= response.status_code < 600:
+                time.sleep(min(3.0 * (attempt + 1), MAX_RETRY_WAIT))
+                continue
+            if response.status_code in (401, 403):
+                break
+            # Other 4xx: a bad request, not an outage.
+            response.raise_for_status()
+
+        message = f"OpenAlex unavailable ({last_error or 'no response'})"
+        if not self._reported:
+            self._reported = True
+            print(f"[openalex] {message}", flush=True)
+            print("[openalex] If this is a rate limit or daily budget, add an OPENALEX_API_KEY secret "
+                  "(free key from openalex.org) and re-run.", flush=True)
+        raise OpenAlexUnavailable(message)
 
     def get_author(self, author_id: str) -> dict[str, Any] | None:
         author_id = normalize_openalex_id(author_id)
@@ -132,28 +149,24 @@ class OpenAlexClient:
         """All OpenAlex author records carrying this ORCID (split profiles included)."""
         if not orcid:
             return []
-        try:
-            data = self._get("authors", {"filter": f"orcid:{orcid}", "per-page": 25})
-        except requests.RequestException:
-            return []
+        data = self._get("authors", {"filter": f"orcid:{orcid}", "per-page": 25})
         return data.get("results", []) or []
 
     def iter_works_by_author(self, author_id: str) -> Iterator[dict[str, Any]]:
         author_id = normalize_openalex_id(author_id)
         cursor = "*"
         while cursor:
-            try:
-                data = self._get(
-                    "works",
-                    {
-                        "filter": f"author.id:{author_id}",
-                        "per-page": 200,
-                        "cursor": cursor,
-                        # Only what the coauthor graph needs; keeps responses small.
-                        "select": "id,doi,display_name,publication_year,authorships",
-                    },
-                )
-            except requests.RequestException:
-                return
+            # Errors propagate: an empty list here would silently erase
+            # this professor's collaborations.
+            data = self._get(
+                "works",
+                {
+                    "filter": f"author.id:{author_id}",
+                    "per-page": 200,
+                    "cursor": cursor,
+                    # Only what the coauthor graph needs; keeps responses small.
+                    "select": "id,doi,display_name,publication_year,authorships",
+                },
+            )
             yield from data.get("results", [])
             cursor = (data.get("meta") or {}).get("next_cursor")
