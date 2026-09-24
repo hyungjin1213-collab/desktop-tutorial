@@ -17,6 +17,7 @@ from config import (
     OUTPUT_DIR,
     WEB_DIR,
 )
+from lineage import Authorship, infer_lineage, lineage_relationships
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
 
@@ -199,6 +200,7 @@ def collect_collaborations(
     # filter), instead of one request per professor: far fewer billed calls.
     all_ids = sorted(confirmed_by_openalex)
     seen_works: set[str] = set()
+    lineage_records: dict[str, list[Authorship]] = defaultdict(list)
     for start in range(0, len(all_ids), AUTHOR_BATCH):
         batch = all_ids[start:start + AUTHOR_BATCH]
         print(f"[collect] authors {start + 1}-{start + len(batch)} of {len(all_ids)}", flush=True)
@@ -223,6 +225,23 @@ def collect_collaborations(
             for pair in combinations(sorted(profs_on_work), 2):
                 pair_to_works[pair].add(work_key)
                 openalex_pairs.add(pair)
+
+            # Per-professor authorship records for lineage inference (same data, no extra calls).
+            last_pid = ""
+            for a in authorships:
+                if a.get("author_position") == "last":
+                    last_pid = confirmed_by_openalex.get(normalize_openalex_id((a.get("author") or {}).get("id", "")), "")
+            for a in authorships:
+                pid_on = confirmed_by_openalex.get(normalize_openalex_id((a.get("author") or {}).get("id", "")))
+                if pid_on:
+                    lineage_records[pid_on].append(Authorship(
+                        year=_safe_int(work.get("publication_year"), 0),
+                        position=str(a.get("author_position", "")),
+                        last_author_pid=last_pid,
+                        institutions=tuple(i.get("display_name", "") for i in a.get("institutions") or [] if i.get("display_name")),
+                        title=work_title,
+                        doi=normalize_doi(work.get("doi", "") or ""),
+                    ))
 
             for authorship in authorships:
                 author = authorship.get("author") or {}
@@ -333,7 +352,13 @@ def collect_collaborations(
         & (all_candidates_df["shared_paper_count"].map(_safe_int) >= MIN_SHARED_PAPERS)
     ].head(MAX_REVIEW_CANDIDATES).copy()
 
+    names = {row["professor_id"]: row.get("name_ko", "") or row.get("name_en", "") for _, row in professors.iterrows()}
+    lineage = infer_lineage(lineage_records, names, _read_csv(DATA_DIR / "lineage_decisions.csv"))
+    print(f"[lineage] {len(lineage)} candidates: {lineage['status'].value_counts().to_dict() if not lineage.empty else {}}", flush=True)
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    lineage.to_csv(OUTPUT_DIR / "lineage_candidates.csv", index=False, encoding="utf-8-sig")
+    lineage_relationships(lineage).to_csv(OUTPUT_DIR / "relationships_lineage.csv", index=False)
     auto_df.to_csv(OUTPUT_DIR / "relationships_auto.csv", index=False)
     all_candidates_df.to_csv(OUTPUT_DIR / "collaborator_candidates_all.csv", index=False)
     review_df.to_csv(OUTPUT_DIR / "collaborator_candidates.csv", index=False)
@@ -450,6 +475,7 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                     "target": row.get("professor_b_id", ""),
                     "type": row.get("relationship_type", ""),
                     "paper_count": _safe_int(row.get("collaboration_paper_count", 0), 0),
+                    "verified": row.get("verified", ""),
                 }
             )
 
@@ -481,7 +507,12 @@ def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]
         if "collaboration_paper_count" not in manual.columns:
             manual["collaboration_paper_count"] = ""
 
-    relationships = pd.concat([auto, manual], ignore_index=True, sort=False).fillna("")
+    lineage = _read_csv(OUTPUT_DIR / "relationships_lineage.csv", REL_COLUMNS)
+    # Manual rows come before inferred ones so a hand-checked link wins.
+    relationships = pd.concat([auto, manual, lineage], ignore_index=True, sort=False).fillna("")
+    if not relationships.empty:
+        relationships = relationships.drop_duplicates(
+            subset=["professor_a_id", "professor_b_id", "relationship_type"], keep="first")
 
     valid_professor_ids = set(professors["professor_id"])
     if not relationships.empty:
@@ -502,7 +533,8 @@ def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]
         edge_type = edge.get("relationship_type", "")
         a = edge.get("professor_a_id", "")
         b = edge.get("professor_b_id", "")
-        verified = str(edge.get("verified", "")).casefold() in {"yes", "true", "1", "verified"}
+        # "auto" = inferred lineage with enough evidence (lineage.py)
+        verified = str(edge.get("verified", "")).casefold() in {"yes", "true", "1", "verified", "auto"}
 
         if edge_type == "collaboration":
             collaborator_sets[a].add(b)

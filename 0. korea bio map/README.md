@@ -71,6 +71,28 @@ A1234567890,yes,홍길동,Gildong Hong,Seoul National University,의과대학,�
 
 ## Academic lineage
 
+### 자동 추정 (`src/lineage.py`)
+
+공동연구 수집 때 받은 논문으로 계보를 추정한다 (OpenAlex 추가 요청 없음).
+
+- **지도교수 → 제자**: 제자 B의 첫 1저자 논문 후 약 6년 동안 B가 1저자, 교수 A가 마지막 저자인 논문이 여러 편
+- **포닥 멘토 → 포닥**: 그 이후(첫 논문 후 6~11년) **박사 때와 다른 기관**에서 같은 패턴
+- A가 B보다 5년 이상 먼저 논문을 냈어야 함 (동년배 공동연구 제외)
+- 근거 논문 **3편 이상**: 지도에 바로 표시하고 점수 반영 (`자동 추정`)
+- **2편**: `output/lineage_candidates.csv`에 `review`로만 남음
+
+검토 방법: `data/lineage_decisions.csv`에 한 줄 추가
+
+```csv
+professor_a_id,professor_b_id,relationship_type,decision,notes
+P0012,P0145,advisor_student,yes,박사 지도교수 확인
+P0003,P0201,advisor_student,no,공동연구일 뿐
+```
+
+`yes`는 검토 후보를 확정하고, `no`는 자동 추정도 지운다.
+
+### 직접 입력
+
 지도교수/제자 교수 관계는 `data/relationships_manual.csv`에서 검증 후 넣습니다.
 
 - `advisor_student`: A = 지도교수, B = 현재 교수/PI가 된 제자
