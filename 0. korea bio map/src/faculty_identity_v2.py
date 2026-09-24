@@ -35,8 +35,10 @@ IMPORT_STATUSES = {
     s.strip() for s in os.getenv("IMPORT_IDENTITY_STATUSES", "verified,probable").split(",") if s.strip()
 }
 BIO_DOMAINS = {"Life Sciences", "Health Sciences"}
-# Pharmacy and bioengineering faculty publish in these too.
-BIO_ADJACENT_FIELDS = {"Chemistry", "Chemical Engineering", "Materials Science"}
+# Pharmacy and bioengineering faculty publish in these too. Materials Science
+# is deliberately excluded: engineers and physicists publish there heavily
+# (run #23 accepted same-name EE / physics ORCIDs through it).
+BIO_ADJACENT_FIELDS = {"Chemistry", "Chemical Engineering"}
 BIO_ADJACENT_SUBFIELDS = {"Biomedical Engineering", "Bioengineering"}
 MIN_BIO_SHARE = 0.5
 # An ORCID found by name alone may belong to a same-name researcher in
@@ -258,7 +260,9 @@ def resolve_person(
             reasons.append(orcid_reason)
             reasons.append(f"{len(authors)} OpenAlex profile(s) by ORCID" if authors else "no OpenAlex profile for ORCID")
             share = _bio_share(*authors)
-            if authors and "email" not in orcid_reason and share < MIN_BIO_SHARE_ORCID:
+            main_topics = max(authors, key=lambda a: int(a.get("works_count", 0) or 0)).get("topics") if authors else []
+            top_is_bio = not main_topics or _is_bio_topic(main_topics[0])
+            if authors and "email" not in orcid_reason and (share < MIN_BIO_SHARE_ORCID or not top_is_bio):
                 field = _primary_field(max(authors, key=lambda a: int(a.get("works_count", 0) or 0)))
                 reasons.append(f"ORCID holder publishes mainly in {field or 'non-bio fields'} "
                                f"({share:.0%} bio): likely a same-name researcher")

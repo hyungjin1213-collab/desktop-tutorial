@@ -99,3 +99,20 @@ def test_candidate_review_with_no_candidates(tmp_path, monkeypatch):
     monkeypatch.setattr(candidate_review, "OUTPUT_DIR", tmp_path)
     pd.DataFrame(columns=["openalex_id", "display_name"]).to_csv(tmp_path / "collaborator_candidates.csv", index=False)
     assert candidate_review.classify_candidates(None, None).empty
+
+
+def test_engineer_with_some_materials_papers_is_rejected():
+    """Run #23: 박성혁 (pharmacy) matched an EE with a Materials Science side line."""
+    topics = [
+        {"count": 50, "domain": {"display_name": "Physical Sciences"}, "field": {"display_name": "Engineering"},
+         "subfield": {"display_name": "Electrical and Electronic Engineering"}},
+        {"count": 40, "domain": {"display_name": "Physical Sciences"}, "field": {"display_name": "Materials Science"},
+         "subfield": {"display_name": "Electronic, Optical and Magnetic Materials"}},
+        {"count": 30, "domain": {"display_name": "Life Sciences"}, "field": {"display_name": "Biochemistry"},
+         "subfield": {"display_name": "Molecular Biology"}},
+    ]
+    orcid = FakeORCID([_orcid_rec("0000-0003-0105-6025", "Sunghyuk", "Park")])
+    oa = FakeOpenAlex([], by_orcid={"0000-0003-0105-6025": [
+        _author("A1", "Sunghyuk Park", "Seoul National University", topics=topics)]})
+    row = fi.resolve_person(oa, orcid, {"name": "박성혁", "name_ko": "박성혁", "university": "Seoul National University"})
+    assert row["identity_status"] == "manual_review"
