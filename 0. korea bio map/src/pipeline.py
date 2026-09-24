@@ -17,6 +17,7 @@ from config import (
     WEB_DIR,
 )
 from openalex_client import OpenAlexClient, normalize_openalex_id
+from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
 
 
 PROFESSOR_COLUMNS = [
@@ -30,7 +31,10 @@ PROFESSOR_COLUMNS = [
     "source_url",
     "orcid",
     "identity_status",
+    "scopus_id",
 ]
+
+SCOPUS_CACHE_COLUMNS = ["professor_id", "scopus_id", "reason"]
 
 REL_COLUMNS = [
     "relationship_id",
@@ -104,9 +108,69 @@ def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
     return resolved
 
 
+def resolve_scopus_ids(scopus: ScopusClient | None, professors: pd.DataFrame) -> pd.DataFrame:
+    """Fill professors["scopus_id"] from data/scopus_author_cache.csv, looking up new ones.
+
+    Lookups (hits and misses) are cached so each professor costs Scopus
+    Author Search quota once.
+    """
+    cache_path = DATA_DIR / "scopus_author_cache.csv"
+    cache = _read_csv(cache_path, SCOPUS_CACHE_COLUMNS)
+    known = {row["professor_id"]: row for _, row in cache.iterrows()}
+    new_rows = []
+
+    if scopus is not None and scopus.enabled:
+        for _, prof in professors.iterrows():
+            pid = prof["professor_id"]
+            if pid in known or prof.get("scopus_id", ""):
+                continue
+            try:
+                sid, reason = scopus.find_author_id(
+                    prof.get("orcid", ""), prof.get("name_ko", ""), prof.get("name_en", ""),
+                    prof.get("university", ""),
+                )
+            except ScopusUnavailable:
+                break
+            row = {"professor_id": pid, "scopus_id": sid, "reason": reason}
+            known[pid] = row
+            new_rows.append(row)
+
+    if new_rows:
+        cache = pd.concat([cache, pd.DataFrame(new_rows, columns=SCOPUS_CACHE_COLUMNS)], ignore_index=True)
+        cache.to_csv(cache_path, index=False, encoding="utf-8-sig")
+        print(f"[scopus] looked up {len(new_rows)} author IDs", flush=True)
+
+    professors = professors.copy()
+    professors["scopus_id"] = [
+        prof.get("scopus_id", "") or known.get(prof["professor_id"], {}).get("scopus_id", "")
+        for _, prof in professors.iterrows()
+    ]
+    return professors
+
+
+def _scopus_pairs(scopus: ScopusClient, professors: pd.DataFrame) -> dict[tuple[str, str], set[str]]:
+    by_scopus = {row["scopus_id"]: row["professor_id"] for _, row in professors.iterrows() if row.get("scopus_id", "")}
+    pairs: dict[tuple[str, str], set[str]] = defaultdict(set)
+    for sid, pid in by_scopus.items():
+        try:
+            for doc in scopus.iter_documents(sid):
+                if len(doc["author_ids"]) > MAX_AUTHORS_PER_WORK:
+                    continue
+                key = doc["doi"] or f"scopus:{doc['id']}"
+                for other in doc["author_ids"]:
+                    other_pid = by_scopus.get(other)
+                    if other_pid and other_pid != pid:
+                        pairs[tuple(sorted((pid, other_pid)))].add(key)
+        except ScopusUnavailable as exc:
+            print(f"[scopus] stopped: {exc}", flush=True)
+            break
+    return pairs
+
+
 def collect_collaborations(
     client: OpenAlexClient,
     professors: pd.DataFrame,
+    scopus: ScopusClient | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     confirmed_by_openalex = {
         oid: row["professor_id"]
@@ -115,6 +179,7 @@ def collect_collaborations(
     }
 
     pair_to_works: dict[tuple[str, str], set[str]] = defaultdict(set)
+    openalex_pairs: set[tuple[str, str]] = set()
     candidate_stats: dict[str, dict[str, object]] = {}
 
     total = len(professors)
@@ -128,6 +193,8 @@ def collect_collaborations(
             for work in client.iter_works_by_author(openalex_id):
                 work_id = normalize_openalex_id(work.get("id", ""))
                 work_title = work.get("display_name", "")
+                # DOI as the paper key so OpenAlex and Scopus copies count once.
+                work_key = normalize_doi(work.get("doi", "") or "") or work_id or work_title
                 authorships = work.get("authorships") or []
                 # Mega-consortium papers (hundreds of authors) are not collaboration.
                 if len(authorships) > MAX_AUTHORS_PER_WORK:
@@ -143,7 +210,8 @@ def collect_collaborations(
                     if confirmed_id:
                         pair = tuple(sorted((professor_id, confirmed_id)))
                         if pair[0] != pair[1]:
-                            pair_to_works[pair].add(work_id or work_title)
+                            pair_to_works[pair].add(work_key)
+                            openalex_pairs.add(pair)
                         continue
 
                     stats = candidate_stats.setdefault(
@@ -172,11 +240,20 @@ def collect_collaborations(
                         if country:
                             stats["country_codes"].add(country)
 
+    scopus_pairs: dict[tuple[str, str], set[str]] = {}
+    if scopus is not None and scopus.enabled and "scopus_id" in professors.columns:
+        scopus_pairs = _scopus_pairs(scopus, professors)
+        for pair, keys in scopus_pairs.items():
+            pair_to_works[pair] |= keys
+        print(f"[scopus] {len(scopus_pairs)} professor pairs from Scopus", flush=True)
+
     auto_rows = []
     for index, ((professor_a_id, professor_b_id), work_ids) in enumerate(
         sorted(pair_to_works.items()),
         start=1,
     ):
+        pair = (professor_a_id, professor_b_id)
+        sources = [name for name, found in (("OpenAlex", pair in openalex_pairs), ("Scopus", pair in scopus_pairs)) if found]
         auto_rows.append(
             {
                 "relationship_id": f"AUTO{index:06d}",
@@ -186,7 +263,7 @@ def collect_collaborations(
                 "collaboration_paper_count": len(work_ids),
                 "evidence_url": "",
                 "verified": "auto",
-                "notes": "OpenAlex coauthorship between confirmed professors",
+                "notes": f"{' + '.join(sources)} coauthorship between confirmed professors",
             }
         )
 

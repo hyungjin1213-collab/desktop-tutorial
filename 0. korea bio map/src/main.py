@@ -15,13 +15,18 @@ from pipeline import (
     collect_collaborations,
     promote_approved_candidates,
     resolve_professors,
+    resolve_scopus_ids,
 )
 from scholar_client import ScholarClient
+from scopus_client import ScopusClient
 
 
 def run_all(client: OpenAlexClient) -> None:
     professors = resolve_professors(client)
-    auto, candidates = collect_collaborations(client, professors)
+    scopus = ScopusClient()
+    if scopus.enabled:
+        professors = resolve_scopus_ids(scopus, professors)
+    auto, candidates = collect_collaborations(client, professors, scopus)
     reviewed = classify_candidates(client, ScholarClient())
     nodes, links = build_network(professors)
     print(f"Professors: {len(professors)}")

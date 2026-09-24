@@ -16,7 +16,7 @@ Actions → **Korea Bio Map Collector** → mode `galaxy-full`
 - 신원 매칭은 한 번에 `IDENTITY_BATCH_LIMIT`(기본 800)명씩 처리한다. 교수가 더 많으면 `galaxy-full`을 다시 실행하면 이어서 처리한다.
 - 학과 탐색은 SerpAPI 비용 때문에 한 번에 `DISCOVERY_UNIVERSITY_LIMIT`(기본 20)개 대학만 검색하고, 이미 수집 페이지가 있는 대학은 건너뛴다 (`DISCOVERY_REFRESH=yes`로 강제 재검색).
 - 잘못 들어간 수집 페이지는 `data/faculty_sources.csv`에서 `enabled`를 `no`로 바꾼다.
-- 선택 GitHub Secrets: `OPENALEX_EMAIL`(요청 속도 향상, 권장), `OPENALEX_API_KEY`, `ORCID_CLIENT_ID`/`ORCID_CLIENT_SECRET`(없어도 ORCID 공개 검색은 동작).
+- 선택 GitHub Secrets: `OPENALEX_EMAIL`(요청 속도 향상, 권장), `OPENALEX_API_KEY`, `SCOPUS_API_KEY`/`SCOPUS_INSTTOKEN`, `ORCID_CLIENT_ID`/`ORCID_CLIENT_SECRET`(없어도 ORCID 공개 검색은 동작).
 
 ## 동명이인 구분 (신원 판정)
 
@@ -31,9 +31,14 @@ ORCID가 확정되면 OpenAlex는 ORCID로 조회하므로 한 사람이 OpenAle
 
 ## 공동연구 데이터 출처
 
-OpenAlex를 사용한다. Google Scholar·ResearchGate는 공식 API가 없고 자동 수집이 약관상 금지되어 차단되며,
-Scopus는 기관 구독 API 키가 필요하다. OpenAlex는 무료이고 Crossref·PubMed·ORCID를 통합해 Scopus와 비슷한 범위를 가진다.
-저자 100명을 넘는 컨소시엄 논문은 공동연구로 치지 않는다 (`MAX_AUTHORS_PER_WORK`).
+- **OpenAlex** (기본, 무료): Crossref·PubMed·ORCID 통합.
+- **Scopus** (선택): GitHub Secrets에 `SCOPUS_API_KEY`가 있으면 추가로 사용한다.
+  - 저자 ID는 ORCID로 찾고, 없으면 영문명+소속으로 찾되 한 명일 때만 채택한다. 결과는 `data/scopus_author_cache.csv`에 저장해 다시 조회하지 않는다.
+  - 같은 논문은 DOI로 합쳐서 한 번만 센다. 관계 `notes`에 `OpenAlex + Scopus` / `Scopus`처럼 출처가 남는다.
+  - 논문의 전체 저자 목록(COMPLETE view)은 **기관 구독 권한**이 있어야 받을 수 있다. GitHub Actions는 학교 네트워크 밖이므로 `SCOPUS_INSTTOKEN`(기관 토큰)도 필요하다. 권한이 없으면 한 번 경고하고 OpenAlex만으로 계속 진행한다.
+  - Scopus 할당량은 주 단위이므로 한 번 실행에 `SCOPUS_REQUEST_LIMIT`(기본 3000)건까지만 요청한다.
+- Google Scholar·ResearchGate는 공식 API가 없고 자동 수집이 약관상 금지되어 사용하지 않는다.
+- 저자 100명을 넘는 컨소시엄 논문은 공동연구로 치지 않는다 (`MAX_AUTHORS_PER_WORK`).
 
 ---
 

@@ -45,6 +45,9 @@ jobs:
       ORCID_CLIENT_SECRET: ${{ secrets.ORCID_CLIENT_SECRET }}
       OPENALEX_EMAIL: ${{ secrets.OPENALEX_EMAIL }}
       OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+      SCOPUS_API_KEY: ${{ secrets.SCOPUS_API_KEY }}
+      SCOPUS_INSTTOKEN: ${{ secrets.SCOPUS_INSTTOKEN }}
+      SCOPUS_REQUEST_LIMIT: "3000"
       IDENTITY_BATCH_LIMIT: "800"
       PROFILE_FETCH_LIMIT: "600"
       DISCOVERY_UNIVERSITY_LIMIT: "20"
@@ -96,6 +99,9 @@ jobs:
           git add "0. korea bio map/web/network-data.js"
           git add "0. korea bio map/data/professors_seed.csv"
           git add "0. korea bio map/data/faculty_sources.csv"
+          if [ -f "0. korea bio map/data/scopus_author_cache.csv" ]; then
+            git add "0. korea bio map/data/scopus_author_cache.csv"
+          fi
           if [ -f "0. korea bio map/data/candidate_web_cache.csv" ]; then
             git add "0. korea bio map/data/candidate_web_cache.csv"
           fi
