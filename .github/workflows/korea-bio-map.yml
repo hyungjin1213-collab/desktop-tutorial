@@ -16,6 +16,7 @@ on:
           - all
           - promote-and-all
           - discover-departments
+          - collect-faculty-agent
           - scrape-faculty-v2
           - match-faculty-identities-v2
           - faculty-full-v2
@@ -36,6 +37,9 @@ jobs:
     timeout-minutes: 30
     env:
       SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      FACULTY_AGENT_MODEL: "gpt-5.6-luna"
+      FACULTY_AGENT_SOURCE_LIMIT: "2"
       ORCID_CLIENT_ID: ${{ secrets.ORCID_CLIENT_ID }}
       ORCID_CLIENT_SECRET: ${{ secrets.ORCID_CLIENT_SECRET }}
       IDENTITY_BATCH_LIMIT: "20"
