@@ -14,6 +14,36 @@
     .line{display:inline-block;width:22px;margin-right:6px;vertical-align:middle;border-radius:2px}
     .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;box-shadow:0 0 8px currentColor}
     .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:20;font-size:11px;color:#7f8aa8;background:rgba(3,7,18,.55);padding:6px 9px;border-radius:999px;pointer-events:none;white-space:nowrap}
+    .side{position:fixed;top:14px;right:14px;z-index:21;width:300px;max-height:calc(100vh - 80px);display:flex;flex-direction:column;background:rgba(3,7,18,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow:hidden}
+    .side[hidden]{display:none}
+    .tabs{display:flex;gap:4px;padding:8px 8px 0}
+    .tabs button{flex:1;background:none;border:0;border-bottom:2px solid transparent;color:#9aa7c7;font:600 13px Arial,sans-serif;padding:7px 4px;cursor:pointer}
+    .tabs button.on{color:#fff;border-bottom-color:#fbbf24}
+    .tabs .fold{flex:0 0 30px;font-size:16px}
+    .pane{display:flex;flex-direction:column;min-height:0;padding:8px}
+    .pane[hidden]{display:none}
+    .side input,.side select{width:100%;box-sizing:border-box;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:9px;color:#fff;font-size:13px;padding:8px 10px;outline:none}
+    .side input:focus,.side select:focus{border-color:#fbbf24}
+    .side select option{background:#0b1230}
+    .filters{display:flex;gap:6px}
+    .list{list-style:none;margin:8px 0 0;padding:0;overflow-y:auto;max-height:calc(100vh - 190px)}
+    .row{display:flex;align-items:center;gap:8px;padding:7px 6px;border-radius:8px;cursor:pointer}
+    .row:hover,.row.active{background:rgba(255,255,255,.08)}
+    .rank{flex:0 0 24px;text-align:right;font-weight:700;color:#fbbf24;font-size:13px}
+    .who{flex:1;min-width:0}
+    .who b{font-size:13px}.who small{display:block;color:#9aa7c7;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .val{flex:0 0 auto;font-size:12px;color:#d7def0}
+    .empty{color:#7f8aa8;font-size:12px;padding:10px 6px}
+    .open-side{position:fixed;top:14px;right:14px;z-index:21;background:rgba(3,7,18,.78);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:8px 13px;font:600 13px Arial,sans-serif;cursor:pointer}
+    .open-side[hidden]{display:none}
+    @media (max-width:640px){
+      .panel{max-width:calc(100vw - 150px);padding:9px 11px}
+      .panel .lines,.panel .legend,.panel p{display:none}
+      .panel h1{font-size:15px;margin:0}
+      .side{top:auto;bottom:52px;left:10px;right:10px;width:auto;max-height:52vh}
+      .list{max-height:calc(52vh - 110px)}
+      .hint{display:none}
+    }
   </style>
 </head>
 <body>
@@ -31,6 +61,29 @@
       <div><span class="dot" style="background:#f59e0b;color:#f59e0b"></span>세포치료</div>
       <div><span class="dot" style="background:#c084fc;color:#c084fc"></span>의료용 고분자</div>
       <div><span class="dot" style="background:#fb7185;color:#fb7185"></span>체외면역 평가</div>
+    </div>
+  </div>
+  <button class="open-side" id="open-side" hidden>검색 · 순위</button>
+  <div class="side" id="side">
+    <div class="tabs" role="tablist">
+      <button class="on" data-tab="search" role="tab">검색</button>
+      <button data-tab="rank" role="tab">순위</button>
+      <button class="fold" id="fold" aria-label="접기">×</button>
+    </div>
+    <div class="pane" id="pane-search">
+      <input id="q" type="search" placeholder="교수 이름 · 대학 · 학과 · 분야" autocomplete="off" />
+      <ol class="list" id="search-list"></ol>
+    </div>
+    <div class="pane" id="pane-rank" hidden>
+      <div class="filters">
+        <select id="rank-by" aria-label="순위 기준">
+          <option value="score">종합 점수</option>
+          <option value="collaborator_count">공동연구 교수 수</option>
+          <option value="faculty_trainee_count">교수가 된 제자 수</option>
+        </select>
+        <select id="rank-uni" aria-label="대학"></select>
+      </div>
+      <ol class="list" id="rank-list"></ol>
     </div>
   </div>
   <div class="hint">드래그: 회전 · 두 손가락: 줌 · 별 터치: 정보·공동연구 강조 · 빈 곳 터치: 해제</div>
@@ -60,10 +113,13 @@
     const NODE_COUNT=(window.KOREA_BIO_MAP.nodes||[]).length;
     const SEG=NODE_COUNT>800?8:NODE_COUNT>200?14:24;
 
+    // Names and departments come from scraped university pages: never inject raw.
+    const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
     // Collaboration lines are a faint background web; PhD / postdoc lineage
     // lines are the story, drawn bright with arrows (PI -> trainee).
     const LINK_STYLE={
-      collaboration:{color:"rgba(147,197,253,0.10)",focus:"rgba(191,219,254,0.85)",width:0,focusWidth:.9,particles:0},
+      collaboration:{color:"rgba(147,197,253,0.10)",focus:"rgba(191,219,254,0.85)",width:0,focusWidth:.45,particles:0},
       advisor_student:{color:"#fbbf24",width:1.9,particles:3,particleColor:"#fde68a"},
       postdoc_mentor:{color:"#c084fc",width:1.4,particles:2,particleColor:"#ede9fe"}
     };
@@ -120,7 +176,7 @@
         }
         return group;
       })
-      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${n.name}</b>${n.name_en&&n.name_en!==n.name?` (${n.name_en})`:""}<br>${n.university}${n.department?` · ${n.department}`:""}<br>${n.field||""}<br>Score: ${n.score} · 공동연구 ${n.collaborator_count}명${n.faculty_trainee_count?` · 교수 된 제자 ${n.faculty_trainee_count}`:""}${n.postdoc_PI_count?` · PI 된 포닥 ${n.postdoc_PI_count}`:""}${n.orcid?`<br>ORCID: ${n.orcid}`:""}</div>`)
+      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${esc(n.name)}</b>${n.name_en&&n.name_en!==n.name?` (${esc(n.name_en)})`:""}<br>${esc(n.university)}${n.department?` · ${esc(n.department)}`:""}<br>${esc(n.field)}<br>Score: ${n.score} · 공동연구 ${n.collaborator_count}명${n.faculty_trainee_count?` · 교수 된 제자 ${n.faculty_trainee_count}`:""}${n.postdoc_PI_count?` · PI 된 포닥 ${n.postdoc_PI_count}`:""}${n.orcid?`<br>ORCID: ${esc(n.orcid)}`:""}</div>`)
       .linkColor(linkColor)
       .linkWidth(linkWidth)
       .linkOpacity(1)
@@ -135,18 +191,23 @@
         if(!selected){setFocus(node);}
         el.style.cursor=node?"pointer":"default";
       })
-      .onBackgroundClick(()=>{selected=null;setFocus(null);})
-      .onNodeClick(node=>{
-        selected=node;setFocus(node);
-        const d=38;
-        const len=Math.hypot(node.x||1,node.y||1,node.z||1);
-        const ratio=1+d/len;
-        Graph.cameraPosition(
-          {x:(node.x||0)*ratio,y:(node.y||0)*ratio,z:(node.z||0)*ratio},
-          node,
-          900
-        );
-      });
+      .onBackgroundClick(()=>{selected=null;setFocus(null);markActive(null);})
+      .onNodeClick(node=>flyTo(node));
+
+    function flyTo(node){
+      selected=node;setFocus(node);
+      Graph.controls().autoRotate=false;
+      // Far enough to see the professor's neighbours, not just the star.
+      const d=110;
+      const len=Math.hypot(node.x||1,node.y||1,node.z||1);
+      const ratio=1+d/len;
+      Graph.cameraPosition(
+        {x:(node.x||0)*ratio,y:(node.y||0)*ratio,z:(node.z||0)*ratio},
+        node,
+        900
+      );
+      markActive(node.id);
+    }
 
     Graph.d3Force("charge").strength(-170);
     // Lineage pulls PI and trainees close; collaboration only loosely.
@@ -184,6 +245,78 @@
     window.addEventListener("resize",()=>{
       Graph.width(window.innerWidth).height(window.innerHeight);
     });
+    // ---------- search / ranking panel ----------
+    const NODES=window.KOREA_BIO_MAP.nodes||[];
+    const uniName=u=>String(u||"").split(";")[0].trim().replace(/\b\w/g,c=>c.toUpperCase());
+    const norm=v=>String(v||"").toLowerCase().replace(/\s+/g,"");
+    NODES.forEach(n=>{
+      n._uni=uniName(n.university);
+      n._hay=norm([n.name,n.name_en,n._uni,n.department,n.field].join(" "));
+    });
+    const side=document.getElementById("side"), openBtn=document.getElementById("open-side");
+    const q=document.getElementById("q"), searchList=document.getElementById("search-list");
+    const rankBy=document.getElementById("rank-by"), rankUni=document.getElementById("rank-uni"), rankList=document.getElementById("rank-list");
+
+    function row(n,{rank,value}={}){
+      const li=document.createElement("li");
+      li.className="row";li.dataset.id=n.id;
+      li.innerHTML=`${rank!==undefined?`<span class="rank">${rank}</span>`:""}
+        <span class="who"><b>${esc(n.name)}</b>${n.name_en&&n.name_en!==n.name?` <small style="display:inline">${esc(n.name_en)}</small>`:""}
+        <small>${esc(n._uni)}${n.department?` · ${esc(n.department)}`:""}${n.field?` · ${esc(n.field)}`:""}</small></span>
+        <span class="val">${esc(value??n.score)}</span>`;
+      li.addEventListener("click",()=>{
+        flyTo(n);
+        if(window.matchMedia("(max-width:640px)").matches) setSide(false);
+      });
+      return li;
+    }
+    function fill(list,items,emptyText){
+      list.replaceChildren(...items);
+      if(!items.length){const e=document.createElement("li");e.className="empty";e.textContent=emptyText;list.append(e);}
+      if(selected) markActive(selected.id);
+    }
+    function markActive(id){
+      document.querySelectorAll(".row").forEach(r=>r.classList.toggle("active",r.dataset.id===id));
+    }
+
+    function runSearch(){
+      const term=norm(q.value);
+      if(!term){fill(searchList,[],`교수 ${NODES.length}명 중에서 이름·대학·학과·분야로 검색`);return;}
+      const hits=NODES.filter(n=>n._hay.includes(term))
+        .sort((a,b)=>(norm(b.name)===term)-(norm(a.name)===term)||b.score-a.score)
+        .slice(0,40);
+      fill(searchList,hits.map(n=>row(n)),"검색 결과가 없어요");
+    }
+
+    const unis=[...new Set(NODES.map(n=>n._uni).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+    rankUni.replaceChildren(new Option("전체 대학",""),...unis.map(u=>new Option(u,u)));
+    function runRank(){
+      const key=rankBy.value, uni=rankUni.value;
+      const items=NODES.filter(n=>!uni||n._uni===uni)
+        .sort((a,b)=>(b[key]||0)-(a[key]||0)||b.score-a.score);
+      let rank=0,prev=null;
+      const rows=items.slice(0,100).map((n,i)=>{
+        const v=n[key]||0;
+        if(v!==prev){rank=i+1;prev=v;}  // ties share a rank
+        return row(n,{rank,value:v});
+      });
+      fill(rankList,rows,"표시할 교수가 없어요");
+    }
+
+    document.querySelectorAll(".tabs [data-tab]").forEach(btn=>btn.addEventListener("click",()=>{
+      document.querySelectorAll(".tabs [data-tab]").forEach(b=>b.classList.toggle("on",b===btn));
+      document.getElementById("pane-search").hidden=btn.dataset.tab!=="search";
+      document.getElementById("pane-rank").hidden=btn.dataset.tab!=="rank";
+    }));
+    function setSide(open){side.hidden=!open;openBtn.hidden=open;if(open&&!document.getElementById("pane-search").hidden)q.focus({preventScroll:true});}
+    document.getElementById("fold").addEventListener("click",()=>setSide(false));
+    openBtn.addEventListener("click",()=>setSide(true));
+    q.addEventListener("input",runSearch);
+    q.addEventListener("keydown",e=>{if(e.key==="Enter"){const first=searchList.querySelector(".row");if(first)first.click();}});
+    rankBy.addEventListener("change",runRank);
+    rankUni.addEventListener("change",runRank);
+    runSearch();runRank();
+    if(window.matchMedia("(max-width:640px)").matches) setSide(false);
   </script>
 </body>
 </html>
