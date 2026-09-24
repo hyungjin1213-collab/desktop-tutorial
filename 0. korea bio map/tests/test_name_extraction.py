@@ -107,3 +107,29 @@ def test_more_layouts(text, name_ko, name_en):
 ])
 def test_rejects_news_and_menus(text):
     assert not extract_person(text).name_ko
+
+
+from name_extraction import english_name_from_email, given_name_initials, surname_from_email  # noqa: E402
+
+
+@pytest.mark.parametrize("ko,email,en", [
+    ("윤여준", "yeojoonyoon@snu.ac.kr", "Yeojoon Yoon"),
+    ("김찬혁", "kimchanhyuk@snu.ac.kr", "Chanhyuk Kim"),
+    ("노민수", "minsoonoh@snu.ac.kr", "Minsoo Noh"),
+    ("이인균", "ingyunlee@snu.ac.kr", "Ingyun Lee"),
+    ("진영원", "ywchin@snu.ac.kr", ""),
+    ("이병훈", "lee@snu.ac.kr", ""),
+])
+def test_english_name_from_email(ko, email, en):
+    assert english_name_from_email(ko, email) == en
+
+
+def test_surname_from_email():
+    assert surname_from_email("진영원", "ywchin@snu.ac.kr") == "Chin"
+    assert surname_from_email("심상희", "sanghee_shim@snu.ac.kr") == "Shim"
+
+
+def test_given_name_initials():
+    assert set(given_name_initials("김경수")) == {"K", "G"}
+    assert set(given_name_initials("박영호")) == {"Y"}
+    assert set(given_name_initials("이정원")) == {"J", "C"}

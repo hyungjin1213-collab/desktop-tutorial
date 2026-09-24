@@ -44,11 +44,26 @@ def main() -> None:
             "faculty-full", "faculty-full-v2",
             "import-faculty", "import-faculty-and-all",
             "import-faculty-v2", "import-faculty-v2-and-all",
+            "galaxy-full",
         ],
         help="Pipeline step to run",
     )
     args = parser.parse_args()
     client = OpenAlexClient()
+
+    if args.command == "galaxy-full":
+        # Official pages -> names -> ORCID/OpenAlex -> professor DB -> coauthor galaxy.
+        # Identity matching is batched (IDENTITY_BATCH_LIMIT); re-run to continue.
+        departments = discover_departments()
+        faculty = scrape_faculty_v2()
+        identities = resolve_faculty_identities_v2(client)
+        count = import_verified_faculty_v2()
+        print(f"Department search results: {len(departments)}")
+        print(f"Faculty v2 rows: {len(faculty)}")
+        print(f"Faculty identity v2 rows: {len(identities)}")
+        print(f"Imported {count} faculty into professors_seed.csv")
+        run_all(client)
+        return
 
     if args.command == "discover-departments":
         df = discover_departments()
@@ -111,12 +126,12 @@ def main() -> None:
 
     if args.command == "import-faculty-v2":
         count = import_verified_faculty_v2()
-        print(f"Imported {count} verified v2 faculty into professors_seed.csv")
+        print(f"Imported {count} v2 faculty into professors_seed.csv")
         return
 
     if args.command == "import-faculty-v2-and-all":
         count = import_verified_faculty_v2()
-        print(f"Imported {count} verified v2 faculty into professors_seed.csv")
+        print(f"Imported {count} v2 faculty into professors_seed.csv")
         run_all(client)
         return
 

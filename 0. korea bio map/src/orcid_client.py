@@ -7,10 +7,18 @@ from typing import Any
 
 import requests
 
+from name_extraction import (
+    english_matches_korean,
+    given_name_initials,
+    split_korean_name,
+    surname_romanizations,
+)
+
 SERPAPI_KEY = os.getenv("SERPAPI_KEY", "").strip()
 ORCID_CLIENT_ID = os.getenv("ORCID_CLIENT_ID", "").strip()
 ORCID_CLIENT_SECRET = os.getenv("ORCID_CLIENT_SECRET", "").strip()
-ORCID_TIMEOUT = 10
+ORCID_TIMEOUT = 15
+ORCID_SEARCH_URL = "https://pub.orcid.org/v3.0/expanded-search/"
 
 ORCID_RE = re.compile(r"(?:https?://orcid\.org/)?(\d{4}-\d{4}-\d{4}-\d{3}[\dX])", re.I)
 
@@ -165,3 +173,105 @@ class ORCIDClient:
         best = dict(best)
         best["match_score"] = round(score, 3)
         return best
+
+
+def _expanded_to_candidate(item: dict[str, Any]) -> dict[str, Any] | None:
+    oid = normalize_orcid(str(item.get("orcid-id", "")))
+    if not oid:
+        return None
+    given = str(item.get("given-names", "") or "")
+    family = str(item.get("family-names", "") or "")
+    return {
+        "orcid": oid,
+        "name": " ".join(filter(None, [given, family])),
+        "other_names": [str(x) for x in item.get("other-name", []) or []],
+        "credit_name": str(item.get("credit-name", "") or ""),
+        "emails": [str(x).casefold() for x in item.get("email", []) or []],
+        "institution": "; ".join(item.get("institution-name", []) or []),
+        "url": f"https://orcid.org/{oid}",
+    }
+
+
+def korean_orcid_query(name_ko: str, university: str, surname_hint: str = "") -> str:
+    """family-name:(Kim OR Gim) AND given-names:(K* OR G*) AND affiliation-org-name:"..."."""
+    families = list(dict.fromkeys(([surname_hint] if surname_hint else []) + surname_romanizations(name_ko)))
+    initials = given_name_initials(name_ko)
+    if not families or not initials:
+        return ""
+    q = f"family-name:({' OR '.join(families)}) AND given-names:({' OR '.join(i + '*' for i in initials)})"
+    if university:
+        q += f' AND affiliation-org-name:"{university}"'
+    return q
+
+
+def _korean_name_fits(candidate: dict[str, Any], name_ko: str, name_en: str) -> bool:
+    names = [candidate["name"], candidate["credit_name"], *candidate["other_names"]]
+    compact = [re.sub(r"\s+", "", n) for n in names]
+    surname, given = split_korean_name(name_ko)
+    if name_ko and (name_ko in compact or f"{given}{surname}" in compact):
+        return True
+    if name_ko and any(english_matches_korean(n, name_ko) for n in names if n):
+        return True
+    return bool(name_en) and any(_name_score(name_en, n) >= 0.9 for n in names if n)
+
+
+class KoreanORCIDSearch(ORCIDClient):
+    """ORCID lookup tuned for Korean faculty.
+
+    The public search endpoint works without credentials; a token (if
+    configured) only raises the rate limit.
+    """
+
+    def _search(self, query: str, rows: int = 200) -> list[dict[str, Any]]:
+        headers = {"Accept": "application/vnd.orcid+json"}
+        token = self._get_token()
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+        try:
+            r = self.session.get(ORCID_SEARCH_URL, params={"q": query, "rows": rows},
+                                 headers=headers, timeout=ORCID_TIMEOUT)
+            r.raise_for_status()
+            data = r.json()
+        except (requests.RequestException, ValueError):
+            return []
+        out = []
+        for item in data.get("expanded-result", []) or []:
+            cand = _expanded_to_candidate(item)
+            if cand:
+                out.append(cand)
+        return out
+
+    def find(self, name_ko: str, name_en: str, university: str, email: str = "",
+             surname_hint: str = "") -> tuple[dict[str, Any] | None, str]:
+        """Return (candidate, reason). candidate is None when absent or ambiguous."""
+        email = (email or "").casefold()
+        if email:
+            hits = [c for c in self._search(f'email:"{email}"', rows=5)
+                    if _korean_name_fits(c, name_ko, name_en)]
+            if len(hits) == 1:
+                return hits[0], "ORCID public email matches"
+
+        queries = []
+        q = korean_orcid_query(name_ko, university, surname_hint)
+        if q:
+            queries.append(q)
+        if name_ko:
+            queries.append(f'other-names:"{name_ko}"' + (f' AND affiliation-org-name:"{university}"' if university else ""))
+        if name_en and not name_ko:
+            queries.append(f'given-and-family-names:"{name_en}"' + (f' AND affiliation-org-name:"{university}"' if university else ""))
+
+        found: dict[str, dict[str, Any]] = {}
+        for query in queries:
+            for c in self._search(query):
+                if _korean_name_fits(c, name_ko, name_en):
+                    found.setdefault(c["orcid"], c)
+
+        if not found:
+            return None, "no ORCID record with this name at this institution"
+        if email:
+            same_email = [c for c in found.values() if email in c["emails"]]
+            if len(same_email) == 1:
+                return same_email[0], "ORCID public email matches"
+        if len(found) == 1:
+            return next(iter(found.values())), "only ORCID record with this name at this institution"
+        return None, f"ambiguous ORCID: {len(found)} records ({', '.join(sorted(found))})"

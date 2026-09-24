@@ -13,6 +13,7 @@ on:
         default: "all"
         type: choice
         options:
+          - galaxy-full
           - all
           - promote-and-all
           - discover-departments
@@ -34,7 +35,7 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 180
     env:
       SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -42,7 +43,11 @@ jobs:
       FACULTY_AGENT_SOURCE_LIMIT: "2"
       ORCID_CLIENT_ID: ${{ secrets.ORCID_CLIENT_ID }}
       ORCID_CLIENT_SECRET: ${{ secrets.ORCID_CLIENT_SECRET }}
-      IDENTITY_BATCH_LIMIT: "20"
+      OPENALEX_EMAIL: ${{ secrets.OPENALEX_EMAIL }}
+      OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+      IDENTITY_BATCH_LIMIT: "800"
+      PROFILE_FETCH_LIMIT: "600"
+      DISCOVERY_UNIVERSITY_LIMIT: "20"
       SCHOLAR_LOOKUP_LIMIT: "60"
 
     steps:
@@ -61,11 +66,19 @@ jobs:
         working-directory: "0. korea bio map"
         run: pip install -r requirements.txt
 
+      - name: Run tests
+        working-directory: "0. korea bio map"
+        run: |
+          pip install pytest
+          python -m pytest -q tests
+
       - name: Run Korea Bio Map pipeline
         working-directory: "0. korea bio map"
         run: python src/main.py "${{ inputs.mode }}"
 
       - name: Upload generated files
+        # Keep partial progress (e.g. identity batches) even if a later step failed.
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: korea-bio-map-output
@@ -75,6 +88,7 @@ jobs:
           if-no-files-found: error
 
       - name: Commit generated data back to target branch
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -93,7 +107,7 @@ jobs:
           fi
 
       - name: Publish latest map to gh-pages
-        if: ${{ inputs.mode == 'all' || inputs.mode == 'promote-and-all' || inputs.mode == 'import-faculty-and-all' || inputs.mode == 'import-faculty-v2-and-all' }}
+        if: ${{ inputs.mode == 'galaxy-full' || inputs.mode == 'all' || inputs.mode == 'promote-and-all' || inputs.mode == 'import-faculty-and-all' || inputs.mode == 'import-faculty-v2-and-all' }}
         run: |
           rm -rf /tmp/korea-bio-map-pages
           mkdir -p /tmp/korea-bio-map-pages

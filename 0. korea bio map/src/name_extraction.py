@@ -462,3 +462,56 @@ def frequent_hangul_tokens(card_texts: list[str], min_cards: int = 3) -> set[str
             counts[tok] = counts.get(tok, 0) + 1
     limit = max(min_cards, 3)
     return {t for t, c in counts.items() if c >= limit}
+
+
+# --------------------------------------------------------- English name hints
+def english_name_from_email(name_ko: str, email: str) -> str:
+    """Guess the English name a professor uses from their email address.
+
+    ywchin@snu.ac.kr for 진영원 tells us the surname is spelled "Chin";
+    yeojoonyoon@snu.ac.kr for 윤여준 gives the full name "Yeojoon Yoon".
+    Returns "Given Family" when the whole name is recoverable, otherwise
+    "" (the surname spelling alone is returned by surname_from_email).
+    """
+    surname, given = split_korean_name(name_ko)
+    local = re.sub(r"[^a-z]", "", (email or "").split("@", 1)[0].casefold())
+    if not surname or not given or not local:
+        return ""
+    target = phonetic_key(romanize_given_name(given))
+    for roman in sorted(ALL_ROMANIZATIONS.get(surname, []), key=len, reverse=True):
+        r = roman.casefold()
+        for rest in (local[len(r):] if local.startswith(r) else None,
+                     local[:-len(r)] if local.endswith(r) else None):
+            if rest and len(rest) >= 3 and phonetic_key(rest) == target:
+                return f"{rest.capitalize()} {roman}"
+    return ""
+
+
+def surname_from_email(name_ko: str, email: str) -> str:
+    surname, _ = split_korean_name(name_ko)
+    local = re.sub(r"[^a-z]", "", (email or "").split("@", 1)[0].casefold())
+    for roman in sorted(ALL_ROMANIZATIONS.get(surname, []), key=len, reverse=True):
+        r = roman.casefold()
+        if len(r) >= 3 and (local.startswith(r) or local.endswith(r)):
+            return roman
+    return ""
+
+
+_INITIAL_LETTERS = {
+    "g": "GK", "kk": "KG", "k": "KG", "d": "DT", "tt": "TD", "t": "TD", "b": "BP", "pp": "PB",
+    "p": "PB", "j": "JC", "jj": "JC", "ch": "CJ", "s": "S", "ss": "S", "r": "RL", "h": "H",
+    "m": "M", "n": "N",
+}
+_VOWEL_START = {"y": "Y", "e": "EU", "u": "UW", "w": "W", "o": "O", "a": "A", "i": "IY"}
+
+
+def given_name_initials(name_ko: str) -> list[str]:
+    """Possible first letters of the romanized given name (경수 -> K, G)."""
+    _, given = split_korean_name(name_ko)
+    if not given:
+        return []
+    rr = romanize_syllable(given[0])
+    for init in sorted(_INITIAL_LETTERS, key=len, reverse=True):
+        if rr.startswith(init):
+            return list(_INITIAL_LETTERS[init])
+    return list(_VOWEL_START.get(rr[:1], rr[:1].upper()))

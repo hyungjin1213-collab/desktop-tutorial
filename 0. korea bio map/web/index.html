@@ -41,6 +41,18 @@
       "체외면역 평가":"#fb7185"
     };
 
+    // Fields without a fixed color (e.g. OpenAlex subfields such as "Immunology")
+    // get a stable color derived from the field name.
+    function fieldColor(field){
+      if(colors[field]) return colors[field];
+      if(!field) return "#e5e7eb";
+      let h=0;
+      for(const ch of field) h=(h*31+ch.codePointAt(0))>>>0;
+      return `hsl(${h%360},70%,68%)`;
+    }
+    const NODE_COUNT=(window.KOREA_BIO_MAP.nodes||[]).length;
+    const SEG=NODE_COUNT>800?8:NODE_COUNT>200?14:24;
+
     const el=document.getElementById("graph");
     const Graph=ForceGraph3D()(el)
       .width(window.innerWidth)
@@ -50,18 +62,18 @@
       .graphData(window.KOREA_BIO_MAP)
       .nodeThreeObject(node=>{
         const group=new THREE.Group();
-        const c=colors[node.field]||"#e5e7eb";
+        const c=fieldColor(node.field);
         const score=Number(node.score||0);
         const r=2.8+Math.sqrt(score+1)*1.6;
 
         const core=new THREE.Mesh(
-          new THREE.SphereGeometry(r,24,24),
+          new THREE.SphereGeometry(r,SEG,SEG),
           new THREE.MeshBasicMaterial({color:c})
         );
         group.add(core);
 
         const glow=new THREE.Mesh(
-          new THREE.SphereGeometry(r*1.9,24,24),
+          new THREE.SphereGeometry(r*1.9,SEG,SEG),
           new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.14,depthWrite:false})
         );
         group.add(glow);
@@ -76,7 +88,7 @@
         }
         return group;
       })
-      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${n.name}</b><br>${n.university}<br>${n.field}<br>Score: ${n.score}<br>Collaborators: ${n.collaborator_count}</div>`)
+      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${n.name}</b>${n.name_en&&n.name_en!==n.name?` (${n.name_en})`:""}<br>${n.university}${n.department?` · ${n.department}`:""}<br>${n.field||""}<br>Score: ${n.score}<br>Collaborators: ${n.collaborator_count}${n.orcid?`<br>ORCID: ${n.orcid}`:""}</div>`)
       .linkColor(l=>l.type==="advisor_student"?"#fbbf24":"#60a5fa")
       .linkWidth(l=>1.2+Math.min(Number(l.paper_count||1),6)*0.35)
       .linkOpacity(.72)

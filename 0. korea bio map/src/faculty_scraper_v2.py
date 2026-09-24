@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -9,9 +10,17 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 from config import DATA_DIR, OUTPUT_DIR
-from name_extraction import EXCLUDED_TITLES, extract_person, frequent_hangul_tokens
+from name_extraction import (
+    EXCLUDED_TITLES,
+    english_matches_korean,
+    english_name_from_email,
+    extract_person,
+    frequent_hangul_tokens,
+)
 
 REQUEST_TIMEOUT_SECONDS = 12
+# Detail pages fetched per run to find English names / emails missing on the list page.
+PROFILE_FETCH_LIMIT = int(os.getenv("PROFILE_FETCH_LIMIT", "400"))
 
 EXCLUDED = {
     "겸임교수", "보직교수", "초빙교수", "명예교수", "emeritus",
@@ -253,11 +262,52 @@ def parse_photo_anchor(html: str, page_url: str, university: str, department: st
             "photo_url": photo_url,
             "evidence_score": str(score),
             "name_reason": person.reason,
+            "name_en_source": "list_page" if person.name_en else "",
             "raw_text": text[:600],
             "faculty_confidence": person.confidence,
         })
 
     return out
+
+
+def _english_name_on_profile(html: str, name_ko: str) -> str:
+    text = _clean(BeautifulSoup(html, "html.parser").get_text(" ", strip=True))
+    person = extract_person(f"{name_ko} 교수 {text[:3000]}")
+    if person.name_ko == name_ko and person.name_en and english_matches_korean(person.name_en, name_ko):
+        return person.name_en
+    return ""
+
+
+def enrich_from_profiles(rows: list[dict[str, str]], fetch=None) -> None:
+    """Fill name_en / email from each professor's detail page, then from the email.
+
+    Only same-site detail pages are fetched (lab homepages are skipped) and
+    at most PROFILE_FETCH_LIMIT per run.
+    """
+    fetch = fetch or _fetch
+    budget = PROFILE_FETCH_LIMIT
+    for row in rows:
+        name_ko = row.get("name_ko", "")
+        if not name_ko or (row.get("name_en") and row.get("email")):
+            continue
+        profile, page = row.get("profile_url", ""), row.get("source_page", "")
+        if budget > 0 and profile and profile != page and urlparse(profile).netloc == urlparse(page).netloc:
+            budget -= 1
+            try:
+                html = fetch(profile)
+            except Exception:
+                html = ""
+            if html:
+                if not row.get("name_en"):
+                    en = _english_name_on_profile(html, name_ko)
+                    if en:
+                        row["name_en"], row["name_en_source"] = en, "profile_page"
+                if not row.get("email"):
+                    row["email"] = _extract_email(_clean(BeautifulSoup(html, "html.parser").get_text(" ")))
+        if not row.get("name_en") and row.get("email"):
+            en = english_name_from_email(name_ko, row["email"])
+            if en:
+                row["name_en"], row["name_en_source"] = en, "email"
 
 
 PARSERS = {
@@ -306,10 +356,12 @@ def scrape_faculty_v2() -> pd.DataFrame:
             })
             print(f"  -> ERROR: {type(exc).__name__}: {exc}", flush=True)
 
+    enrich_from_profiles(rows)
+
     columns = [
         "source_id", "name", "name_ko", "name_en", "title", "university", "department", "email",
         "profile_url", "source_page", "photo_url", "evidence_score", "name_reason",
-        "raw_text", "faculty_confidence",
+        "name_en_source", "raw_text", "faculty_confidence",
     ]
 
     out = pd.DataFrame(rows, columns=columns)

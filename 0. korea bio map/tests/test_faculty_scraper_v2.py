@@ -61,3 +61,19 @@ def test_english_card_page():
     )
     rows = parse_photo_anchor(html, "https://bio.kaist.ac.kr/faculty", "KAIST", "Biological Sciences", "KAIST_BIO")
     assert [(r["name_ko"], r["name_en"]) for r in rows] == [("정원석", "Won-Suk Chung"), ("김진우", "Jin Woo Kim")]
+
+
+def test_enrich_from_profile_page_and_email():
+    from faculty_scraper_v2 import enrich_from_profiles
+
+    page = "http://biomed.snu.ac.kr/research-faculty/faculty"
+    rows = [
+        {"name_ko": "김경수", "name_en": "", "email": "", "source_page": page,
+         "profile_url": page + "?mode=view&profidx=71"},
+        {"name_ko": "윤여준", "name_en": "", "email": "yeojoonyoon@snu.ac.kr", "source_page": page,
+         "profile_url": "https://lab.example.com"},
+    ]
+    pages = {rows[0]["profile_url"]: "<h2>김경수 조교수</h2><p>Kyung-Soo Kim</p><p>E-mail: kskim@snu.ac.kr</p>"}
+    enrich_from_profiles(rows, fetch=lambda url: pages[url])
+    assert (rows[0]["name_en"], rows[0]["email"], rows[0]["name_en_source"]) == ("Kyung-Soo Kim", "kskim@snu.ac.kr", "profile_page")
+    assert (rows[1]["name_en"], rows[1]["name_en_source"]) == ("Yeojoon Yoon", "email")

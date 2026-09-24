@@ -10,6 +10,7 @@ import pandas as pd
 from config import (
     DATA_DIR,
     KOREA_COUNTRY_CODE,
+    MAX_AUTHORS_PER_WORK,
     MAX_REVIEW_CANDIDATES,
     MIN_SHARED_PAPERS,
     OUTPUT_DIR,
@@ -27,6 +28,8 @@ PROFESSOR_COLUMNS = [
     "primary_field",
     "openalex_id",
     "source_url",
+    "orcid",
+    "identity_status",
 ]
 
 REL_COLUMNS = [
@@ -63,6 +66,10 @@ def _safe_int(value: object, default: int = 0) -> int:
         return default
 
 
+def _openalex_ids(value: object) -> list[str]:
+    return [x for x in (normalize_openalex_id(v) for v in str(value or "").split(";")) if x]
+
+
 def _next_professor_id(existing_ids: set[str]) -> str:
     nums = []
     for pid in existing_ids:
@@ -78,7 +85,8 @@ def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
 
     for _, row in professors.iterrows():
         item = row.to_dict()
-        current_id = normalize_openalex_id(item.get("openalex_id", ""))
+        # openalex_id may hold several ";"-separated IDs (split OpenAlex profiles).
+        current_id = ";".join(_openalex_ids(item.get("openalex_id", "")))
 
         if not current_id:
             query_name = item.get("name_en") or item.get("name_ko")
@@ -101,63 +109,68 @@ def collect_collaborations(
     professors: pd.DataFrame,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     confirmed_by_openalex = {
-        normalize_openalex_id(row["openalex_id"]): row["professor_id"]
+        oid: row["professor_id"]
         for _, row in professors.iterrows()
-        if normalize_openalex_id(row["openalex_id"])
+        for oid in _openalex_ids(row["openalex_id"])
     }
 
     pair_to_works: dict[tuple[str, str], set[str]] = defaultdict(set)
     candidate_stats: dict[str, dict[str, object]] = {}
 
-    for _, professor in professors.iterrows():
+    total = len(professors)
+    for index, (_, professor) in enumerate(professors.iterrows(), start=1):
         professor_id = professor["professor_id"]
-        openalex_id = normalize_openalex_id(professor["openalex_id"])
-        if not openalex_id:
-            continue
+        own_ids = set(_openalex_ids(professor["openalex_id"]))
+        if index % 50 == 0 or index == total:
+            print(f"[collect] {index}/{total} professors", flush=True)
 
-        for work in client.iter_works_by_author(openalex_id):
-            work_id = normalize_openalex_id(work.get("id", ""))
-            work_title = work.get("display_name", "")
-            authorships = work.get("authorships") or []
-
-            for authorship in authorships:
-                author = authorship.get("author") or {}
-                coauthor_openalex_id = normalize_openalex_id(author.get("id", ""))
-                if not coauthor_openalex_id or coauthor_openalex_id == openalex_id:
+        for openalex_id in own_ids:
+            for work in client.iter_works_by_author(openalex_id):
+                work_id = normalize_openalex_id(work.get("id", ""))
+                work_title = work.get("display_name", "")
+                authorships = work.get("authorships") or []
+                # Mega-consortium papers (hundreds of authors) are not collaboration.
+                if len(authorships) > MAX_AUTHORS_PER_WORK:
                     continue
 
-                confirmed_id = confirmed_by_openalex.get(coauthor_openalex_id)
-                if confirmed_id:
-                    pair = tuple(sorted((professor_id, confirmed_id)))
-                    if pair[0] != pair[1]:
-                        pair_to_works[pair].add(work_id or work_title)
-                    continue
+                for authorship in authorships:
+                    author = authorship.get("author") or {}
+                    coauthor_openalex_id = normalize_openalex_id(author.get("id", ""))
+                    if not coauthor_openalex_id or coauthor_openalex_id in own_ids:
+                        continue
 
-                stats = candidate_stats.setdefault(
-                    coauthor_openalex_id,
-                    {
-                        "openalex_id": coauthor_openalex_id,
-                        "display_name": author.get("display_name", ""),
-                        "shared_work_ids": set(),
-                        "seed_professor_ids": set(),
-                        "institutions": set(),
-                        "country_codes": set(),
-                        "example_work": "",
-                    },
-                )
-                stats["shared_work_ids"].add(work_id or work_title)
-                stats["seed_professor_ids"].add(professor_id)
+                    confirmed_id = confirmed_by_openalex.get(coauthor_openalex_id)
+                    if confirmed_id:
+                        pair = tuple(sorted((professor_id, confirmed_id)))
+                        if pair[0] != pair[1]:
+                            pair_to_works[pair].add(work_id or work_title)
+                        continue
 
-                if not stats["example_work"] and work_title:
-                    stats["example_work"] = work_title
+                    stats = candidate_stats.setdefault(
+                        coauthor_openalex_id,
+                        {
+                            "openalex_id": coauthor_openalex_id,
+                            "display_name": author.get("display_name", ""),
+                            "shared_work_ids": set(),
+                            "seed_professor_ids": set(),
+                            "institutions": set(),
+                            "country_codes": set(),
+                            "example_work": "",
+                        },
+                    )
+                    stats["shared_work_ids"].add(work_id or work_title)
+                    stats["seed_professor_ids"].add(professor_id)
 
-                for institution in authorship.get("institutions") or []:
-                    name = institution.get("display_name", "")
-                    country = institution.get("country_code", "")
-                    if name:
-                        stats["institutions"].add(name)
-                    if country:
-                        stats["country_codes"].add(country)
+                    if not stats["example_work"] and work_title:
+                        stats["example_work"] = work_title
+
+                    for institution in authorship.get("institutions") or []:
+                        name = institution.get("display_name", "")
+                        country = institution.get("country_code", "")
+                        if name:
+                            stats["institutions"].add(name)
+                        if country:
+                            stats["country_codes"].add(country)
 
     auto_rows = []
     for index, ((professor_a_id, professor_b_id), work_ids) in enumerate(
@@ -258,9 +271,7 @@ def promote_approved_candidates() -> int:
             }
 
     existing_openalex = {
-        normalize_openalex_id(value)
-        for value in professors["openalex_id"]
-        if normalize_openalex_id(value)
+        oid for value in professors["openalex_id"] for oid in _openalex_ids(value)
     }
     existing_ids = set(professors["professor_id"])
     new_rows = []
@@ -324,6 +335,10 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                 "name_en": row.get("name_en", ""),
                 "university": row.get("university", ""),
                 "field": row.get("primary_field", ""),
+                "department": row.get("department", ""),
+                "orcid": row.get("orcid", ""),
+                "openalex_id": (_openalex_ids(row.get("openalex_id", "")) or [""])[0],
+                "identity": row.get("identity_status", "") or "seed",
                 "score": _safe_int(row.get("network_score", 0)),
                 "collaborator_count": _safe_int(row.get("collaborator_count", 0)),
                 "faculty_trainee_count": _safe_int(row.get("faculty_trainee_count", 0)),

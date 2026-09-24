@@ -1,5 +1,44 @@
 # About Bio 교수 수집 파이프라인
 
+## 한 번에 실행: `galaxy-full`
+
+Actions → **Korea Bio Map Collector** → mode `galaxy-full`
+
+```text
+대학 목록 (data/universities_seed.csv, 의대·약대·바이오 학과가 있는 56개 대학)
+  ↓ discover-departments   공식 도메인의 바이오/의약/약학 교수진 페이지 → data/faculty_sources.csv 자동 추가
+  ↓ scrape-faculty-v2      교수 이름(한글) + 영문명(목록 → 상세 페이지 → 이메일) + 이메일
+  ↓ match-faculty-identities-v2   ORCID → OpenAlex 신원 확정 (동명이인 구분)
+  ↓ import-faculty-v2      verified / probable 교수를 professors_seed.csv에 추가 (ORCID 기준 중복 제거)
+  ↓ all                    OpenAlex 공동논문 → 교수 간 선 → 3D 은하 → gh-pages 배포
+```
+
+- 신원 매칭은 한 번에 `IDENTITY_BATCH_LIMIT`(기본 800)명씩 처리한다. 교수가 더 많으면 `galaxy-full`을 다시 실행하면 이어서 처리한다.
+- 학과 탐색은 SerpAPI 비용 때문에 한 번에 `DISCOVERY_UNIVERSITY_LIMIT`(기본 20)개 대학만 검색하고, 이미 수집 페이지가 있는 대학은 건너뛴다 (`DISCOVERY_REFRESH=yes`로 강제 재검색).
+- 잘못 들어간 수집 페이지는 `data/faculty_sources.csv`에서 `enabled`를 `no`로 바꾼다.
+- 선택 GitHub Secrets: `OPENALEX_EMAIL`(요청 속도 향상, 권장), `OPENALEX_API_KEY`, `ORCID_CLIENT_ID`/`ORCID_CLIENT_SECRET`(없어도 ORCID 공개 검색은 동작).
+
+## 동명이인 구분 (신원 판정)
+
+| 상태 | 조건 | DB 추가 |
+|---|---|---|
+| `verified` | ORCID 공개 이메일 = 교수 페이지 이메일, 또는 해당 기관에 그 이름의 ORCID가 하나뿐, 또는 여러 ORCID 중 OpenAlex(이름+기관+분야)가 정확히 하나를 고름 | O |
+| `probable` | ORCID 없음. OpenAlex에서 해당 기관(현재/과거)의 같은 이름이 한 명이고 논문 주제가 주로 생명·보건 분야 | O (`IMPORT_IDENTITY_STATUSES`로 조정) |
+| `manual_review` | 같은 기관 동명이인 구분 불가, 후보 없음, 비바이오 분야 | X |
+
+ORCID가 확정되면 OpenAlex는 ORCID로 조회하므로 한 사람이 OpenAlex에 여러 프로필로 쪼개져 있어도 모두 모아
+`openalex_id`에 `A1;A2` 형태로 저장하고, 공동연구 계산에 전부 사용한다.
+
+## 공동연구 데이터 출처
+
+OpenAlex를 사용한다. Google Scholar·ResearchGate는 공식 API가 없고 자동 수집이 약관상 금지되어 차단되며,
+Scopus는 기관 구독 API 키가 필요하다. OpenAlex는 무료이고 Crossref·PubMed·ORCID를 통합해 Scopus와 비슷한 범위를 가진다.
+저자 100명을 넘는 컨소시엄 논문은 공동연구로 치지 않는다 (`MAX_AUTHORS_PER_WORK`).
+
+---
+
+## (참고) 단계별 상세
+
 ## 목표
 
 공동저자에서 교수 후보를 추정하는 대신, 공식 대학/학과 홈페이지를 교수의 출발점으로 사용한다.
