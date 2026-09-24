@@ -1,5 +1,9 @@
 """Find official bio / medicine / pharmacy faculty-list pages for each university.
 
+Primary method: crawl the university's own site (site_crawler.py, free).
+Fallback: SerpAPI Google search, only when SERPAPI_KEY is set and the crawl
+found nothing.
+
 Discovered pages are appended to data/faculty_sources.csv (enabled=yes), so the
 next scrape-faculty-v2 run picks them up. Set enabled=no on a row to skip it.
 """
@@ -15,9 +19,10 @@ import pandas as pd
 import requests
 
 from config import DATA_DIR, OUTPUT_DIR, REQUEST_TIMEOUT
+from site_crawler import SiteCrawler, department_label
 
 SERPAPI_KEY = os.getenv("SERPAPI_KEY", "").strip()
-# Each university costs 2 SerpAPI searches; cap per run to control spend.
+# Universities explored per run (crawling takes ~1-2 minutes each).
 DISCOVERY_UNIVERSITY_LIMIT = int(os.getenv("DISCOVERY_UNIVERSITY_LIMIT", "20"))
 DISCOVERY_REFRESH = os.getenv("DISCOVERY_REFRESH", "").strip().casefold() in {"1", "yes", "true"}
 
@@ -120,19 +125,66 @@ def _queries(university: str, name_ko: str, domain: str) -> list[str]:
     ]
 
 
-def discover_departments(search=None) -> pd.DataFrame:
+LOG_COLUMNS = ["university", "method", "pages_found", "run_at"]
+CANDIDATE_COLUMNS = ["university", "official_domain", "page_title", "department_url", "department",
+                     "faculty_count", "accepted", "method"]
+
+
+def _count_faculty(html: str, url: str) -> int:
+    from faculty_scraper_v2 import parse_photo_anchor
+
+    try:
+        return len(parse_photo_anchor(html, url, "", "", ""))
+    except Exception:
+        return 0
+
+
+def _crawl_university(domain: str, name_ko: str, crawler) -> list[dict[str, str]]:
+    starts = [f"https://www.{domain}/", f"https://{domain}/"]
+    rows = []
+    for page in crawler.crawl(domain, starts):
+        rows.append({
+            "page_title": page.title,
+            "department_url": page.url,
+            "department": department_label(page, name_ko),
+            "faculty_count": str(page.faculty_count),
+            "method": "crawl",
+        })
+    return rows
+
+
+def _search_university(university: str, name_ko: str, domain: str, search) -> list[dict[str, str]]:
+    rows = []
+    for query in _queries(university, name_ko, domain):
+        for item in search(query):
+            title, url = str(item.get("title", "")), str(item.get("link", ""))
+            if _is_official(url, domain) and is_bio_faculty_page(title, url):
+                rows.append({"page_title": title, "department_url": url,
+                             "department": _department_from_title(title, name_ko),
+                             "faculty_count": "", "method": "serpapi"})
+    return rows
+
+
+def discover_departments(search=None, crawler=None) -> pd.DataFrame:
+    """Crawl each university's site for bio faculty pages; SerpAPI only as a fallback."""
+    from faculty_scraper_v2 import _fetch
+
     search = search or _search_google
+    crawler = crawler or SiteCrawler(_fetch, _count_faculty)
     universities = _read_csv(DATA_DIR / "universities_seed.csv")
     sources_path = DATA_DIR / "faculty_sources.csv"
+    log_path = DATA_DIR / "discovery_log.csv"
     sources = _read_csv(sources_path)
     for column in SOURCE_COLUMNS:
         if column not in sources.columns:
             sources[column] = ""
+    log = _read_csv(log_path)
+    done = set(log["university"]) if not log.empty else set()
     known_urls = {u.rstrip("/") for u in sources["faculty_url"]}
-    covered = set(sources["university"])
 
     rows: list[dict[str, str]] = []
     new_sources: list[dict[str, str]] = []
+    new_log: list[dict[str, str]] = []
     searched = 0
 
     for _, uni in universities.iterrows():
@@ -141,45 +193,54 @@ def discover_departments(search=None) -> pd.DataFrame:
         domain = uni.get("official_domain", "").strip().casefold()
         if not university or not domain:
             continue
-        if university in covered and not DISCOVERY_REFRESH:
+        if university in done and not DISCOVERY_REFRESH:
             continue
         if searched >= DISCOVERY_UNIVERSITY_LIMIT:
             break
         searched += 1
         print(f"[discover] {university} ({domain})", flush=True)
 
-        for query in _queries(university, name_ko, domain):
-            for item in search(query):
-                title = str(item.get("title", ""))
-                url = str(item.get("link", ""))
-                ok = _is_official(url, domain) and is_bio_faculty_page(title, url)
-                rows.append({
-                    "university": university, "official_domain": domain, "page_title": title,
-                    "department_url": url, "accepted": "yes" if ok else "no", "search_query": query,
-                })
-                key = url.rstrip("/")
-                if not ok or key in known_urls:
-                    continue
-                known_urls.add(key)
-                new_sources.append({
-                    "source_id": _source_id(domain, url),
-                    "university": university,
-                    "department": _department_from_title(title, name_ko),
-                    "faculty_url": url,
-                    "parser": "photo_anchor",
-                    "enabled": "yes",
-                    "notes": f"auto-discovered: {title[:80]}",
-                })
+        found = _crawl_university(domain, name_ko, crawler)
+        method = "crawl"
+        if not found and SERPAPI_KEY:
+            found = _search_university(university, name_ko, domain, search)
+            method = "serpapi"
+        print(f"  -> {len(found)} faculty pages ({method})", flush=True)
 
-    out = pd.DataFrame(rows, columns=["university", "official_domain", "page_title", "department_url",
-                                      "accepted", "search_query"])
+        added = 0
+        for f in found:
+            key = f["department_url"].rstrip("/")
+            accepted = key not in known_urls
+            rows.append({"university": university, "official_domain": domain, **f,
+                         "accepted": "yes" if accepted else "known"})
+            if not accepted:
+                continue
+            known_urls.add(key)
+            added += 1
+            new_sources.append({
+                "source_id": _source_id(domain, f["department_url"]),
+                "university": university,
+                "department": f["department"],
+                "faculty_url": f["department_url"],
+                "parser": "photo_anchor",
+                "enabled": "yes",
+                "notes": f"auto-{f['method']}: {f['page_title'][:60]} ({f['faculty_count'] or '?'} faculty)",
+            })
+        new_log.append({"university": university, "method": method, "pages_found": str(len(found)),
+                        "run_at": pd.Timestamp.now(tz="UTC").strftime("%Y-%m-%d")})
+
+    out = pd.DataFrame(rows, columns=CANDIDATE_COLUMNS)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     out.to_csv(OUTPUT_DIR / "department_candidates.csv", index=False, encoding="utf-8-sig")
 
     if new_sources:
         sources = pd.concat([sources, pd.DataFrame(new_sources)], ignore_index=True)[SOURCE_COLUMNS]
         sources.to_csv(sources_path, index=False, encoding="utf-8-sig")
-    print(f"Searched {searched} universities; added {len(new_sources)} faculty sources", flush=True)
+    if new_log:
+        log = pd.concat([log, pd.DataFrame(new_log)], ignore_index=True) if not log.empty else pd.DataFrame(new_log)
+        log = log.drop_duplicates(subset=["university"], keep="last")[LOG_COLUMNS]
+        log.to_csv(log_path, index=False, encoding="utf-8-sig")
+    print(f"Explored {searched} universities; added {len(new_sources)} faculty sources", flush=True)
     return out
 
 

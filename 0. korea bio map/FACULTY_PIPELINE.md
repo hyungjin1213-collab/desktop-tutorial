@@ -6,7 +6,7 @@ Actions → **Korea Bio Map Collector** → mode `galaxy-full`
 
 ```text
 대학 목록 (data/universities_seed.csv, 의대·약대·바이오 학과가 있는 56개 대학)
-  ↓ discover-departments   공식 도메인의 바이오/의약/약학 교수진 페이지 → data/faculty_sources.csv 자동 추가
+  ↓ discover-departments   대학 홈페이지를 직접 탐색해 바이오/의약/약학 교수진 페이지 → data/faculty_sources.csv 자동 추가
   ↓ scrape-faculty-v2      교수 이름(한글) + 영문명(목록 → 상세 페이지 → 이메일) + 이메일
   ↓ match-faculty-identities-v2   ORCID → OpenAlex 신원 확정 (동명이인 구분)
   ↓ import-faculty-v2      verified / probable 교수를 professors_seed.csv에 추가 (ORCID 기준 중복 제거)
@@ -14,7 +14,13 @@ Actions → **Korea Bio Map Collector** → mode `galaxy-full`
 ```
 
 - 신원 매칭은 한 번에 `IDENTITY_BATCH_LIMIT`(기본 800)명씩 처리한다. 교수가 더 많으면 `galaxy-full`을 다시 실행하면 이어서 처리한다.
-- 학과 탐색은 SerpAPI 비용 때문에 한 번에 `DISCOVERY_UNIVERSITY_LIMIT`(기본 20)개 대학만 검색하고, 이미 수집 페이지가 있는 대학은 건너뛴다 (`DISCOVERY_REFRESH=yes`로 강제 재검색).
+- 학과 탐색은 **검색 API 없이** 각 대학 공식 홈페이지를 직접 탐색한다 (`src/site_crawler.py`).
+  - `약학대학`·`의과대학`·`생명과학` 같은 링크를 먼저 따라가고, 그 안의 `교수진`·`교수소개` 링크를 찾는다.
+  - 교수 이름 추출기로 실제 교수가 3명 이상 나오는 페이지만 수집 대상으로 인정한다.
+  - 대학 도메인 밖, 경영·간호 등 비바이오 단과대, 공지/입학/명예교수 링크, PDF는 따라가지 않는다. robots.txt를 지킨다.
+  - 한 번 실행에 `DISCOVERY_UNIVERSITY_LIMIT`(기본 20)개 대학, 대학당 최대 `CRAWL_PAGE_LIMIT`(기본 100) 페이지.
+  - 탐색한 대학은 `data/discovery_log.csv`에 기록되어 다음 실행에서 건너뛴다 (`DISCOVERY_REFRESH=yes`로 재탐색, 또는 해당 행 삭제).
+  - 크롤링으로 하나도 못 찾은 대학만 SerpAPI(키가 있을 때)로 보조 검색한다.
 - 잘못 들어간 수집 페이지는 `data/faculty_sources.csv`에서 `enabled`를 `no`로 바꾼다.
 - 선택 GitHub Secrets: `OPENALEX_EMAIL`(요청 속도 향상, 권장), `OPENALEX_API_KEY`, `SCOPUS_API_KEY`/`SCOPUS_INSTTOKEN`, `ORCID_CLIENT_ID`/`ORCID_CLIENT_SECRET`(없어도 ORCID 공개 검색은 동작).
 
