@@ -9,11 +9,17 @@ Weighting: the professor's role on the paper (last > first > middle author),
 recency (halves every 6 years) and, across professors, TF-IDF so that a
 term shared by everyone (Signal Transduction) ranks below one that sets a
 lab apart (CAR-T). Demographic / study-design MeSH "check tags" are dropped.
+
+Techniques come from data/technique_terms.csv: many spellings of one method
+(FACS, flow cytometry, Flow Cytometry) count toward one canonical technique
+(유세포분석), so the map can filter on it. Every other term is a topic keyword.
 """
 from __future__ import annotations
 
 import math
+import re
 from collections import defaultdict
+from pathlib import Path
 
 import pandas as pd
 
@@ -21,7 +27,7 @@ ROLE_WEIGHT = {"last": 1.0, "first": 0.8, "middle": 0.25}
 MAJOR_MESH_BONUS = 1.5
 HALF_LIFE_YEARS = 6.0
 TOP_KEYWORDS = 12
-TOP_TECHNIQUES = 6
+TOP_TECHNIQUES = 8
 
 # MeSH check tags and study-design terms: true for most papers, say nothing about a lab.
 GENERIC_TERMS = {t.casefold() for t in [
@@ -39,33 +45,54 @@ GENERIC_TERMS = {t.casefold() for t in [
     "Internal medicine", "Computer science", "Materials science", "Pathology",
 ]}
 
-# Experimental / computational techniques, reported separately ("주요 기술").
-TECHNIQUES = {t.casefold(): t for t in [
-    "Flow Cytometry", "CRISPR-Cas Systems", "Gene Editing", "Single-Cell Analysis",
-    "Single-Cell Gene Expression Analysis", "Sequence Analysis, RNA", "RNA-Seq",
-    "High-Throughput Nucleotide Sequencing", "Whole Genome Sequencing", "Exome Sequencing",
-    "Chromatin Immunoprecipitation Sequencing", "Mass Spectrometry", "Tandem Mass Spectrometry",
-    "Chromatography, Liquid", "Proteomics", "Metabolomics", "Lipidomics", "Microscopy, Confocal",
-    "Microscopy, Electron", "Cryoelectron Microscopy", "Crystallography, X-Ray",
-    "Magnetic Resonance Imaging", "Positron-Emission Tomography", "Patch-Clamp Techniques",
-    "Optogenetics", "Organoids", "Induced Pluripotent Stem Cells", "Xenograft Model Antitumor Assays",
-    "Real-Time Polymerase Chain Reaction", "Immunohistochemistry", "Blotting, Western",
-    "Enzyme-Linked Immunosorbent Assay", "Molecular Docking Simulation",
-    "Molecular Dynamics Simulation", "Machine Learning", "Deep Learning", "Nanoparticles",
-    "Liposomes", "Drug Delivery Systems", "Mice, Transgenic", "Mice, Knockout", "Zebrafish",
-    "Drosophila melanogaster", "Caenorhabditis elegans", "Arabidopsis", "Microfluidics",
-    "Tissue Engineering", "Bioprinting", "Electrophysiology", "Calcium Signaling",
-    "Genome-Wide Association Study", "Computational Biology", "Immunotherapy, Adoptive",
-    "Receptors, Chimeric Antigen", "Antibodies, Monoclonal", "Hydrogels", "Tissue Scaffolds",
-    "Exosomes", "Extracellular Vesicles", "RNA, Small Interfering", "Mendelian Randomization Analysis",
-]}
+DEFAULT_TECHNIQUES_FILE = Path(__file__).resolve().parents[1] / "data" / "technique_terms.csv"
+
+
+def load_techniques(path: Path = DEFAULT_TECHNIQUES_FILE) -> list[tuple[str, str, re.Pattern]]:
+    """[(Korean label, English label, compiled pattern)] from data/technique_terms.csv.
+
+    Many spellings map to one technique (FACS, flow cytometry -> 유세포분석),
+    so techniques can be counted and filtered on.
+    """
+    if not path.exists():
+        return []
+    df = pd.read_csv(path, dtype=str).fillna("")
+    return [(r["technique"], r["label_en"], re.compile(r["pattern"], re.I)) for _, r in df.iterrows() if r["pattern"]]
 
 
 class KeywordCollector:
-    def __init__(self, now_year: int):
+    """Research-topic keywords and techniques, kept apart.
+
+    A term matching the technique dictionary counts toward that technique
+    (canonical label); every other term is a research-topic keyword.
+    """
+
+    def __init__(self, now_year: int, techniques_file: Path = DEFAULT_TECHNIQUES_FILE):
         self.now = now_year
-        self.weights: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+        self.techniques = load_techniques(techniques_file)
+        self.label_en = {ko: en for ko, en, _ in self.techniques}
+        self.topics: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+        self.methods: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
         self.display: dict[str, str] = {}
+        self._technique_cache: dict[str, str] = {}
+
+    def technique_of(self, term: str) -> str:
+        key = term.casefold()
+        if key not in self._technique_cache:
+            self._technique_cache[key] = next((ko for ko, _, pat in self.techniques if pat.search(term)), "")
+        return self._technique_cache[key]
+
+    def _add(self, professor_id: str, name: str, weight: float, seen: set[str]) -> None:
+        key = name.casefold()
+        if not name or key in GENERIC_TERMS or key in seen:
+            return
+        seen.add(key)
+        technique = self.technique_of(name)
+        if technique:
+            self.methods[professor_id][technique] += weight
+        else:
+            self.display.setdefault(key, name)
+            self.topics[professor_id][key] += weight
 
     def add_work(self, professor_id: str, position: str, work: dict) -> None:
         role = ROLE_WEIGHT.get(position, ROLE_WEIGHT["middle"])
@@ -75,35 +102,32 @@ class KeywordCollector:
         seen: set[str] = set()
         for mesh in work.get("mesh") or []:
             name = str(mesh.get("descriptor_name", "")).strip()
-            key = name.casefold()
-            if not name or key in GENERIC_TERMS or key in seen:
-                continue
-            seen.add(key)
-            self.display.setdefault(key, name)
-            self.weights[professor_id][key] += base * (MAJOR_MESH_BONUS if mesh.get("is_major_topic") else 1.0)
+            self._add(professor_id, name, base * (MAJOR_MESH_BONUS if mesh.get("is_major_topic") else 1.0), seen)
         for kw in work.get("keywords") or []:
             name = str(kw.get("display_name", "")).strip()
-            key = name.casefold()
-            if not name or key in GENERIC_TERMS or key in seen:
-                continue
-            seen.add(key)
-            self.display.setdefault(key, name)
-            self.weights[professor_id][key] += base * float(kw.get("score") or 0.5)
+            self._add(professor_id, name, base * float(kw.get("score") or 0.5), seen)
 
-    def top_terms(self) -> dict[str, dict[str, list[tuple[str, float]]]]:
-        """{professor_id: {"keywords": [(term, score)], "techniques": [...]}} after TF-IDF."""
-        n = max(len(self.weights), 1)
+    @staticmethod
+    def _tfidf(weights: dict[str, dict[str, float]]) -> dict[str, list[tuple[str, float]]]:
+        n = max(len(weights), 1)
         df: dict[str, int] = defaultdict(int)
-        for terms in self.weights.values():
+        for terms in weights.values():
             for key in terms:
                 df[key] += 1
+        return {
+            pid: sorted(((k, w * math.log(1 + n / df[k])) for k, w in terms.items()), key=lambda kv: -kv[1])
+            for pid, terms in weights.items()
+        }
+
+    def top_terms(self) -> dict[str, dict[str, list[tuple[str, float]]]]:
+        """{professor_id: {"keywords": [(term, score)], "techniques": [(label, score)]}}."""
+        topics, methods = self._tfidf(self.topics), self._tfidf(self.methods)
         out = {}
-        for pid, terms in self.weights.items():
-            scored = sorted(((key, w * math.log(1 + n / df[key])) for key, w in terms.items()),
-                            key=lambda kv: -kv[1])
-            tech = [(TECHNIQUES[k], round(v, 3)) for k, v in scored if k in TECHNIQUES][:TOP_TECHNIQUES]
-            kws = [(self.display[k], round(v, 3)) for k, v in scored if k not in TECHNIQUES][:TOP_KEYWORDS]
-            out[pid] = {"keywords": kws, "techniques": tech}
+        for pid in set(topics) | set(methods):
+            out[pid] = {
+                "keywords": [(self.display[k], round(v, 3)) for k, v in topics.get(pid, [])[:TOP_KEYWORDS]],
+                "techniques": [(k, round(v, 3)) for k, v in methods.get(pid, [])[:TOP_TECHNIQUES]],
+            }
         return out
 
     def to_frame(self) -> pd.DataFrame:
@@ -111,5 +135,7 @@ class KeywordCollector:
         for pid, groups in self.top_terms().items():
             for kind, items in groups.items():
                 for rank, (term, score) in enumerate(items, start=1):
-                    rows.append({"professor_id": pid, "kind": kind[:-1], "rank": rank, "term": term, "score": score})
-        return pd.DataFrame(rows, columns=["professor_id", "kind", "rank", "term", "score"])
+                    rows.append({"professor_id": pid, "kind": kind[:-1], "rank": rank, "term": term,
+                                 "term_en": self.label_en.get(term, "") if kind == "techniques" else term,
+                                 "score": score})
+        return pd.DataFrame(rows, columns=["professor_id", "kind", "rank", "term", "term_en", "score"])

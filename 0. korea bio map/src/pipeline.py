@@ -583,12 +583,16 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
             )
 
     synonyms = _read_csv(DATA_DIR / "keyword_synonyms.csv")
+    techniques = _read_csv(DATA_DIR / "technique_terms.csv")
     payload = {
         "nodes": node_records,
         "links": link_records,
         # Korean search words -> English keywords ("T세포" -> "T-Lymphocytes")
         "synonyms": {r["korean"]: [t.strip() for t in r["english"].split("|") if t.strip()]
                      for _, r in synonyms.iterrows()} if not synonyms.empty else {},
+        # canonical technique (Korean) -> English label, so both languages search
+        "techniques_en": {r["technique"]: r["label_en"] for _, r in techniques.iterrows()}
+                         if not techniques.empty else {},
     }
     text = "window.KOREA_BIO_MAP = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
     (WEB_DIR / "network-data.js").write_text(text, encoding="utf-8")

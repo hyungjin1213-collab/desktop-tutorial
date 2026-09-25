@@ -143,6 +143,9 @@ P0001,면역·감염,T세포 면역항암
 - 출처: **MeSH 용어**(PubMed 색인자가 붙인 표준 용어, 핵심 주제는 x1.5) + OpenAlex 논문 키워드
 - 가중치: 교신(마지막) 저자 1.0 · 1저자 0.8 · 중간 저자 0.25, 최근 논문일수록 높게 (6년마다 절반)
 - `Humans`, `Mice`, `Retrospective Studies` 같은 공통 태그는 제외, 모든 연구실에 흔한 용어는 TF-IDF로 뒤로
-- 실험·분석 기술(`Flow Cytometry`, `CRISPR-Cas Systems`, `Organoids`, `Single-Cell Analysis` 등)은 "주요 기술"로 따로
+- **연구 분야와 기술을 따로 뽑는다.** `data/technique_terms.csv`의 기술 사전(42개)에 걸리는 용어는 기술로,
+  나머지는 연구 분야 키워드로 간다. 기술은 여러 표기를 하나로 모은다 (`FACS`, `flow cytometry` → **유세포분석**).
+  사전에 행을 추가하면 새 기술을 인식한다 (`technique,label_en,pattern` — pattern은 정규식, 대소문자 무시).
+- 지도: 별 정보창에 "연구 분야" / "주요 기술" 따로 표시, 필터 탭에 **기술** 칩(사용 교수 수 순), 검색창에 **전체 / 연구 분야 / 기술** 범위 선택
 - 결과: `output/professor_keywords.csv`, 지도 별 정보창과 검색에 표시
 - 한글 검색어 → 영문 키워드: `data/keyword_synonyms.csv` (`T세포` → `T-Lymphocytes|CD8-Positive T-Lymphocytes|…`). 자유롭게 추가 가능
