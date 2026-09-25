@@ -38,6 +38,10 @@ class FakeOpenAlex:
     def authors_by_orcid(self, orcid):
         return self.by_orcid.get(orcid, [])
 
+    def get_author(self, author_id):
+        return next((a for authors in self.by_orcid.values() for a in authors
+                     if a["id"].endswith(author_id)), None)
+
 
 class FakeORCID(KoreanORCIDSearch):
     def __init__(self, records):

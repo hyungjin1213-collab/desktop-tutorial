@@ -1,57 +1,57 @@
-university,name_ko,official_domain
-Seoul National University,서울대학교,snu.ac.kr
-Yonsei University,연세대학교,yonsei.ac.kr
-Korea University,고려대학교,korea.ac.kr
-Sungkyunkwan University,성균관대학교,skku.edu
-Hanyang University,한양대학교,hanyang.ac.kr
-Kyung Hee University,경희대학교,khu.ac.kr
-Ewha Womans University,이화여자대학교,ewha.ac.kr
-Chung-Ang University,중앙대학교,cau.ac.kr
-Ajou University,아주대학교,ajou.ac.kr
-Inha University,인하대학교,inha.ac.kr
-The Catholic University of Korea,가톨릭대학교,catholic.ac.kr
-University of Ulsan,울산대학교,ulsan.ac.kr
-Konkuk University,건국대학교,konkuk.ac.kr
-Dongguk University,동국대학교,dongguk.edu
-Sogang University,서강대학교,sogang.ac.kr
-Kookmin University,국민대학교,kookmin.ac.kr
-Sejong University,세종대학교,sejong.ac.kr
-University of Seoul,서울시립대학교,uos.ac.kr
-Incheon National University,인천대학교,inu.ac.kr
-Sookmyung Women's University,숙명여자대학교,sookmyung.ac.kr
-Duksung Women's University,덕성여자대학교,duksung.ac.kr
-Dongduk Women's University,동덕여자대학교,dongduk.ac.kr
-Sahmyook University,삼육대학교,syu.ac.kr
-CHA University,차의과학대학교,cha.ac.kr
-Gachon University,가천대학교,gachon.ac.kr
-Hallym University,한림대학교,hallym.ac.kr
-Soonchunhyang University,순천향대학교,sch.ac.kr
-Inje University,인제대학교,inje.ac.kr
-Eulji University,을지대학교,eulji.ac.kr
-Dankook University,단국대학교,dankook.ac.kr
-Catholic Kwandong University,가톨릭관동대학교,cku.ac.kr
-Seoul National University of Science and Technology,서울과학기술대학교,seoultech.ac.kr
-Pusan National University,부산대학교,pusan.ac.kr
-Kosin University,고신대학교,kosin.ac.kr
-Kyungsung University,경성대학교,ks.ac.kr
-Kyungpook National University,경북대학교,knu.ac.kr
-Keimyung University,계명대학교,kmu.ac.kr
-Yeungnam University,영남대학교,yu.ac.kr
-Daegu Catholic University,대구가톨릭대학교,cu.ac.kr
-Chonnam National University,전남대학교,jnu.ac.kr
-Chosun University,조선대학교,chosun.ac.kr
-Sunchon National University,순천대학교,scnu.ac.kr
-Mokpo National University,목포대학교,mokpo.ac.kr
-Jeonbuk National University,전북대학교,jbnu.ac.kr
-Wonkwang University,원광대학교,wku.ac.kr
-Woosuk University,우석대학교,woosuk.ac.kr
-Chungnam National University,충남대학교,cnu.ac.kr
-Chungbuk National University,충북대학교,chungbuk.ac.kr
-Gyeongsang National University,경상국립대학교,gnu.ac.kr
-Kangwon National University,강원대학교,kangwon.ac.kr
-Jeju National University,제주대학교,jejunu.ac.kr
-POSTECH,포항공과대학교,postech.ac.kr
-KAIST,한국과학기술원,kaist.ac.kr
-UNIST,울산과학기술원,unist.ac.kr
-GIST,광주과학기술원,gist.ac.kr
-DGIST,대구경북과학기술원,dgist.ac.kr
+university,name_ko,official_domain,region
+Seoul National University,서울대학교,snu.ac.kr,서울
+Yonsei University,연세대학교,yonsei.ac.kr,서울
+Korea University,고려대학교,korea.ac.kr,서울
+Sungkyunkwan University,성균관대학교,skku.edu,서울
+Hanyang University,한양대학교,hanyang.ac.kr,서울
+Kyung Hee University,경희대학교,khu.ac.kr,서울
+Ewha Womans University,이화여자대학교,ewha.ac.kr,서울
+Chung-Ang University,중앙대학교,cau.ac.kr,서울
+Ajou University,아주대학교,ajou.ac.kr,경기·인천
+Inha University,인하대학교,inha.ac.kr,경기·인천
+The Catholic University of Korea,가톨릭대학교,catholic.ac.kr,서울
+University of Ulsan,울산대학교,ulsan.ac.kr,부산·울산·경남
+Konkuk University,건국대학교,konkuk.ac.kr,서울
+Dongguk University,동국대학교,dongguk.edu,서울
+Sogang University,서강대학교,sogang.ac.kr,서울
+Kookmin University,국민대학교,kookmin.ac.kr,서울
+Sejong University,세종대학교,sejong.ac.kr,서울
+University of Seoul,서울시립대학교,uos.ac.kr,서울
+Incheon National University,인천대학교,inu.ac.kr,경기·인천
+Sookmyung Women's University,숙명여자대학교,sookmyung.ac.kr,서울
+Duksung Women's University,덕성여자대학교,duksung.ac.kr,서울
+Dongduk Women's University,동덕여자대학교,dongduk.ac.kr,서울
+Sahmyook University,삼육대학교,syu.ac.kr,서울
+CHA University,차의과학대학교,cha.ac.kr,경기·인천
+Gachon University,가천대학교,gachon.ac.kr,경기·인천
+Hallym University,한림대학교,hallym.ac.kr,강원
+Soonchunhyang University,순천향대학교,sch.ac.kr,대전·충청
+Inje University,인제대학교,inje.ac.kr,부산·울산·경남
+Eulji University,을지대학교,eulji.ac.kr,대전·충청
+Dankook University,단국대학교,dankook.ac.kr,경기·인천
+Catholic Kwandong University,가톨릭관동대학교,cku.ac.kr,강원
+Seoul National University of Science and Technology,서울과학기술대학교,seoultech.ac.kr,서울
+Pusan National University,부산대학교,pusan.ac.kr,부산·울산·경남
+Kosin University,고신대학교,kosin.ac.kr,부산·울산·경남
+Kyungsung University,경성대학교,ks.ac.kr,부산·울산·경남
+Kyungpook National University,경북대학교,knu.ac.kr,대구·경북
+Keimyung University,계명대학교,kmu.ac.kr,대구·경북
+Yeungnam University,영남대학교,yu.ac.kr,대구·경북
+Daegu Catholic University,대구가톨릭대학교,cu.ac.kr,대구·경북
+Chonnam National University,전남대학교,jnu.ac.kr,광주·전라
+Chosun University,조선대학교,chosun.ac.kr,광주·전라
+Sunchon National University,순천대학교,scnu.ac.kr,광주·전라
+Mokpo National University,목포대학교,mokpo.ac.kr,광주·전라
+Jeonbuk National University,전북대학교,jbnu.ac.kr,광주·전라
+Wonkwang University,원광대학교,wku.ac.kr,광주·전라
+Woosuk University,우석대학교,woosuk.ac.kr,광주·전라
+Chungnam National University,충남대학교,cnu.ac.kr,대전·충청
+Chungbuk National University,충북대학교,chungbuk.ac.kr,대전·충청
+Gyeongsang National University,경상국립대학교,gnu.ac.kr,부산·울산·경남
+Kangwon National University,강원대학교,kangwon.ac.kr,강원
+Jeju National University,제주대학교,jejunu.ac.kr,제주
+POSTECH,포항공과대학교,postech.ac.kr,대구·경북
+KAIST,한국과학기술원,kaist.ac.kr,대전·충청
+UNIST,울산과학기술원,unist.ac.kr,부산·울산·경남
+GIST,광주과학기술원,gist.ac.kr,광주·전라
+DGIST,대구경북과학기술원,dgist.ac.kr,대구·경북

@@ -18,6 +18,7 @@ from config import (
     OUTPUT_DIR,
     WEB_DIR,
 )
+from classify import Classifier, position
 from lineage import Authorship, infer_lineage, lineage_relationships
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
@@ -142,6 +143,13 @@ def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
                 current_id = normalize_openalex_id(match.get("id", ""))
 
         item["openalex_id"] = current_id
+        if current_id and not item.get("primary_field", ""):
+            # Older seed rows have no field: take the main OpenAlex subfield so
+            # the map can colour and filter them (one request per such row).
+            author = client.get_author(_openalex_ids(current_id)[0])
+            topics = (author or {}).get("topics") or []
+            if topics:
+                item["primary_field"] = str((topics[0].get("subfield") or {}).get("display_name", ""))
         resolved_rows.append(item)
 
     resolved = pd.DataFrame(resolved_rows, columns=PROFESSOR_COLUMNS)
@@ -491,8 +499,34 @@ def promote_approved_candidates() -> int:
 
     return len(new_rows)
 
+def _titles_by_professor(nodes: pd.DataFrame) -> dict[str, str]:
+    """Faculty-page title (교수/부교수/조교수) per professor, via the identity file."""
+    identity = _read_csv(OUTPUT_DIR / "faculty_identity_v2.csv")
+    if identity.empty or "title" not in identity.columns:
+        return {}
+    by_key: dict[str, str] = {}
+    for _, r in identity.iterrows():
+        t = position(r.get("title", ""))
+        if not t:
+            continue
+        for oid in _openalex_ids(r.get("openalex_ids", "") or r.get("openalex_id", "")):
+            by_key.setdefault(f"oa:{oid}", t)
+        if r.get("orcid", ""):
+            by_key.setdefault(f"orcid:{r['orcid']}", t)
+        if r.get("name_ko", ""):
+            by_key.setdefault(f"name:{r['name_ko']}|{r.get('university', '').casefold()}", t)
+    out = {}
+    for _, row in nodes.iterrows():
+        keys = [f"oa:{o}" for o in _openalex_ids(row.get("openalex_id", ""))]
+        keys += [f"orcid:{row.get('orcid', '')}", f"name:{row.get('name_ko', '')}|{str(row.get('university', '')).casefold()}"]
+        out[row["professor_id"]] = next((by_key[k] for k in keys if k in by_key), "")
+    return out
+
+
 def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
+    classifier = Classifier(DATA_DIR)
+    titles = _titles_by_professor(nodes)
 
     node_records = []
     for _, row in nodes.iterrows():
@@ -503,6 +537,11 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                 "name_en": row.get("name_en", ""),
                 "university": row.get("university", ""),
                 "field": row.get("primary_field", ""),
+                "category": classifier.category(row.get("professor_id", ""), row.get("primary_field", ""),
+                                                row.get("department", "")),
+                "region": classifier.region(row.get("university", "")),
+                "university_ko": classifier.university_ko(row.get("university", "")),
+                "position": titles.get(row.get("professor_id", ""), ""),
                 "department": row.get("department", ""),
                 "orcid": row.get("orcid", ""),
                 "openalex_id": (_openalex_ids(row.get("openalex_id", "")) or [""])[0],

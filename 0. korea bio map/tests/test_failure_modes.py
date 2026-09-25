@@ -92,7 +92,9 @@ def test_seed_with_orcid_gets_openalex_id(tmp_path, monkeypatch):
     pd.DataFrame([{"professor_id": "P1", "name_ko": "김경수", "orcid": "0000-1", "openalex_id": ""}]).to_csv(
         tmp_path / "professors_seed.csv", index=False)
     oa = FakeOpenAlex([], by_orcid={"0000-1": [_author("A7", "Kyung-Soo Kim", "SNU"), _author("A8", "K Kim", "SNU")]})
-    assert pipeline.resolve_professors(oa).iloc[0].openalex_id == "A7;A8"
+    row = pipeline.resolve_professors(oa).iloc[0]
+    assert row.openalex_id == "A7;A8"
+    assert row.primary_field == "Immunology"  # filled from the OpenAlex profile
 
 
 def test_candidate_review_with_no_candidates(tmp_path, monkeypatch):
