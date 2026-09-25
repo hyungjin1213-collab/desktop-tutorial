@@ -23,6 +23,7 @@ import pandas as pd
 from config import DATA_DIR, OUTPUT_DIR
 from name_extraction import (
     english_matches_korean,
+    name_compatible,
     english_query_variants,
     surname_from_email,
 )
@@ -294,6 +295,22 @@ def resolve_person(
                 status, confidence = "probable", "medium"
         elif orcid_reason:
             reasons.insert(0, orcid_reason)
+
+    if authors and name_ko:
+        # Last guard: OpenAlex profiles sometimes merge several people, and an
+        # alias or an ORCID link can point at a profile named after someone
+        # else (김건 -> "Kyung-Hee Kim"). Keep only profiles whose display name
+        # is this person.
+        kept = [a for a in authors if name_compatible(str(a.get("display_name", "")), name_ko)]
+        if not kept:
+            shown = str(authors[0].get("display_name", ""))
+            reasons.append(f"OpenAlex profile name '{shown}' does not match {name_ko}")
+            status, confidence, authors = "manual_review", "low", []
+            if not orcid_reason.startswith("ORCID public email"):
+                orcid = ""
+        elif len(kept) < len(authors):
+            reasons.append(f"dropped {len(authors) - len(kept)} OpenAlex profile(s) with another name")
+            authors = kept
 
     authors.sort(key=lambda a: int(a.get("works_count", 0) or 0), reverse=True)
     main = authors[0] if authors else {}

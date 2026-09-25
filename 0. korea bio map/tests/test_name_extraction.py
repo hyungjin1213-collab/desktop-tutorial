@@ -136,3 +136,31 @@ def test_given_name_initials():
     assert set(given_name_initials("김경수")) == {"K", "G"}
     assert set(given_name_initials("박영호")) == {"Y"}
     assert set(given_name_initials("이정원")) == {"J", "C"}
+
+
+from name_extraction import name_compatible  # noqa: E402
+
+# Real OpenAlex display names from run #25 identity results.
+COMPATIBLE = [
+    ("H Lee", "이혁진"), ("S Jeon", "전상민"), ("Lee Mh", "이민희"), ("D. Kim", "김동학"),
+    ("Seulah Lee", "이슬아"), ("Jisun H.J. Lee", "이지선"), ("﻿Kyoung Sang ﻿Cho", "조경상"),
+    ("Hyunjung Jade Lim", "임현정"), ("Tai-Ju Lee", "이태주"), ("Kyunghee Jung‐Choi", "최경희"),
+    ("Sun Ah Choi", "최선아"), ("Kyung Ah Jeong", "정경아"), ("Younhee J. Choi", "최윤희"),
+    ("Hae‐Sun Chung", "정혜선"), ("Kyung-Soo Kim", "김경수"), ("Won-Suk Chung", "정원석"), ("Jin Kim", "김진"),
+]
+INCOMPATIBLE = [
+    ("Kyung‐Hee Kim", "김건"), ("C. Justin Lee", "이용석"), ("Tae‐Hwan Kim", "김범수"),
+    ("Sang Kyum Kim", "심재훈"), ("Jae‐Joong Kim", "김재현"), ("Jin‐Ha Choi", "조현열"),
+    ("Tae Soo Kim", "김완규"), ("Sang Eun Lee", "이정원"), ("Sun Hee", "도선희"),
+    ("Kyung Min Chung", "정민경"), ("Jin Hee Jung", "정진"), ("E Y Park", "박은정"),
+]
+
+
+@pytest.mark.parametrize("display,ko", COMPATIBLE)
+def test_display_name_compatible(display, ko):
+    assert name_compatible(display, ko)
+
+
+@pytest.mark.parametrize("display,ko", INCOMPATIBLE)
+def test_display_name_incompatible(display, ko):
+    assert not name_compatible(display, ko)

@@ -116,3 +116,19 @@ def test_engineer_with_some_materials_papers_is_rejected():
         _author("A1", "Sunghyuk Park", "Seoul National University", topics=topics)]})
     row = fi.resolve_person(oa, orcid, {"name": "박성혁", "name_ko": "박성혁", "university": "Seoul National University"})
     assert row["identity_status"] == "manual_review"
+
+
+def test_orcid_profile_named_after_someone_else_goes_to_review():
+    """Run #25: 김건 was matched to an OpenAlex profile named 'Kyung-Hee Kim'."""
+    orcid = FakeORCID([_orcid_rec("0000-0003-0214-0296", "Geon", "Kim")])
+    oa = FakeOpenAlex([], by_orcid={"0000-0003-0214-0296": [_author("A1", "Kyung‐Hee Kim", "Ewha Womans University")]})
+    row = fi.resolve_person(oa, orcid, {"name": "김건", "name_ko": "김건", "university": "Ewha Womans University"})
+    assert row["identity_status"] == "manual_review" and "does not match" in row["identity_reason"]
+
+
+def test_mismatched_split_profile_is_dropped():
+    orcid = FakeORCID([_orcid_rec("0000-1", "Kyung-Soo", "Kim")])
+    oa = FakeOpenAlex([], by_orcid={"0000-1": [_author("A1", "Kyung-Soo Kim", "SNU", works=80),
+                                               _author("A2", "Tae Soo Kim", "SNU", works=90)]})
+    row = fi.resolve_person(oa, orcid, {"name": "김경수", "name_ko": "김경수", "university": "Seoul National University"})
+    assert row["identity_status"] == "verified" and row["openalex_ids"] == "A1"

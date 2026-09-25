@@ -334,12 +334,13 @@ def phonetic_key(text: str) -> str:
     """
     s = re.sub(r"[^a-z]", "", (text or "").casefold())
     for a, b in [("weo", "wo"), ("eo", "u"), ("oo", "u"), ("ou", "u"), ("ee", "i"),
-                 ("ui", "i"), ("ea", "a"), ("wu", "u"), ("wo", "w"),
+                 ("ui", "i"), ("ea", "a"), ("ai", "ae"), ("ae", "e"), ("wu", "u"), ("wo", "w"),
                  ("sh", "s"), ("ch", "j"), ("k", "g"), ("p", "b"),
                  ("t", "d"), ("r", "l"), ("yu", "u"), ("y", "")]:
         s = s.replace(a, b)
     s = re.sub(r"(.)\1+", r"\1", s)
-    return s.replace("e", "")
+    s = s.replace("e", "")
+    return s[:-1] if len(s) > 2 and s.endswith("h") else s   # Seulah / Seula
 
 
 def english_matches_korean(name_en: str, name_ko: str) -> bool:
@@ -543,3 +544,67 @@ def given_name_initials(name_ko: str) -> list[str]:
         if rr.startswith(init):
             return list(_INITIAL_LETTERS[init])
     return list(_VOWEL_START.get(rr[:1], rr[:1].upper()))
+
+
+def _clean_latin(name: str) -> str:
+    name = (name or "").replace("\ufeff", "")
+    name = re.sub(r"[\u2010-\u2015]", "-", name)   # typographic hyphens
+    return re.sub(r"\s+", " ", name.replace(".", " ")).strip()
+
+
+def name_compatible(display_name: str, name_ko: str) -> bool:
+    """Is an OpenAlex / ORCID display name plausibly this Korean person?
+
+    Stricter than "some alias matches": the surname must be there and the
+    given name must match by romanization, or by initials (H Lee, E Y Park,
+    Lee Mh). Extra middle names (Hyunjung Jade Lim) are allowed.
+    """
+    if not display_name or not name_ko:
+        return False
+    if name_ko in display_name:
+        return True
+    surname, given = split_korean_name(name_ko)
+    if not surname or not given:
+        return False
+    romans = {r.casefold() for r in ALL_ROMANIZATIONS.get(surname, [])}
+    tokens = _clean_latin(display_name).split()
+    # A hyphenated double surname (Jung-Choi) counts if one part is the surname.
+    idx = next((i for i, t in enumerate(tokens)
+                if t.casefold() in romans or any(p in romans for p in t.casefold().split("-"))), None)
+    if idx is None:
+        return False
+    rest = tokens[:idx] + tokens[idx + 1:]
+    if not rest:
+        return False
+    target = phonetic_key(romanize_given_name(given))
+    syllable_initials = [set(given_name_initials(surname + ch)) for ch in given]
+
+    # Initials only: "H Lee", "E Y Park", "Lee Mh"
+    if all(len(t.replace("-", "")) <= 2 for t in rest):
+        letters = "".join(t.replace("-", "") for t in rest).upper()
+        if len(letters) <= len(given) and all(letters[i] in syllable_initials[i] for i in range(len(letters))):
+            return True
+
+    full = [t for t in rest if len(t) > 1]
+    if full and phonetic_key("".join(full)) == target:
+        return True
+    # Extra middle names are fine (Hyunjung Jade Lim, Jisun H.J. Lee), but for a
+    # one-syllable given name an extra Korean syllable is not: "Jin Hee Jung"
+    # is 정진희, not 정진.
+    for i in range(len(full)):
+        for j in range(i + 1, min(i + 2, len(full)) + 1):
+            others = full[:i] + full[j:]
+            one_syllable_given = len(given) == 1
+            if phonetic_key("".join(full[i:j])) == target and not (
+                    one_syllable_given and any(_korean_syllables(o) for o in others)):
+                return True
+    return False
+
+
+_SYLLABLE = r"(?:[bcdghjklmnprstwy]{0,3}(?:[aeiou]{1,3}|y[aeiou]{1,2}|w[aeiou]{1,2})(?:ng|n|m|k|l|p|t)?)"
+
+
+def _korean_syllables(token: str) -> bool:
+    """Does a token read as 1-2 romanized Korean syllables (Hee, Young, Jun-Ho)?"""
+    t = token.casefold().replace("-", "")
+    return bool(re.fullmatch(f"{_SYLLABLE}{{1,2}}", t))
