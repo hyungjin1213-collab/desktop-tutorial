@@ -1,0 +1,27 @@
+name: Korea Bio Map Daily
+
+# GitHub runs scheduled workflows only from the default branch (main).
+# This file must live on main; it just starts the collector on the
+# Korea Bio Map branch, where all pipeline code and data live.
+on:
+  schedule:
+    # 01:00 UTC = 10:00 KST, one hour after OpenAlex's daily budget resets.
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start galaxy-full on about-bio-v0.1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run korea-bio-map.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref about-bio-v0.1 \
+            -f target_branch=about-bio-v0.1 \
+            -f mode=galaxy-full

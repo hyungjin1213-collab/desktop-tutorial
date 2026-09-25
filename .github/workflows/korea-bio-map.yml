@@ -32,6 +32,11 @@ on:
 permissions:
   contents: write
 
+# The daily run and a manual run must not collect at the same time.
+concurrency:
+  group: korea-bio-map
+  cancel-in-progress: false
+
 jobs:
   collect:
     runs-on: ubuntu-latest

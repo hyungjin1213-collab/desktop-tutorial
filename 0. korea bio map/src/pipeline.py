@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from collections import defaultdict
 from itertools import combinations
@@ -40,6 +41,30 @@ SCOPUS_CACHE_COLUMNS = ["professor_id", "scopus_id", "reason"]
 # OpenAlex accepts up to 100 OR-ed values per filter; 50 keeps URLs short.
 AUTHOR_BATCH = 50
 
+# Collaboration strength (see collaboration_weight): a pair is drawn only at or
+# above this. 0.5 = one recent paper with <= 3 authors, two with 5, ~5 with 10.
+MIN_COLLAB_STRENGTH = float(os.getenv("MIN_COLLAB_STRENGTH", "0.5"))
+RECENCY_HALF_LIFE_YEARS = 8.0
+RECENT_YEARS = 2
+SENIOR_BONUS = 1.5
+CURRENT_YEAR = pd.Timestamp.now().year
+
+
+def collaboration_weight(n_authors: int, year: int, both_senior: bool, now: int = CURRENT_YEAR) -> float:
+    """How much one co-authored paper says about two professors collaborating.
+
+    - 1 / (authors - 1): a 3-author paper counts 0.5, a 90-author consortium
+      paper 0.01 (Newman's co-authorship weight).
+    - x1.5 when both are first/last (senior) authors: lab-to-lab work.
+    - Papers from the last 2 years count fully; older ones halve every 8
+      years, so current collaborations dominate.
+    """
+    base = 1.0 / max(n_authors - 1, 1)
+    if both_senior:
+        base *= SENIOR_BONUS
+    age = max(now - year - RECENT_YEARS, 0) if year else RECENCY_HALF_LIFE_YEARS
+    return base * 0.5 ** (age / RECENCY_HALF_LIFE_YEARS)
+
 REL_COLUMNS = [
     "relationship_id",
     "professor_a_id",
@@ -49,6 +74,9 @@ REL_COLUMNS = [
     "evidence_url",
     "verified",
     "notes",
+    "collaboration_strength",
+    "first_year",
+    "last_year",
 ]
 
 
@@ -194,6 +222,8 @@ def collect_collaborations(
 
     pair_to_works: dict[tuple[str, str], set[str]] = defaultdict(set)
     openalex_pairs: set[tuple[str, str]] = set()
+    pair_strength: dict[tuple[str, str], float] = defaultdict(float)
+    pair_years: dict[tuple[str, str], list[int]] = defaultdict(list)
     candidate_stats: dict[str, dict[str, object]] = {}
 
     # One request covers up to AUTHOR_BATCH professors' works (OpenAlex OR
@@ -222,9 +252,21 @@ def collect_collaborations(
                 for aid in (normalize_openalex_id((a.get("author") or {}).get("id", "")) for a in authorships)
                 if aid in confirmed_by_openalex
             }
+            year = _safe_int(work.get("publication_year"), 0)
+            senior = {
+                confirmed_by_openalex[aid]
+                for a in authorships
+                if a.get("author_position") in ("first", "last")
+                for aid in [normalize_openalex_id((a.get("author") or {}).get("id", ""))]
+                if aid in confirmed_by_openalex
+            }
             for pair in combinations(sorted(profs_on_work), 2):
                 pair_to_works[pair].add(work_key)
                 openalex_pairs.add(pair)
+                pair_strength[pair] += collaboration_weight(
+                    len(authorships), year, pair[0] in senior and pair[1] in senior)
+                if year:
+                    pair_years[pair].append(year)
 
             # Per-professor authorship records for lineage inference (same data, no extra calls).
             last_pid = ""
@@ -279,15 +321,20 @@ def collect_collaborations(
     if scopus is not None and scopus.enabled and "scopus_id" in professors.columns:
         scopus_pairs = _scopus_pairs(scopus, professors)
         for pair, keys in scopus_pairs.items():
+            new_keys = keys - pair_to_works[pair]
             pair_to_works[pair] |= keys
+            # Scopus gives no author counts here: a modest, fixed weight per extra paper.
+            pair_strength[pair] += 0.25 * len(new_keys)
         print(f"[scopus] {len(scopus_pairs)} professor pairs from Scopus", flush=True)
 
     auto_rows = []
-    for index, ((professor_a_id, professor_b_id), work_ids) in enumerate(
-        sorted(pair_to_works.items()),
-        start=1,
-    ):
-        pair = (professor_a_id, professor_b_id)
+    kept = sorted(p for p in pair_to_works if pair_strength[p] >= MIN_COLLAB_STRENGTH)
+    print(f"[collect] {len(kept)} of {len(pair_to_works)} co-author pairs pass "
+          f"collaboration strength >= {MIN_COLLAB_STRENGTH}", flush=True)
+    for index, pair in enumerate(kept, start=1):
+        professor_a_id, professor_b_id = pair
+        work_ids = pair_to_works[pair]
+        years = pair_years.get(pair) or []
         sources = [name for name, found in (("OpenAlex", pair in openalex_pairs), ("Scopus", pair in scopus_pairs)) if found]
         auto_rows.append(
             {
@@ -299,6 +346,9 @@ def collect_collaborations(
                 "evidence_url": "",
                 "verified": "auto",
                 "notes": f"{' + '.join(sources)} coauthorship between confirmed professors",
+                "collaboration_strength": round(pair_strength[pair], 3),
+                "first_year": min(years) if years else "",
+                "last_year": max(years) if years else "",
             }
         )
 
@@ -476,6 +526,8 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                     "type": row.get("relationship_type", ""),
                     "paper_count": _safe_int(row.get("collaboration_paper_count", 0), 0),
                     "verified": row.get("verified", ""),
+                    "strength": float(row.get("collaboration_strength", "") or 0),
+                    "last_year": _safe_int(row.get("last_year", 0), 0),
                 }
             )
 

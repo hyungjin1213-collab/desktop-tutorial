@@ -41,6 +41,24 @@ Actions → **Korea Bio Map Collector** → mode `galaxy-full`
 ORCID가 확정되면 OpenAlex는 ORCID로 조회하므로 한 사람이 OpenAlex에 여러 프로필로 쪼개져 있어도 모두 모아
 `openalex_id`에 `A1;A2` 형태로 저장하고, 공동연구 계산에 전부 사용한다.
 
+## 공동연구 선 (협업 강도)
+
+같이 쓴 논문 수가 아니라 **협업 강도**로 선을 긋는다 (`collaboration_weight` in `src/pipeline.py`).
+
+- 논문 1편의 기여 = `1 / (저자 수 - 1)`: 3인 논문 0.5, 90인 다기관 임상 논문 0.011
+- 두 교수가 모두 1저자/마지막 저자(연구실 대 연구실)면 x1.5
+- 최근 2년 논문은 그대로, 그 이전은 8년마다 절반
+- 강도 합이 `MIN_COLLAB_STRENGTH`(기본 0.5) 이상인 쌍만 선을 긋는다
+  (최근 소규모 논문 1편, 5인 논문 2편, 10인 논문 약 5편 수준)
+- `relationships_auto.csv`에 `collaboration_strength`, `first_year`, `last_year`가 남고,
+  지도에서는 강도에 따라 선 밝기/굵기가 달라진다. 선에 마우스를 올리면 논문 수·최근 연도·강도가 보인다.
+
+## 매일 자동 실행
+
+`.github/workflows/korea-bio-map-daily.yml`이 매일 10:00 KST(01:00 UTC)에 `galaxy-full`을 시작한다.
+GitHub 예약 실행은 기본 브랜치(`main`)의 워크플로만 돌리므로 **이 파일은 main에 있어야 한다.**
+수집 워크플로는 `concurrency`로 동시에 한 번만 돈다.
+
 ## 공동연구 데이터 출처
 
 - **OpenAlex** (기본, 무료): Crossref·PubMed·ORCID 통합.

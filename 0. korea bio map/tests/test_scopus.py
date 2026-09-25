@@ -85,7 +85,8 @@ class FakeScopus:
         docs = {
             # same paper as W1 (DOI match) + one Scopus-only paper with P3
             "S1": [{"id": "SCOPUS_ID:9", "doi": "10.1/abc", "author_ids": ["S1", "S2"]},
-                   {"id": "SCOPUS_ID:10", "doi": "10.1/xyz", "author_ids": ["S1", "S3"]}],
+                   {"id": "SCOPUS_ID:10", "doi": "10.1/xyz", "author_ids": ["S1", "S3"]},
+                   {"id": "SCOPUS_ID:11", "doi": "10.1/xyz2", "author_ids": ["S1", "S3"]}],
         }
         return iter(docs.get(sid, []))
 
@@ -100,7 +101,8 @@ def test_openalex_and_scopus_merged_by_doi(tmp_path, monkeypatch):
     auto, _ = pipeline.collect_collaborations(FakeOpenAlex(), professors, FakeScopus())
     got = {(r.professor_a_id, r.professor_b_id): (r.collaboration_paper_count, r.notes) for r in auto.itertuples()}
     assert got[("P1", "P2")][0] == 1 and got[("P1", "P2")][1].startswith("OpenAlex + Scopus")
-    assert got[("P1", "P3")] == (1, "Scopus coauthorship between confirmed professors")
+    # Scopus-only papers carry a fixed 0.25 each: two are needed to draw a line.
+    assert got[("P1", "P3")] == (2, "Scopus coauthorship between confirmed professors")
 
 
 def test_scopus_ids_cached(tmp_path, monkeypatch):

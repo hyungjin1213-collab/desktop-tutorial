@@ -77,3 +77,36 @@ def test_lineage_scores_pi_and_trainee_differently(tmp_path, monkeypatch):
     # PI: 1 student (10) + 1 postdoc (3); unverified M3 ignored
     # STU: advisor (1) + 1 collaborator (1); PD: mentor (1) + 1 collaborator (1)
     assert score == {"PI": 13, "STU": 2, "PD": 2, "X": 0}
+
+
+def test_collaboration_weight():
+    w = pipeline.collaboration_weight
+    assert w(3, 2026, False, now=2026) == 0.5                      # small team paper
+    assert round(w(91, 2026, False, now=2026), 3) == 0.011          # consortium paper
+    assert w(3, 2026, True, now=2026) == 0.75                       # both senior authors
+    assert w(3, 2024, False, now=2026) == 0.5                       # last 2 years: full weight
+    assert round(w(3, 2016, False, now=2026), 3) == 0.25            # 10 years old: halved
+
+
+def test_weak_coauthorships_are_not_drawn(tmp_path, monkeypatch):
+    monkeypatch.setattr(pipeline, "OUTPUT_DIR", tmp_path)
+
+    def work(wid, n_authors, *profs, year=2025):
+        authors = [{"author": {"id": p}, "author_position": "middle"} for p in profs]
+        authors += [{"author": {"id": f"X{wid}{i}"}, "author_position": "middle"} for i in range(n_authors - len(profs))]
+        return {"id": wid, "publication_year": year, "display_name": wid, "authorships": authors}
+
+    works = [
+        work("W1", 3, "A", "B"),                                  # A-B: one small paper -> drawn
+        work("W2", 40, "A", "C"), work("W3", 40, "A", "C"),       # A-C: two big papers -> not drawn
+        *[work(f"W{i}", 6, "B", "C") for i in range(4, 7)],      # B-C: three 6-author papers -> drawn
+    ]
+
+    class Client:
+        def iter_works_by_authors(self, ids):
+            return iter(works)
+
+    professors = pd.DataFrame([{"professor_id": p, "openalex_id": p} for p in "ABC"])
+    auto, _ = pipeline.collect_collaborations(Client(), professors)
+    got = {(r.professor_a_id, r.professor_b_id): r.collaboration_paper_count for r in auto.itertuples()}
+    assert got == {("A", "B"): 1, ("B", "C"): 3}
