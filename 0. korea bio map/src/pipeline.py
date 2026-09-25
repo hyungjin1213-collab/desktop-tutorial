@@ -19,6 +19,7 @@ from config import (
     WEB_DIR,
 )
 from classify import Classifier, position
+from keywords import KeywordCollector
 from lineage import Authorship, infer_lineage, lineage_relationships
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
@@ -239,6 +240,7 @@ def collect_collaborations(
     all_ids = sorted(confirmed_by_openalex)
     seen_works: set[str] = set()
     lineage_records: dict[str, list[Authorship]] = defaultdict(list)
+    keyword_collector = KeywordCollector(CURRENT_YEAR)
     for start in range(0, len(all_ids), AUTHOR_BATCH):
         batch = all_ids[start:start + AUTHOR_BATCH]
         print(f"[collect] authors {start + 1}-{start + len(batch)} of {len(all_ids)}", flush=True)
@@ -284,6 +286,7 @@ def collect_collaborations(
             for a in authorships:
                 pid_on = confirmed_by_openalex.get(normalize_openalex_id((a.get("author") or {}).get("id", "")))
                 if pid_on:
+                    keyword_collector.add_work(pid_on, str(a.get("author_position", "")), work)
                     lineage_records[pid_on].append(Authorship(
                         year=_safe_int(work.get("publication_year"), 0),
                         position=str(a.get("author_position", "")),
@@ -416,6 +419,7 @@ def collect_collaborations(
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     lineage.to_csv(OUTPUT_DIR / "lineage_candidates.csv", index=False, encoding="utf-8-sig")
+    keyword_collector.to_frame().to_csv(OUTPUT_DIR / "professor_keywords.csv", index=False, encoding="utf-8-sig")
     lineage_relationships(lineage).to_csv(OUTPUT_DIR / "relationships_lineage.csv", index=False)
     auto_df.to_csv(OUTPUT_DIR / "relationships_auto.csv", index=False)
     all_candidates_df.to_csv(OUTPUT_DIR / "collaborator_candidates_all.csv", index=False)
@@ -527,6 +531,12 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
     classifier = Classifier(DATA_DIR)
     titles = _titles_by_professor(nodes)
+    terms: dict[str, dict[str, list[str]]] = defaultdict(lambda: {"keyword": [], "technique": []})
+    kw = _read_csv(OUTPUT_DIR / "professor_keywords.csv")
+    if not kw.empty:
+        kw["rank_n"] = kw["rank"].map(_safe_int)
+        for _, r in kw.sort_values(["professor_id", "kind", "rank_n"]).iterrows():
+            terms[r["professor_id"]][r["kind"]].append(r["term"])
 
     node_records = []
     for _, row in nodes.iterrows():
@@ -542,6 +552,8 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                 "region": classifier.region(row.get("university", "")),
                 "university_ko": classifier.university_ko(row.get("university", "")),
                 "position": titles.get(row.get("professor_id", ""), ""),
+                "keywords": terms[row.get("professor_id", "")]["keyword"][:8],
+                "techniques": terms[row.get("professor_id", "")]["technique"][:5],
                 "department": row.get("department", ""),
                 "orcid": row.get("orcid", ""),
                 "openalex_id": (_openalex_ids(row.get("openalex_id", "")) or [""])[0],
@@ -570,7 +582,14 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                 }
             )
 
-    payload = {"nodes": node_records, "links": link_records}
+    synonyms = _read_csv(DATA_DIR / "keyword_synonyms.csv")
+    payload = {
+        "nodes": node_records,
+        "links": link_records,
+        # Korean search words -> English keywords ("T세포" -> "T-Lymphocytes")
+        "synonyms": {r["korean"]: [t.strip() for t in r["english"].split("|") if t.strip()]
+                     for _, r in synonyms.iterrows()} if not synonyms.empty else {},
+    }
     text = "window.KOREA_BIO_MAP = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
     (WEB_DIR / "network-data.js").write_text(text, encoding="utf-8")
 

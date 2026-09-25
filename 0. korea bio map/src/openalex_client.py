@@ -174,7 +174,8 @@ class OpenAlexClient:
                     "per-page": 200,
                     "cursor": cursor,
                     # Only what the coauthor graph needs; keeps responses small.
-                    "select": "id,doi,display_name,publication_year,authorships",
+                    # mesh + keywords feed research keywords (keywords.py) at no extra request cost.
+                    "select": "id,doi,display_name,publication_year,authorships,mesh,keywords",
                 },
             )
             yield from data.get("results", [])

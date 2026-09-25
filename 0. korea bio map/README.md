@@ -135,3 +135,14 @@ P0001,면역·감염,T세포 면역항암
 ```
 
 - 지역은 `data/universities_seed.csv`의 `region`, 직위는 교수진 페이지의 직위(교수/부교수/조교수)를 쓴다.
+
+## 연구 키워드 · 주요 기술
+
+`src/keywords.py`가 공동연구 수집 때 받은 논문으로 교수별 키워드를 만든다 (OpenAlex 추가 요청 없음).
+
+- 출처: **MeSH 용어**(PubMed 색인자가 붙인 표준 용어, 핵심 주제는 x1.5) + OpenAlex 논문 키워드
+- 가중치: 교신(마지막) 저자 1.0 · 1저자 0.8 · 중간 저자 0.25, 최근 논문일수록 높게 (6년마다 절반)
+- `Humans`, `Mice`, `Retrospective Studies` 같은 공통 태그는 제외, 모든 연구실에 흔한 용어는 TF-IDF로 뒤로
+- 실험·분석 기술(`Flow Cytometry`, `CRISPR-Cas Systems`, `Organoids`, `Single-Cell Analysis` 등)은 "주요 기술"로 따로
+- 결과: `output/professor_keywords.csv`, 지도 별 정보창과 검색에 표시
+- 한글 검색어 → 영문 키워드: `data/keyword_synonyms.csv` (`T세포` → `T-Lymphocytes|CD8-Positive T-Lymphocytes|…`). 자유롭게 추가 가능
