@@ -20,7 +20,13 @@ Actions → **Korea Bio Map Collector** → mode `galaxy-full`
   - 대학 도메인 밖, 경영·간호 등 비바이오 단과대, 공지/입학/명예교수 링크, PDF는 따라가지 않는다. robots.txt를 지킨다.
   - 한 번 실행에 `DISCOVERY_UNIVERSITY_LIMIT`(기본 20)개 대학, 대학당 최대 `CRAWL_PAGE_LIMIT`(기본 100) 페이지.
   - 탐색한 대학은 `data/discovery_log.csv`에 기록되어 다음 실행에서 건너뛴다 (`DISCOVERY_REFRESH=yes`로 재탐색, 또는 해당 행 삭제).
-  - 크롤링으로 하나도 못 찾은 대학만 SerpAPI(키가 있을 때)로 보조 검색한다.
+  - 자바스크립트 메뉴(`onclick="goPage(...)"`), iframe/frame, meta refresh 링크도 따라간다.
+  - 홈페이지 메뉴를 못 읽어도 되도록 `pharm.`, `medicine.`, `bio.`, `life.` 같은 단과대학 서브도메인을 직접 시도한다.
+  - 인증서 체인이 불완전한 대학 사이트는 (공개 페이지 읽기에 한해) 인증서 검증 없이 재시도한다.
+  - 교수진 페이지를 찾으면 그 안의 교수별 상세 링크는 따라가지 않는다 (페이지 한도 절약).
+  - 대학마다 로그에 `N pages fetched; M faculty-like pages checked; errors: …`가 찍히고 `discovery_log.csv`의 `note`에 남는다. 0건이면 이것으로 원인을 본다.
+  - 0건이었던 대학은 다음 실행에서 새 대학을 먼저 탐색한 뒤 재시도한다.
+  - SerpAPI 보조 검색은 기본으로 끈다 (`DISCOVERY_USE_SERPAPI=yes`로 켬). 429가 한 번 나면 그 실행에서는 더 쓰지 않는다.
 - 잘못 들어간 수집 페이지는 `data/faculty_sources.csv`에서 `enabled`를 `no`로 바꾼다.
 - 선택 GitHub Secrets: `OPENALEX_EMAIL`(요청 속도 향상, 권장), `OPENALEX_API_KEY`, `SCOPUS_API_KEY`/`SCOPUS_INSTTOKEN`, `ORCID_CLIENT_ID`/`ORCID_CLIENT_SECRET`(없어도 ORCID 공개 검색은 동작).
 

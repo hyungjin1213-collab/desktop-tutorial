@@ -19,11 +19,13 @@ import pandas as pd
 import requests
 
 from config import DATA_DIR, OUTPUT_DIR, REQUEST_TIMEOUT
-from site_crawler import SiteCrawler, department_label
+from site_crawler import SiteCrawler, department_label, start_urls
 
 SERPAPI_KEY = os.getenv("SERPAPI_KEY", "").strip()
 # Universities explored per run (crawling takes ~1-2 minutes each).
 DISCOVERY_UNIVERSITY_LIMIT = int(os.getenv("DISCOVERY_UNIVERSITY_LIMIT", "20"))
+# SerpAPI fallback is opt-in: the free plan runs out quickly (429 on every call).
+DISCOVERY_USE_SERPAPI = os.getenv("DISCOVERY_USE_SERPAPI", "").strip().casefold() in {"1", "yes", "true"}
 DISCOVERY_REFRESH = os.getenv("DISCOVERY_REFRESH", "").strip().casefold() in {"1", "yes", "true"}
 
 BIO_KEYWORDS = [
@@ -87,6 +89,8 @@ def _source_id(domain: str, url: str) -> str:
 
 
 def _search_google(query: str, num: int = 10) -> list[dict]:
+    if _serpapi_down:
+        return []
     if not SERPAPI_KEY:
         _report("SERPAPI_KEY not set: department discovery skipped")
         return []
@@ -100,7 +104,12 @@ def _search_google(query: str, num: int = 10) -> list[dict]:
         r.raise_for_status()
         payload = r.json()
     except (requests.RequestException, ValueError) as exc:
-        _report(f"SerpAPI request failed: {type(exc).__name__}: {exc}")
+        status = getattr(getattr(exc, "response", None), "status_code", None)
+        if status == 429:
+            _serpapi_down.append(True)
+            _report("SerpAPI quota exhausted (429): fallback disabled for this run")
+        else:
+            _report(f"SerpAPI request failed: {type(exc).__name__}")
         return []
     if payload.get("error"):
         # e.g. "Your account has run out of searches."
@@ -110,6 +119,7 @@ def _search_google(query: str, num: int = 10) -> list[dict]:
 
 
 _reported: set[str] = set()
+_serpapi_down: list[bool] = []
 
 
 def _report(message: str) -> None:
@@ -125,7 +135,7 @@ def _queries(university: str, name_ko: str, domain: str) -> list[str]:
     ]
 
 
-LOG_COLUMNS = ["university", "method", "pages_found", "run_at"]
+LOG_COLUMNS = ["university", "method", "pages_found", "run_at", "note"]
 CANDIDATE_COLUMNS = ["university", "official_domain", "page_title", "department_url", "department",
                      "faculty_count", "accepted", "method"]
 
@@ -140,9 +150,8 @@ def _count_faculty(html: str, url: str) -> int:
 
 
 def _crawl_university(domain: str, name_ko: str, crawler) -> list[dict[str, str]]:
-    starts = [f"https://www.{domain}/", f"https://{domain}/"]
     rows = []
-    for page in crawler.crawl(domain, starts):
+    for page in crawler.crawl(domain, start_urls(domain)):
         rows.append({
             "page_title": page.title,
             "department_url": page.url,
@@ -179,7 +188,11 @@ def discover_departments(search=None, crawler=None) -> pd.DataFrame:
         if column not in sources.columns:
             sources[column] = ""
     log = _read_csv(log_path)
-    done = set(log["university"]) if not log.empty else set()
+    # Universities where a crawl found pages are done; ones that found nothing
+    # are retried (crawler improvements), but only after unexplored ones.
+    done, empty = set(), set()
+    for _, row in log.iterrows():
+        (done if str(row.get("pages_found", "0")) not in ("", "0") else empty).add(row["university"])
     known_urls = {u.rstrip("/") for u in sources["faculty_url"]}
 
     rows: list[dict[str, str]] = []
@@ -187,10 +200,11 @@ def discover_departments(search=None, crawler=None) -> pd.DataFrame:
     new_log: list[dict[str, str]] = []
     searched = 0
 
-    for _, uni in universities.iterrows():
-        university = uni.get("university", "").strip()
-        name_ko = uni.get("name_ko", "").strip()
-        domain = uni.get("official_domain", "").strip().casefold()
+    order = sorted(universities.to_dict("records"), key=lambda u: u.get("university", "") in empty)
+    for uni in order:
+        university = str(uni.get("university", "")).strip()
+        name_ko = str(uni.get("name_ko", "")).strip()
+        domain = str(uni.get("official_domain", "")).strip().casefold()
         if not university or not domain:
             continue
         if university in done and not DISCOVERY_REFRESH:
@@ -202,10 +216,11 @@ def discover_departments(search=None, crawler=None) -> pd.DataFrame:
 
         found = _crawl_university(domain, name_ko, crawler)
         method = "crawl"
-        if not found and SERPAPI_KEY:
+        note = crawler.stats.summary() if getattr(crawler, "stats", None) else ""
+        if not found and SERPAPI_KEY and DISCOVERY_USE_SERPAPI and not _serpapi_down:
             found = _search_university(university, name_ko, domain, search)
             method = "serpapi"
-        print(f"  -> {len(found)} faculty pages ({method})", flush=True)
+        print(f"  -> {len(found)} faculty pages ({method}); {note}", flush=True)
 
         added = 0
         for f in found:
@@ -226,7 +241,7 @@ def discover_departments(search=None, crawler=None) -> pd.DataFrame:
                 "enabled": "yes",
                 "notes": f"auto-{f['method']}: {f['page_title'][:60]} ({f['faculty_count'] or '?'} faculty)",
             })
-        new_log.append({"university": university, "method": method, "pages_found": str(len(found)),
+        new_log.append({"university": university, "method": method, "pages_found": str(len(found)), "note": note,
                         "run_at": pd.Timestamp.now(tz="UTC").strftime("%Y-%m-%d")})
 
     out = pd.DataFrame(rows, columns=CANDIDATE_COLUMNS)
@@ -238,7 +253,7 @@ def discover_departments(search=None, crawler=None) -> pd.DataFrame:
         sources.to_csv(sources_path, index=False, encoding="utf-8-sig")
     if new_log:
         log = pd.concat([log, pd.DataFrame(new_log)], ignore_index=True) if not log.empty else pd.DataFrame(new_log)
-        log = log.drop_duplicates(subset=["university"], keep="last")[LOG_COLUMNS]
+        log = log.drop_duplicates(subset=["university"], keep="last").reindex(columns=LOG_COLUMNS).fillna("")
         log.to_csv(log_path, index=False, encoding="utf-8-sig")
     print(f"Explored {searched} universities; added {len(new_sources)} faculty sources", flush=True)
     return out

@@ -111,3 +111,54 @@ def test_discovery_uses_crawler_and_logs_universities(tmp_path, monkeypatch):
     crawler2 = _crawler(FakeWeb(site))
     dd.discover_departments(crawler=crawler2)
     assert crawler2.fetch.requested == []
+
+
+def test_js_links_frames_and_subdomain_guess():
+    from site_crawler import start_urls
+
+    faculty = "<title>교수진</title>" + _cards(*PEOPLE)
+    site = {
+        # portal menu is JavaScript only; the pharmacy site sits in an iframe
+        "https://www.ex.ac.kr/": """<title>대학교</title>
+            <li onclick="goPage('/colleges.do')">대학·대학원</li>
+            <iframe src="/main_frame.html"></iframe>""",
+        "https://www.ex.ac.kr/colleges.do": """<a href="javascript:location.href='https://pharm.ex.ac.kr/'">약학대학</a>""",
+        "https://pharm.ex.ac.kr/": '<meta http-equiv="refresh" content="0; url=/main.do">',
+        "https://pharm.ex.ac.kr/main.do": '<a href="/prof">교수진</a><link href="/style.css" rel="stylesheet">',
+        "https://pharm.ex.ac.kr/prof": faculty,
+        "https://www.ex.ac.kr/main_frame.html": "<p>frame</p>",
+        # reachable only by guessing the subdomain
+        "https://medicine.ex.ac.kr/": '<title>의과대학</title><a href="/faculty">교수소개</a>',
+        "https://medicine.ex.ac.kr/faculty": faculty,
+    }
+    web = FakeWeb(site)
+    crawler = _crawler(web)
+    pages = crawler.crawl("ex.ac.kr", start_urls("ex.ac.kr"))
+    assert {p.url for p in pages} == {"https://pharm.ex.ac.kr/prof", "https://medicine.ex.ac.kr/faculty"}
+    assert "https://www.ex.ac.kr/main_frame.html" in web.requested
+    assert "https://pharm.ex.ac.kr/style.css" not in web.requested
+    # guessed subdomains that do not exist are not reported as errors
+    assert crawler.stats.errors == {}
+
+
+def test_empty_universities_retried_after_new_ones_and_serpapi_off(tmp_path, monkeypatch):
+    (tmp_path / "data").mkdir()
+    monkeypatch.setattr(dd, "DATA_DIR", tmp_path / "data")
+    monkeypatch.setattr(dd, "OUTPUT_DIR", tmp_path / "out")
+    monkeypatch.setattr(dd, "SERPAPI_KEY", "k")
+    monkeypatch.setattr(dd, "DISCOVERY_UNIVERSITY_LIMIT", 2)
+    pd.DataFrame([
+        {"university": "Old Empty", "name_ko": "", "official_domain": "empty.ac.kr"},
+        {"university": "Done", "name_ko": "", "official_domain": "done.ac.kr"},
+        {"university": "New", "name_ko": "", "official_domain": "new.ac.kr"},
+    ]).to_csv(tmp_path / "data" / "universities_seed.csv", index=False)
+    pd.DataFrame([{"university": "Old Empty", "method": "serpapi", "pages_found": "0", "run_at": "2026-09-24"},
+                  {"university": "Done", "method": "crawl", "pages_found": "3", "run_at": "2026-09-24"}]
+                 ).to_csv(tmp_path / "data" / "discovery_log.csv", index=False)
+    crawler = _crawler(FakeWeb({}))
+    searches = []
+    dd.discover_departments(search=lambda q: searches.append(q) or [], crawler=crawler)
+    log = pd.read_csv(tmp_path / "data" / "discovery_log.csv", dtype=str).fillna("")
+    assert list(log.university) == ["Done", "New", "Old Empty"]  # New first, then the retry
+    assert searches == []  # SerpAPI fallback is opt-in
+    assert "pages fetched" in log.set_index("university").loc["New", "note"]

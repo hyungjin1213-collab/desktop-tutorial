@@ -41,7 +41,14 @@ NON_BIO_LINK_WORDS = [
 FACULTY_LINK_WORDS = ["교수진", "교수소개", "교수 소개", "전임교수", "교원", "교수", "faculty", "professor", "people"]
 FACULTY_EXCLUDE_WORDS = ["보직", "겸임", "명예", "초빙", "퇴임", "emeritus", "adjunct", "visiting"]
 NAV_WORDS = ["대학", "대학원", "학과", "학부", "전공", "교실", "college", "school", "department", "학사", "조직"]
-SKIP_EXT = re.compile(r"\.(pdf|jpe?g|png|gif|hwp|hwpx|docx?|xlsx?|pptx?|zip|mp4|avi)$", re.I)
+# Korean university sites often link through JavaScript:
+#   onclick="goPage('/sub/faculty.do')"  href="javascript:location.href='/x'"
+JS_URL_RE = re.compile(r"""['"]((?:https?://|/)[^'"\s]{2,200})['"]""")
+# College sites usually live on a subdomain; trying these directly works even
+# when the main portal's menu is built by JavaScript.
+COLLEGE_SUBDOMAINS = ["pharm", "pharmacy", "medicine", "med", "medi", "bio", "biology", "life",
+                      "lifesci", "biomed", "bms", "cls", "gsm", "vet"]
+SKIP_EXT = re.compile(r"\.(pdf|jpe?g|png|gif|svg|ico|webp|hwp|hwpx|docx?|xlsx?|pptx?|zip|mp4|avi|css|js|woff2?|ttf|xml|rss|json)$", re.I)
 
 
 @dataclass
@@ -50,6 +57,53 @@ class FoundPage:
     title: str
     trail: list[str]
     faculty_count: int
+
+
+@dataclass
+class CrawlStats:
+    fetched: int = 0
+    errors: dict = field(default_factory=dict)
+    robots_blocked: int = 0
+    faculty_like_checked: int = 0
+
+    def summary(self) -> str:
+        err = ", ".join(f"{k} x{v}" for k, v in sorted(self.errors.items(), key=lambda kv: -kv[1])[:3])
+        parts = [f"{self.fetched} pages fetched", f"{self.faculty_like_checked} faculty-like pages checked"]
+        if self.robots_blocked:
+            parts.append(f"{self.robots_blocked} blocked by robots.txt")
+        if err:
+            parts.append(f"errors: {err}")
+        return "; ".join(parts)
+
+
+def start_urls(domain: str) -> list[str]:
+    domain = domain.casefold().removeprefix("www.")
+    return ([f"https://www.{domain}/", f"https://{domain}/"]
+            + [f"https://{sub}.{domain}/" for sub in COLLEGE_SUBDOMAINS])
+
+
+def _page_links(soup: BeautifulSoup, base: str) -> list[tuple[str, str]]:
+    """(url, text) for anchors, JavaScript links, frames and meta refresh."""
+    out: list[tuple[str, str]] = []
+    js_attrs = ("onclick", "data-href", "data-url", "data-link")
+    for tag in soup.find_all(lambda t: t.has_attr("href") or any(t.has_attr(k) for k in js_attrs)):
+        href = str(tag.get("href", "") or "").strip()
+        text = re.sub(r"\s+", " ", tag.get_text(" ", strip=True) or str(tag.get("title", ""))).strip()[:60]
+        if tag.name in ("a", "area") and href and not href.lower().startswith(("javascript:", "#", "mailto:", "tel:")):
+            out.append((urljoin(base, href), text))
+            continue
+        js = " ".join(str(tag.get(k, "")) for k in js_attrs)
+        if href.lower().startswith("javascript:"):
+            js += " " + href
+        for m in JS_URL_RE.finditer(js):
+            out.append((urljoin(base, m.group(1)), text))
+    for frame in soup.find_all(["iframe", "frame"], src=True):
+        out.append((urljoin(base, str(frame["src"])), "frame"))
+    for meta in soup.find_all("meta", attrs={"http-equiv": re.compile("refresh", re.I)}):
+        m = re.search(r"url\s*=\s*['\"]?([^'\";]+)", str(meta.get("content", "")), re.I)
+        if m:
+            out.append((urljoin(base, m.group(1).strip()), "redirect"))
+    return out
 
 
 @dataclass(order=True)
@@ -126,10 +180,16 @@ class SiteCrawler:
 
     def crawl(self, domain: str, start_urls: list[str]) -> list[FoundPage]:
         domain = domain.casefold().removeprefix("www.")
+        self.stats = CrawlStats()
         queue: list[_Item] = []
         seen: set[str] = set()
-        for url in start_urls:
-            heapq.heappush(queue, _Item(0, url, 0, (), False))
+        # The first two start URLs are the homepage (www / bare); the rest are
+        # guessed college subdomains, tried after it. Many of those do not
+        # exist, so their failures are expected, not errors worth reporting.
+        optional = {_normalize(u) for u in start_urls[2:]} | {_normalize(start_urls[1])} if len(start_urls) > 1 else set()
+        for i, url in enumerate(start_urls):
+            guessed = i >= 2
+            heapq.heappush(queue, _Item(0.5 if guessed else 0, url, 1 if guessed else 0, (), False))
             seen.add(_normalize(url))
 
         found: list[FoundPage] = []
@@ -137,12 +197,18 @@ class SiteCrawler:
         while queue and fetched < self.page_limit and len(found) < MAX_SOURCES_PER_UNIVERSITY:
             item = heapq.heappop(queue)
             if not self._allowed(item.url):
+                self.stats.robots_blocked += 1
                 continue
             try:
                 html = self.fetch(item.url)
-            except Exception:
+            except Exception as exc:
+                if _normalize(item.url) in optional:
+                    continue
+                kind = type(exc).__name__
+                self.stats.errors[kind] = self.stats.errors.get(kind, 0) + 1
                 continue
             fetched += 1
+            self.stats.fetched += 1
             if self.delay:
                 time.sleep(self.delay)
             if not html or "<" not in html[:2000]:
@@ -156,17 +222,17 @@ class SiteCrawler:
             looks_faculty = _has(f"{last} {title}", FACULTY_LINK_WORDS) and not _has(
                 f"{last} {title}", FACULTY_EXCLUDE_WORDS)
             if page_bio and looks_faculty and not _has(title, NON_BIO_LINK_WORDS):
+                self.stats.faculty_like_checked += 1
                 count = self.faculty_counter(html, item.url)
                 if count >= MIN_FACULTY:
                     found.append(FoundPage(item.url, title, list(item.trail), count))
+                    # Its links are mostly per-professor detail pages: do not
+                    # spend the page budget on them.
+                    continue
 
             if item.depth >= self.max_depth:
                 continue
-            for a in soup.find_all("a", href=True):
-                href = str(a.get("href", "")).strip()
-                if not href or href.startswith(("mailto:", "tel:", "javascript:", "#")):
-                    continue
-                url = urljoin(item.url, href)
+            for url, text in _page_links(soup, item.url):
                 if not url.startswith("http") or SKIP_EXT.search(urlparse(url).path):
                     continue
                 if not _same_site(url, domain):
@@ -174,8 +240,9 @@ class SiteCrawler:
                 key = _normalize(url)
                 if key in seen:
                     continue
-                text = re.sub(r"\s+", " ", a.get_text(" ", strip=True) or str(a.get("title", ""))).strip()[:60]
                 score, bio = link_score(text, url, page_bio)
+                if text in ("frame", "redirect"):
+                    score, bio = max(score, 2), page_bio  # same page, just embedded
                 if score <= 0:
                     continue
                 seen.add(key)

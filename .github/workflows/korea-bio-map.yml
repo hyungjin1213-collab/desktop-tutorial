@@ -114,7 +114,13 @@ jobs:
             echo "No generated data changes to commit."
           else
             git commit -m "Update Korea Bio Map generated data"
-            git push origin HEAD:"${{ inputs.target_branch }}"
+            # Code may have been pushed while this run was going: replay the
+            # data commit on top (this run's data wins on conflicts) and retry.
+            for attempt in 1 2 3; do
+              git pull --rebase -X theirs origin "${{ inputs.target_branch }}" && \
+                git push origin HEAD:"${{ inputs.target_branch }}" && break
+              sleep $((attempt * 5))
+            done
           fi
 
       - name: Publish latest map to gh-pages

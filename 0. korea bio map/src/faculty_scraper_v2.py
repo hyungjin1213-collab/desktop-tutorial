@@ -7,6 +7,7 @@ from urllib.parse import urljoin, urlparse
 
 import pandas as pd
 import requests
+import urllib3
 from bs4 import BeautifulSoup, Tag
 
 from config import DATA_DIR, OUTPUT_DIR
@@ -19,6 +20,7 @@ from name_extraction import (
 )
 
 REQUEST_TIMEOUT_SECONDS = 12
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Detail pages fetched per run to find English names / emails missing on the list page.
 PROFILE_FETCH_LIMIT = int(os.getenv("PROFILE_FETCH_LIMIT", "400"))
 
@@ -48,11 +50,13 @@ def _clean(text: str) -> str:
 
 
 def _fetch(url: str) -> str:
-    r = requests.get(
-        url,
-        timeout=REQUEST_TIMEOUT_SECONDS,
-        headers={"User-Agent": "Mozilla/5.0 (compatible; AboutBioFacultyCollector/2.1)"},
-    )
+    headers = {"User-Agent": "Mozilla/5.0 (compatible; AboutBioFacultyCollector/2.1)"}
+    try:
+        r = requests.get(url, timeout=REQUEST_TIMEOUT_SECONDS, headers=headers)
+    except requests.exceptions.SSLError:
+        # Many Korean university sites serve an incomplete certificate chain.
+        # These are public pages read without credentials, so retry unverified.
+        r = requests.get(url, timeout=REQUEST_TIMEOUT_SECONDS, headers=headers, verify=False)
     r.raise_for_status()
     r.encoding = r.apparent_encoding or r.encoding
     return r.text
