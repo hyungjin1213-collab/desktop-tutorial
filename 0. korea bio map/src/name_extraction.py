@@ -354,12 +354,29 @@ def phonetic_key(text: str) -> str:
     return s[:-1] if len(s) > 2 and s.endswith("h") else s   # Seulah / Seula
 
 
+def normalize_english_name(name_en: str) -> str:
+    """'Kang, Keon Wook' -> 'Keon Wook Kang'; 'KO, JE SANG' -> 'Je Sang Ko'.
+
+    Faculty lists and hand-entered rows often write the surname first with a
+    comma; OpenAlex search and name comparison expect given names first.
+    """
+    name = re.sub(r"\s+", " ", str(name_en or "")).strip()
+    if name.count(",") == 1:
+        last, first = (p.strip() for p in name.split(","))
+        if last and first:
+            name = f"{first} {last}"
+    if name.isupper():
+        name = " ".join(w.capitalize() if "-" not in w else "-".join(x.capitalize() for x in w.split("-"))
+                        for w in name.split())
+    return name
+
+
 def english_matches_korean(name_en: str, name_ko: str) -> bool:
     """True when an English name is a plausible romanization of name_ko."""
     surname, given = split_korean_name(name_ko)
     if not surname:
         return False
-    tokens = [t for t in re.split(r"[\s,.]+", name_en or "") if t]
+    tokens = [t for t in re.split(r"[\s,.]+", normalize_english_name(name_en)) if t]
     romans = {r.casefold() for r in ALL_ROMANIZATIONS.get(surname, [])}
     for i, tok in enumerate(tokens):
         if tok.casefold() in romans:

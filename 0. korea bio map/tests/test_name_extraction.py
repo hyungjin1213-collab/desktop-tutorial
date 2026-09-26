@@ -164,3 +164,12 @@ def test_display_name_compatible(display, ko):
 @pytest.mark.parametrize("display,ko", INCOMPATIBLE)
 def test_display_name_incompatible(display, ko):
     assert not name_compatible(display, ko)
+
+
+def test_surname_first_english_names_are_normalized():
+    from name_extraction import english_matches_korean, normalize_english_name
+
+    assert normalize_english_name("Kang, Keon Wook") == "Keon Wook Kang"
+    assert normalize_english_name("KO, JE SANG") == "Je Sang Ko"
+    assert normalize_english_name("Martin Steinegger") == "Martin Steinegger"
+    assert english_matches_korean("Kim, Dae-Duk", "김대덕")

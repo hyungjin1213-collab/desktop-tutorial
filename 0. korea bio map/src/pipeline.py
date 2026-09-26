@@ -21,7 +21,7 @@ from config import (
 from classify import Classifier, position
 from keywords import KeywordCollector
 from lineage import Authorship, infer_lineage, lineage_relationships
-from name_extraction import name_compatible
+from name_extraction import name_compatible, normalize_english_name
 from master_sheet import lab_info, master_relationships
 from sectors import ORG_TYPE_SECTOR, SectorCollector, SectorTable
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
@@ -146,15 +146,19 @@ def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
         if not current_id and not item.get("orcid", ""):
             # Hand-entered rows: same matcher as imported faculty (romanization
             # variants, institution acronyms like POSTECH, past affiliations).
-            from faculty_identity_v2 import MIN_BIO_SHARE, _best_openalex, _bio_share
+            from faculty_identity_v2 import MIN_BIO_SHARE, _best_openalex, _bio_share, _name_similarity
 
             try:
                 match, _ = _best_openalex(client, item.get("name_ko", ""), item.get("name_en", ""),
                                           item.get("university", ""), item.get("name_en") or item.get("name_ko", ""))
             except OpenAlexUnavailable:
                 match = None
-            name_ok = not item.get("name_ko") or name_compatible(str((match or {}).get("display_name", "")),
-                                                                 item["name_ko"])
+            shown = str((match or {}).get("display_name", ""))
+            name_en = normalize_english_name(item.get("name_en", ""))
+            # Korean name romanizes to the profile name, or the English name
+            # entered by hand is that name (foreign faculty: 마틴 슈타이네거).
+            name_ok = (not item.get("name_ko") or name_compatible(shown, item["name_ko"])
+                       or (name_en and _name_similarity(name_en, shown) >= 0.85))
             # Same checks as imported faculty: run #26 gave 김원종 (POSTECH,
             # polymers) a marketing researcher's profile.
             if match and name_ok and _bio_share(match) >= MIN_BIO_SHARE:

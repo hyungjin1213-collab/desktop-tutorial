@@ -25,6 +25,7 @@ import pandas as pd
 
 from config import DATA_DIR, OUTPUT_DIR
 from name_extraction import (
+    normalize_english_name,
     english_matches_korean,
     name_compatible,
     english_query_variants,
@@ -243,6 +244,7 @@ def _best_openalex(
     romanization variants of the Korean name when the page has none.
     """
     rejected = load_rejections()
+    name_en = normalize_english_name(name_en)
     candidates: dict[str, dict] = {}
     for query in _search_queries(name_ko, name_en, fallback_name, surname_hint):
         # OpenAlexUnavailable propagates so the caller can stop and retry later.
