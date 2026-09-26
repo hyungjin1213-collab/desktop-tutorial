@@ -33,6 +33,23 @@
     .who{flex:1;min-width:0}
     .who b{font-size:13px}.who small{display:block;color:#9aa7c7;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .val{flex:0 0 auto;font-size:12px;color:#d7def0}
+    .badge{display:inline-block;min-width:16px;margin-left:4px;padding:0 4px;border-radius:999px;background:#fbbf24;color:#111;font-size:11px}
+    .badge[hidden]{display:none}
+    .filter-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#9aa7c7}
+    .reset{background:none;border:1px solid rgba(255,255,255,.2);color:#d7def0;border-radius:8px;padding:4px 9px;font-size:12px;cursor:pointer}
+    .fgroup h4{margin:12px 0 6px;font-size:12px;color:#9aa7c7;font-weight:600}
+    .chips{display:flex;flex-wrap:wrap;gap:6px}
+    .chip{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.14);font-size:12px;color:#d7def0;cursor:pointer;user-select:none}
+    .chip input{display:none}
+    .chip.on{background:rgba(251,191,36,.16);border-color:#fbbf24;color:#fff}
+    .chip.empty-chip{opacity:.4}
+    .chip small{color:#9aa7c7}
+    .who small.match{color:#fbbf24}
+    .who small.match.tech{color:#5eead4}
+    .seg{display:flex;gap:4px;margin-top:6px}
+    .seg button{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#9aa7c7;border-radius:8px;padding:5px 0;font-size:12px;cursor:pointer}
+    .seg button.on{color:#fff;border-color:#fbbf24;background:rgba(251,191,36,.12)}
+    .kw{color:#c7d2fe}
     .empty{color:#7f8aa8;font-size:12px;padding:10px 6px}
     .open-side{position:fixed;top:14px;right:14px;z-index:21;background:rgba(3,7,18,.78);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:8px 13px;font:600 13px Arial,sans-serif;cursor:pointer}
     .open-side[hidden]{display:none}
@@ -49,30 +66,38 @@
 <body>
   <div class="panel">
     <h1>Korea Bio Map · 3D</h1>
-    <p>교수 = 별 · score = 별 크기</p>
+    <p>교수 = 별 · score = 별 크기 · 색 = 분야</p>
     <div class="lines">
       <div><span class="line" style="background:#fbbf24;height:3px"></span>지도교수 → 제자 (PI 10점 · 제자 1점)</div>
       <div><span class="line" style="background:#c084fc;height:2px"></span>포닥 멘토 → 포닥 (PI 3점 · 포닥 1점)</div>
-      <div><span class="line" style="background:rgba(147,197,253,.45);height:1px"></span>공동연구 (1명당 1점 · 별을 누르면 강조)</div>
+      <div><span class="line" style="background:rgba(147,197,253,.45);height:1px"></span>공동연구 (1명당 1점 · 협업 강도순 밝기 · 별을 누르면 강조)</div>
     </div>
-    <div class="legend">
-      <div><span class="dot" style="background:#2dd4bf;color:#2dd4bf"></span>면역항암</div>
-      <div><span class="dot" style="background:#60a5fa;color:#60a5fa"></span>합성생물학</div>
-      <div><span class="dot" style="background:#f59e0b;color:#f59e0b"></span>세포치료</div>
-      <div><span class="dot" style="background:#c084fc;color:#c084fc"></span>의료용 고분자</div>
-      <div><span class="dot" style="background:#fb7185;color:#fb7185"></span>체외면역 평가</div>
-    </div>
+    <div class="legend" id="legend"></div>
   </div>
-  <button class="open-side" id="open-side" hidden>검색 · 순위</button>
+  <button class="open-side" id="open-side" hidden>검색 · 순위 · 필터</button>
   <div class="side" id="side">
     <div class="tabs" role="tablist">
       <button class="on" data-tab="search" role="tab">검색</button>
       <button data-tab="rank" role="tab">순위</button>
+      <button data-tab="filter" role="tab">필터<span class="badge" id="filter-badge" hidden></span></button>
       <button class="fold" id="fold" aria-label="접기">×</button>
     </div>
     <div class="pane" id="pane-search">
-      <input id="q" type="search" placeholder="교수 이름 · 대학 · 학과 · 분야" autocomplete="off" />
+      <input id="q" type="search" placeholder="이름 · 대학 · 분야 · 연구 키워드 (예: T세포)" autocomplete="off" />
+      <div class="seg" id="q-mode" role="radiogroup" aria-label="검색 범위">
+        <button data-mode="all" class="on">전체</button><button data-mode="topic">연구 분야</button><button data-mode="technique">기술</button>
+      </div>
       <ol class="list" id="search-list"></ol>
+    </div>
+    <div class="pane" id="pane-filter" hidden>
+      <div class="filter-head"><span id="filter-count"></span><button class="reset" id="filter-reset">초기화</button></div>
+      <div class="list filters-scroll">
+        <div class="fgroup"><h4>분야</h4><div class="chips" id="f-category"></div></div>
+        <div class="fgroup"><h4>지역</h4><div class="chips" id="f-region"></div></div>
+        <div class="fgroup"><h4>기술</h4><div class="chips" id="f-technique"></div></div>
+        <div class="fgroup"><h4>직위</h4><div class="chips" id="f-position"></div></div>
+        <div class="fgroup"><h4>기타</h4><div class="chips" id="f-extra"></div></div>
+      </div>
     </div>
     <div class="pane" id="pane-rank" hidden>
       <div class="filters">
@@ -93,23 +118,16 @@
   <script src="https://unpkg.com/3d-force-graph@1.76.1/dist/3d-force-graph.min.js"></script>
   <script src="./network-data.js"></script>
   <script>
-    const colors={
-      "면역항암":"#2dd4bf",
-      "합성생물학":"#60a5fa",
-      "세포치료":"#f59e0b",
-      "의료용 고분자":"#c084fc",
-      "체외면역 평가":"#fb7185"
+    // One color per broad field (src/classify.py, data/field_categories.csv).
+    const CATEGORY_COLORS={
+      "분자·세포생물":"#60a5fa","임상의학":"#f472b6","암·종양":"#fb7185","면역·감염":"#2dd4bf",
+      "신경과학":"#a78bfa","약학·신약":"#fbbf24","유전체·생물정보":"#34d399","의공학·바이오소재":"#f97316",
+      "생리·대사":"#facc15","보건·역학":"#94a3b8","농생명·식품·생태":"#84cc16","기타":"#e5e7eb"
     };
-
-    // Fields without a fixed color (e.g. OpenAlex subfields such as "Immunology")
-    // get a stable color derived from the field name.
-    function fieldColor(field){
-      if(colors[field]) return colors[field];
-      if(!field) return "#e5e7eb";
-      let h=0;
-      for(const ch of field) h=(h*31+ch.codePointAt(0))>>>0;
-      return `hsl(${h%360},70%,68%)`;
-    }
+    const CATEGORY_ORDER=Object.keys(CATEGORY_COLORS);
+    const REGION_ORDER=["서울","경기·인천","강원","대전·충청","대구·경북","부산·울산·경남","광주·전라","제주","기타"];
+    const POSITION_ORDER=["교수","부교수","조교수","미상"];
+    const fieldColor=n=>CATEGORY_COLORS[n.category]||CATEGORY_COLORS["기타"];
     const NODE_COUNT=(window.KOREA_BIO_MAP.nodes||[]).length;
     const SEG=NODE_COUNT>800?8:NODE_COUNT>200?14:24;
 
@@ -127,13 +145,21 @@
     const endId=v=>typeof v==="object"?v.id:v;
     let focus=null, selected=null;
     const touchesFocus=l=>focus&&(endId(l.source)===focus.id||endId(l.target)===focus.id);
+    // Collaboration strength (weighted by team size, seniority and recency;
+    // see collaboration_weight in pipeline.py): 0.5 is the drawing threshold.
+    const strengthLevel=l=>Math.min((Number(l.strength)||0.5)/3,1);   // 0..1
     function linkColor(l){
       const st=LINK_STYLE[l.type]||LINK_STYLE.collaboration;
-      return touchesFocus(l)&&st.focus?st.focus:st.color;
+      if(isLineage(l)) return st.color;
+      const k=strengthLevel(l);
+      return touchesFocus(l)
+        ? `rgba(191,219,254,${(0.45+0.5*k).toFixed(2)})`
+        : `rgba(147,197,253,${(0.05+0.17*k).toFixed(2)})`;
     }
     function linkWidth(l){
       const st=LINK_STYLE[l.type]||LINK_STYLE.collaboration;
-      return touchesFocus(l)&&st.focusWidth!==undefined?st.focusWidth:st.width;
+      if(isLineage(l)) return st.width;
+      return touchesFocus(l)?0.25+0.8*strengthLevel(l):0;
     }
     function setFocus(node){
       if((node&&node.id)===(focus&&focus.id)) return;
@@ -150,7 +176,7 @@
       .graphData(window.KOREA_BIO_MAP)
       .nodeThreeObject(node=>{
         const group=new THREE.Group();
-        const c=fieldColor(node.field);
+        const c=fieldColor(node);
         const score=Number(node.score||0);
         const r=2.8+Math.sqrt(score+1)*1.6;
 
@@ -176,8 +202,10 @@
         }
         return group;
       })
-      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${esc(n.name)}</b>${n.name_en&&n.name_en!==n.name?` (${esc(n.name_en)})`:""}<br>${esc(n.university)}${n.department?` · ${esc(n.department)}`:""}<br>${esc(n.field)}<br>Score: ${n.score} · 공동연구 ${n.collaborator_count}명${n.faculty_trainee_count?` · 교수 된 제자 ${n.faculty_trainee_count}`:""}${n.postdoc_PI_count?` · PI 된 포닥 ${n.postdoc_PI_count}`:""}${n.orcid?`<br>ORCID: ${esc(n.orcid)}`:""}</div>`)
-      .linkLabel(l=>isLineage(l)?`<div style="padding:5px 7px">${l.type==="advisor_student"?"지도교수 → 제자":"포닥 멘토 → 포닥"}<br>${l.verified==="auto"?`자동 추정 · 근거 논문 ${l.paper_count}편`:"확인됨"}</div>`:"")
+      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${esc(n.name)}</b>${n.name_en&&n.name_en!==n.name?` (${esc(n.name_en)})`:""}<br>${esc(n.university_ko||n.university)}${n.department?` · ${esc(n.department)}`:""}${n.position?` · ${esc(n.position)}`:""}<br>${esc(n.category||"")}${n.field?` <span style="color:#9aa7c7">(${esc(n.field)})</span>`:""} · ${esc(n.region||"")}<br>Score: ${n.score} · 공동연구 ${n.collaborator_count}명${n.faculty_trainee_count?` · 교수 된 제자 ${n.faculty_trainee_count}`:""}${n.postdoc_PI_count?` · PI 된 포닥 ${n.postdoc_PI_count}`:""}${(n.keywords||[]).length?`<br><span class="kw">연구 분야: ${n.keywords.slice(0,6).map(esc).join(", ")}</span>`:""}${(n.techniques||[]).length?`<br><span class="kw">주요 기술: ${n.techniques.slice(0,4).map(esc).join(", ")}</span>`:""}${n.orcid?`<br>ORCID: ${esc(n.orcid)}`:""}</div>`)
+      .linkLabel(l=>isLineage(l)
+        ?`<div style="padding:5px 7px">${l.type==="advisor_student"?"지도교수 → 제자":"포닥 멘토 → 포닥"}<br>${l.verified==="auto"?`자동 추정 · 근거 논문 ${l.paper_count}편`:"확인됨"}</div>`
+        :`<div style="padding:5px 7px">공동연구 · 논문 ${l.paper_count}편${l.last_year?` · 최근 ${l.last_year}년`:""}<br>협업 강도 ${(Number(l.strength)||0).toFixed(2)}</div>`)
       .linkColor(linkColor)
       .linkWidth(linkWidth)
       .linkOpacity(1)
@@ -251,19 +279,26 @@
     const uniName=u=>String(u||"").split(";")[0].trim().replace(/\b\w/g,c=>c.toUpperCase());
     const norm=v=>String(v||"").toLowerCase().replace(/\s+/g,"");
     NODES.forEach(n=>{
-      n._uni=uniName(n.university);
-      n._hay=norm([n.name,n.name_en,n._uni,n.department,n.field].join(" "));
+      n._uni=n.university_ko||uniName(n.university);
+      n._hay=norm([n.name,n.name_en,n._uni,n.department,n.field,n.category].join(" "));
+      // research terms, best first: position in this list ranks keyword hits
+      const TECH_EN=window.KOREA_BIO_MAP.techniques_en||{};
+      n._terms=[
+        ...(n.keywords||[]).map((t,r)=>({t,r,k:norm(t),kind:"topic"})),
+        ...(n.techniques||[]).map((t,r)=>({t,r,k:norm(t+" "+(TECH_EN[t]||"")),kind:"technique"}))
+      ];
     });
     const side=document.getElementById("side"), openBtn=document.getElementById("open-side");
     const q=document.getElementById("q"), searchList=document.getElementById("search-list");
     const rankBy=document.getElementById("rank-by"), rankUni=document.getElementById("rank-uni"), rankList=document.getElementById("rank-list");
 
-    function row(n,{rank,value}={}){
+    function row(n,{rank,value,match}={}){
       const li=document.createElement("li");
       li.className="row";li.dataset.id=n.id;
       li.innerHTML=`${rank!==undefined?`<span class="rank">${rank}</span>`:""}
         <span class="who"><b>${esc(n.name)}</b>${n.name_en&&n.name_en!==n.name?` <small style="display:inline">${esc(n.name_en)}</small>`:""}
-        <small>${esc(n._uni)}${n.department?` · ${esc(n.department)}`:""}${n.field?` · ${esc(n.field)}`:""}</small></span>
+        <small>${esc(n._uni)}${n.department?` · ${esc(n.department)}`:""}${n.category?` · ${esc(n.category)}`:""}</small>
+        ${match?`<small class="match${match.kind==="technique"?" tech":""}">${match.kind==="technique"?"기술":"연구 분야"}: ${esc(match.t)}</small>`:""}</span>
         <span class="val">${esc(value??n.score)}</span>`;
       li.addEventListener("click",()=>{
         flyTo(n);
@@ -280,20 +315,47 @@
       document.querySelectorAll(".row").forEach(r=>r.classList.toggle("active",r.dataset.id===id));
     }
 
+    const SYNONYMS=window.KOREA_BIO_MAP.synonyms||{};
+    // Korean words map to English research terms: "T세포" also searches T-Lymphocytes.
+    function queryTerms(raw){
+      const base=norm(raw);
+      const extra=Object.entries(SYNONYMS).filter(([ko])=>norm(ko).includes(base)||base.includes(norm(ko)))
+        .flatMap(([,en])=>en.map(norm));
+      return [base,...extra].filter(Boolean);
+    }
+    let qMode="all";
+    document.querySelectorAll("#q-mode button").forEach(b=>b.addEventListener("click",()=>{
+      qMode=b.dataset.mode;
+      document.querySelectorAll("#q-mode button").forEach(x=>x.classList.toggle("on",x===b));
+      runSearch();
+    }));
     function runSearch(){
       const term=norm(q.value);
-      if(!term){fill(searchList,[],`교수 ${NODES.length}명 중에서 이름·대학·학과·분야로 검색`);return;}
-      const hits=NODES.filter(n=>n._hay.includes(term))
-        .sort((a,b)=>(norm(b.name)===term)-(norm(a.name)===term)||b.score-a.score)
-        .slice(0,40);
-      fill(searchList,hits.map(n=>row(n)),"검색 결과가 없어요");
+      if(!term){fill(searchList,[],`교수 ${NODES.length}명 중에서 이름·대학·학과·분야·연구 키워드로 검색 (예: T세포, 오가노이드, CRISPR)`);return;}
+      const terms=queryTerms(q.value);
+      const hits=[];
+      NODES.forEach(n=>{
+        if(n._pass===false) return;
+        const byName=n._hay.includes(term);
+        let best=null;
+        // x.r = rank within its own list (topics / techniques), so a lab's top
+        // technique ranks like another lab's top topic keyword.
+        n._terms.forEach(x=>{
+          if(qMode!=="all"&&x.kind!==qMode) return;
+          if(terms.some(t=>x.k.includes(t)||(t.length>3&&t.includes(x.k)))&&(!best||x.r<best.i)) best={i:x.r,t:x.t,kind:x.kind};
+        });
+        if((byName&&qMode==="all")||best) hits.push({n,byName:byName&&qMode==="all",best});
+      });
+      hits.sort((a,b)=>(norm(b.n.name)===term)-(norm(a.n.name)===term)
+        ||(a.best?a.best.i:99)-(b.best?b.best.i:99)||b.n.score-a.n.score);
+      fill(searchList,hits.slice(0,50).map(h=>row(h.n,{match:h.best&&!h.byName?h.best:null})),"검색 결과가 없어요");
     }
 
     const unis=[...new Set(NODES.map(n=>n._uni).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
     rankUni.replaceChildren(new Option("전체 대학",""),...unis.map(u=>new Option(u,u)));
     function runRank(){
       const key=rankBy.value, uni=rankUni.value;
-      const items=NODES.filter(n=>!uni||n._uni===uni)
+      const items=NODES.filter(n=>n._pass!==false&&(!uni||n._uni===uni))
         .sort((a,b)=>(b[key]||0)-(a[key]||0)||b.score-a.score);
       let rank=0,prev=null;
       const rows=items.slice(0,100).map((n,i)=>{
@@ -304,10 +366,79 @@
       fill(rankList,rows,"표시할 교수가 없어요");
     }
 
+
+    // ---------- filters ----------
+    const nowYear=new Date().getFullYear();
+    const lineageIds=new Set(), recentIds=new Set();
+    (window.KOREA_BIO_MAP.links||[]).forEach(l=>{
+      const a=endId(l.source), b=endId(l.target);
+      if(isLineage(l)){lineageIds.add(a);lineageIds.add(b);}
+      else if(Number(l.last_year)>=nowYear-5){recentIds.add(a);recentIds.add(b);}
+    });
+    const EXTRA={
+      lineage:{label:"계보(제자·포닥) 있음",test:n=>lineageIds.has(n.id)},
+      recent:{label:"최근 5년 공동연구",test:n=>recentIds.has(n.id)},
+      verified:{label:"신원 확인됨 (ORCID 등)",test:n=>n.identity==="verified"}
+    };
+    const FILTERS={category:new Set(),region:new Set(),position:new Set(),technique:new Set(),extra:new Set()};
+    const valueOf={category:n=>n.category||"기타",region:n=>n.region||"기타",position:n=>n.position||"미상"};
+    const passes=n=>["category","region","position"].every(k=>!FILTERS[k].size||FILTERS[k].has(valueOf[k](n)))
+      &&(!FILTERS.technique.size||(n.techniques||[]).some(t=>FILTERS.technique.has(t)))
+      &&[...FILTERS.extra].every(k=>EXTRA[k].test(n));
+
+    function chip(group,value,label,count,color){
+      const el=document.createElement("label");
+      el.className="chip"+(count?"":" empty-chip");
+      el.innerHTML=`${color?`<span class="dot" style="background:${color};color:${color}"></span>`:""}<input type="checkbox">${esc(label)} <small>${count}</small>`;
+      el.querySelector("input").addEventListener("change",e=>{
+        e.target.checked?FILTERS[group].add(value):FILTERS[group].delete(value);
+        el.classList.toggle("on",e.target.checked);
+        applyFilters();
+      });
+      return el;
+    }
+    function buildFilters(){
+      const count=(k,v)=>NODES.filter(n=>valueOf[k](n)===v).length;
+      document.getElementById("f-category").replaceChildren(...CATEGORY_ORDER.map(v=>chip("category",v,v,count("category",v),CATEGORY_COLORS[v])));
+      document.getElementById("f-region").replaceChildren(...REGION_ORDER.map(v=>chip("region",v,v,count("region",v))));
+      const techCount={};
+      NODES.forEach(n=>(n.techniques||[]).forEach(t=>{techCount[t]=(techCount[t]||0)+1;}));
+      const techs=Object.entries(techCount).sort((a,b)=>b[1]-a[1]).slice(0,30);
+      document.getElementById("f-technique").replaceChildren(...(techs.length
+        ?techs.map(([t,c])=>chip("technique",t,t,c))
+        :[Object.assign(document.createElement("span"),{className:"empty",textContent:"다음 수집 후 표시돼요"})]));
+      document.getElementById("f-position").replaceChildren(...POSITION_ORDER.map(v=>chip("position",v,v,count("position",v))));
+      document.getElementById("f-extra").replaceChildren(...Object.entries(EXTRA).map(([k,x])=>chip("extra",k,x.label,NODES.filter(x.test).length)));
+      document.getElementById("legend").replaceChildren(...CATEGORY_ORDER.filter(v=>count("category",v)).map(v=>{
+        const d=document.createElement("div");
+        d.innerHTML=`<span class="dot" style="background:${CATEGORY_COLORS[v]};color:${CATEGORY_COLORS[v]}"></span>${esc(v)}`;
+        return d;
+      }));
+    }
+    function applyFilters(){
+      NODES.forEach(n=>{n._pass=passes(n);});
+      const shown=NODES.filter(n=>n._pass).length;
+      const active=Object.values(FILTERS).reduce((s,x)=>s+x.size,0);
+      document.getElementById("filter-count").textContent=`${shown} / ${NODES.length}명 표시 중`;
+      const badge=document.getElementById("filter-badge");
+      badge.hidden=!active;badge.textContent=active;
+      const byId=new Map(NODES.map(n=>[n.id,n]));
+      Graph.nodeVisibility(n=>n._pass!==false)
+        .linkVisibility(l=>byId.get(endId(l.source))?._pass!==false&&byId.get(endId(l.target))?._pass!==false);
+      if(selected&&selected._pass===false){selected=null;setFocus(null);}
+      runSearch();runRank();
+    }
+    document.getElementById("filter-reset").addEventListener("click",()=>{
+      Object.values(FILTERS).forEach(x=>x.clear());
+      document.querySelectorAll("#pane-filter .chip").forEach(c=>{c.classList.remove("on");c.querySelector("input").checked=false;});
+      applyFilters();
+    });
+
     document.querySelectorAll(".tabs [data-tab]").forEach(btn=>btn.addEventListener("click",()=>{
       document.querySelectorAll(".tabs [data-tab]").forEach(b=>b.classList.toggle("on",b===btn));
       document.getElementById("pane-search").hidden=btn.dataset.tab!=="search";
       document.getElementById("pane-rank").hidden=btn.dataset.tab!=="rank";
+      document.getElementById("pane-filter").hidden=btn.dataset.tab!=="filter";
     }));
     function setSide(open){side.hidden=!open;openBtn.hidden=open;if(open&&!document.getElementById("pane-search").hidden)q.focus({preventScroll:true});}
     document.getElementById("fold").addEventListener("click",()=>setSide(false));
@@ -316,7 +447,7 @@
     q.addEventListener("keydown",e=>{if(e.key==="Enter"){const first=searchList.querySelector(".row");if(first)first.click();}});
     rankBy.addEventListener("change",runRank);
     rankUni.addEventListener("change",runRank);
-    runSearch();runRank();
+    buildFilters();applyFilters();
     if(window.matchMedia("(max-width:640px)").matches) setSide(false);
   </script>
 </body>
