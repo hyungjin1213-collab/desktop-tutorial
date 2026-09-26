@@ -10,8 +10,11 @@ from faculty_identity_v2 import import_verified_faculty_v2, resolve_faculty_iden
 from faculty_agent import collect_faculty_with_agent
 from faculty_scraper import scrape_faculty
 from faculty_scraper_v2 import scrape_faculty_v2
+from config import DATA_DIR
+from master_sheet import add_master_professors
 from openalex_client import OpenAlexClient, OpenAlexUnavailable
 from pipeline import (
+    PROFESSOR_COLUMNS,
     build_network,
     collect_collaborations,
     promote_approved_candidates,
@@ -23,6 +26,9 @@ from scopus_client import ScopusClient
 
 
 def run_all(client: OpenAlexClient) -> None:
+    added = add_master_professors(DATA_DIR / "professors_seed.csv", PROFESSOR_COLUMNS)
+    if added:
+        print(f"Added {added} professors from the master Excel file", flush=True)
     professors = resolve_professors(client)
     scopus = ScopusClient()
     if scopus.enabled:

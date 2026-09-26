@@ -17,6 +17,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "공과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "",
       "identity": "seed",
@@ -59,6 +60,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "공과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5066692256",
       "identity": "seed",
@@ -86,6 +88,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "약학대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "",
       "identity": "seed",
@@ -113,6 +116,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "화학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "",
       "identity": "seed",
@@ -140,6 +144,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "화학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "",
       "identity": "seed",
@@ -182,6 +187,7 @@ window.KOREA_BIO_MAP = {
         "미세유체·장기칩"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5068463807",
       "identity": "seed",
@@ -224,6 +230,7 @@ window.KOREA_BIO_MAP = {
         "엑소좀·세포외소포"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5100642851",
       "identity": "seed",
@@ -266,6 +273,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5007222103",
       "identity": "seed",
@@ -308,6 +316,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5007880310",
       "identity": "seed",
@@ -350,6 +359,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5014839787",
       "identity": "seed",
@@ -392,6 +402,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5019115055",
       "identity": "seed",
@@ -434,6 +445,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5086409096",
       "identity": "seed",
@@ -476,6 +488,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5102970348",
       "identity": "seed",
@@ -518,6 +531,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5064161026",
       "identity": "seed",
@@ -560,6 +574,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5077539926",
       "identity": "seed",
@@ -602,6 +617,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5063762312",
       "identity": "seed",
@@ -644,6 +660,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5083853234",
       "identity": "seed",
@@ -686,6 +703,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5059129862",
       "identity": "seed",
@@ -728,6 +746,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5068416755",
       "identity": "seed",
@@ -770,6 +789,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5028790314",
       "identity": "seed",
@@ -812,6 +832,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5069444992",
       "identity": "seed",
@@ -854,6 +875,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5047859685",
       "identity": "seed",
@@ -896,6 +918,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5022299245",
       "identity": "seed",
@@ -938,6 +961,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5057234589",
       "identity": "seed",
@@ -980,6 +1004,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5075962780",
       "identity": "seed",
@@ -1019,6 +1044,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5068736163",
       "identity": "seed",
@@ -1061,6 +1087,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5003283147",
       "identity": "seed",
@@ -1103,6 +1130,7 @@ window.KOREA_BIO_MAP = {
         "단일세포 분석"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5076271673",
       "identity": "seed",
@@ -1145,6 +1173,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5100410174",
       "identity": "seed",
@@ -1187,6 +1216,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5101642438",
       "identity": "seed",
@@ -1229,6 +1259,7 @@ window.KOREA_BIO_MAP = {
         "CAR-T·입양세포치료"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-1149-0880",
       "openalex_id": "A5068089918",
       "identity": "verified",
@@ -1271,6 +1302,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-5738-1105",
       "openalex_id": "A5023471531",
       "identity": "verified",
@@ -1313,6 +1345,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-7161-4737",
       "openalex_id": "A5066812821",
       "identity": "verified",
@@ -1355,6 +1388,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-7812-9638",
       "openalex_id": "A5051360291",
       "identity": "verified",
@@ -1397,6 +1431,7 @@ window.KOREA_BIO_MAP = {
         "단일세포 분석"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-4020-5372",
       "openalex_id": "A5018847566",
       "identity": "verified",
@@ -1439,6 +1474,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-9645-8221",
       "openalex_id": "A5089409756",
       "identity": "verified",
@@ -1481,6 +1517,7 @@ window.KOREA_BIO_MAP = {
         "후성유전 분석"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0003-0896-718X",
       "openalex_id": "A5002243126",
       "identity": "verified",
@@ -1523,6 +1560,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-9964-7231",
       "openalex_id": "A5077864017",
       "identity": "verified",
@@ -1565,6 +1603,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0003-0761-3064",
       "openalex_id": "A5002218943",
       "identity": "verified",
@@ -1607,6 +1646,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-1836-1707",
       "openalex_id": "A5044392908",
       "identity": "verified",
@@ -1649,6 +1689,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-3637-3103",
       "openalex_id": "A5052839519",
       "identity": "verified",
@@ -1691,6 +1732,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-1788-9892",
       "openalex_id": "A5110165134",
       "identity": "verified",
@@ -1727,6 +1769,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5136323851",
       "identity": "probable",
@@ -1767,6 +1810,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-8145-9520",
       "openalex_id": "A5067936109",
       "identity": "probable",
@@ -1794,6 +1838,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0009-0006-8473-6921",
       "openalex_id": "",
       "identity": "verified",
@@ -1836,6 +1881,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-8093-043X",
       "openalex_id": "A5100334531",
       "identity": "verified",
@@ -1878,6 +1924,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0009-0000-2403-6241",
       "openalex_id": "A5086002768",
       "identity": "probable",
@@ -1920,6 +1967,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-7962-3395",
       "openalex_id": "A5048760496",
       "identity": "probable",
@@ -1956,6 +2004,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0009-0009-9637-7972",
       "openalex_id": "A5072167140",
       "identity": "probable",
@@ -1998,6 +2047,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-6964-1779",
       "openalex_id": "A5068330340",
       "identity": "verified",
@@ -2040,6 +2090,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-9277-2662",
       "openalex_id": "A5020752812",
       "identity": "verified",
@@ -2082,6 +2133,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-7090-537X",
       "openalex_id": "A5001974637",
       "identity": "verified",
@@ -2124,6 +2176,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-3702-7202",
       "openalex_id": "A5071455227",
       "identity": "verified",
@@ -2166,6 +2219,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-8115-3150",
       "openalex_id": "A5032827509",
       "identity": "verified",
@@ -2193,6 +2247,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0009-0000-2066-3096",
       "openalex_id": "",
       "identity": "verified",
@@ -2235,6 +2290,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "Graduate School of Biomedical Sciences; Bioengineering",
+      "lab": {},
       "orcid": "0000-0002-1981-9628",
       "openalex_id": "A5100777271",
       "identity": "verified",
@@ -2277,6 +2333,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0003-4522-9928",
       "openalex_id": "A5100625452",
       "identity": "probable",
@@ -2319,6 +2376,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0003-4009-0824",
       "openalex_id": "A5033060813",
       "identity": "verified",
@@ -2361,6 +2419,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0003-3615-8566",
       "openalex_id": "A5058387827",
       "identity": "verified",
@@ -2403,6 +2462,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-4315-0688",
       "openalex_id": "A5060951283",
       "identity": "verified",
@@ -2445,6 +2505,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-3671-1029",
       "openalex_id": "A5062435434",
       "identity": "verified",
@@ -2487,6 +2548,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0001-8450-3315",
       "openalex_id": "A5026656606",
       "identity": "verified",
@@ -2529,6 +2591,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-5332-2658",
       "openalex_id": "A5078633080",
       "identity": "verified",
@@ -2571,6 +2634,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0003-0527-023X",
       "openalex_id": "A5010464805",
       "identity": "verified",
@@ -2613,6 +2677,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-5347-9591",
       "openalex_id": "A5061831347",
       "identity": "verified",
@@ -2655,6 +2720,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-3446-7288",
       "openalex_id": "A5046016624",
       "identity": "verified",
@@ -2697,6 +2763,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-5603-2955",
       "openalex_id": "A5023662947",
       "identity": "verified",
@@ -2739,6 +2806,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-2199-5292",
       "openalex_id": "A5012765342",
       "identity": "verified",
@@ -2781,6 +2849,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0002-9948-8485",
       "openalex_id": "A5070181255",
       "identity": "verified",
@@ -2819,6 +2888,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5109733656",
       "identity": "probable",
@@ -2846,6 +2916,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0009-0006-7566-2019",
       "openalex_id": "",
       "identity": "verified",
@@ -2888,6 +2959,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "0000-0003-0593-6978",
       "openalex_id": "A5081889848",
       "identity": "verified",
@@ -2930,6 +3002,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "Bioengineering",
+      "lab": {},
       "orcid": "0000-0001-7217-979X",
       "openalex_id": "A5044505570",
       "identity": "verified",
@@ -2971,6 +3044,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "Bioengineering",
+      "lab": {},
       "orcid": "0000-0002-5115-7791",
       "openalex_id": "A5037623230",
       "identity": "verified",
@@ -3013,6 +3087,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-3753-4415",
       "openalex_id": "A5056109836",
       "identity": "verified",
@@ -3052,6 +3127,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-5920-5962",
       "openalex_id": "A5101888747",
       "identity": "probable",
@@ -3092,6 +3168,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0009-0006-9699-5832",
       "openalex_id": "A5100713159",
       "identity": "verified",
@@ -3134,6 +3211,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-8570-5098",
       "openalex_id": "A5032767655",
       "identity": "verified",
@@ -3176,6 +3254,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-0381-3192",
       "openalex_id": "A5022826299",
       "identity": "verified",
@@ -3215,6 +3294,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-8267-9453",
       "openalex_id": "A5002289135",
       "identity": "verified",
@@ -3257,6 +3337,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-5307-3754",
       "openalex_id": "A5061509294",
       "identity": "verified",
@@ -3299,6 +3380,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-8408-5907",
       "openalex_id": "A5077910323",
       "identity": "verified",
@@ -3341,6 +3423,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-6451-1542",
       "openalex_id": "A5032767135",
       "identity": "verified",
@@ -3383,6 +3466,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-7404-9056",
       "openalex_id": "A5102729944",
       "identity": "probable",
@@ -3425,6 +3509,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0003-1339-593X",
       "openalex_id": "A5056812442",
       "identity": "verified",
@@ -3465,6 +3550,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0003-2656-7059",
       "openalex_id": "A5041266811",
       "identity": "verified",
@@ -3507,6 +3593,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0003-3372-7575",
       "openalex_id": "A5077849607",
       "identity": "verified",
@@ -3549,6 +3636,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-4764-5127",
       "openalex_id": "A5074209511",
       "identity": "verified",
@@ -3585,6 +3673,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5071194102",
       "identity": "probable",
@@ -3627,6 +3716,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0002-5599-0553",
       "openalex_id": "A5087798691",
       "identity": "verified",
@@ -3669,6 +3759,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-7997-696X",
       "openalex_id": "A5026173579",
       "identity": "verified",
@@ -3711,6 +3802,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0003-4860-034X",
       "openalex_id": "A5030678508",
       "identity": "verified",
@@ -3753,6 +3845,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0000-0001-9238-7238",
       "openalex_id": "A5100722342",
       "identity": "verified",
@@ -3780,6 +3873,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "College of Pharmacy",
+      "lab": {},
       "orcid": "0009-0003-5060-7126",
       "openalex_id": "",
       "identity": "verified",
@@ -3819,6 +3913,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "Graduate School of Biomedical Sciences",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5104020946",
       "identity": "probable",
@@ -3846,6 +3941,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "응용바이오공학과",
+      "lab": {},
       "orcid": "0009-0008-7314-3105",
       "openalex_id": "",
       "identity": "verified",
@@ -3888,6 +3984,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "응용바이오공학과",
+      "lab": {},
       "orcid": "0000-0003-3140-5628",
       "openalex_id": "A5103239031",
       "identity": "verified",
@@ -3915,6 +4012,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "응용바이오공학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5125744415",
       "identity": "probable",
@@ -3957,6 +4055,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "응용바이오공학과; 분자의학및바이오제약학과",
+      "lab": {},
       "orcid": "0000-0003-1640-2090",
       "openalex_id": "A5041206730",
       "identity": "verified",
@@ -3999,6 +4098,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "응용바이오공학과; 분자의학및바이오제약학과",
+      "lab": {},
       "orcid": "0000-0003-0703-1208",
       "openalex_id": "A5024958150",
       "identity": "verified",
@@ -4038,6 +4138,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "응용바이오공학과; 자유전공학부 바로가기",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5107600322",
       "identity": "probable",
@@ -4077,6 +4178,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "자유전공학부 바로가기",
+      "lab": {},
       "orcid": "0000-0002-2447-7546",
       "openalex_id": "A5014642075",
       "identity": "verified",
@@ -4113,6 +4215,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "자유전공학부 바로가기",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5123870006",
       "identity": "probable",
@@ -4151,6 +4254,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "자유전공학부 바로가기",
+      "lab": {},
       "orcid": "0000-0003-3616-0375",
       "openalex_id": "A5078330127",
       "identity": "verified",
@@ -4178,6 +4282,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "자유전공학부 바로가기",
+      "lab": {},
       "orcid": "0009-0002-9664-4312",
       "openalex_id": "",
       "identity": "verified",
@@ -4220,6 +4325,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "자유전공학부 바로가기",
+      "lab": {},
       "orcid": "0000-0003-1434-8369",
       "openalex_id": "A5101707931",
       "identity": "probable",
@@ -4256,6 +4362,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "자유전공학부 바로가기",
+      "lab": {},
       "orcid": "0009-0003-5645-2858",
       "openalex_id": "A5075447526",
       "identity": "probable",
@@ -4283,6 +4390,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "자유전공학부 바로가기",
+      "lab": {},
       "orcid": "0009-0009-9330-8269",
       "openalex_id": "",
       "identity": "verified",
@@ -4325,6 +4433,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "농업생명과학대학(8개)",
+      "lab": {},
       "orcid": "0000-0002-2368-5423",
       "openalex_id": "A5063078396",
       "identity": "verified",
@@ -4363,6 +4472,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "농업생명과학대학(8개)",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5043972832",
       "identity": "probable",
@@ -4401,6 +4511,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "농업생명과학대학(8개)",
+      "lab": {},
       "orcid": "0000-0001-7344-1905",
       "openalex_id": "A5065573574",
       "identity": "verified",
@@ -4439,6 +4550,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "농업생명과학대학(8개)",
+      "lab": {},
       "orcid": "0000-0001-5969-9176",
       "openalex_id": "A5087568409",
       "identity": "probable",
@@ -4478,6 +4590,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "농업생명과학대학(8개)",
+      "lab": {},
       "orcid": "0000-0003-3707-4989",
       "openalex_id": "A5016920715",
       "identity": "verified",
@@ -4520,6 +4633,7 @@ window.KOREA_BIO_MAP = {
         "전기생리"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0002-5275-5662",
       "openalex_id": "A5039577998",
       "identity": "verified",
@@ -4561,6 +4675,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0003-0559-6782",
       "openalex_id": "A5100777880",
       "identity": "verified",
@@ -4603,6 +4718,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0003-0971-0853",
       "openalex_id": "A5061799347",
       "identity": "verified",
@@ -4645,6 +4761,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0002-6374-0140",
       "openalex_id": "A5074548240",
       "identity": "verified",
@@ -4687,6 +4804,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0002-0546-8484",
       "openalex_id": "A5009660139",
       "identity": "verified",
@@ -4729,6 +4847,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0003-0944-5172",
       "openalex_id": "A5021296521",
       "identity": "verified",
@@ -4771,6 +4890,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0002-7074-3438",
       "openalex_id": "A5113983336",
       "identity": "probable",
@@ -4812,6 +4932,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0001-9360-6981",
       "openalex_id": "A5085542419",
       "identity": "verified",
@@ -4854,6 +4975,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "Faculty 1 페이지",
+      "lab": {},
       "orcid": "0000-0003-1107-7380",
       "openalex_id": "A5060226532",
       "identity": "verified",
@@ -4896,6 +5018,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-5292-9335",
       "openalex_id": "A5071300207",
       "identity": "probable",
@@ -4938,6 +5061,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-0583-2116",
       "openalex_id": "A5051964998",
       "identity": "verified",
@@ -4980,6 +5104,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-2571-3173",
       "openalex_id": "A5080059317",
       "identity": "verified",
@@ -5018,6 +5143,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0001-8493-4078",
       "openalex_id": "A5072109887",
       "identity": "verified",
@@ -5060,6 +5186,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-3908-8698",
       "openalex_id": "A5102023146",
       "identity": "probable",
@@ -5094,6 +5221,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "약학대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5000896651",
       "identity": "probable",
@@ -5121,6 +5249,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0009-0004-5387-0189",
       "openalex_id": "",
       "identity": "verified",
@@ -5163,6 +5292,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0001-7945-3472",
       "openalex_id": "A5042191727",
       "identity": "verified",
@@ -5205,6 +5335,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-2318-387X",
       "openalex_id": "A5034418015",
       "identity": "verified",
@@ -5232,6 +5363,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "0009-0005-2282-7548",
       "openalex_id": "",
       "identity": "verified",
@@ -5270,6 +5402,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5071626743",
       "identity": "probable",
@@ -5312,6 +5445,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "0000-0001-6011-629X",
       "openalex_id": "A5047391677",
       "identity": "verified",
@@ -5352,6 +5486,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "0000-0002-4637-5890",
       "openalex_id": "A5054954388",
       "identity": "probable",
@@ -5394,6 +5529,7 @@ window.KOREA_BIO_MAP = {
         "CRISPR 유전자편집"
       ],
       "department": "생화학·분자생물학교실",
+      "lab": {},
       "orcid": "0000-0002-9249-8664",
       "openalex_id": "A5002180055",
       "identity": "verified",
@@ -5436,6 +5572,7 @@ window.KOREA_BIO_MAP = {
         "제브라피시"
       ],
       "department": "해부·세포생물학교실",
+      "lab": {},
       "orcid": "0000-0002-3435-4195",
       "openalex_id": "A5103095511",
       "identity": "verified",
@@ -5478,6 +5615,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "해부·세포생물학교실",
+      "lab": {},
       "orcid": "0000-0001-5550-1660",
       "openalex_id": "A5066227784",
       "identity": "verified",
@@ -5520,6 +5658,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "해부·세포생물학교실",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5035832257",
       "identity": "probable",
@@ -5562,6 +5701,7 @@ window.KOREA_BIO_MAP = {
         "전기생리"
       ],
       "department": "생물학과",
+      "lab": {},
       "orcid": "0000-0002-4916-7923",
       "openalex_id": "A5088944811",
       "identity": "probable",
@@ -5598,6 +5738,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "생물학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5124905726",
       "identity": "probable",
@@ -5640,6 +5781,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "생물학과",
+      "lab": {},
       "orcid": "0000-0002-3997-9020",
       "openalex_id": "A5101581200",
       "identity": "verified",
@@ -5682,6 +5824,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "생물학과",
+      "lab": {},
       "orcid": "0000-0001-8926-6216",
       "openalex_id": "A5034947656",
       "identity": "verified",
@@ -5724,6 +5867,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "생물학과",
+      "lab": {},
       "orcid": "0000-0002-4221-3421",
       "openalex_id": "A5027316497",
       "identity": "verified",
@@ -5762,6 +5906,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "생물학과",
+      "lab": {},
       "orcid": "0000-0001-9261-4031",
       "openalex_id": "A5073007816",
       "identity": "verified",
@@ -5804,6 +5949,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "생물학과",
+      "lab": {},
       "orcid": "0000-0002-1640-7601",
       "openalex_id": "A5075633450",
       "identity": "verified",
@@ -5846,6 +5992,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "자유전공학부",
+      "lab": {},
       "orcid": "0000-0002-1415-2297",
       "openalex_id": "A5001862419",
       "identity": "verified",
@@ -5888,6 +6035,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "동서의과학과",
+      "lab": {},
       "orcid": "0000-0001-6511-7881",
       "openalex_id": "A5077870402",
       "identity": "verified",
@@ -5915,6 +6063,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "동서의과학과",
+      "lab": {},
       "orcid": "0009-0003-6505-320X",
       "openalex_id": "",
       "identity": "verified",
@@ -5953,6 +6102,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "동서의과학과",
+      "lab": {},
       "orcid": "0000-0001-5198-9152",
       "openalex_id": "A5121852641",
       "identity": "probable",
@@ -5980,6 +6130,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "동서의과학과",
+      "lab": {},
       "orcid": "0009-0007-7053-4621",
       "openalex_id": "A5143984036",
       "identity": "verified",
@@ -6022,6 +6173,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "융합바이오·신소재공학과; 한방생명공학과",
+      "lab": {},
       "orcid": "0000-0001-9369-6542",
       "openalex_id": "A5043673106",
       "identity": "verified",
@@ -6064,6 +6216,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "융합바이오·신소재공학과; 한방생명공학과",
+      "lab": {},
       "orcid": "0000-0002-4161-6798",
       "openalex_id": "A5026482307",
       "identity": "verified",
@@ -6106,6 +6259,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "융합바이오·신소재공학과",
+      "lab": {},
       "orcid": "0000-0001-7517-1611",
       "openalex_id": "A5060835960",
       "identity": "probable",
@@ -6148,6 +6302,7 @@ window.KOREA_BIO_MAP = {
         "후성유전 분석"
       ],
       "department": "융합바이오·신소재공학과",
+      "lab": {},
       "orcid": "0000-0002-4035-874X",
       "openalex_id": "A5070165437",
       "identity": "verified",
@@ -6189,6 +6344,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "융합바이오·신소재공학과; 한방생명공학과",
+      "lab": {},
       "orcid": "0000-0002-3474-066X",
       "openalex_id": "A5002737519",
       "identity": "verified",
@@ -6231,6 +6387,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "융합바이오·신소재공학과; 한방생명공학과",
+      "lab": {},
       "orcid": "0000-0002-9643-7797",
       "openalex_id": "A5071058729",
       "identity": "verified",
@@ -6273,6 +6430,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "융합바이오·신소재공학과; 원예생명공학과; 식품생명공학과; 한방생명공학과; 생명과학대학; 유전생명공학과",
+      "lab": {},
       "orcid": "0000-0003-0513-1766",
       "openalex_id": "A5072589626",
       "identity": "verified",
@@ -6315,6 +6473,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "융합바이오·신소재공학과; 원예생명공학과; 식품생명공학과; 한방생명공학과; 생명과학대학; 유전생명공학과",
+      "lab": {},
       "orcid": "0000-0001-8781-926X",
       "openalex_id": "A5034873769",
       "identity": "verified",
@@ -6357,6 +6516,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "융합바이오·신소재공학과; 원예생명공학과; 식품생명공학과; 한방생명공학과; 생명과학대학; 유전생명공학과",
+      "lab": {},
       "orcid": "0000-0001-7240-6171",
       "openalex_id": "A5006027043",
       "identity": "verified",
@@ -6399,6 +6559,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "식품생명공학과",
+      "lab": {},
       "orcid": "0000-0001-9262-1354",
       "openalex_id": "A5025853867",
       "identity": "verified",
@@ -6426,6 +6587,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "식품생명공학과",
+      "lab": {},
       "orcid": "0009-0004-6976-9990",
       "openalex_id": "",
       "identity": "verified",
@@ -6468,6 +6630,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "식품생명공학과",
+      "lab": {},
       "orcid": "0000-0002-2188-4058",
       "openalex_id": "A5100326514",
       "identity": "verified",
@@ -6510,6 +6673,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "식품생명공학과",
+      "lab": {},
       "orcid": "0000-0003-3779-3369",
       "openalex_id": "A5046646285",
       "identity": "verified",
@@ -6552,6 +6716,7 @@ window.KOREA_BIO_MAP = {
         "하이드로젤·스캐폴드"
       ],
       "department": "한방생명공학과",
+      "lab": {},
       "orcid": "0000-0002-4657-5104",
       "openalex_id": "A5013750880",
       "identity": "verified",
@@ -6594,6 +6759,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "한방생명공학과",
+      "lab": {},
       "orcid": "0000-0003-2206-4593",
       "openalex_id": "A5012545701",
       "identity": "verified",
@@ -6636,6 +6802,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "유전생명공학과",
+      "lab": {},
       "orcid": "0000-0002-0407-3018",
       "openalex_id": "A5100719844",
       "identity": "verified",
@@ -6672,6 +6839,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "유전생명공학과",
+      "lab": {},
       "orcid": "0000-0001-9064-021X",
       "openalex_id": "A5091841229",
       "identity": "verified",
@@ -6708,6 +6876,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "유전생명공학과",
+      "lab": {},
       "orcid": "0000-0002-4765-7494",
       "openalex_id": "A5068882846",
       "identity": "verified",
@@ -6750,6 +6919,7 @@ window.KOREA_BIO_MAP = {
         "엑소좀·세포외소포"
       ],
       "department": "유전생명공학과",
+      "lab": {},
       "orcid": "0000-0002-4572-0656",
       "openalex_id": "A5002494133",
       "identity": "probable",
@@ -6788,6 +6958,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "유전생명공학과",
+      "lab": {},
       "orcid": "0000-0002-5279-1276",
       "openalex_id": "A5103514287",
       "identity": "verified",
@@ -6830,6 +7001,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "유전생명공학과",
+      "lab": {},
       "orcid": "0000-0003-0427-5901",
       "openalex_id": "A5088947963",
       "identity": "verified",
@@ -6872,6 +7044,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-6091-6251",
       "openalex_id": "A5100427734",
       "identity": "probable",
@@ -6914,6 +7087,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-7625-2779",
       "openalex_id": "A5086644410",
       "identity": "verified",
@@ -6956,6 +7130,7 @@ window.KOREA_BIO_MAP = {
         "후성유전 분석"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-3890-0592",
       "openalex_id": "A5080526456",
       "identity": "verified",
@@ -6998,6 +7173,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-1476-5429",
       "openalex_id": "A5066816358",
       "identity": "verified",
@@ -7040,6 +7216,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-3233-2918",
       "openalex_id": "A5030905874",
       "identity": "verified",
@@ -7082,6 +7259,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-0119-5818",
       "openalex_id": "A5012095455",
       "identity": "verified",
@@ -7124,6 +7302,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0009-0004-6130-9068",
       "openalex_id": "A5101582246",
       "identity": "verified",
@@ -7166,6 +7345,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0002-7572-4666",
       "openalex_id": "A5102716188",
       "identity": "verified",
@@ -7208,6 +7388,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0003-3525-8805",
       "openalex_id": "A5100370256",
       "identity": "verified",
@@ -7246,6 +7427,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-8461-8910",
       "openalex_id": "A5011080089",
       "identity": "verified",
@@ -7288,6 +7470,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0001-9313-0127",
       "openalex_id": "A5062790247",
       "identity": "verified",
@@ -7330,6 +7513,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0001-9928-0847",
       "openalex_id": "A5022716093",
       "identity": "verified",
@@ -7372,6 +7556,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-1995-1378",
       "openalex_id": "A5005827139",
       "identity": "verified",
@@ -7414,6 +7599,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0001-5811-0833",
       "openalex_id": "A5002688685",
       "identity": "verified",
@@ -7456,6 +7642,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-4566-6573",
       "openalex_id": "A5057348325",
       "identity": "verified",
@@ -7498,6 +7685,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-0864-2142",
       "openalex_id": "A5031189107",
       "identity": "verified",
@@ -7540,6 +7728,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0002-4787-4448",
       "openalex_id": "A5100783160",
       "identity": "probable",
@@ -7580,6 +7769,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0002-8216-6076",
       "openalex_id": "A5014912552",
       "identity": "verified",
@@ -7622,6 +7812,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0002-2494-5792",
       "openalex_id": "A5042122089",
       "identity": "verified",
@@ -7661,6 +7852,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5042835593",
       "identity": "probable",
@@ -7699,6 +7891,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-2615-5564",
       "openalex_id": "A5007514931",
       "identity": "verified",
@@ -7741,6 +7934,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "약학대학; 규제약학과",
+      "lab": {},
       "orcid": "0000-0003-2032-112X",
       "openalex_id": "A5020022360",
       "identity": "verified",
@@ -7783,6 +7977,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-8950-5704",
       "openalex_id": "A5030757123",
       "identity": "verified",
@@ -7824,6 +8019,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0001-8295-8084",
       "openalex_id": "A5009747502",
       "identity": "verified",
@@ -7866,6 +8062,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0009-0001-2936-863X",
       "openalex_id": "A5103285217",
       "identity": "verified",
@@ -7908,6 +8105,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "생명공학대학; - 동물생명공학전공",
+      "lab": {},
       "orcid": "0000-0001-8531-1104",
       "openalex_id": "A5077464146",
       "identity": "verified",
@@ -7950,6 +8148,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "생명공학대학; - 동물생명공학전공",
+      "lab": {},
       "orcid": "0000-0002-4510-7851",
       "openalex_id": "A5055934572",
       "identity": "verified",
@@ -7990,6 +8189,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명공학대학; - 동물생명공학전공",
+      "lab": {},
       "orcid": "0000-0002-9297-849X",
       "openalex_id": "A5088232477",
       "identity": "verified",
@@ -8032,6 +8232,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "생명공학대학; - 동물생명공학전공",
+      "lab": {},
       "orcid": "0000-0001-9386-5852",
       "openalex_id": "A5012367064",
       "identity": "verified",
@@ -8074,6 +8275,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "생명공학대학; - 동물생명공학전공",
+      "lab": {},
       "orcid": "0000-0002-4480-4524",
       "openalex_id": "A5078548758",
       "identity": "verified",
@@ -8116,6 +8318,7 @@ window.KOREA_BIO_MAP = {
         "엑소좀·세포외소포"
       ],
       "department": "생명공학대학; - 동물생명공학전공",
+      "lab": {},
       "orcid": "0000-0003-1858-0261",
       "openalex_id": "A5064534768",
       "identity": "verified",
@@ -8143,6 +8346,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0009-0005-9773-5955",
       "openalex_id": "",
       "identity": "verified",
@@ -8185,6 +8389,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0002-6810-2092",
       "openalex_id": "A5048227948",
       "identity": "verified",
@@ -8227,6 +8432,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0003-2522-4847",
       "openalex_id": "A5051471724",
       "identity": "verified",
@@ -8269,6 +8475,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0001-7719-3101",
       "openalex_id": "A5072563298",
       "identity": "verified",
@@ -8311,6 +8518,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0002-4119-1574",
       "openalex_id": "A5101721410",
       "identity": "verified",
@@ -8353,6 +8561,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0001-9841-7899",
       "openalex_id": "A5044969054",
       "identity": "verified",
@@ -8395,6 +8604,7 @@ window.KOREA_BIO_MAP = {
         "ELISA"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0001-7730-8538",
       "openalex_id": "A5012351576",
       "identity": "verified",
@@ -8434,6 +8644,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0009-0004-0932-9731",
       "openalex_id": "A5086429819",
       "identity": "verified",
@@ -8472,6 +8683,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0002-7562-1915",
       "openalex_id": "A5007814740",
       "identity": "verified",
@@ -8513,6 +8725,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명공학대학",
+      "lab": {},
       "orcid": "0000-0002-1532-613X",
       "openalex_id": "A5082325472",
       "identity": "verified",
@@ -8555,6 +8768,7 @@ window.KOREA_BIO_MAP = {
         "애기장대·식물 모델"
       ],
       "department": "- 식물생명공학전공",
+      "lab": {},
       "orcid": "0000-0003-2491-3528",
       "openalex_id": "A5004725236",
       "identity": "verified",
@@ -8597,6 +8811,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "- 식물생명공학전공",
+      "lab": {},
       "orcid": "0000-0002-0893-1438",
       "openalex_id": "A5020882540",
       "identity": "verified",
@@ -8639,6 +8854,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "- 식물생명공학전공",
+      "lab": {},
       "orcid": "0000-0001-6547-2509",
       "openalex_id": "A5100762913",
       "identity": "verified",
@@ -8681,6 +8897,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "- 식물생명공학전공",
+      "lab": {},
       "orcid": "0000-0003-3348-4948",
       "openalex_id": "A5100370753",
       "identity": "verified",
@@ -8723,6 +8940,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "- 식물생명공학전공",
+      "lab": {},
       "orcid": "0000-0001-5807-2646",
       "openalex_id": "A5035698835",
       "identity": "verified",
@@ -8765,6 +8983,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "시스템생명공학과",
+      "lab": {},
       "orcid": "0000-0002-2803-753X",
       "openalex_id": "A5100620525",
       "identity": "verified",
@@ -8807,6 +9026,7 @@ window.KOREA_BIO_MAP = {
         "미세유체·장기칩"
       ],
       "department": "시스템생명공학과",
+      "lab": {},
       "orcid": "0000-0003-0111-9911",
       "openalex_id": "A5012140745",
       "identity": "verified",
@@ -8845,6 +9065,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "규제약학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5039118348",
       "identity": "probable",
@@ -8881,6 +9102,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5032204059",
       "identity": "probable",
@@ -8923,6 +9145,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과학대학원",
+      "lab": {},
       "orcid": "0000-0003-2706-1340",
       "openalex_id": "A5003550065",
       "identity": "probable",
@@ -8965,6 +9188,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "의과학대학원",
+      "lab": {},
       "orcid": "0000-0002-6444-2436",
       "openalex_id": "A5072764713",
       "identity": "verified",
@@ -9007,6 +9231,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "생명과학대학; 생명과학특성학과",
+      "lab": {},
       "orcid": "0000-0002-3277-8269",
       "openalex_id": "A5053823621",
       "identity": "verified",
@@ -9049,6 +9274,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0002-7456-0348",
       "openalex_id": "A5049922592",
       "identity": "probable",
@@ -9091,6 +9317,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0002-3533-7979",
       "openalex_id": "A5018052057",
       "identity": "verified",
@@ -9133,6 +9360,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0001-6237-9958",
       "openalex_id": "A5085756019",
       "identity": "verified",
@@ -9175,6 +9403,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0001-8104-8775",
       "openalex_id": "A5035770919",
       "identity": "probable",
@@ -9217,6 +9446,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-2462-1181",
       "openalex_id": "A5089865505",
       "identity": "verified",
@@ -9259,6 +9489,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-4158-6402",
       "openalex_id": "A5057441397",
       "identity": "verified",
@@ -9301,6 +9532,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-7254-9524",
       "openalex_id": "A5102877998",
       "identity": "verified",
@@ -9342,6 +9574,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-8809-6064",
       "openalex_id": "A5029908502",
       "identity": "verified",
@@ -9384,6 +9617,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0003-2191-666X",
       "openalex_id": "A5062378176",
       "identity": "verified",
@@ -9418,6 +9652,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-4969-5443",
       "openalex_id": "A5123706664",
       "identity": "probable",
@@ -9460,6 +9695,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-3527-9879",
       "openalex_id": "A5103587566",
       "identity": "verified",
@@ -9497,6 +9733,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5146636570",
       "identity": "probable",
@@ -9539,6 +9776,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-0608-6269",
       "openalex_id": "A5100739356",
       "identity": "verified",
@@ -9581,6 +9819,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0003-0907-2265",
       "openalex_id": "A5018235560",
       "identity": "probable",
@@ -9623,6 +9862,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0003-4752-2810",
       "openalex_id": "A5101520419",
       "identity": "verified",
@@ -9665,6 +9905,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-1157-2237",
       "openalex_id": "A5076978341",
       "identity": "probable",
@@ -9707,6 +9948,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-3783-8590",
       "openalex_id": "A5089730140",
       "identity": "verified",
@@ -9734,6 +9976,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "0000-0002-5317-3007",
       "openalex_id": "",
       "identity": "verified",
@@ -9770,6 +10013,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "수의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5133372113",
       "identity": "probable",
@@ -9812,6 +10056,7 @@ window.KOREA_BIO_MAP = {
         "CRISPR 유전자편집"
       ],
       "department": "생명과학특성학과",
+      "lab": {},
       "orcid": "0000-0002-1411-3132",
       "openalex_id": "A5054954881",
       "identity": "verified",
@@ -9851,6 +10096,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "생명과학특성학과",
+      "lab": {},
       "orcid": "0000-0002-7423-100X",
       "openalex_id": "A5026513276",
       "identity": "verified",
@@ -9893,6 +10139,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "생명과학특성학과",
+      "lab": {},
       "orcid": "0000-0003-1070-467X",
       "openalex_id": "A5057805155",
       "identity": "probable",
@@ -9935,6 +10182,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "생명과학특성학과",
+      "lab": {},
       "orcid": "0000-0002-1392-8516",
       "openalex_id": "A5038006412",
       "identity": "probable",
@@ -9962,6 +10210,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "생명과학특성학과",
+      "lab": {},
       "orcid": "0009-0000-4751-1711",
       "openalex_id": "",
       "identity": "verified",
@@ -10004,6 +10253,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명과학특성학과",
+      "lab": {},
       "orcid": "0000-0001-8447-4518",
       "openalex_id": "A5080135133",
       "identity": "verified",
@@ -10046,6 +10296,7 @@ window.KOREA_BIO_MAP = {
         "전기생리"
       ],
       "department": "축산식품생명공학과",
+      "lab": {},
       "orcid": "0000-0002-8076-3758",
       "openalex_id": "A5008758518",
       "identity": "probable",
@@ -10088,6 +10339,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "축산식품생명공학과",
+      "lab": {},
       "orcid": "0000-0002-4370-2366",
       "openalex_id": "A5014493578",
       "identity": "verified",
@@ -10130,6 +10382,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "축산식품생명공학과",
+      "lab": {},
       "orcid": "0009-0009-3419-6850",
       "openalex_id": "A5102442929",
       "identity": "probable",
@@ -10172,6 +10425,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "축산식품생명공학과",
+      "lab": {},
       "orcid": "0000-0001-8060-6237",
       "openalex_id": "A5059995518",
       "identity": "verified",
@@ -10213,6 +10467,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "축산식품생명공학과",
+      "lab": {},
       "orcid": "0000-0003-0133-7003",
       "openalex_id": "A5018409052",
       "identity": "verified",
@@ -10255,6 +10510,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "바이오시스템대학",
+      "lab": {},
       "orcid": "0000-0002-0457-842X",
       "openalex_id": "A5010226186",
       "identity": "verified",
@@ -10297,6 +10553,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "약학과",
+      "lab": {},
       "orcid": "0000-0002-2342-0468",
       "openalex_id": "A5103111249",
       "identity": "verified",
@@ -10339,6 +10596,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "약학과",
+      "lab": {},
       "orcid": "0000-0002-9360-6436",
       "openalex_id": "A5026860974",
       "identity": "verified",
@@ -10381,6 +10639,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "약학과",
+      "lab": {},
       "orcid": "0009-0009-7494-3785",
       "openalex_id": "A5016494385",
       "identity": "probable",
@@ -10421,6 +10680,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "약학과",
+      "lab": {},
       "orcid": "0000-0002-6696-3948",
       "openalex_id": "A5055583966",
       "identity": "probable",
@@ -10463,6 +10723,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "생명과학과",
+      "lab": {},
       "orcid": "0000-0001-6818-3956",
       "openalex_id": "A5100785065",
       "identity": "verified",
@@ -10505,6 +10766,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "생명과학과",
+      "lab": {},
       "orcid": "0000-0003-2470-8137",
       "openalex_id": "A5016265803",
       "identity": "verified",
@@ -10547,6 +10809,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명과학과",
+      "lab": {},
       "orcid": "0000-0002-2220-4173",
       "openalex_id": "A5069039806",
       "identity": "verified",
@@ -10589,6 +10852,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "생명과학과",
+      "lab": {},
       "orcid": "0000-0002-0168-9546",
       "openalex_id": "A5100342770",
       "identity": "verified",
@@ -10629,6 +10893,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "임산생명공학과",
+      "lab": {},
       "orcid": "0000-0002-7483-0432",
       "openalex_id": "A5051376093",
       "identity": "probable",
@@ -10665,6 +10930,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "임산생명공학과",
+      "lab": {},
       "orcid": "0009-0008-2953-2795",
       "openalex_id": "A5137942543",
       "identity": "probable",
@@ -10707,6 +10973,7 @@ window.KOREA_BIO_MAP = {
         "미세유체·장기칩"
       ],
       "department": "임산생명공학과",
+      "lab": {},
       "orcid": "0000-0001-9832-3251",
       "openalex_id": "A5108847624",
       "identity": "probable",
@@ -10749,6 +11016,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "임산생명공학과",
+      "lab": {},
       "orcid": "0009-0008-9428-8936",
       "openalex_id": "A5102249500",
       "identity": "verified",
@@ -10785,6 +11053,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5027451071",
       "identity": "probable",
@@ -10827,6 +11096,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "0000-0003-0459-1138",
       "openalex_id": "A5100701672",
       "identity": "verified",
@@ -10867,6 +11137,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "0000-0002-1508-1654",
       "openalex_id": "A5101731475",
       "identity": "verified",
@@ -10909,6 +11180,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "0000-0002-5202-8326",
       "openalex_id": "A5060672032",
       "identity": "probable",
@@ -10944,6 +11216,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5139341856",
       "identity": "probable",
@@ -10986,6 +11259,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "0000-0002-9231-9195",
       "openalex_id": "A5016356809",
       "identity": "probable",
@@ -11028,6 +11302,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "0009-0009-0389-666X",
       "openalex_id": "A5024847871",
       "identity": "probable",
@@ -11067,6 +11342,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "융합바이오공학과",
+      "lab": {},
       "orcid": "0000-0001-9237-607X",
       "openalex_id": "A5057591539",
       "identity": "verified",
@@ -11103,6 +11379,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "산림환경시스템학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5078067621",
       "identity": "probable",
@@ -11145,6 +11422,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "산림환경시스템학과",
+      "lab": {},
       "orcid": "0000-0002-6778-4749",
       "openalex_id": "A5100338425",
       "identity": "verified",
@@ -11181,6 +11459,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "산림환경시스템학과",
+      "lab": {},
       "orcid": "0000-0003-0627-0135",
       "openalex_id": "A5070986223",
       "identity": "probable",
@@ -11217,6 +11496,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "산림환경시스템학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5132990719",
       "identity": "probable",
@@ -11255,6 +11535,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "산림환경시스템학과",
+      "lab": {},
       "orcid": "0000-0001-7752-0694",
       "openalex_id": "A5066876141",
       "identity": "probable",
@@ -11282,6 +11563,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "정보보안암호수학과",
+      "lab": {},
       "orcid": "0009-0002-6853-3041",
       "openalex_id": "",
       "identity": "verified",
@@ -11320,6 +11602,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "정보보안암호수학과",
+      "lab": {},
       "orcid": "0000-0001-9418-2455",
       "openalex_id": "A5064579474",
       "identity": "verified",
@@ -11362,6 +11645,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "식품영양학과",
+      "lab": {},
       "orcid": "0000-0002-8580-6032",
       "openalex_id": "A5059476948",
       "identity": "verified",
@@ -11398,6 +11682,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "식품영양학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5013894541",
       "identity": "probable",
@@ -11440,6 +11725,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "식품영양학과",
+      "lab": {},
       "orcid": "0000-0002-3620-0851",
       "openalex_id": "A5052436998",
       "identity": "verified",
@@ -11482,6 +11768,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8475-8932",
       "openalex_id": "A5088071825",
       "identity": "verified",
@@ -11521,6 +11808,7 @@ window.KOREA_BIO_MAP = {
         "엑소좀·세포외소포"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2431-3397",
       "openalex_id": "A5069892543",
       "identity": "verified",
@@ -11563,6 +11851,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-0477-683X",
       "openalex_id": "A5035875835",
       "identity": "verified",
@@ -11597,6 +11886,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5129708176",
       "identity": "probable",
@@ -11633,6 +11923,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5040563900",
       "identity": "probable",
@@ -11675,6 +11966,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4979-8749",
       "openalex_id": "A5081068365",
       "identity": "verified",
@@ -11714,6 +12006,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-7061-6183",
       "openalex_id": "A5074361224",
       "identity": "verified",
@@ -11756,6 +12049,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-5395-1924",
       "openalex_id": "A5065068590",
       "identity": "verified",
@@ -11798,6 +12092,7 @@ window.KOREA_BIO_MAP = {
         "CRISPR 유전자편집"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-6264-5109",
       "openalex_id": "A5015699501",
       "identity": "verified",
@@ -11839,6 +12134,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-1817-4415",
       "openalex_id": "A5101533516",
       "identity": "verified",
@@ -11878,6 +12174,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-4414-5653",
       "openalex_id": "A5100667195",
       "identity": "verified",
@@ -11920,6 +12217,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6829-332X",
       "openalex_id": "A5100646678",
       "identity": "probable",
@@ -11962,6 +12260,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0139-4067",
       "openalex_id": "A5100786204",
       "identity": "verified",
@@ -12004,6 +12303,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3659-2848",
       "openalex_id": "A5041717495",
       "identity": "verified",
@@ -12046,6 +12346,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9406-8628",
       "openalex_id": "A5053622077",
       "identity": "probable",
@@ -12088,6 +12389,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6909-5034",
       "openalex_id": "A5091564004",
       "identity": "probable",
@@ -12126,6 +12428,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4927-2018",
       "openalex_id": "A5033890698",
       "identity": "verified",
@@ -12153,6 +12456,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0000-5437-1489",
       "openalex_id": "",
       "identity": "verified",
@@ -12195,6 +12499,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3153-3008",
       "openalex_id": "A5052617482",
       "identity": "verified",
@@ -12237,6 +12542,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-8280-3805",
       "openalex_id": "A5082210140",
       "identity": "probable",
@@ -12279,6 +12585,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2046-8690",
       "openalex_id": "A5031126514",
       "identity": "verified",
@@ -12318,6 +12625,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9189-5839",
       "openalex_id": "A5005610854",
       "identity": "verified",
@@ -12360,6 +12668,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9498-2938",
       "openalex_id": "A5025558509",
       "identity": "probable",
@@ -12398,6 +12707,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8448-1064",
       "openalex_id": "A5025113442",
       "identity": "verified",
@@ -12440,6 +12750,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3321-2507",
       "openalex_id": "A5077707703",
       "identity": "verified",
@@ -12482,6 +12793,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1672-5730",
       "openalex_id": "A5100372661",
       "identity": "verified",
@@ -12522,6 +12834,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9987-6533",
       "openalex_id": "A5010188652",
       "identity": "probable",
@@ -12549,6 +12862,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0007-6191-9298",
       "openalex_id": "",
       "identity": "verified",
@@ -12591,6 +12905,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2239-0225",
       "openalex_id": "A5101420718",
       "identity": "probable",
@@ -12633,6 +12948,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0108-5352",
       "openalex_id": "A5065847671",
       "identity": "verified",
@@ -12675,6 +12991,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9849-8211",
       "openalex_id": "A5050107922",
       "identity": "verified",
@@ -12717,6 +13034,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-7192-4046",
       "openalex_id": "A5073977855",
       "identity": "verified",
@@ -12744,6 +13062,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0008-3864-5601",
       "openalex_id": "",
       "identity": "verified",
@@ -12786,6 +13105,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-7441-8472",
       "openalex_id": "A5006972618",
       "identity": "verified",
@@ -12828,6 +13148,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1882-3983",
       "openalex_id": "A5054573839",
       "identity": "verified",
@@ -12870,6 +13191,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9894-7603",
       "openalex_id": "A5025610156",
       "identity": "verified",
@@ -12912,6 +13234,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4612-6672",
       "openalex_id": "A5101855653",
       "identity": "probable",
@@ -12954,6 +13277,7 @@ window.KOREA_BIO_MAP = {
         "미세유체·장기칩"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3837-8677",
       "openalex_id": "A5077871290",
       "identity": "verified",
@@ -12996,6 +13320,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6558-7410",
       "openalex_id": "A5101566800",
       "identity": "probable",
@@ -13034,6 +13359,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5109177214",
       "identity": "probable",
@@ -13061,6 +13387,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9872-2997",
       "openalex_id": "",
       "identity": "verified",
@@ -13103,6 +13430,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2414-3789",
       "openalex_id": "A5018467910",
       "identity": "probable",
@@ -13145,6 +13473,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1685-4276",
       "openalex_id": "A5017011288",
       "identity": "verified",
@@ -13187,6 +13516,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6269-6451",
       "openalex_id": "A5040339204",
       "identity": "verified",
@@ -13229,6 +13559,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5297-5059",
       "openalex_id": "A5112035321",
       "identity": "probable",
@@ -13265,6 +13596,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5111963635",
       "identity": "probable",
@@ -13306,6 +13638,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1237-8831",
       "openalex_id": "A5101931124",
       "identity": "verified",
@@ -13348,6 +13681,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0681-6708",
       "openalex_id": "A5101622800",
       "identity": "verified",
@@ -13375,6 +13709,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5029053861",
       "identity": "probable",
@@ -13415,6 +13750,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0508-3696",
       "openalex_id": "A5064084991",
       "identity": "probable",
@@ -13455,6 +13791,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-1051-6775",
       "openalex_id": "A5039413983",
       "identity": "verified",
@@ -13494,6 +13831,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5458-6401",
       "openalex_id": "A5001413485",
       "identity": "verified",
@@ -13536,6 +13874,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4519-9474",
       "openalex_id": "A5068693487",
       "identity": "verified",
@@ -13571,6 +13910,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5079132307",
       "identity": "probable",
@@ -13613,6 +13953,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3247-3817",
       "openalex_id": "A5084084769",
       "identity": "probable",
@@ -13655,6 +13996,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9937-762X",
       "openalex_id": "A5084093979",
       "identity": "verified",
@@ -13694,6 +14036,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-7918-3783",
       "openalex_id": "A5068301299",
       "identity": "probable",
@@ -13735,6 +14078,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8093-2673",
       "openalex_id": "A5041032577",
       "identity": "verified",
@@ -13762,6 +14106,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0009-3261-8415",
       "openalex_id": "",
       "identity": "verified",
@@ -13801,6 +14146,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8289-9301",
       "openalex_id": "A5080899797",
       "identity": "probable",
@@ -13843,6 +14189,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4004-6292",
       "openalex_id": "A5044683284",
       "identity": "probable",
@@ -13870,6 +14217,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5063074604",
       "identity": "probable",
@@ -13910,6 +14258,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-8846-0364",
       "openalex_id": "A5069892964",
       "identity": "verified",
@@ -13952,6 +14301,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1084-0367",
       "openalex_id": "A5003463853",
       "identity": "verified",
@@ -13993,6 +14343,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1996-6249",
       "openalex_id": "A5032769507",
       "identity": "probable",
@@ -14035,6 +14386,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3226-5631",
       "openalex_id": "A5019367734",
       "identity": "verified",
@@ -14071,6 +14423,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3822-4002",
       "openalex_id": "A5103526623",
       "identity": "verified",
@@ -14110,6 +14463,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9819-5915",
       "openalex_id": "A5008973495",
       "identity": "probable",
@@ -14152,6 +14506,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6902-0315",
       "openalex_id": "A5019619340",
       "identity": "probable",
@@ -14194,6 +14549,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2820-8287",
       "openalex_id": "A5103233263",
       "identity": "verified",
@@ -14230,6 +14586,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5079720156",
       "identity": "probable",
@@ -14257,6 +14614,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0003-6152-6620",
       "openalex_id": "A5140648060",
       "identity": "verified",
@@ -14299,6 +14657,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8518-6331",
       "openalex_id": "A5038499014",
       "identity": "probable",
@@ -14341,6 +14700,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9705-415X",
       "openalex_id": "A5026755638",
       "identity": "verified",
@@ -14383,6 +14743,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9395-8418",
       "openalex_id": "A5029794001",
       "identity": "verified",
@@ -14423,6 +14784,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2266-0803",
       "openalex_id": "A5090076385",
       "identity": "probable",
@@ -14450,6 +14812,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0001-2763-8990",
       "openalex_id": "",
       "identity": "verified",
@@ -14492,6 +14855,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3491-6223",
       "openalex_id": "A5052111126",
       "identity": "verified",
@@ -14534,6 +14898,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4251-6323",
       "openalex_id": "A5100735592",
       "identity": "verified",
@@ -14573,6 +14938,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2643-2007",
       "openalex_id": "A5012612378",
       "identity": "probable",
@@ -14600,6 +14966,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0008-7537-0934",
       "openalex_id": "",
       "identity": "verified",
@@ -14642,6 +15009,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-1846-3153",
       "openalex_id": "A5100331824",
       "identity": "probable",
@@ -14684,6 +15052,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6279-7025",
       "openalex_id": "A5100349137",
       "identity": "probable",
@@ -14726,6 +15095,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0843-9862",
       "openalex_id": "A5000741482",
       "identity": "verified",
@@ -14765,6 +15135,7 @@ window.KOREA_BIO_MAP = {
         "전기생리"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5015953706",
       "identity": "probable",
@@ -14807,6 +15178,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9590-3477",
       "openalex_id": "A5045686998",
       "identity": "verified",
@@ -14843,6 +15215,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5032769052",
       "identity": "probable",
@@ -14885,6 +15258,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-2863-9346",
       "openalex_id": "A5081798094",
       "identity": "verified",
@@ -14927,6 +15301,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0972-9271",
       "openalex_id": "A5056395040",
       "identity": "probable",
@@ -14969,6 +15344,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-0345-2278",
       "openalex_id": "A5020691745",
       "identity": "verified",
@@ -15008,6 +15384,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1414-8175",
       "openalex_id": "A5101693300",
       "identity": "probable",
@@ -15050,6 +15427,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3174-8965",
       "openalex_id": "A5031979012",
       "identity": "verified",
@@ -15077,6 +15455,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0004-2636-327X",
       "openalex_id": "",
       "identity": "verified",
@@ -15115,6 +15494,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8179-4620",
       "openalex_id": "A5015908503",
       "identity": "verified",
@@ -15148,6 +15528,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5050512372",
       "identity": "probable",
@@ -15190,6 +15571,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3873-3117",
       "openalex_id": "A5031941923",
       "identity": "probable",
@@ -15232,6 +15614,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-6653-5214",
       "openalex_id": "A5021373549",
       "identity": "verified",
@@ -15274,6 +15657,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6382-4099",
       "openalex_id": "A5052355596",
       "identity": "verified",
@@ -15312,6 +15696,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-7116-9052",
       "openalex_id": "A5016544527",
       "identity": "verified",
@@ -15354,6 +15739,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-0232-766X",
       "openalex_id": "A5101700419",
       "identity": "verified",
@@ -15392,6 +15778,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5074988414",
       "identity": "probable",
@@ -15434,6 +15821,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4783-9957",
       "openalex_id": "A5102757077",
       "identity": "probable",
@@ -15476,6 +15864,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1209-5129",
       "openalex_id": "A5028772152",
       "identity": "verified",
@@ -15518,6 +15907,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0008-7259-3841",
       "openalex_id": "A5029241174",
       "identity": "verified",
@@ -15558,6 +15948,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5914-678X",
       "openalex_id": "A5018823684",
       "identity": "probable",
@@ -15596,6 +15987,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9800-0994",
       "openalex_id": "A5015330883",
       "identity": "probable",
@@ -15638,6 +16030,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6164-8706",
       "openalex_id": "A5057445154",
       "identity": "probable",
@@ -15680,6 +16073,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6315-3889",
       "openalex_id": "A5006653003",
       "identity": "verified",
@@ -15722,6 +16116,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-7971-9493",
       "openalex_id": "A5025326383",
       "identity": "verified",
@@ -15764,6 +16159,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9284-9276",
       "openalex_id": "A5039645150",
       "identity": "verified",
@@ -15806,6 +16202,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9273-034X",
       "openalex_id": "A5083618878",
       "identity": "verified",
@@ -15848,6 +16245,7 @@ window.KOREA_BIO_MAP = {
         "ELISA"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1468-4074",
       "openalex_id": "A5026949923",
       "identity": "verified",
@@ -15890,6 +16288,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-0764-7793",
       "openalex_id": "A5025155778",
       "identity": "verified",
@@ -15932,6 +16331,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-6377-0411",
       "openalex_id": "A5055427587",
       "identity": "verified",
@@ -15974,6 +16374,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-6881-0515",
       "openalex_id": "A5040799625",
       "identity": "verified",
@@ -16012,6 +16413,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5009517792",
       "identity": "probable",
@@ -16054,6 +16456,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8758-9847",
       "openalex_id": "A5048920395",
       "identity": "verified",
@@ -16096,6 +16499,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-2833-8025",
       "openalex_id": "A5002386539",
       "identity": "verified",
@@ -16136,6 +16540,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-6925-6114",
       "openalex_id": "A5073776098",
       "identity": "verified",
@@ -16178,6 +16583,7 @@ window.KOREA_BIO_MAP = {
         "ELISA"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8552-9066",
       "openalex_id": "A5030591928",
       "identity": "verified",
@@ -16220,6 +16626,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0813-1315",
       "openalex_id": "A5081062150",
       "identity": "probable",
@@ -16262,6 +16669,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9889-6172",
       "openalex_id": "A5080361662",
       "identity": "probable",
@@ -16304,6 +16712,7 @@ window.KOREA_BIO_MAP = {
         "엑소좀·세포외소포"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8424-2303",
       "openalex_id": "A5054033012",
       "identity": "verified",
@@ -16340,6 +16749,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-5689-6932",
       "openalex_id": "A5047892822",
       "identity": "verified",
@@ -16378,6 +16788,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5113801133",
       "identity": "probable",
@@ -16410,6 +16821,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-3193-8152",
       "openalex_id": "A5130904230",
       "identity": "verified",
@@ -16452,6 +16864,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0009-0005-2456-2459",
       "openalex_id": "A5029273980",
       "identity": "verified",
@@ -16494,6 +16907,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0009-0008-2913-9723",
       "openalex_id": "A5035280018",
       "identity": "verified",
@@ -16536,6 +16950,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-0786-6187",
       "openalex_id": "A5082247143",
       "identity": "probable",
@@ -16578,6 +16993,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-3276-8957",
       "openalex_id": "A5051416913",
       "identity": "probable",
@@ -16618,6 +17034,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-2216-3292",
       "openalex_id": "A5025112626",
       "identity": "verified",
@@ -16660,6 +17077,7 @@ window.KOREA_BIO_MAP = {
         "제브라피시"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-1656-6362",
       "openalex_id": "A5002092609",
       "identity": "verified",
@@ -16687,6 +17105,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0009-0001-3303-6777",
       "openalex_id": "",
       "identity": "verified",
@@ -16727,6 +17146,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5108653057",
       "identity": "probable",
@@ -16768,6 +17188,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5012381939",
       "identity": "probable",
@@ -16810,6 +17231,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0003-0731-1349",
       "openalex_id": "A5071177256",
       "identity": "probable",
@@ -16846,6 +17268,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0002-0557-1529",
       "openalex_id": "A5143773175",
       "identity": "verified",
@@ -16888,6 +17311,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0002-7240-7868",
       "openalex_id": "A5057306920",
       "identity": "probable",
@@ -16930,6 +17354,7 @@ window.KOREA_BIO_MAP = {
         "CRISPR 유전자편집"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0002-5027-7310",
       "openalex_id": "A5065055695",
       "identity": "verified",
@@ -16972,6 +17397,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0001-7371-8556",
       "openalex_id": "A5100755143",
       "identity": "verified",
@@ -17010,6 +17436,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0001-7750-6032",
       "openalex_id": "A5062038410",
       "identity": "verified",
@@ -17052,6 +17479,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0002-8589-6146",
       "openalex_id": "A5107143423",
       "identity": "verified",
@@ -17094,6 +17522,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0001-7662-7190",
       "openalex_id": "A5083993092",
       "identity": "verified",
@@ -17136,6 +17565,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0002-9814-5448",
       "openalex_id": "A5002290352",
       "identity": "verified",
@@ -17177,6 +17607,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0009-0003-6475-8603",
       "openalex_id": "A5073352347",
       "identity": "verified",
@@ -17219,6 +17650,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0003-2859-1036",
       "openalex_id": "A5060488559",
       "identity": "verified",
@@ -17261,6 +17693,7 @@ window.KOREA_BIO_MAP = {
         "애기장대·식물 모델"
       ],
       "department": "생명과학대학",
+      "lab": {},
       "orcid": "0000-0003-2461-6806",
       "openalex_id": "A5028639165",
       "identity": "verified",
@@ -17303,6 +17736,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-8523-0440",
       "openalex_id": "A5100339484",
       "identity": "probable",
@@ -17345,6 +17779,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-3597-2363",
       "openalex_id": "A5063960029",
       "identity": "verified",
@@ -17387,6 +17822,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0009-0004-7281-1205",
       "openalex_id": "A5033468301",
       "identity": "verified",
@@ -17429,6 +17865,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0001-7942-5893",
       "openalex_id": "A5021051777",
       "identity": "verified",
@@ -17467,6 +17904,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5130669764",
       "identity": "probable",
@@ -17506,6 +17944,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-1360-1895",
       "openalex_id": "A5047432424",
       "identity": "verified",
@@ -17548,6 +17987,7 @@ window.KOREA_BIO_MAP = {
         "분자도킹·시뮬레이션"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0001-6689-9571",
       "openalex_id": "A5087935742",
       "identity": "verified",
@@ -17590,6 +18030,7 @@ window.KOREA_BIO_MAP = {
         "제브라피시"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-4239-0804",
       "openalex_id": "A5051164633",
       "identity": "probable",
@@ -17630,6 +18071,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-5133-6888",
       "openalex_id": "A5008010244",
       "identity": "probable",
@@ -17672,6 +18114,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "전공안내",
+      "lab": {},
       "orcid": "0000-0003-3279-0871",
       "openalex_id": "A5039518799",
       "identity": "verified",
@@ -17714,6 +18157,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "전공안내",
+      "lab": {},
       "orcid": "0000-0003-3995-4429",
       "openalex_id": "A5052141825",
       "identity": "verified",
@@ -17756,6 +18200,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "전공안내",
+      "lab": {},
       "orcid": "0000-0003-0295-613X",
       "openalex_id": "A5090885576",
       "identity": "verified",
@@ -17798,6 +18243,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "전공안내",
+      "lab": {},
       "orcid": "0000-0002-4814-5685",
       "openalex_id": "A5101969801",
       "identity": "verified",
@@ -17837,6 +18283,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "학과안내",
+      "lab": {},
       "orcid": "0000-0001-7671-0162",
       "openalex_id": "A5054210187",
       "identity": "verified",
@@ -17877,6 +18324,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "식품생명공학전공",
+      "lab": {},
       "orcid": "0000-0003-4014-9849",
       "openalex_id": "A5002030721",
       "identity": "verified",
@@ -17919,6 +18367,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "의과대학소개; 의예과",
+      "lab": {},
       "orcid": "0000-0003-3827-9089",
       "openalex_id": "A5100447427",
       "identity": "verified",
@@ -17961,6 +18410,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학소개; 의예과",
+      "lab": {},
       "orcid": "0000-0001-9480-973X",
       "openalex_id": "A5103354103",
       "identity": "verified",
@@ -18003,6 +18453,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "의과대학소개; 의학과",
+      "lab": {},
       "orcid": "0000-0002-2128-9291",
       "openalex_id": "A5073695220",
       "identity": "verified",
@@ -18045,6 +18496,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "의과대학소개; 생화학-분자생물학교실",
+      "lab": {},
       "orcid": "0000-0002-3495-5126",
       "openalex_id": "A5101718715",
       "identity": "verified",
@@ -18079,6 +18531,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학소개",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5139655776",
       "identity": "probable",
@@ -18121,6 +18574,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0001-7870-3003",
       "openalex_id": "A5100635858",
       "identity": "verified",
@@ -18157,6 +18611,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0002-7964-804X",
       "openalex_id": "A5009885771",
       "identity": "verified",
@@ -18199,6 +18654,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0003-2266-9795",
       "openalex_id": "A5101705218",
       "identity": "verified",
@@ -18237,6 +18693,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5081771327",
       "identity": "probable",
@@ -18279,6 +18736,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0002-1722-2190",
       "openalex_id": "A5066559800",
       "identity": "probable",
@@ -18319,6 +18777,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0003-4195-2561",
       "openalex_id": "A5070915144",
       "identity": "probable",
@@ -18358,6 +18817,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0002-6892-4846",
       "openalex_id": "A5024613549",
       "identity": "verified",
@@ -18397,6 +18857,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0002-3742-6035",
       "openalex_id": "A5075038872",
       "identity": "verified",
@@ -18439,6 +18900,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의학과",
+      "lab": {},
       "orcid": "0000-0001-5775-6288",
       "openalex_id": "A5052469785",
       "identity": "verified",
@@ -18481,6 +18943,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의학과",
+      "lab": {},
       "orcid": "0000-0002-7405-471X",
       "openalex_id": "A5066947464",
       "identity": "verified",
@@ -18517,6 +18980,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의예과",
+      "lab": {},
       "orcid": "0000-0003-3268-8332",
       "openalex_id": "A5074642760",
       "identity": "verified",
@@ -18559,6 +19023,7 @@ window.KOREA_BIO_MAP = {
         "초파리"
       ],
       "department": "생화학-분자생물학교실",
+      "lab": {},
       "orcid": "0000-0002-3530-101X",
       "openalex_id": "A5080018856",
       "identity": "probable",
@@ -18599,6 +19064,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "병리학 (병리학 및 분자의학교실)",
+      "lab": {},
       "orcid": "0000-0001-8300-3407",
       "openalex_id": "A5101970563",
       "identity": "verified",
@@ -18640,6 +19106,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "병리학 (병리학 및 분자의학교실)",
+      "lab": {},
       "orcid": "0000-0002-5506-1682",
       "openalex_id": "A5078523453",
       "identity": "probable",
@@ -18682,6 +19149,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의생명정보학교실",
+      "lab": {},
       "orcid": "0000-0003-3703-9796",
       "openalex_id": "A5100686014",
       "identity": "verified",
@@ -18723,6 +19191,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "임상의학교실",
+      "lab": {},
       "orcid": "0000-0001-6085-5770",
       "openalex_id": "A5001675665",
       "identity": "verified",
@@ -18766,6 +19235,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "임상의학교실",
+      "lab": {},
       "orcid": "0000-0002-7177-7816",
       "openalex_id": "A5076361280",
       "identity": "verified",
@@ -18809,6 +19279,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "임상의학교실",
+      "lab": {},
       "orcid": "0000-0002-1007-1633",
       "openalex_id": "A5013491945",
       "identity": "verified",
@@ -18849,6 +19320,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "미생물학-면역학교실",
+      "lab": {},
       "orcid": "0000-0002-0855-3887",
       "openalex_id": "A5027021523",
       "identity": "verified",
@@ -18891,6 +19363,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "미생물학-면역학교실",
+      "lab": {},
       "orcid": "0000-0003-3269-2745",
       "openalex_id": "A5035283809",
       "identity": "verified",
@@ -18929,6 +19402,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의예과",
+      "lab": {},
       "orcid": "0009-0006-1569-7447",
       "openalex_id": "A5101545039",
       "identity": "probable",
@@ -18971,6 +19445,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "0000-0001-8622-7000",
       "openalex_id": "A5038364929",
       "identity": "verified",
@@ -19013,6 +19488,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "0000-0002-3900-3204",
       "openalex_id": "A5100753667",
       "identity": "probable",
@@ -19053,6 +19529,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "0000-0001-7498-5656",
       "openalex_id": "A5089365588",
       "identity": "verified",
@@ -19095,6 +19572,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "신경과학교실",
+      "lab": {},
       "orcid": "0000-0003-1418-0033",
       "openalex_id": "A5102991352",
       "identity": "verified",
@@ -19137,6 +19615,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0003-0611-9320",
       "openalex_id": "A5035847757",
       "identity": "verified",
@@ -19178,6 +19657,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-4200-2085",
       "openalex_id": "A5042196524",
       "identity": "verified",
@@ -19220,6 +19700,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-6830-3943",
       "openalex_id": "A5100754945",
       "identity": "verified",
@@ -19258,6 +19739,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-8518-4042",
       "openalex_id": "A5053640128",
       "identity": "verified",
@@ -19300,6 +19782,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0003-3137-8893",
       "openalex_id": "A5080323501",
       "identity": "probable",
@@ -19342,6 +19825,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5103393663",
       "identity": "probable",
@@ -19384,6 +19868,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0001-6791-2408",
       "openalex_id": "A5075086208",
       "identity": "verified",
@@ -19423,6 +19908,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0003-1045-5343",
       "openalex_id": "A5009493501",
       "identity": "verified",
@@ -19465,6 +19951,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0003-1144-2552",
       "openalex_id": "A5004152335",
       "identity": "verified",
@@ -19497,6 +19984,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-1525-2687",
       "openalex_id": "A5143447094",
       "identity": "probable",
@@ -19539,6 +20027,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0003-0556-9813",
       "openalex_id": "A5013875538",
       "identity": "verified",
@@ -19581,6 +20070,7 @@ window.KOREA_BIO_MAP = {
         "오가노이드"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-9669-4494",
       "openalex_id": "A5079817330",
       "identity": "verified",
@@ -19623,6 +20113,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0001-9241-1250",
       "openalex_id": "A5008470607",
       "identity": "verified",
@@ -19665,6 +20156,7 @@ window.KOREA_BIO_MAP = {
         "애기장대·식물 모델"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0001-8462-9655",
       "openalex_id": "A5041320217",
       "identity": "verified",
@@ -19707,6 +20199,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0001-6652-2504",
       "openalex_id": "A5100783614",
       "identity": "verified",
@@ -19749,6 +20242,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-7932-1880",
       "openalex_id": "A5100352938",
       "identity": "verified",
@@ -19791,6 +20285,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0003-1366-6090",
       "openalex_id": "A5091459002",
       "identity": "verified",
@@ -19818,6 +20313,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0001-6708-661X",
       "openalex_id": "",
       "identity": "verified",
@@ -19856,6 +20352,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0003-2098-0360",
       "openalex_id": "A5035438125",
       "identity": "verified",
@@ -19898,6 +20395,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0001-7174-0469",
       "openalex_id": "A5062352226",
       "identity": "verified",
@@ -19940,6 +20438,7 @@ window.KOREA_BIO_MAP = {
         "후성유전 분석"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-3420-8446",
       "openalex_id": "A5034766890",
       "identity": "verified",
@@ -19982,6 +20481,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "바이오융합대학",
+      "lab": {},
       "orcid": "0000-0002-2593-2758",
       "openalex_id": "A5089042821",
       "identity": "verified",
@@ -20024,6 +20524,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-2139-2296",
       "openalex_id": "A5077614062",
       "identity": "probable",
@@ -20062,6 +20563,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-1065-6746",
       "openalex_id": "A5054269597",
       "identity": "verified",
@@ -20104,6 +20606,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0003-4971-834X",
       "openalex_id": "A5044806903",
       "identity": "verified",
@@ -20144,6 +20647,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-7228-9558",
       "openalex_id": "A5101420488",
       "identity": "probable",
@@ -20186,6 +20690,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-3617-1181",
       "openalex_id": "A5019429913",
       "identity": "verified",
@@ -20228,6 +20733,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "약학대학",
+      "lab": {},
       "orcid": "0000-0002-2874-3418",
       "openalex_id": "A5032420745",
       "identity": "verified",
@@ -20264,6 +20770,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5101056682",
       "identity": "probable",
@@ -20306,6 +20813,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-1613-4209",
       "openalex_id": "A5009194157",
       "identity": "verified",
@@ -20348,6 +20856,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4551-4294",
       "openalex_id": "A5014311249",
       "identity": "probable",
@@ -20390,6 +20899,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-4743-8048",
       "openalex_id": "A5057283425",
       "identity": "verified",
@@ -20432,6 +20942,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1203-5011",
       "openalex_id": "A5103156841",
       "identity": "verified",
@@ -20468,6 +20979,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5043306064",
       "identity": "probable",
@@ -20507,6 +21019,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-1071-6099",
       "openalex_id": "A5004485212",
       "identity": "probable",
@@ -20545,6 +21058,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5103700896",
       "identity": "probable",
@@ -20587,6 +21101,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6895-0465",
       "openalex_id": "A5018057046",
       "identity": "verified",
@@ -20614,6 +21129,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0004-6911-1929",
       "openalex_id": "",
       "identity": "verified",
@@ -20656,6 +21172,7 @@ window.KOREA_BIO_MAP = {
         "항체 개발"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9308-5573",
       "openalex_id": "A5022252228",
       "identity": "probable",
@@ -20695,6 +21212,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-7624-5432",
       "openalex_id": "A5055540245",
       "identity": "verified",
@@ -20722,6 +21240,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-6454-7860",
       "openalex_id": "",
       "identity": "verified",
@@ -20764,6 +21283,7 @@ window.KOREA_BIO_MAP = {
         "줄기세포·iPSC"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4736-797X",
       "openalex_id": "A5063206043",
       "identity": "verified",
@@ -20806,6 +21326,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-4298-6272",
       "openalex_id": "A5069722745",
       "identity": "verified",
@@ -20833,6 +21354,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0550-7540",
       "openalex_id": "",
       "identity": "verified",
@@ -20875,6 +21397,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9072-201X",
       "openalex_id": "A5004451410",
       "identity": "verified",
@@ -20911,6 +21434,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0001-8054-0239",
       "openalex_id": "A5121764803",
       "identity": "verified",
@@ -20938,6 +21462,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0003-5628-4081",
       "openalex_id": "",
       "identity": "verified",
@@ -20980,6 +21505,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-0783-7642",
       "openalex_id": "A5040469158",
       "identity": "probable",
@@ -21019,6 +21545,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8461-6010",
       "openalex_id": "A5038922348",
       "identity": "verified",
@@ -21061,6 +21588,7 @@ window.KOREA_BIO_MAP = {
         "하이드로젤·스캐폴드"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-1331-364X",
       "openalex_id": "A5050299530",
       "identity": "verified",
@@ -21103,6 +21631,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-7440-2561",
       "openalex_id": "A5031631442",
       "identity": "probable",
@@ -21145,6 +21674,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3272-4049",
       "openalex_id": "A5013227767",
       "identity": "verified",
@@ -21187,6 +21717,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5449-8313",
       "openalex_id": "A5030277707",
       "identity": "verified",
@@ -21229,6 +21760,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9307-1155",
       "openalex_id": "A5028955760",
       "identity": "verified",
@@ -21267,6 +21799,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9938-0677",
       "openalex_id": "A5079150281",
       "identity": "verified",
@@ -21300,6 +21833,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5025514531",
       "identity": "probable",
@@ -21342,6 +21876,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-9208-9537",
       "openalex_id": "A5080983203",
       "identity": "verified",
@@ -21380,6 +21915,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1236-1271",
       "openalex_id": "A5001519468",
       "identity": "verified",
@@ -21422,6 +21958,7 @@ window.KOREA_BIO_MAP = {
         "GWAS·유전역학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3975-6342",
       "openalex_id": "A5010622196",
       "identity": "probable",
@@ -21464,6 +22001,7 @@ window.KOREA_BIO_MAP = {
         "CRISPR 유전자편집"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-5706-3967",
       "openalex_id": "A5060849462",
       "identity": "verified",
@@ -21505,6 +22043,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5109928756",
       "identity": "probable",
@@ -21545,6 +22084,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-7318-2296",
       "openalex_id": "A5021517513",
       "identity": "verified",
@@ -21584,6 +22124,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2147-7134",
       "openalex_id": "A5023306896",
       "identity": "verified",
@@ -21626,6 +22167,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-7504-1232",
       "openalex_id": "A5013343364",
       "identity": "verified",
@@ -21668,6 +22210,7 @@ window.KOREA_BIO_MAP = {
         "전자현미경"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2500-9493",
       "openalex_id": "A5063975439",
       "identity": "verified",
@@ -21710,6 +22253,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6318-4028",
       "openalex_id": "A5066094957",
       "identity": "verified",
@@ -21751,6 +22295,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-0828-3557",
       "openalex_id": "A5101748030",
       "identity": "verified",
@@ -21790,6 +22335,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4664-7048",
       "openalex_id": "A5052196936",
       "identity": "verified",
@@ -21831,6 +22377,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-7712-7497",
       "openalex_id": "A5086982168",
       "identity": "verified",
@@ -21873,6 +22420,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5004-0903",
       "openalex_id": "A5103004319",
       "identity": "verified",
@@ -21915,6 +22463,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6077-652X",
       "openalex_id": "A5087051450",
       "identity": "verified",
@@ -21951,6 +22500,7 @@ window.KOREA_BIO_MAP = {
       ],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0009-0000-0812-1569",
       "openalex_id": "A5040001147",
       "identity": "probable",
@@ -21989,6 +22539,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5555-986X",
       "openalex_id": "A5101555562",
       "identity": "probable",
@@ -22029,6 +22580,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-6852-9507",
       "openalex_id": "A5073390569",
       "identity": "verified",
@@ -22056,6 +22608,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1676-1264",
       "openalex_id": "",
       "identity": "verified",
@@ -22098,6 +22651,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3552-5988",
       "openalex_id": "A5101614868",
       "identity": "verified",
@@ -22140,6 +22694,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-9951-2505",
       "openalex_id": "A5100659335",
       "identity": "verified",
@@ -22178,6 +22733,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-4240-9977",
       "openalex_id": "A5067680164",
       "identity": "verified",
@@ -22220,6 +22776,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-2843-5597",
       "openalex_id": "A5101657414",
       "identity": "verified",
@@ -22262,6 +22819,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3720-9820",
       "openalex_id": "A5008907841",
       "identity": "verified",
@@ -22301,6 +22859,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-7521-3949",
       "openalex_id": "A5047492582",
       "identity": "verified",
@@ -22343,6 +22902,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-1834-7446",
       "openalex_id": "A5101429938",
       "identity": "probable",
@@ -22385,6 +22945,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-2314-4184",
       "openalex_id": "A5021543854",
       "identity": "verified",
@@ -22424,6 +22985,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4091-1346",
       "openalex_id": "A5044575749",
       "identity": "verified",
@@ -22466,6 +23028,7 @@ window.KOREA_BIO_MAP = {
         "나노입자·약물전달"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-6860-8042",
       "openalex_id": "A5100430443",
       "identity": "verified",
@@ -22506,6 +23069,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-2748-6835",
       "openalex_id": "A5038928349",
       "identity": "verified",
@@ -22547,6 +23111,7 @@ window.KOREA_BIO_MAP = {
         "ELISA"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-3512-6610",
       "openalex_id": "A5000601276",
       "identity": "verified",
@@ -22585,6 +23150,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8941-3482",
       "openalex_id": "A5076984115",
       "identity": "verified",
@@ -22624,6 +23190,7 @@ window.KOREA_BIO_MAP = {
         "qPCR"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-0641-5613",
       "openalex_id": "A5053221115",
       "identity": "probable",
@@ -22666,6 +23233,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-7841-4030",
       "openalex_id": "A5007088177",
       "identity": "verified",
@@ -22708,6 +23276,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5609-0485",
       "openalex_id": "A5100458117",
       "identity": "probable",
@@ -22746,6 +23315,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8713-0753",
       "openalex_id": "A5051156645",
       "identity": "verified",
@@ -22784,6 +23354,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8027-7170",
       "openalex_id": "A5101627483",
       "identity": "verified",
@@ -22826,6 +23397,7 @@ window.KOREA_BIO_MAP = {
         "유세포분석"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-5861-2876",
       "openalex_id": "A5023344952",
       "identity": "verified",
@@ -22868,6 +23440,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5083-8720",
       "openalex_id": "A5008220984",
       "identity": "verified",
@@ -22906,6 +23479,7 @@ window.KOREA_BIO_MAP = {
         "차세대 시퀀싱(NGS)"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4335-1356",
       "openalex_id": "A5101893024",
       "identity": "verified",
@@ -22947,6 +23521,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0001-8553-7189",
       "openalex_id": "A5008764061",
       "identity": "verified",
@@ -22987,6 +23562,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4783-8110",
       "openalex_id": "A5056425634",
       "identity": "verified",
@@ -23026,6 +23602,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-2412-4537",
       "openalex_id": "A5067397204",
       "identity": "verified",
@@ -23064,6 +23641,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-3115-5585",
       "openalex_id": "A5075486942",
       "identity": "verified",
@@ -23104,6 +23682,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-4135-5743",
       "openalex_id": "A5037739784",
       "identity": "verified",
@@ -23143,6 +23722,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0003-4569-9479",
       "openalex_id": "A5013369311",
       "identity": "probable",
@@ -23185,6 +23765,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "의과대학",
+      "lab": {},
       "orcid": "0000-0002-5040-3102",
       "openalex_id": "A5028288093",
       "identity": "verified",
@@ -23227,6 +23808,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "화공생명공학과",
+      "lab": {},
       "orcid": "0000-0003-0696-7768",
       "openalex_id": "A5077266712",
       "identity": "verified",
@@ -23265,6 +23847,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "화공생명공학과",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5113780633",
       "identity": "probable",
@@ -23307,6 +23890,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "화공생명공학과; 방사선의과학전공",
+      "lab": {},
       "orcid": "0009-0001-4317-4188",
       "openalex_id": "A5103439612",
       "identity": "verified",
@@ -23349,6 +23933,7 @@ window.KOREA_BIO_MAP = {
         "RNA 치료제·siRNA"
       ],
       "department": "화공생명공학과",
+      "lab": {},
       "orcid": "0000-0001-6804-741X",
       "openalex_id": "A5009922751",
       "identity": "verified",
@@ -23391,6 +23976,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "화공생명공학과",
+      "lab": {},
       "orcid": "0000-0002-8564-6999",
       "openalex_id": "A5045697950",
       "identity": "verified",
@@ -23430,6 +24016,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "식품생명공학과",
+      "lab": {},
       "orcid": "0000-0002-2755-2863",
       "openalex_id": "A5086310135",
       "identity": "verified",
@@ -23472,6 +24059,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "식품생명공학과; 나노바이오융합공학과",
+      "lab": {},
       "orcid": "0000-0002-6876-4520",
       "openalex_id": "A5064277560",
       "identity": "probable",
@@ -23514,6 +24102,7 @@ window.KOREA_BIO_MAP = {
         "조직공학·바이오프린팅"
       ],
       "department": "식품생명공학과",
+      "lab": {},
       "orcid": "0000-0002-3961-9607",
       "openalex_id": "A5034381298",
       "identity": "verified",
@@ -23556,6 +24145,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "식품생명공학과",
+      "lab": {},
       "orcid": "0000-0002-5650-8116",
       "openalex_id": "A5029762059",
       "identity": "verified",
@@ -23598,6 +24188,7 @@ window.KOREA_BIO_MAP = {
         "형광·공초점 이미징"
       ],
       "department": "바이오메디컬학과; 방사선의과학전공",
+      "lab": {},
       "orcid": "0000-0003-4667-6754",
       "openalex_id": "A5001847266",
       "identity": "verified",
@@ -23640,6 +24231,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "바이오메디컬학과",
+      "lab": {},
       "orcid": "0000-0002-5728-5364",
       "openalex_id": "A5056578032",
       "identity": "probable",
@@ -23682,6 +24274,7 @@ window.KOREA_BIO_MAP = {
         "미세유체·장기칩"
       ],
       "department": "바이오메디컬학과; 방사선의과학전공",
+      "lab": {},
       "orcid": "0000-0001-7656-9920",
       "openalex_id": "A5053060509",
       "identity": "verified",
@@ -23721,6 +24314,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "방사선의과학전공",
+      "lab": {},
       "orcid": "0009-0009-4848-8475",
       "openalex_id": "A5101525821",
       "identity": "probable",
@@ -23763,6 +24357,7 @@ window.KOREA_BIO_MAP = {
         "단백체"
       ],
       "department": "방사선의과학전공",
+      "lab": {},
       "orcid": "0000-0002-1708-9393",
       "openalex_id": "A5076521188",
       "identity": "verified",
@@ -23801,6 +24396,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "방사선의과학전공",
+      "lab": {},
       "orcid": "0009-0003-3331-2684",
       "openalex_id": "A5068385486",
       "identity": "verified",
@@ -23841,6 +24437,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "나노바이오융합공학과",
+      "lab": {},
       "orcid": "0000-0003-1012-3672",
       "openalex_id": "A5084090937",
       "identity": "verified",
@@ -23868,6 +24465,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "글로벌철도시스템학과(계약학과)",
+      "lab": {},
       "orcid": "0009-0009-1890-6162",
       "openalex_id": "",
       "identity": "verified",
@@ -23908,6 +24506,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "글로벌철도시스템학과(계약학과)",
+      "lab": {},
       "orcid": "0000-0003-3135-869X",
       "openalex_id": "A5100436332",
       "identity": "verified",
@@ -23950,6 +24549,7 @@ window.KOREA_BIO_MAP = {
         "유전자변형 마우스"
       ],
       "department": "경조직-바이오치아재생연구소",
+      "lab": {},
       "orcid": "0000-0001-9049-6908",
       "openalex_id": "A5102818065",
       "identity": "verified",
@@ -23992,6 +24592,7 @@ window.KOREA_BIO_MAP = {
         "머신러닝·AI"
       ],
       "department": "경조직-바이오치아재생연구소",
+      "lab": {},
       "orcid": "0000-0002-0469-4324",
       "openalex_id": "A5009905509",
       "identity": "verified",
@@ -24030,6 +24631,7 @@ window.KOREA_BIO_MAP = {
         "면역조직화학"
       ],
       "department": "경조직-바이오치아재생연구소",
+      "lab": {},
       "orcid": "",
       "openalex_id": "A5013180075",
       "identity": "probable",
@@ -24069,6 +24671,7 @@ window.KOREA_BIO_MAP = {
         "MRI·PET 영상"
       ],
       "department": "경조직-바이오치아재생연구소",
+      "lab": {},
       "orcid": "0000-0001-5795-6968",
       "openalex_id": "A5058334295",
       "identity": "verified",
@@ -24111,6 +24714,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0001-9069-1367",
       "openalex_id": "A5077515720",
       "identity": "verified",
@@ -24153,6 +24757,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0002-5038-6891",
       "openalex_id": "A5001019600",
       "identity": "probable",
@@ -24194,6 +24799,7 @@ window.KOREA_BIO_MAP = {
         "웨스턴블롯"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0001-6166-9726",
       "openalex_id": "A5062804646",
       "identity": "verified",
@@ -24221,6 +24827,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0002-2767-940X",
       "openalex_id": "",
       "identity": "verified",
@@ -24263,6 +24870,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0002-8859-0310",
       "openalex_id": "A5082376747",
       "identity": "verified",
@@ -24305,6 +24913,7 @@ window.KOREA_BIO_MAP = {
         "RNA-seq·전사체"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0002-3367-9887",
       "openalex_id": "A5077533501",
       "identity": "probable",
@@ -24332,6 +24941,7 @@ window.KOREA_BIO_MAP = {
       "keywords": [],
       "techniques": [],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0009-0001-5926-1227",
       "openalex_id": "A5102719726",
       "identity": "verified",
@@ -24374,6 +24984,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0003-3910-4838",
       "openalex_id": "A5002391204",
       "identity": "verified",
@@ -24416,6 +25027,7 @@ window.KOREA_BIO_MAP = {
         "제브라피시"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0003-0132-8924",
       "openalex_id": "A5000762926",
       "identity": "probable",
@@ -24458,6 +25070,7 @@ window.KOREA_BIO_MAP = {
         "예쁜꼬마선충"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0002-4342-1863",
       "openalex_id": "A5026197268",
       "identity": "verified",
@@ -24500,6 +25113,7 @@ window.KOREA_BIO_MAP = {
         "종양 이종이식 모델"
       ],
       "department": "생명공학부",
+      "lab": {},
       "orcid": "0000-0002-3708-8240",
       "openalex_id": "A5085347409",
       "identity": "verified",
@@ -24542,6 +25156,7 @@ window.KOREA_BIO_MAP = {
         "생물정보·계산생물"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0002-6061-2928",
       "openalex_id": "A5087538716",
       "identity": "verified",
@@ -24584,6 +25199,7 @@ window.KOREA_BIO_MAP = {
         "하이드로젤·스캐폴드"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0001-5855-643X",
       "openalex_id": "A5009440229",
       "identity": "verified",
@@ -24626,6 +25242,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0003-4303-9418",
       "openalex_id": "A5090627749",
       "identity": "verified",
@@ -24664,6 +25281,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0001-5815-7666",
       "openalex_id": "A5044833755",
       "identity": "probable",
@@ -24706,6 +25324,7 @@ window.KOREA_BIO_MAP = {
         "질량분석"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0002-0956-7367",
       "openalex_id": "A5075153617",
       "identity": "verified",
@@ -24748,6 +25367,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0002-0781-3608",
       "openalex_id": "A5025865564",
       "identity": "verified",
@@ -24790,6 +25410,7 @@ window.KOREA_BIO_MAP = {
         "대사체·지질체"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0002-7717-3626",
       "openalex_id": "A5091034884",
       "identity": "verified",
@@ -24832,6 +25453,7 @@ window.KOREA_BIO_MAP = {
         "X선 결정학·구조분석"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0002-2365-6294",
       "openalex_id": "A5087022737",
       "identity": "verified",
@@ -24874,6 +25496,7 @@ window.KOREA_BIO_MAP = {
         "임상시험"
       ],
       "department": "경북대학교 농업생명과학대학 식품공학부",
+      "lab": {},
       "orcid": "0000-0001-7432-7688",
       "openalex_id": "A5023751901",
       "identity": "verified",

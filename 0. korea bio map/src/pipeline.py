@@ -22,6 +22,7 @@ from classify import Classifier, position
 from keywords import KeywordCollector
 from lineage import Authorship, infer_lineage, lineage_relationships
 from name_extraction import name_compatible
+from master_sheet import lab_info, master_relationships
 from sectors import ORG_TYPE_SECTOR, SectorCollector, SectorTable
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
@@ -558,6 +559,7 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
     classifier = Classifier(DATA_DIR)
     sector_table = SectorTable(DATA_DIR, OUTPUT_DIR)
+    labs = lab_info(nodes)
     titles = _titles_by_professor(nodes)
     terms: dict[str, dict[str, list[str]]] = defaultdict(lambda: {"keyword": [], "technique": []})
     kw = _read_csv(OUTPUT_DIR / "professor_keywords.csv")
@@ -589,6 +591,8 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                 "keywords": terms[row.get("professor_id", "")]["keyword"][:8],
                 "techniques": terms[row.get("professor_id", "")]["technique"][:5],
                 "department": row.get("department", ""),
+                # 연구실정보 tab of the master Excel file (graduation time, papers per student ...)
+                "lab": labs.get(row.get("professor_id", ""), {}),
                 "orcid": row.get("orcid", ""),
                 "openalex_id": (_openalex_ids(row.get("openalex_id", "")) or [""])[0],
                 "identity": row.get("identity_status", "") or "seed",
@@ -649,6 +653,10 @@ def _score_weights() -> tuple[dict[str, int], dict[str, int]]:
 def build_network(professors: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     auto = _read_csv(OUTPUT_DIR / "relationships_auto.csv", REL_COLUMNS)
     manual = _read_csv(DATA_DIR / "relationships_manual.csv")
+    # Lines typed into the master Excel file (관계추가 tab), by name + organisation.
+    from_sheet = master_relationships(professors)
+    if not from_sheet.empty:
+        manual = pd.concat([manual, from_sheet], ignore_index=True, sort=False).fillna("")
 
     if not manual.empty:
         manual = manual.copy()
