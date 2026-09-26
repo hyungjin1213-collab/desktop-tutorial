@@ -134,3 +134,13 @@ def test_mismatched_split_profile_is_dropped():
                                                _author("A2", "Tae Soo Kim", "SNU", works=90)]})
     row = fi.resolve_person(oa, orcid, {"name": "김경수", "name_ko": "김경수", "university": "Seoul National University"})
     assert row["identity_status"] == "verified" and row["openalex_ids"] == "A1"
+
+
+def test_hand_entered_seed_found_with_institution_acronym(tmp_path, monkeypatch):
+    """P0004 김원종 (postech) never resolved: 'postech' vs 'Pohang University of Science and Technology'."""
+    monkeypatch.setattr(pipeline, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(pipeline, "OUTPUT_DIR", tmp_path)
+    pd.DataFrame([{"professor_id": "P0004", "name_ko": "김원종", "name_en": "wonjong kim",
+                   "university": "postech", "openalex_id": ""}]).to_csv(tmp_path / "professors_seed.csv", index=False)
+    oa = FakeOpenAlex([_author("A42", "Won Jong Kim", "Pohang University of Science and Technology")])
+    assert pipeline.resolve_professors(oa).iloc[0].openalex_id == "A42"

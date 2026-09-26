@@ -137,9 +137,15 @@ def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
                 pass
 
         if not current_id and not item.get("orcid", ""):
-            query_name = item.get("name_en") or item.get("name_ko")
-            institution = item.get("university", "")
-            match = client.search_author(query_name, institution) if query_name else None
+            # Hand-entered rows: same matcher as imported faculty (romanization
+            # variants, institution acronyms like POSTECH, past affiliations).
+            from faculty_identity_v2 import _best_openalex
+
+            try:
+                match, _ = _best_openalex(client, item.get("name_ko", ""), item.get("name_en", ""),
+                                          item.get("university", ""), item.get("name_en") or item.get("name_ko", ""))
+            except OpenAlexUnavailable:
+                match = None
             if match:
                 current_id = normalize_openalex_id(match.get("id", ""))
 
