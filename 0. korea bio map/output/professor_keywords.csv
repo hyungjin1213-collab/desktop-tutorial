@@ -1,4 +1,4 @@
-﻿professor_id,kind,rank,term,term_en,score
+professor_id,kind,rank,term,term_en,score
 P0337,keyword,1,Premature birth,Premature birth,71.485
 P0337,keyword,2,Obstetrics,Obstetrics,46.459
 P0337,keyword,3,Vagina,Vagina,25.984
@@ -308,21 +308,6 @@ P0552,technique,5,MRI·PET 영상,MRI / PET Imaging,0.848
 P0552,technique,6,임상시험,Clinical Trials,0.385
 P0552,technique,7,RNA-seq·전사체,RNA-seq / Transcriptomics,0.072
 P0552,technique,8,나노입자·약물전달,Nanoparticles / Drug Delivery,0.052
-P0387,keyword,1,Oxidoreductases,Oxidoreductases,1.085
-P0387,keyword,2,Mitophagy,Mitophagy,1.073
-P0387,keyword,3,Biosensor,Biosensor,1.069
-P0387,keyword,4,Tretinoin,Tretinoin,0.961
-P0387,keyword,5,Redox,Redox,0.873
-P0387,keyword,6,Brain Neoplasms,Brain Neoplasms,0.837
-P0387,keyword,7,Glioma,Glioma,0.837
-P0387,keyword,8,Glioblastoma,Glioblastoma,0.604
-P0387,keyword,9,Mitochondria,Mitochondria,0.587
-P0387,keyword,10,Identification (biology),Identification (biology),0.569
-P0387,keyword,11,Neoplastic Stem Cells,Neoplastic Stem Cells,0.521
-P0387,keyword,12,"Antibodies, Neutralizing","Antibodies, Neutralizing",0.518
-P0387,technique,1,항체 개발,Antibody Engineering,0.625
-P0387,technique,2,생물정보·계산생물,Bioinformatics,0.32
-P0387,technique,3,ELISA,ELISA,0.076
 P0475,keyword,1,Uterus,Uterus,22.381
 P0475,keyword,2,Endometrium,Endometrium,17.418
 P0475,keyword,3,Embryo Implantation,Embryo Implantation,14.439
@@ -978,19 +963,6 @@ P0002,technique,5,차세대 시퀀싱(NGS),Next-generation Sequencing,0.828
 P0002,technique,6,GWAS·유전역학,GWAS / Genetic Epidemiology,0.539
 P0002,technique,7,나노입자·약물전달,Nanoparticles / Drug Delivery,0.356
 P0002,technique,8,미세유체·장기칩,Microfluidics / Organ-on-a-chip,0.343
-P0468,keyword,1,Gladiolus,Gladiolus,4.449
-P0468,keyword,2,Urban space,Urban space,2.827
-P0468,keyword,3,Corm,Corm,2.806
-P0468,keyword,4,Urban park,Urban park,2.769
-P0468,keyword,5,Architectural engineering,Architectural engineering,2.749
-P0468,keyword,6,Green house,Green house,2.496
-P0468,keyword,7,Urban landscape,Urban landscape,2.458
-P0468,keyword,8,Tone (literature),Tone (literature),2.443
-P0468,keyword,9,Bulb,Bulb,2.358
-P0468,keyword,10,Green-light,Green-light,1.953
-P0468,keyword,11,Blue light,Blue light,1.785
-P0468,keyword,12,Red light,Red light,1.701
-P0468,technique,1,머신러닝·AI,Machine Learning / AI,0.05
 P0100,keyword,1,Glutaminolysis,Glutaminolysis,17.411
 P0100,keyword,2,Glutamine,Glutamine,14.591
 P0100,keyword,3,Amino Acid Transport System ASC,Amino Acid Transport System ASC,14.043
@@ -1330,26 +1302,6 @@ P0252,technique,5,질량분석,Mass Spectrometry,1.129
 P0252,technique,6,초파리,Drosophila,0.92
 P0252,technique,7,RNA-seq·전사체,RNA-seq / Transcriptomics,0.448
 P0252,technique,8,형광·공초점 이미징,Fluorescence / Confocal Imaging,0.416
-P0499,keyword,1,Sepsis,Sepsis,10.754
-P0499,keyword,2,Causal inference,Causal inference,9.85
-P0499,keyword,3,Polyadenylation,Polyadenylation,9.519
-P0499,keyword,4,Identifiability,Identifiability,7.603
-P0499,keyword,5,Inference,Inference,7.225
-P0499,keyword,6,Latent TGF-beta Binding Proteins,Latent TGF-beta Binding Proteins,7.129
-P0499,keyword,7,Causal model,Causal model,6.958
-P0499,keyword,8,DNA Methylation,DNA Methylation,6.679
-P0499,keyword,9,Competing endogenous RNA,Competing endogenous RNA,6.399
-P0499,keyword,10,Causality,Causality,6.299
-P0499,keyword,11,Graves Ophthalmopathy,Graves Ophthalmopathy,5.703
-P0499,keyword,12,Epstein-Barr Virus Infections,Epstein-Barr Virus Infections,5.266
-P0499,technique,1,머신러닝·AI,Machine Learning / AI,12.121
-P0499,technique,2,생물정보·계산생물,Bioinformatics,5.207
-P0499,technique,3,RNA-seq·전사체,RNA-seq / Transcriptomics,3.763
-P0499,technique,4,차세대 시퀀싱(NGS),Next-generation Sequencing,2.473
-P0499,technique,5,GWAS·유전역학,GWAS / Genetic Epidemiology,1.85
-P0499,technique,6,유전자변형 마우스,Genetically Modified Mice,1.03
-P0499,technique,7,분자도킹·시뮬레이션,Molecular Docking / Dynamics,0.488
-P0499,technique,8,항체 개발,Antibody Engineering,0.441
 P0408,keyword,1,"Arthritis, Rheumatoid","Arthritis, Rheumatoid",17.587
 P0408,keyword,2,"Lupus Erythematosus, Systemic","Lupus Erythematosus, Systemic",16.444
 P0408,keyword,3,Rheumatic Diseases,Rheumatic Diseases,13.955
@@ -1477,25 +1429,6 @@ P0604,technique,1,MRI·PET 영상,MRI / PET Imaging,0.683
 P0604,technique,2,머신러닝·AI,Machine Learning / AI,0.129
 P0604,technique,3,임상시험,Clinical Trials,0.077
 P0604,technique,4,생물정보·계산생물,Bioinformatics,0.054
-P0653,keyword,1,Glucosinolate,Glucosinolate,19.283
-P0653,keyword,2,Horticulture,Horticulture,18.932
-P0653,keyword,3,Chlorophyll fluorescence,Chlorophyll fluorescence,17.531
-P0653,keyword,4,Glucoraphanin,Glucoraphanin,14.031
-P0653,keyword,5,Centella,Centella,12.168
-P0653,keyword,6,Seedling,Seedling,10.52
-P0653,keyword,7,Chlorophyll,Chlorophyll,9.887
-P0653,keyword,8,Tray,Tray,9.712
-P0653,keyword,9,Botany,Botany,9.025
-P0653,keyword,10,Cultivar,Cultivar,8.638
-P0653,keyword,11,Myrosinase,Myrosinase,8.48
-P0653,keyword,12,Fragaria,Fragaria,7.804
-P0653,technique,1,대사체·지질체,Metabolomics / Lipidomics,1.028
-P0653,technique,2,RNA-seq·전사체,RNA-seq / Transcriptomics,0.325
-P0653,technique,3,애기장대·식물 모델,Arabidopsis,0.286
-P0653,technique,4,질량분석,Mass Spectrometry,0.253
-P0653,technique,5,생물정보·계산생물,Bioinformatics,0.083
-P0653,technique,6,MRI·PET 영상,MRI / PET Imaging,0.078
-P0653,technique,7,머신러닝·AI,Machine Learning / AI,0.003
 P0442,keyword,1,"Carcinoma, Transitional Cell","Carcinoma, Transitional Cell",3.589
 P0442,keyword,2,Cystectomy,Cystectomy,3.427
 P0442,keyword,3,Urinary Bladder Neoplasms,Urinary Bladder Neoplasms,3.389
@@ -1781,26 +1714,6 @@ P0355,technique,5,웨스턴블롯,Western Blot,0.553
 P0355,technique,6,유세포분석,Flow Cytometry,0.472
 P0355,technique,7,GWAS·유전역학,GWAS / Genetic Epidemiology,0.437
 P0355,technique,8,면역조직화학,Immunohistochemistry,0.318
-P0332,keyword,1,Reactive Oxygen Species,Reactive Oxygen Species,11.965
-P0332,keyword,2,Arsenic trioxide,Arsenic trioxide,11.228
-P0332,keyword,3,Oxidative Stress,Oxidative Stress,9.983
-P0332,keyword,4,Apoptosis,Apoptosis,9.417
-P0332,keyword,5,Cancer research,Cancer research,8.711
-P0332,keyword,6,Cell biology,Cell biology,8.409
-P0332,keyword,7,Signal transduction,Signal transduction,7.962
-P0332,keyword,8,Cyclophilins,Cyclophilins,7.815
-P0332,keyword,9,Oncology,Oncology,7.071
-P0332,keyword,10,Cancer,Cancer,7.059
-P0332,keyword,11,Facial Nerve,Facial Nerve,6.622
-P0332,keyword,12,"Drug Resistance, Neoplasm","Drug Resistance, Neoplasm",6.265
-P0332,technique,1,RNA-seq·전사체,RNA-seq / Transcriptomics,5.023
-P0332,technique,2,생물정보·계산생물,Bioinformatics,2.577
-P0332,technique,3,RNA 치료제·siRNA,RNA Therapeutics,1.771
-P0332,technique,4,종양 이종이식 모델,Xenograft Models,1.644
-P0332,technique,5,웨스턴블롯,Western Blot,1.357
-P0332,technique,6,면역조직화학,Immunohistochemistry,1.289
-P0332,technique,7,나노입자·약물전달,Nanoparticles / Drug Delivery,1.256
-P0332,technique,8,전자현미경,Electron Microscopy,1.144
 P0505,keyword,1,Neuregulin-1,Neuregulin-1,23.45
 P0505,keyword,2,Neuregulin 1,Neuregulin 1,22.422
 P0505,keyword,3,Excitatory Amino Acid Transporter 3,Excitatory Amino Acid Transporter 3,11.954
@@ -2220,26 +2133,6 @@ P0448,keyword,10,Perforation,Perforation,0.097
 P0448,keyword,11,Multiple sclerosis,Multiple sclerosis,0.093
 P0448,keyword,12,Encephalitis,Encephalitis,0.089
 P0448,technique,1,MRI·PET 영상,MRI / PET Imaging,0.035
-P0500,keyword,1,Capsule endoscopy,Capsule endoscopy,1.293
-P0500,keyword,2,Capsule,Capsule,1.234
-P0500,keyword,3,Beagle,Beagle,1.137
-P0500,keyword,4,Dog Diseases,Dog Diseases,1.121
-P0500,keyword,5,Starter,Starter,1.116
-P0500,keyword,6,Medetomidine,Medetomidine,1.021
-P0500,keyword,7,Meningoencephalitis,Meningoencephalitis,1.012
-P0500,keyword,8,Rotator Cuff Injuries,Rotator Cuff Injuries,0.978
-P0500,keyword,9,Flavor,Flavor,0.857
-P0500,keyword,10,Fractional anisotropy,Fractional anisotropy,0.848
-P0500,keyword,11,Stifle joint,Stifle joint,0.802
-P0500,keyword,12,Choroidal Neovascularization,Choroidal Neovascularization,0.787
-P0500,technique,1,MRI·PET 영상,MRI / PET Imaging,0.839
-P0500,technique,2,면역조직화학,Immunohistochemistry,0.205
-P0500,technique,3,임상시험,Clinical Trials,0.168
-P0500,technique,4,형광·공초점 이미징,Fluorescence / Confocal Imaging,0.073
-P0500,technique,5,항체 개발,Antibody Engineering,0.056
-P0500,technique,6,나노입자·약물전달,Nanoparticles / Drug Delivery,0.053
-P0500,technique,7,RNA 치료제·siRNA,RNA Therapeutics,0.044
-P0500,technique,8,RNA-seq·전사체,RNA-seq / Transcriptomics,0.031
 P0395,keyword,1,Median sternotomy,Median sternotomy,1.275
 P0395,keyword,2,Bochdalek hernia,Bochdalek hernia,1.205
 P0395,keyword,3,Mediastinitis,Mediastinitis,1.133
@@ -2389,26 +2282,6 @@ P0444,technique,5,ELISA,ELISA,0.192
 P0444,technique,6,질량분석,Mass Spectrometry,0.191
 P0444,technique,7,항체 개발,Antibody Engineering,0.177
 P0444,technique,8,qPCR,Real-time PCR,0.142
-P0368,keyword,1,Sphingosine N-Acyltransferase,Sphingosine N-Acyltransferase,6.632
-P0368,keyword,2,Sphingolipid,Sphingolipid,4.644
-P0368,keyword,3,Palatine Tonsil,Palatine Tonsil,4.295
-P0368,keyword,4,Sphingolipids,Sphingolipids,4.228
-P0368,keyword,5,Ceramides,Ceramides,4.175
-P0368,keyword,6,Ceramide,Ceramide,3.583
-P0368,keyword,7,"Influenza A Virus, H9N2 Subtype","Influenza A Virus, H9N2 Subtype",3.512
-P0368,keyword,8,Ellipse,Ellipse,3.496
-P0368,keyword,9,Nucleic Acids,Nucleic Acids,3.06
-P0368,keyword,10,Flap Endonucleases,Flap Endonucleases,2.892
-P0368,keyword,11,Autoimmune hemolytic anemia,Autoimmune hemolytic anemia,2.734
-P0368,keyword,12,Continuous glucose monitoring,Continuous glucose monitoring,2.613
-P0368,technique,1,줄기세포·iPSC,Stem Cells / iPSC,2.114
-P0368,technique,2,유전자변형 마우스,Genetically Modified Mice,1.658
-P0368,technique,3,나노입자·약물전달,Nanoparticles / Drug Delivery,0.941
-P0368,technique,4,웨스턴블롯,Western Blot,0.905
-P0368,technique,5,qPCR,Real-time PCR,0.638
-P0368,technique,6,ELISA,ELISA,0.504
-P0368,technique,7,머신러닝·AI,Machine Learning / AI,0.416
-P0368,technique,8,RNA-seq·전사체,RNA-seq / Transcriptomics,0.41
 P0076,keyword,1,Synaptic Vesicles,Synaptic Vesicles,19.562
 P0076,keyword,2,Synaptic vesicle,Synaptic vesicle,17.145
 P0076,keyword,3,Dendritic Spines,Dendritic Spines,15.19
@@ -3972,26 +3845,6 @@ P0268,technique,2,임상시험,Clinical Trials,0.136
 P0268,technique,3,면역조직화학,Immunohistochemistry,0.063
 P0268,technique,4,유세포분석,Flow Cytometry,0.04
 P0268,technique,5,생물정보·계산생물,Bioinformatics,0.024
-P0360,keyword,1,Mathematics education,Mathematics education,16.761
-P0360,keyword,2,Food science,Food science,15.844
-P0360,keyword,3,Fermentation,Fermentation,15.839
-P0360,keyword,4,Hyperspectral imaging,Hyperspectral imaging,15.716
-P0360,keyword,5,Fermented Foods,Fermented Foods,12.409
-P0360,keyword,6,Citizenship,Citizenship,10.278
-P0360,keyword,7,Psychology,Psychology,8.998
-P0360,keyword,8,Starch,Starch,8.888
-P0360,keyword,9,Salting,Salting,8.822
-P0360,keyword,10,Mindset,Mindset,8.191
-P0360,keyword,11,Brassica,Brassica,7.839
-P0360,keyword,12,Pedagogy,Pedagogy,7.607
-P0360,technique,1,머신러닝·AI,Machine Learning / AI,3.23
-P0360,technique,2,나노입자·약물전달,Nanoparticles / Drug Delivery,2.246
-P0360,technique,3,RNA-seq·전사체,RNA-seq / Transcriptomics,0.884
-P0360,technique,4,단일세포 분석,Single-cell Analysis,0.548
-P0360,technique,5,대사체·지질체,Metabolomics / Lipidomics,0.342
-P0360,technique,6,유전자변형 마우스,Genetically Modified Mice,0.331
-P0360,technique,7,하이드로젤·스캐폴드,Hydrogels / Scaffolds,0.27
-P0360,technique,8,질량분석,Mass Spectrometry,0.25
 P0439,keyword,1,Epilepsy,Epilepsy,15.755
 P0439,keyword,2,Cortical dysplasia,Cortical dysplasia,7.606
 P0439,keyword,3,German,German,7.04
@@ -4734,20 +4587,6 @@ P0388,technique,5,유세포분석,Flow Cytometry,0.596
 P0388,technique,6,면역조직화학,Immunohistochemistry,0.589
 P0388,technique,7,미세유체·장기칩,Microfluidics / Organ-on-a-chip,0.476
 P0388,technique,8,CRISPR 유전자편집,CRISPR Gene Editing,0.352
-P0046,keyword,1,Dental Caries,Dental Caries,4.12
-P0046,keyword,2,Muramidase,Muramidase,2.695
-P0046,keyword,3,Streptococcus mutans,Streptococcus mutans,2.647
-P0046,keyword,4,Anti-Infective Agents,Anti-Infective Agents,2.623
-P0046,keyword,5,Bacillus,Bacillus,2.603
-P0046,keyword,6,Demineralization,Demineralization,2.217
-P0046,keyword,7,Dental plaque,Dental plaque,2.073
-P0046,keyword,8,Biofilms,Biofilms,1.949
-P0046,keyword,9,Enamel paint,Enamel paint,1.593
-P0046,keyword,10,Biofilm,Biofilm,1.418
-P0046,keyword,11,Lysozyme,Lysozyme,1.399
-P0046,keyword,12,Saliva,Saliva,1.244
-P0046,technique,1,머신러닝·AI,Machine Learning / AI,0.143
-P0046,technique,2,차세대 시퀀싱(NGS),Next-generation Sequencing,0.077
 P0058,keyword,1,Gastroparesis,Gastroparesis,9.838
 P0058,keyword,2,Offspring,Offspring,7.405
 P0058,keyword,3,Radiance,Radiance,6.666
@@ -4883,26 +4722,6 @@ P0582,technique,5,qPCR,Real-time PCR,0.159
 P0582,technique,6,RNA 치료제·siRNA,RNA Therapeutics,0.155
 P0582,technique,7,질량분석,Mass Spectrometry,0.141
 P0582,technique,8,RNA-seq·전사체,RNA-seq / Transcriptomics,0.05
-P0553,keyword,1,Animal science,Animal science,8.05
-P0553,keyword,2,Feces,Feces,5.777
-P0553,keyword,3,Nutrient,Nutrient,5.477
-P0553,keyword,4,Broiler,Broiler,5.36
-P0553,keyword,5,Eggshell,Eggshell,5.269
-P0553,keyword,6,Dry matter,Dry matter,5.032
-P0553,keyword,7,Food science,Food science,4.588
-P0553,keyword,8,Feed conversion ratio,Feed conversion ratio,4.141
-P0553,keyword,9,Laying,Laying,4.071
-P0553,keyword,10,Meconium,Meconium,3.742
-P0553,keyword,11,Phytase,Phytase,3.447
-P0553,keyword,12,Weanling,Weanling,3.012
-P0553,technique,1,단백체,Proteomics,0.987
-P0553,technique,2,줄기세포·iPSC,Stem Cells / iPSC,0.9
-P0553,technique,3,질량분석,Mass Spectrometry,0.889
-P0553,technique,4,면역조직화학,Immunohistochemistry,0.58
-P0553,technique,5,RNA 치료제·siRNA,RNA Therapeutics,0.483
-P0553,technique,6,CAR-T·입양세포치료,CAR-T / Adoptive Cell Therapy,0.111
-P0553,technique,7,나노입자·약물전달,Nanoparticles / Drug Delivery,0.044
-P0553,technique,8,전자현미경,Electron Microscopy,0.034
 P0358,keyword,1,Free Tissue Flaps,Free Tissue Flaps,21.105
 P0358,keyword,2,Plastic Surgery Procedures,Plastic Surgery Procedures,20.068
 P0358,keyword,3,Perforator Flap,Perforator Flap,14.749
@@ -5066,26 +4885,6 @@ P0400,technique,2,미세유체·장기칩,Microfluidics / Organ-on-a-chip,0.288
 P0400,technique,3,ELISA,ELISA,0.184
 P0400,technique,4,형광·공초점 이미징,Fluorescence / Confocal Imaging,0.165
 P0400,technique,5,항체 개발,Antibody Engineering,0.079
-P0004,keyword,1,Advertising,Advertising,13.81
-P0004,keyword,2,Marketing,Marketing,12.982
-P0004,keyword,3,Business,Business,12.87
-P0004,keyword,4,Service quality,Service quality,11.062
-P0004,keyword,5,Customer satisfaction,Customer satisfaction,10.191
-P0004,keyword,6,Nanowire,Nanowire,9.356
-P0004,keyword,7,Psychology,Psychology,7.842
-P0004,keyword,8,Tourism,Tourism,7.55
-P0004,keyword,9,Accommodation,Accommodation,7.521
-P0004,keyword,10,Service (business),Service (business),6.562
-P0004,keyword,11,Shopping mall,Shopping mall,6.389
-P0004,keyword,12,Brand management,Brand management,6.076
-P0004,technique,1,머신러닝·AI,Machine Learning / AI,2.282
-P0004,technique,2,임상시험,Clinical Trials,1.389
-P0004,technique,3,나노입자·약물전달,Nanoparticles / Drug Delivery,0.437
-P0004,technique,4,줄기세포·iPSC,Stem Cells / iPSC,0.308
-P0004,technique,5,생물정보·계산생물,Bioinformatics,0.238
-P0004,technique,6,전자현미경,Electron Microscopy,0.18
-P0004,technique,7,RNA 치료제·siRNA,RNA Therapeutics,0.138
-P0004,technique,8,MRI·PET 영상,MRI / PET Imaging,0.114
 P0213,keyword,1,Uniporter,Uniporter,7.861
 P0213,keyword,2,Tunicamycin,Tunicamycin,5.198
 P0213,keyword,3,Quercetin,Quercetin,4.599
@@ -5237,26 +5036,6 @@ P0630,technique,4,웨스턴블롯,Western Blot,0.091
 P0630,technique,5,RNA 치료제·siRNA,RNA Therapeutics,0.087
 P0630,technique,6,머신러닝·AI,Machine Learning / AI,0.051
 P0630,technique,7,면역조직화학,Immunohistochemistry,0.023
-P0474,keyword,1,Huntington's disease,Huntington's disease,17.325
-P0474,keyword,2,Huntington Disease,Huntington Disease,13.563
-P0474,keyword,3,Neural Stem Cells,Neural Stem Cells,10.548
-P0474,keyword,4,Neural stem cell,Neural stem cell,9.204
-P0474,keyword,5,Huntingtin,Huntingtin,8.837
-P0474,keyword,6,Physical education,Physical education,7.898
-P0474,keyword,7,Stem cell,Stem cell,7.374
-P0474,keyword,8,Huntingtin Protein,Huntingtin Protein,7.103
-P0474,keyword,9,Transplantation,Transplantation,6.692
-P0474,keyword,10,Neurons,Neurons,6.445
-P0474,keyword,11,Sendai virus,Sendai virus,6.301
-P0474,keyword,12,Cell Differentiation,Cell Differentiation,6.117
-P0474,technique,1,줄기세포·iPSC,Stem Cells / iPSC,24.337
-P0474,technique,2,미세유체·장기칩,Microfluidics / Organ-on-a-chip,2.784
-P0474,technique,3,유전자변형 마우스,Genetically Modified Mice,2.529
-P0474,technique,4,전기생리,Electrophysiology,2.51
-P0474,technique,5,면역조직화학,Immunohistochemistry,1.828
-P0474,technique,6,RNA-seq·전사체,RNA-seq / Transcriptomics,1.354
-P0474,technique,7,MRI·PET 영상,MRI / PET Imaging,1.127
-P0474,technique,8,임상시험,Clinical Trials,0.472
 P0064,keyword,1,Non-alcoholic Fatty Liver Disease,Non-alcoholic Fatty Liver Disease,7.548
 P0064,keyword,2,"Carcinoma, Transitional Cell","Carcinoma, Transitional Cell",6.518
 P0064,keyword,3,Observer Variation,Observer Variation,5.881
@@ -5277,26 +5056,6 @@ P0064,technique,5,RNA-seq·전사체,RNA-seq / Transcriptomics,1.461
 P0064,technique,6,생물정보·계산생물,Bioinformatics,1.32
 P0064,technique,7,MRI·PET 영상,MRI / PET Imaging,0.914
 P0064,technique,8,대사체·지질체,Metabolomics / Lipidomics,0.649
-P0118,keyword,1,Soundscape,Soundscape,21.865
-P0118,keyword,2,Sonnet,Sonnet,10.407
-P0118,keyword,3,Anthropocene,Anthropocene,10.096
-P0118,keyword,4,Biopower,Biopower,7.558
-P0118,keyword,5,Perovskite (structure),Perovskite (structure),6.651
-P0118,keyword,6,Subjectivity,Subjectivity,6.439
-P0118,keyword,7,Perovskite solar cell,Perovskite solar cell,5.831
-P0118,keyword,8,Poetry,Poetry,5.412
-P0118,keyword,9,Open plan,Open plan,4.979
-P0118,keyword,10,Literature,Literature,4.84
-P0118,keyword,11,Solar cell,Solar cell,4.34
-P0118,keyword,12,Acoustics,Acoustics,4.116
-P0118,technique,1,조직공학·바이오프린팅,Tissue Engineering / Bioprinting,1.186
-P0118,technique,2,하이드로젤·스캐폴드,Hydrogels / Scaffolds,0.971
-P0118,technique,3,나노입자·약물전달,Nanoparticles / Drug Delivery,0.966
-P0118,technique,4,오가노이드,Organoids,0.827
-P0118,technique,5,전자현미경,Electron Microscopy,0.49
-P0118,technique,6,X선 결정학·구조분석,X-ray Crystallography,0.363
-P0118,technique,7,형광·공초점 이미징,Fluorescence / Confocal Imaging,0.202
-P0118,technique,8,머신러닝·AI,Machine Learning / AI,0.11
 P0576,keyword,1,Porcine circovirus,Porcine circovirus,34.652
 P0576,keyword,2,Circovirus,Circovirus,34.02
 P0576,keyword,3,Circoviridae Infections,Circoviridae Infections,33.748
@@ -5537,46 +5296,6 @@ P0259,technique,1,면역조직화학,Immunohistochemistry,0.198
 P0259,technique,2,항체 개발,Antibody Engineering,0.08
 P0259,technique,3,웨스턴블롯,Western Blot,0.036
 P0259,technique,4,생물정보·계산생물,Bioinformatics,0.006
-P0005,keyword,1,Electroencephalography,Electroencephalography,24.038
-P0005,keyword,2,Pattern recognition (psychology),Pattern recognition (psychology),16.997
-P0005,keyword,3,Speech recognition,Speech recognition,13.987
-P0005,keyword,4,Autoencoder,Autoencoder,12.961
-P0005,keyword,5,Brain–computer interface,Brain–computer interface,12.175
-P0005,keyword,6,Feature extraction,Feature extraction,11.497
-P0005,keyword,7,Feature (linguistics),Feature (linguistics),10.718
-P0005,keyword,8,Emotion recognition,Emotion recognition,9.79
-P0005,keyword,9,Auscultation,Auscultation,9.368
-P0005,keyword,10,Motor imagery,Motor imagery,8.921
-P0005,keyword,11,Multi-task learning,Multi-task learning,7.175
-P0005,keyword,12,Fracture toughness,Fracture toughness,6.489
-P0005,technique,1,머신러닝·AI,Machine Learning / AI,20.628
-P0005,technique,2,오가노이드,Organoids,4.807
-P0005,technique,3,MRI·PET 영상,MRI / PET Imaging,2.599
-P0005,technique,4,CAR-T·입양세포치료,CAR-T / Adoptive Cell Therapy,2.088
-P0005,technique,5,단일세포 분석,Single-cell Analysis,0.985
-P0005,technique,6,미세유체·장기칩,Microfluidics / Organ-on-a-chip,0.965
-P0005,technique,7,생물정보·계산생물,Bioinformatics,0.229
-P0005,technique,8,유세포분석,Flow Cytometry,0.201
-P0457,keyword,1,Bacterial Typing Techniques,Bacterial Typing Techniques,15.189
-P0457,keyword,2,Phylogeny,Phylogeny,12.465
-P0457,keyword,3,Vitamin K 2,Vitamin K 2,12.204
-P0457,keyword,4,"RNA, Ribosomal, 16S","RNA, Ribosomal, 16S",11.715
-P0457,keyword,5,Base Composition,Base Composition,11.687
-P0457,keyword,6,"DNA, Bacterial","DNA, Bacterial",11.496
-P0457,keyword,7,Fatty Acids,Fatty Acids,10.593
-P0457,keyword,8,"Sequence Analysis, DNA","Sequence Analysis, DNA",8.84
-P0457,keyword,9,Petunia,Petunia,7.951
-P0457,keyword,10,Sand,Sand,7.571
-P0457,keyword,11,16S ribosomal RNA,16S ribosomal RNA,6.831
-P0457,keyword,12,Benzyl Alcohol,Benzyl Alcohol,6.401
-P0457,technique,1,머신러닝·AI,Machine Learning / AI,2.439
-P0457,technique,2,애기장대·식물 모델,Arabidopsis,2.114
-P0457,technique,3,RNA-seq·전사체,RNA-seq / Transcriptomics,1.31
-P0457,technique,4,분자도킹·시뮬레이션,Molecular Docking / Dynamics,1.147
-P0457,technique,5,X선 결정학·구조분석,X-ray Crystallography,1.004
-P0457,technique,6,차세대 시퀀싱(NGS),Next-generation Sequencing,0.869
-P0457,technique,7,나노입자·약물전달,Nanoparticles / Drug Delivery,0.859
-P0457,technique,8,생물정보·계산생물,Bioinformatics,0.555
 P0013,keyword,1,Multiple Myeloma,Multiple Myeloma,117.495
 P0013,keyword,2,Lenalidomide,Lenalidomide,35.658
 P0013,keyword,3,Bortezomib,Bortezomib,35.257
@@ -5743,26 +5462,6 @@ P0516,keyword,11,Stroke Volume,Stroke Volume,2.448
 P0516,keyword,12,Ejection fraction,Ejection fraction,2.409
 P0516,technique,1,MRI·PET 영상,MRI / PET Imaging,0.291
 P0516,technique,2,머신러닝·AI,Machine Learning / AI,0.055
-P0089,keyword,1,Interpretability,Interpretability,14.83
-P0089,keyword,2,Antimicrobial peptides,Antimicrobial peptides,12.067
-P0089,keyword,3,Drug discovery,Drug discovery,11.756
-P0089,keyword,4,Drug,Drug,10.395
-P0089,keyword,5,Drug-drug interaction,Drug-drug interaction,9.153
-P0089,keyword,6,Drug target,Drug target,7.415
-P0089,keyword,7,Neoplasms,Neoplasms,7.196
-P0089,keyword,8,Synthetic Lethal Mutations,Synthetic Lethal Mutations,7.129
-P0089,keyword,9,Pharmaceutical Preparations,Pharmaceutical Preparations,6.22
-P0089,keyword,10,"Mammary Neoplasms, Animal","Mammary Neoplasms, Animal",5.152
-P0089,keyword,11,Transformer,Transformer,4.796
-P0089,keyword,12,Ether-A-Go-Go Potassium Channels,Ether-A-Go-Go Potassium Channels,4.77
-P0089,technique,1,머신러닝·AI,Machine Learning / AI,19.994
-P0089,technique,2,생물정보·계산생물,Bioinformatics,11.494
-P0089,technique,3,분자도킹·시뮬레이션,Molecular Docking / Dynamics,4.378
-P0089,technique,4,RNA-seq·전사체,RNA-seq / Transcriptomics,2.551
-P0089,technique,5,대사체·지질체,Metabolomics / Lipidomics,1.591
-P0089,technique,6,차세대 시퀀싱(NGS),Next-generation Sequencing,0.98
-P0089,technique,7,줄기세포·iPSC,Stem Cells / iPSC,0.753
-P0089,technique,8,임상시험,Clinical Trials,0.212
 P0649,keyword,1,Neuromorphic engineering,Neuromorphic engineering,58.151
 P0649,keyword,2,Transistor,Transistor,18.372
 P0649,keyword,3,Ion,Ion,17.048
@@ -5797,26 +5496,6 @@ P0443,technique,2,생물정보·계산생물,Bioinformatics,2.721
 P0443,technique,3,MRI·PET 영상,MRI / PET Imaging,1.795
 P0443,technique,4,형광·공초점 이미징,Fluorescence / Confocal Imaging,0.142
 P0443,technique,5,임상시험,Clinical Trials,0.003
-P0357,keyword,1,Lung transplantation,Lung transplantation,53.165
-P0357,keyword,2,Idiopathic Pulmonary Fibrosis,Idiopathic Pulmonary Fibrosis,48.411
-P0357,keyword,3,Lung,Lung,31.075
-P0357,keyword,4,Interstitial lung disease,Interstitial lung disease,20.709
-P0357,keyword,5,Pendrin,Pendrin,20.003
-P0357,keyword,6,Ventilator-Induced Lung Injury,Ventilator-Induced Lung Injury,19.394
-P0357,keyword,7,"Lung Diseases, Interstitial","Lung Diseases, Interstitial",18.9
-P0357,keyword,8,Bronchoalveolar lavage,Bronchoalveolar lavage,15.765
-P0357,keyword,9,Vital capacity,Vital capacity,15.446
-P0357,keyword,10,Sulfate Transporters,Sulfate Transporters,14.294
-P0357,keyword,11,Intensive Care Units,Intensive Care Units,12.924
-P0357,keyword,12,Sepsis,Sepsis,11.952
-P0357,technique,1,오가노이드,Organoids,4.662
-P0357,technique,2,차세대 시퀀싱(NGS),Next-generation Sequencing,1.866
-P0357,technique,3,유전자변형 마우스,Genetically Modified Mice,1.802
-P0357,technique,4,항체 개발,Antibody Engineering,1.298
-P0357,technique,5,MRI·PET 영상,MRI / PET Imaging,0.827
-P0357,technique,6,단일세포 분석,Single-cell Analysis,0.691
-P0357,technique,7,웨스턴블롯,Western Blot,0.685
-P0357,technique,8,머신러닝·AI,Machine Learning / AI,0.655
 P0036,keyword,1,PPAR gamma,PPAR gamma,27.316
 P0036,keyword,2,Adipogenesis,Adipogenesis,23.834
 P0036,keyword,3,Adiponectin,Adiponectin,23.039
@@ -6337,18 +6016,6 @@ P0456,technique,5,엑소좀·세포외소포,Exosomes / EVs,0.697
 P0456,technique,6,전자현미경,Electron Microscopy,0.687
 P0456,technique,7,하이드로젤·스캐폴드,Hydrogels / Scaffolds,0.547
 P0456,technique,8,면역조직화학,Immunohistochemistry,0.443
-P0397,keyword,1,Aromatase,Aromatase,0.691
-P0397,keyword,2,Endometriosis,Endometriosis,0.532
-P0397,keyword,3,Peroxisome proliferator-activated receptor gamma,Peroxisome proliferator-activated receptor gamma,0.437
-P0397,keyword,4,Reverse transcriptase,Reverse transcriptase,0.293
-P0397,keyword,5,"Colon, Sigmoid","Colon, Sigmoid",0.284
-P0397,keyword,6,Stromal cell,Stromal cell,0.281
-P0397,keyword,7,Agonist,Agonist,0.277
-P0397,keyword,8,Intestinal Fistula,Intestinal Fistula,0.254
-P0397,keyword,9,Peroxisome proliferator-activated receptor,Peroxisome proliferator-activated receptor,0.248
-P0397,keyword,10,Sigmoidoscopy,Sigmoidoscopy,0.213
-P0397,keyword,11,Myoma,Myoma,0.182
-P0397,keyword,12,Color doppler,Color doppler,0.182
 P0035,keyword,1,Enantioselective synthesis,Enantioselective synthesis,21.989
 P0035,keyword,2,Kinetic resolution,Kinetic resolution,18.199
 P0035,keyword,3,Stereocenter,Stereocenter,15.9
@@ -6389,43 +6056,6 @@ P0462,technique,5,유전자변형 마우스,Genetically Modified Mice,1.167
 P0462,technique,6,줄기세포·iPSC,Stem Cells / iPSC,0.577
 P0462,technique,7,유세포분석,Flow Cytometry,0.548
 P0462,technique,8,ELISA,ELISA,0.388
-P0615,keyword,1,Scrub typhus,Scrub typhus,58.858
-P0615,keyword,2,Severe Fever with Thrombocytopenia Syndrome,Severe Fever with Thrombocytopenia Syndrome,45.928
-P0615,keyword,3,Orientia tsutsugamushi,Orientia tsutsugamushi,42.834
-P0615,keyword,4,Phlebovirus,Phlebovirus,40.411
-P0615,keyword,5,Anaplasmosis,Anaplasmosis,28.283
-P0615,keyword,6,Hemorrhagic Fever with Renal Syndrome,Hemorrhagic Fever with Renal Syndrome,22.375
-P0615,keyword,7,COVID-19,COVID-19,21.012
-P0615,keyword,8,Viral Load,Viral Load,18.875
-P0615,keyword,9,Virology,Virology,18.567
-P0615,keyword,10,SARS-CoV-2,SARS-CoV-2,18.464
-P0615,keyword,11,Ixodidae,Ixodidae,18.302
-P0615,keyword,12,Anaplasma phagocytophilum,Anaplasma phagocytophilum,18.188
-P0615,technique,1,qPCR,Real-time PCR,4.552
-P0615,technique,2,임상시험,Clinical Trials,4.375
-P0615,technique,3,분자도킹·시뮬레이션,Molecular Docking / Dynamics,2.952
-P0615,technique,4,MRI·PET 영상,MRI / PET Imaging,2.123
-P0615,technique,5,차세대 시퀀싱(NGS),Next-generation Sequencing,1.648
-P0615,technique,6,ELISA,ELISA,1.528
-P0615,technique,7,생물정보·계산생물,Bioinformatics,1.47
-P0615,technique,8,머신러닝·AI,Machine Learning / AI,1.24
-P0202,keyword,1,"RNA Processing, Post-Transcriptional","RNA Processing, Post-Transcriptional",6.381
-P0202,keyword,2,Adenosine,Adenosine,3.731
-P0202,keyword,3,"AlkB Homolog 5, RNA Demethylase","AlkB Homolog 5, RNA Demethylase",3.598
-P0202,keyword,4,"Polymorphism, Single Nucleotide","Polymorphism, Single Nucleotide",3.138
-P0202,keyword,5,CHEK2,CHEK2,2.965
-P0202,keyword,6,Genetic Predisposition to Disease,Genetic Predisposition to Disease,2.49
-P0202,keyword,7,"Gene Expression Regulation, Neoplastic","Gene Expression Regulation, Neoplastic",2.304
-P0202,keyword,8,"Epigenesis, Genetic","Epigenesis, Genetic",2.217
-P0202,keyword,9,Colorectal Neoplasms,Colorectal Neoplasms,2.082
-P0202,keyword,10,"Leukemia, Myelogenous, Chronic, BCR-ABL Positive","Leukemia, Myelogenous, Chronic, BCR-ABL Positive",2.025
-P0202,keyword,11,Premature birth,Premature birth,1.929
-P0202,keyword,12,Myeloid leukemia,Myeloid leukemia,1.799
-P0202,technique,1,RNA-seq·전사체,RNA-seq / Transcriptomics,2.171
-P0202,technique,2,GWAS·유전역학,GWAS / Genetic Epidemiology,1.359
-P0202,technique,3,유전자변형 마우스,Genetically Modified Mice,0.348
-P0202,technique,4,생물정보·계산생물,Bioinformatics,0.305
-P0202,technique,5,RNA 치료제·siRNA,RNA Therapeutics,0.139
 P0540,keyword,1,Endothelial Cells,Endothelial Cells,7.871
 P0540,keyword,2,Lysine-tRNA Ligase,Lysine-tRNA Ligase,6.45
 P0540,keyword,3,Phytoalexins,Phytoalexins,5.995
@@ -6935,26 +6565,6 @@ P0668,keyword,11,Diagnostic Errors,Diagnostic Errors,2.624
 P0668,keyword,12,Odontogenic,Odontogenic,2.433
 P0668,technique,1,머신러닝·AI,Machine Learning / AI,0.731
 P0668,technique,2,MRI·PET 영상,MRI / PET Imaging,0.512
-P0343,keyword,1,Vocal Cords,Vocal Cords,14.612
-P0343,keyword,2,Amifostine,Amifostine,11.6
-P0343,keyword,3,Ovariectomized rat,Ovariectomized rat,10.196
-P0343,keyword,4,Lamina propria,Lamina propria,8.656
-P0343,keyword,5,Radiation-Protective Agents,Radiation-Protective Agents,7.778
-P0343,keyword,6,"Radiation Injuries, Experimental","Radiation Injuries, Experimental",7.625
-P0343,keyword,7,Ovariectomy,Ovariectomy,6.439
-P0343,keyword,8,Melatonin,Melatonin,6.418
-P0343,keyword,9,Mucous Membrane,Mucous Membrane,6.355
-P0343,keyword,10,Salivary Glands,Salivary Glands,5.81
-P0343,keyword,11,Xerostomia,Xerostomia,5.447
-P0343,keyword,12,Submandibular Gland,Submandibular Gland,5.255
-P0343,technique,1,줄기세포·iPSC,Stem Cells / iPSC,3.486
-P0343,technique,2,엑소좀·세포외소포,Exosomes / EVs,1.75
-P0343,technique,3,머신러닝·AI,Machine Learning / AI,1.005
-P0343,technique,4,웨스턴블롯,Western Blot,0.305
-P0343,technique,5,생물정보·계산생물,Bioinformatics,0.267
-P0343,technique,6,면역조직화학,Immunohistochemistry,0.196
-P0343,technique,7,임상시험,Clinical Trials,0.103
-P0343,technique,8,초파리,Drosophila,0.103
 P0687,keyword,1,ABTS,ABTS,26.188
 P0687,keyword,2,TBARS,TBARS,24.016
 P0687,keyword,3,Ethanol,Ethanol,22.651
@@ -6988,20 +6598,6 @@ P0323,keyword,11,Smartphone,Smartphone,1.744
 P0323,keyword,12,Nutritional Status,Nutritional Status,1.744
 P0323,technique,1,임상시험,Clinical Trials,0.671
 P0323,technique,2,머신러닝·AI,Machine Learning / AI,0.543
-P0528,keyword,1,Burden of disease,Burden of disease,4.099
-P0528,keyword,2,Disease burden,Disease burden,3.068
-P0528,keyword,3,Functional connectivity,Functional connectivity,3.002
-P0528,keyword,4,Evoked activity,Evoked activity,2.063
-P0528,keyword,5,Calcium Dobesilate,Calcium Dobesilate,2.041
-P0528,keyword,6,"Diet, Healthy","Diet, Healthy",1.742
-P0528,keyword,7,Signature (topology),Signature (topology),1.733
-P0528,keyword,8,Electroencephalography,Electroencephalography,1.709
-P0528,keyword,9,Sodium Glutamate,Sodium Glutamate,1.623
-P0528,keyword,10,Cytochrome P-450 CYP3A Inducers,Cytochrome P-450 CYP3A Inducers,1.623
-P0528,keyword,11,Alprostadil,Alprostadil,1.532
-P0528,keyword,12,Tryptamines,Tryptamines,1.509
-P0528,technique,1,MRI·PET 영상,MRI / PET Imaging,0.513
-P0528,technique,2,하이드로젤·스캐폴드,Hydrogels / Scaffolds,0.041
 P0192,keyword,1,Agaricales,Agaricales,5.717
 P0192,keyword,2,MDA-MB-231 Cells,MDA-MB-231 Cells,5.334
 P0192,keyword,3,microRNA,microRNA,4.931
@@ -7515,25 +7111,6 @@ P0362,keyword,10,Epstein-Barr Virus Infections,Epstein-Barr Virus Infections,0.1
 P0362,keyword,11,"Herpesvirus 4, Human","Herpesvirus 4, Human",0.144
 P0362,keyword,12,Hemophagocytic lymphohistiocytosis,Hemophagocytic lymphohistiocytosis,0.123
 P0362,technique,1,임상시험,Clinical Trials,0.065
-P0559,keyword,1,Breast ultrasound,Breast ultrasound,2.14
-P0559,keyword,2,Segmentation,Segmentation,1.701
-P0559,keyword,3,Robustness (evolution),Robustness (evolution),1.697
-P0559,keyword,4,Melanocytes,Melanocytes,1.445
-P0559,keyword,5,Atopic dermatitis,Atopic dermatitis,1.281
-P0559,keyword,6,Image segmentation,Image segmentation,1.259
-P0559,keyword,7,Interleukin-13,Interleukin-13,1.161
-P0559,keyword,8,Skin Lightening Preparations,Skin Lightening Preparations,1.161
-P0559,keyword,9,Feature extraction,Feature extraction,1.143
-P0559,keyword,10,Skin Pigmentation,Skin Pigmentation,1.069
-P0559,keyword,11,"Receptors, Antigen, T-Cell, gamma-delta","Receptors, Antigen, T-Cell, gamma-delta",1.061
-P0559,keyword,12,Melanins,Melanins,1.042
-P0559,technique,1,하이드로젤·스캐폴드,Hydrogels / Scaffolds,0.39
-P0559,technique,2,나노입자·약물전달,Nanoparticles / Drug Delivery,0.312
-P0559,technique,3,항체 개발,Antibody Engineering,0.302
-P0559,technique,4,유세포분석,Flow Cytometry,0.188
-P0559,technique,5,RNA 치료제·siRNA,RNA Therapeutics,0.078
-P0559,technique,6,ELISA,ELISA,0.074
-P0559,technique,7,미세유체·장기칩,Microfluidics / Organ-on-a-chip,0.072
 P0251,keyword,1,Alzheimer Disease,Alzheimer Disease,14.164
 P0251,keyword,2,Amyloid beta-Peptides,Amyloid beta-Peptides,12.552
 P0251,keyword,3,Neuroglia,Neuroglia,7.775
@@ -7620,21 +7197,6 @@ P0294,technique,5,미세유체·장기칩,Microfluidics / Organ-on-a-chip,0.771
 P0294,technique,6,대사체·지질체,Metabolomics / Lipidomics,0.753
 P0294,technique,7,조직공학·바이오프린팅,Tissue Engineering / Bioprinting,0.683
 P0294,technique,8,하이드로젤·스캐폴드,Hydrogels / Scaffolds,0.683
-P0232,keyword,1,Indian Ocean Dipole,Indian Ocean Dipole,8.645
-P0232,keyword,2,Dreams,Dreams,6.874
-P0232,keyword,3,Postural Balance,Postural Balance,6.404
-P0232,keyword,4,Gait,Gait,5.764
-P0232,keyword,5,Stroke Rehabilitation,Stroke Rehabilitation,5.741
-P0232,keyword,6,Photodetector,Photodetector,5.687
-P0232,keyword,7,Physical medicine and rehabilitation,Physical medicine and rehabilitation,5.503
-P0232,keyword,8,Athletes,Athletes,5.308
-P0232,keyword,9,Chlorophyll a,Chlorophyll a,5.011
-P0232,keyword,10,"Anesthetics, Intravenous","Anesthetics, Intravenous",4.663
-P0232,keyword,11,Balance (ability),Balance (ability),4.518
-P0232,keyword,12,Benchmark (surveying),Benchmark (surveying),4.482
-P0232,technique,1,머신러닝·AI,Machine Learning / AI,4.273
-P0232,technique,2,임상시험,Clinical Trials,0.93
-P0232,technique,3,RNA-seq·전사체,RNA-seq / Transcriptomics,0.264
 P0277,keyword,1,Habenula,Habenula,36.209
 P0277,keyword,2,"Conditioning, Classical","Conditioning, Classical",33.832
 P0277,keyword,3,Classical conditioning,Classical conditioning,25.37
@@ -7808,26 +7370,6 @@ P0377,keyword,4,Stomach,Stomach,0.05
 P0377,keyword,5,General surgery,General surgery,0.03
 P0377,keyword,6,Gastroenterology,Gastroenterology,0.025
 P0377,keyword,7,Surgery,Surgery,0.019
-P0418,keyword,1,Penaeus,Penaeus,13.978
-P0418,keyword,2,Shrimp,Shrimp,12.578
-P0418,keyword,3,Penaeidae,Penaeidae,10.154
-P0418,keyword,4,White spot syndrome virus 1,White spot syndrome virus 1,6.928
-P0418,keyword,5,Biofilms,Biofilms,5.95
-P0418,keyword,6,White spot syndrome,White spot syndrome,5.921
-P0418,keyword,7,Aquaculture,Aquaculture,5.87
-P0418,keyword,8,Hepatopancreas,Hepatopancreas,5.78
-P0418,keyword,9,Limosilactobacillus reuteri,Limosilactobacillus reuteri,5.465
-P0418,keyword,10,Gills,Gills,4.28
-P0418,keyword,11,Microplastics,Microplastics,4.145
-P0418,keyword,12,Escherichia coli O157,Escherichia coli O157,3.757
-P0418,technique,1,엑소좀·세포외소포,Exosomes / EVs,1.522
-P0418,technique,2,단백체,Proteomics,0.812
-P0418,technique,3,나노입자·약물전달,Nanoparticles / Drug Delivery,0.71
-P0418,technique,4,줄기세포·iPSC,Stem Cells / iPSC,0.7
-P0418,technique,5,예쁜꼬마선충,C. elegans,0.638
-P0418,technique,6,qPCR,Real-time PCR,0.53
-P0418,technique,7,전자현미경,Electron Microscopy,0.482
-P0418,technique,8,분자도킹·시뮬레이션,Molecular Docking / Dynamics,0.366
 P0250,keyword,1,Glioblastoma,Glioblastoma,8.859
 P0250,keyword,2,Pharmacogenomics,Pharmacogenomics,5.141
 P0250,keyword,3,Proteogenomics,Proteogenomics,4.498
@@ -8340,21 +7882,6 @@ P0022,technique,5,형광·공초점 이미징,Fluorescence / Confocal Imaging,1.
 P0022,technique,6,머신러닝·AI,Machine Learning / AI,0.589
 P0022,technique,7,RNA 치료제·siRNA,RNA Therapeutics,0.564
 P0022,technique,8,분자도킹·시뮬레이션,Molecular Docking / Dynamics,0.489
-P0421,keyword,1,Sodium-Glucose Transporter 2 Inhibitors,Sodium-Glucose Transporter 2 Inhibitors,6.396
-P0421,keyword,2,Cotransporter,Cotransporter,5.676
-P0421,keyword,3,Pharmacodynamics,Pharmacodynamics,5.242
-P0421,keyword,4,Pharmacokinetics,Pharmacokinetics,4.261
-P0421,keyword,5,Benzofurans,Benzofurans,4.072
-P0421,keyword,6,Glycosuria,Glycosuria,3.644
-P0421,keyword,7,Sodium-Glucose Transporter 2,Sodium-Glucose Transporter 2,3.205
-P0421,keyword,8,"Diabetes Mellitus, Type 2","Diabetes Mellitus, Type 2",3.192
-P0421,keyword,9,Hypoglycemic Agents,Hypoglycemic Agents,2.59
-P0421,keyword,10,Sodium,Sodium,2.57
-P0421,keyword,11,Renal Insufficiency,Renal Insufficiency,2.3
-P0421,keyword,12,Diabetic Nephropathies,Diabetic Nephropathies,2.2
-P0421,technique,1,하이드로젤·스캐폴드,Hydrogels / Scaffolds,0.542
-P0421,technique,2,임상시험,Clinical Trials,0.149
-P0421,technique,3,웨스턴블롯,Western Blot,0.071
 P0093,keyword,1,Amino Acyl-tRNA Synthetases,Amino Acyl-tRNA Synthetases,11.994
 P0093,keyword,2,Leucine-tRNA Ligase,Leucine-tRNA Ligase,9.254
 P0093,keyword,3,Mechanistic Target of Rapamycin Complex 1,Mechanistic Target of Rapamycin Complex 1,6.06
@@ -8493,19 +8020,6 @@ P0515,keyword,12,Gastritis,Gastritis,2.011
 P0515,technique,1,면역조직화학,Immunohistochemistry,2.418
 P0515,technique,2,생물정보·계산생물,Bioinformatics,0.133
 P0515,technique,3,임상시험,Clinical Trials,0.081
-P0101,keyword,1,Vaporizer,Vaporizer,0.488
-P0101,keyword,2,Octamethylcyclotetrasiloxane,Octamethylcyclotetrasiloxane,0.462
-P0101,keyword,3,Carrageenan,Carrageenan,0.39
-P0101,keyword,4,Histocytochemistry,Histocytochemistry,0.378
-P0101,keyword,5,Gear train,Gear train,0.311
-P0101,keyword,6,Non-circular gear,Non-circular gear,0.303
-P0101,keyword,7,Ovalbumin,Ovalbumin,0.298
-P0101,keyword,8,Asthma,Asthma,0.275
-P0101,keyword,9,Vaporization,Vaporization,0.275
-P0101,keyword,10,Th2 Cells,Th2 Cells,0.266
-P0101,keyword,11,Breakage,Breakage,0.23
-P0101,keyword,12,Immunoglobulin E,Immunoglobulin E,0.226
-P0101,technique,1,RNA-seq·전사체,RNA-seq / Transcriptomics,0.103
 P0636,keyword,1,Chronic rhinosinusitis,Chronic rhinosinusitis,12.654
 P0636,keyword,2,Rhinoplasty,Rhinoplasty,11.79
 P0636,keyword,3,Nasal polyps,Nasal polyps,10.26
@@ -8545,21 +8059,6 @@ P0555,keyword,10,Agricultural economics,Agricultural economics,2.46
 P0555,keyword,11,Vase,Vase,2.255
 P0555,keyword,12,Germination,Germination,1.955
 P0555,technique,1,질량분석,Mass Spectrometry,0.027
-P0508,keyword,1,Hippocampus,Hippocampus,2.832
-P0508,keyword,2,Ziziphus,Ziziphus,2.404
-P0508,keyword,3,Avoidance Learning,Avoidance Learning,1.819
-P0508,keyword,4,Synapses,Synapses,1.782
-P0508,keyword,5,Spatial Memory,Spatial Memory,1.782
-P0508,keyword,6,Long-term potentiation,Long-term potentiation,1.742
-P0508,keyword,7,Synaptic plasticity,Synaptic plasticity,1.704
-P0508,keyword,8,"Recognition, Psychology","Recognition, Psychology",1.626
-P0508,keyword,9,Fibrinolysin,Fibrinolysin,1.603
-P0508,keyword,10,"Behavior, Animal","Behavior, Animal",1.599
-P0508,keyword,11,Memory Disorders,Memory Disorders,1.552
-P0508,keyword,12,Attention deficit hyperactivity disorder,Attention deficit hyperactivity disorder,1.549
-P0508,technique,1,유전자변형 마우스,Genetically Modified Mice,0.564
-P0508,technique,2,웨스턴블롯,Western Blot,0.156
-P0508,technique,3,임상시험,Clinical Trials,0.087
 P0157,keyword,1,Deubiquitinating enzyme,Deubiquitinating enzyme,13.749
 P0157,keyword,2,Deubiquitinating Enzymes,Deubiquitinating Enzymes,12.764
 P0157,keyword,3,Ubiquitination,Ubiquitination,9.527
@@ -8754,24 +8253,6 @@ P0264,keyword,5,Weight Loss,Weight Loss,0.393
 P0264,keyword,6,Obesity,Obesity,0.221
 P0264,keyword,7,Adverse effect,Adverse effect,0.204
 P0264,technique,1,임상시험,Clinical Trials,0.185
-P0608,keyword,1,Foam Cells,Foam Cells,1.59
-P0608,keyword,2,Cyanides,Cyanides,1.565
-P0608,keyword,3,Schiff Bases,Schiff Bases,1.514
-P0608,keyword,4,ATP Binding Cassette Transporter 1,ATP Binding Cassette Transporter 1,1.374
-P0608,keyword,5,Manganese,Manganese,1.151
-P0608,keyword,6,Ferric Compounds,Ferric Compounds,1.082
-P0608,keyword,7,Early Diagnosis,Early Diagnosis,0.989
-P0608,keyword,8,Cyanide,Cyanide,0.974
-P0608,keyword,9,Magnets,Magnets,0.911
-P0608,keyword,10,Atherosclerosis,Atherosclerosis,0.854
-P0608,keyword,11,Plant factory,Plant factory,0.847
-P0608,keyword,12,Coordination Complexes,Coordination Complexes,0.756
-P0608,technique,1,X선 결정학·구조분석,X-ray Crystallography,1.069
-P0608,technique,2,줄기세포·iPSC,Stem Cells / iPSC,0.436
-P0608,technique,3,전기생리,Electrophysiology,0.167
-P0608,technique,4,RNA 치료제·siRNA,RNA Therapeutics,0.11
-P0608,technique,5,면역조직화학,Immunohistochemistry,0.082
-P0608,technique,6,생물정보·계산생물,Bioinformatics,0.02
 P0562,keyword,1,Endoscopic ultrasound,Endoscopic ultrasound,30.535
 P0562,keyword,2,Endosonography,Endosonography,28.653
 P0562,keyword,3,"Cholangiopancreatography, Endoscopic Retrograde","Cholangiopancreatography, Endoscopic Retrograde",17.002
@@ -9025,20 +8506,6 @@ P0286,technique,2,항체 개발,Antibody Engineering,0.668
 P0286,technique,3,웨스턴블롯,Western Blot,0.487
 P0286,technique,4,생물정보·계산생물,Bioinformatics,0.295
 P0286,technique,5,머신러닝·AI,Machine Learning / AI,0.004
-P0607,keyword,1,Human Umbilical Vein Endothelial Cells,Human Umbilical Vein Endothelial Cells,0.754
-P0607,keyword,2,Scarification,Scarification,0.737
-P0607,keyword,3,"Receptors, Interleukin-4","Receptors, Interleukin-4",0.719
-P0607,keyword,4,Urinary Bladder Neoplasms,Urinary Bladder Neoplasms,0.718
-P0607,keyword,5,Tumor Burden,Tumor Burden,0.611
-P0607,keyword,6,Peptides,Peptides,0.438
-P0607,keyword,7,Xylenes,Xylenes,0.398
-P0607,keyword,8,Oligopeptides,Oligopeptides,0.395
-P0607,keyword,9,Homing (biology),Homing (biology),0.395
-P0607,keyword,10,Ficus,Ficus,0.38
-P0607,keyword,11,Seed dormancy,Seed dormancy,0.357
-P0607,keyword,12,"Air Pollution, Indoor","Air Pollution, Indoor",0.343
-P0607,technique,1,나노입자·약물전달,Nanoparticles / Drug Delivery,0.338
-P0607,technique,2,X선 결정학·구조분석,X-ray Crystallography,0.005
 P0548,keyword,1,Probiotic,Probiotic,18.34
 P0548,keyword,2,Lactobacillus,Lactobacillus,14.047
 P0548,keyword,3,Levilactobacillus brevis,Levilactobacillus brevis,13.633
@@ -9145,20 +8612,6 @@ P0617,technique,3,줄기세포·iPSC,Stem Cells / iPSC,0.2
 P0617,technique,4,유세포분석,Flow Cytometry,0.155
 P0617,technique,5,면역조직화학,Immunohistochemistry,0.057
 P0617,technique,6,생물정보·계산생물,Bioinformatics,0.021
-P0436,keyword,1,Signal-To-Noise Ratio,Signal-To-Noise Ratio,7.265
-P0436,keyword,2,"Tomography, X-Ray Computed","Tomography, X-Ray Computed",6.38
-P0436,keyword,3,Radiation Dosage,Radiation Dosage,5.475
-P0436,keyword,4,Artifacts,Artifacts,5.414
-P0436,keyword,5,"Radiographic Image Interpretation, Computer-Assisted","Radiographic Image Interpretation, Computer-Assisted",5.374
-P0436,keyword,6,Image quality,Image quality,5.141
-P0436,keyword,7,"Infant, Premature","Infant, Premature",4.602
-P0436,keyword,8,Radiology,Radiology,4.295
-P0436,keyword,9,Ultrasonography,Ultrasonography,4.16
-P0436,keyword,10,"Heart Defects, Congenital","Heart Defects, Congenital",4.154
-P0436,keyword,11,Nuclear medicine,Nuclear medicine,3.89
-P0436,keyword,12,Heart Ventricles,Heart Ventricles,3.606
-P0436,technique,1,MRI·PET 영상,MRI / PET Imaging,3.412
-P0436,technique,2,머신러닝·AI,Machine Learning / AI,2.138
 P0637,keyword,1,Peritoneal Neoplasms,Peritoneal Neoplasms,3.397
 P0637,keyword,2,Rectal Neoplasms,Rectal Neoplasms,2.815
 P0637,keyword,3,Hyperthermic intraperitoneal chemotherapy,Hyperthermic intraperitoneal chemotherapy,2.57
@@ -9324,26 +8777,6 @@ P0534,keyword,12,Aura,Aura,3.651
 P0534,technique,1,MRI·PET 영상,MRI / PET Imaging,1.666
 P0534,technique,2,질량분석,Mass Spectrometry,0.35
 P0534,technique,3,머신러닝·AI,Machine Learning / AI,0.341
-P0003,keyword,1,Diffusion Tensor Imaging,Diffusion Tensor Imaging,4.087
-P0003,keyword,2,Optic Nerve Diseases,Optic Nerve Diseases,4.078
-P0003,keyword,3,Graves Ophthalmopathy,Graves Ophthalmopathy,3.803
-P0003,keyword,4,Iodine,Iodine,3.465
-P0003,keyword,5,"Tomography, X-Ray Computed","Tomography, X-Ray Computed",3.298
-P0003,keyword,6,"Radiography, Dual-Energy Scanned Projection","Radiography, Dual-Energy Scanned Projection",3.22
-P0003,keyword,7,Cognitive Behavioral Therapy,Cognitive Behavioral Therapy,2.696
-P0003,keyword,8,"Behavior, Addictive","Behavior, Addictive",2.696
-P0003,keyword,9,Welfare,Welfare,2.608
-P0003,keyword,10,Thyroid Diseases,Thyroid Diseases,2.607
-P0003,keyword,11,Social Welfare,Social Welfare,2.584
-P0003,keyword,12,Teleradiology,Teleradiology,2.532
-P0003,technique,1,MRI·PET 영상,MRI / PET Imaging,5.188
-P0003,technique,2,GWAS·유전역학,GWAS / Genetic Epidemiology,0.201
-P0003,technique,3,면역조직화학,Immunohistochemistry,0.115
-P0003,technique,4,생물정보·계산생물,Bioinformatics,0.071
-P0003,technique,5,단백체,Proteomics,0.071
-P0003,technique,6,전자현미경,Electron Microscopy,0.063
-P0003,technique,7,머신러닝·AI,Machine Learning / AI,0.06
-P0003,technique,8,질량분석,Mass Spectrometry,0.025
 P0501,keyword,1,Brain–computer interface,Brain–computer interface,10.142
 P0501,keyword,2,Electroencephalography,Electroencephalography,6.281
 P0501,keyword,3,Brain-Computer Interfaces,Brain-Computer Interfaces,5.086
@@ -9643,26 +9076,6 @@ P0563,keyword,12,Zolpidem,Zolpidem,8.677
 P0563,technique,1,질량분석,Mass Spectrometry,2.805
 P0563,technique,2,임상시험,Clinical Trials,0.225
 P0563,technique,3,생물정보·계산생물,Bioinformatics,0.1
-P0172,keyword,1,Pythium,Pythium,16.297
-P0172,keyword,2,Monilinia fructicola,Monilinia fructicola,7.221
-P0172,keyword,3,Plant Diseases,Plant Diseases,6.415
-P0172,keyword,4,Oryza,Oryza,6.092
-P0172,keyword,5,Seedling,Seedling,5.886
-P0172,keyword,6,Colletotrichum acutatum,Colletotrichum acutatum,5.101
-P0172,keyword,7,Virulence,Virulence,4.835
-P0172,keyword,8,Sleep Stages,Sleep Stages,4.663
-P0172,keyword,9,"Sleep, REM","Sleep, REM",4.663
-P0172,keyword,10,Cephalometry,Cephalometry,4.539
-P0172,keyword,11,Bipolaris,Bipolaris,4.269
-P0172,keyword,12,Oryza sativa,Oryza sativa,4.058
-P0172,technique,1,머신러닝·AI,Machine Learning / AI,0.737
-P0172,technique,2,애기장대·식물 모델,Arabidopsis,0.413
-P0172,technique,3,RNA-seq·전사체,RNA-seq / Transcriptomics,0.189
-P0172,technique,4,생물정보·계산생물,Bioinformatics,0.174
-P0172,technique,5,MRI·PET 영상,MRI / PET Imaging,0.148
-P0172,technique,6,임상시험,Clinical Trials,0.107
-P0172,technique,7,단백체,Proteomics,0.054
-P0172,technique,8,항체 개발,Antibody Engineering,0.013
 P0547,keyword,1,Skin Microbiome,Skin Microbiome,13.804
 P0547,keyword,2,Microbiota,Microbiota,8.994
 P0547,keyword,3,"Vaginosis, Bacterial","Vaginosis, Bacterial",7.572
@@ -9732,25 +9145,6 @@ P0566,keyword,9,Gene Frequency,Gene Frequency,0.599
 P0566,keyword,10,Case-control study,Case-control study,0.475
 P0566,keyword,11,Asian People,Asian People,0.441
 P0566,keyword,12,Genotype,Genotype,0.327
-P0661,keyword,1,Atrial fibrillation,Atrial fibrillation,9.466
-P0661,keyword,2,Histamine H2 Antagonists,Histamine H2 Antagonists,6.209
-P0661,keyword,3,Oxygen saturation,Oxygen saturation,6.005
-P0661,keyword,4,Procedural Sedation,Procedural Sedation,6.005
-P0661,keyword,5,Conscious Sedation,Conscious Sedation,6.005
-P0661,keyword,6,Clostridium Infections,Clostridium Infections,6.005
-P0661,keyword,7,Clostridioides difficile,Clostridioides difficile,5.535
-P0661,keyword,8,"Endoscopy, Gastrointestinal","Endoscopy, Gastrointestinal",4.84
-P0661,keyword,9,"Sleep Apnea, Obstructive","Sleep Apnea, Obstructive",4.84
-P0661,keyword,10,Proton Pump Inhibitors,Proton Pump Inhibitors,4.766
-P0661,keyword,11,Stroke,Stroke,4.301
-P0661,keyword,12,Sedation,Sedation,4.181
-P0661,technique,1,질량분석,Mass Spectrometry,0.536
-P0661,technique,2,엑소좀·세포외소포,Exosomes / EVs,0.493
-P0661,technique,3,MRI·PET 영상,MRI / PET Imaging,0.227
-P0661,technique,4,줄기세포·iPSC,Stem Cells / iPSC,0.149
-P0661,technique,5,분자도킹·시뮬레이션,Molecular Docking / Dynamics,0.062
-P0661,technique,6,생물정보·계산생물,Bioinformatics,0.057
-P0661,technique,7,임상시험,Clinical Trials,0.043
 P0032,keyword,1,Diffuse large B-cell lymphoma,Diffuse large B-cell lymphoma,9.598
 P0032,keyword,2,Baseline (sea),Baseline (sea),9.282
 P0032,keyword,3,Cysteine,Cysteine,8.814
@@ -9978,24 +9372,6 @@ P0269,technique,5,오가노이드,Organoids,0.295
 P0269,technique,6,면역조직화학,Immunohistochemistry,0.294
 P0269,technique,7,엑소좀·세포외소포,Exosomes / EVs,0.248
 P0269,technique,8,MRI·PET 영상,MRI / PET Imaging,0.226
-P0633,keyword,1,Building-integrated photovoltaics,Building-integrated photovoltaics,25.976
-P0633,keyword,2,Hyperspectral imaging,Hyperspectral imaging,9.797
-P0633,keyword,3,Photovoltaic system,Photovoltaic system,8.304
-P0633,keyword,4,Market liquidity,Market liquidity,7.092
-P0633,keyword,5,Accounting liquidity,Accounting liquidity,6.52
-P0633,keyword,6,Architectural engineering,Architectural engineering,5.907
-P0633,keyword,7,GLARE,GLARE,5.698
-P0633,keyword,8,Single-family detached home,Single-family detached home,5.406
-P0633,keyword,9,Liquidity risk,Liquidity risk,5.358
-P0633,keyword,10,Liquidity crisis,Liquidity crisis,5.104
-P0633,keyword,11,Liquidity premium,Liquidity premium,4.707
-P0633,keyword,12,Apartment,Apartment,4.207
-P0633,technique,1,머신러닝·AI,Machine Learning / AI,2.316
-P0633,technique,2,분자도킹·시뮬레이션,Molecular Docking / Dynamics,0.744
-P0633,technique,3,임상시험,Clinical Trials,0.172
-P0633,technique,4,생물정보·계산생물,Bioinformatics,0.147
-P0633,technique,5,애기장대·식물 모델,Arabidopsis,0.077
-P0633,technique,6,X선 결정학·구조분석,X-ray Crystallography,0.049
 P0018,keyword,1,Metabolic engineering,Metabolic engineering,8.054
 P0018,keyword,2,Single-Domain Antibodies,Single-Domain Antibodies,6.209
 P0018,keyword,3,"Gene Expression Regulation, Bacterial","Gene Expression Regulation, Bacterial",4.894
@@ -10082,19 +9458,6 @@ P0300,keyword,4,Ex vivo,Ex vivo,0.378
 P0300,keyword,5,Raman scattering,Raman scattering,0.357
 P0300,keyword,6,Stratum corneum,Stratum corneum,0.304
 P0300,keyword,7,Characterization (materials science),Characterization (materials science),0.249
-P0419,keyword,1,Debye model,Debye model,1.126
-P0419,keyword,2,Photoluminescence,Photoluminescence,1.048
-P0419,keyword,3,Polycystic ovary,Polycystic ovary,0.843
-P0419,keyword,4,Adrenal Insufficiency,Adrenal Insufficiency,0.79
-P0419,keyword,5,Febrile seizure,Febrile seizure,0.719
-P0419,keyword,6,Band gap,Band gap,0.686
-P0419,keyword,7,Endometriosis,Endometriosis,0.647
-P0419,keyword,8,Activation energy,Activation energy,0.628
-P0419,keyword,9,Primary Adrenal Insufficiency,Primary Adrenal Insufficiency,0.605
-P0419,keyword,10,Spectroscopy,Spectroscopy,0.568
-P0419,keyword,11,Relaxation (psychology),Relaxation (psychology),0.543
-P0419,keyword,12,Misoprostol,Misoprostol,0.515
-P0419,technique,1,웨스턴블롯,Western Blot,0.037
 P0091,keyword,1,Enantioselective synthesis,Enantioselective synthesis,6.655
 P0091,keyword,2,Chirality (physics),Chirality (physics),5.376
 P0091,keyword,3,Stereocenter,Stereocenter,5.117
@@ -10374,20 +9737,6 @@ P0645,technique,5,X선 결정학·구조분석,X-ray Crystallography,0.814
 P0645,technique,6,전자현미경,Electron Microscopy,0.398
 P0645,technique,7,형광·공초점 이미징,Fluorescence / Confocal Imaging,0.298
 P0645,technique,8,MRI·PET 영상,MRI / PET Imaging,0.224
-P0512,keyword,1,Bronchiolitis,Bronchiolitis,0.592
-P0512,keyword,2,Bayesian multivariate linear regression,Bayesian multivariate linear regression,0.51
-P0512,keyword,3,Nitrogen Dioxide,Nitrogen Dioxide,0.487
-P0512,keyword,4,Mucinous carcinoma,Mucinous carcinoma,0.435
-P0512,keyword,5,Air Pollution,Air Pollution,0.405
-P0512,keyword,6,Univariate,Univariate,0.405
-P0512,keyword,7,Linear regression,Linear regression,0.345
-P0512,keyword,8,Particle swarm optimization,Particle swarm optimization,0.337
-P0512,keyword,9,Land use,Land use,0.314
-P0512,keyword,10,Multivariate statistics,Multivariate statistics,0.283
-P0512,keyword,11,Regression Analysis,Regression Analysis,0.278
-P0512,keyword,12,Intrahepatic Cholangiocarcinoma,Intrahepatic Cholangiocarcinoma,0.269
-P0512,technique,1,머신러닝·AI,Machine Learning / AI,0.079
-P0512,technique,2,면역조직화학,Immunohistochemistry,0.024
 P0160,keyword,1,Plankton,Plankton,1.742
 P0160,keyword,2,"DNA, Environmental","DNA, Environmental",1.435
 P0160,keyword,3,"RNA, Ribosomal, 18S","RNA, Ribosomal, 18S",1.334
@@ -10503,26 +9852,6 @@ P0613,keyword,12,Proteome,Proteome,1.514
 P0613,technique,1,단백체,Proteomics,1.041
 P0613,technique,2,질량분석,Mass Spectrometry,0.672
 P0613,technique,3,MRI·PET 영상,MRI / PET Imaging,0.268
-P0167,keyword,1,NF-E2-Related Factor 2,NF-E2-Related Factor 2,4.327
-P0167,keyword,2,Memory Disorders,Memory Disorders,4.11
-P0167,keyword,3,PPAR delta,PPAR delta,3.945
-P0167,keyword,4,Emodin,Emodin,3.387
-P0167,keyword,5,Microglia,Microglia,2.893
-P0167,keyword,6,Alzheimer Disease,Alzheimer Disease,2.82
-P0167,keyword,7,Lycium,Lycium,2.788
-P0167,keyword,8,Structure-Activity Relationship,Structure-Activity Relationship,2.746
-P0167,keyword,9,Early childhood education,Early childhood education,2.534
-P0167,keyword,10,Glucosides,Glucosides,2.482
-P0167,keyword,11,Anthraquinones,Anthraquinones,2.397
-P0167,keyword,12,Chalcone,Chalcone,2.369
-P0167,technique,1,하이드로젤·스캐폴드,Hydrogels / Scaffolds,2.841
-P0167,technique,2,유전자변형 마우스,Genetically Modified Mice,0.883
-P0167,technique,3,차세대 시퀀싱(NGS),Next-generation Sequencing,0.539
-P0167,technique,4,애기장대·식물 모델,Arabidopsis,0.5
-P0167,technique,5,나노입자·약물전달,Nanoparticles / Drug Delivery,0.352
-P0167,technique,6,임상시험,Clinical Trials,0.316
-P0167,technique,7,전자현미경,Electron Microscopy,0.283
-P0167,technique,8,생물정보·계산생물,Bioinformatics,0.261
 P0152,keyword,1,Family Health,Family Health,0.091
 P0152,keyword,2,"Calcium Channels, N-Type","Calcium Channels, N-Type",0.09
 P0152,keyword,3,Familial hemiplegic migraine,Familial hemiplegic migraine,0.079

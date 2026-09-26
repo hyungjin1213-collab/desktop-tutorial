@@ -4,8 +4,11 @@ Order of evidence, strongest first:
 
 1. ORCID record whose public email equals the faculty-page email.
 2. The only ORCID record with this (romanized) name at this institution.
-3. The only OpenAlex author with this name at this institution (current or
-   past affiliation) whose work is mainly Life / Health Sciences.
+3. The only OpenAlex author with this name whose current affiliation is this
+   institution and whose work is mainly Life / Health Sciences. A past
+   affiliation alone is not enough (too many same-name mismatches).
+
+OpenAlex IDs listed in data/identity_rejections.csv are never used.
 
 1-2 are "verified": the OpenAlex profile is then fetched by ORCID, which
 also collects split OpenAlex profiles of the same person. 3 is "probable".
@@ -92,6 +95,57 @@ def _tokens(value: str) -> set[str]:
         if re.search(rf"\b{short}\b", text):
             text += " " + full
     return {t for t in re.findall(r"[a-z0-9가-힣]+", text) if len(t) >= 3 and t not in stop}
+
+
+_INST_STOP = {"university", "of", "the", "and", "at", "in", "campus"}
+
+
+def _inst_tokens(value: str) -> set[str]:
+    text = (value or "").casefold()
+    for short, full in INSTITUTION_ALIASES.items():
+        text = re.sub(rf"\b{short}\b", full, text)
+    return {t for t in re.findall(r"[a-z0-9]+", text) if t not in _INST_STOP and len(t) >= 2}
+
+
+def _known_universities() -> list[set[str]]:
+    path = DATA_DIR / "universities_seed.csv"
+    if not path.exists():
+        return []
+    names = pd.read_csv(path, dtype=str).fillna("")["university"]
+    return [t for t in (_inst_tokens(n) for n in names) if t]
+
+
+KNOWN_UNIVERSITIES = _known_universities()
+
+
+def institution_matches(university: str, institution: str) -> bool:
+    """True if an OpenAlex institution name is this university (or its hospital / college).
+
+    Every word of the university must appear ("Seoul National University"
+    needs both seoul and national, so "University of Seoul" fails), and the
+    institution must not be a different, longer-named university that
+    contains those words (Seoul National University of Science and
+    Technology is not Seoul National University; KAIST is not Korea
+    University). Sharing one word such as "seoul" is not enough: run #26
+    accepted a Korea University endocrinologist for an SNU pharmacist that way.
+    """
+    target, inst = _inst_tokens(university), _inst_tokens(institution)
+    if not target or not target <= inst:
+        return False
+    return not any(target < other <= inst for other in KNOWN_UNIVERSITIES)
+
+
+def _matches_any(university: str, institutions: str) -> bool:
+    return any(institution_matches(university, x) for x in institutions.split(";") if x.strip())
+
+
+def load_rejections() -> set[str]:
+    """OpenAlex IDs a person checked and found to be someone else (data/identity_rejections.csv)."""
+    path = DATA_DIR / "identity_rejections.csv"
+    if not path.exists():
+        return set()
+    df = pd.read_csv(path, dtype=str).fillna("")
+    return {normalize_openalex_id(x) for x in df.get("openalex_id", []) if x.strip()}
 
 
 def _affiliation(author: dict) -> str:
@@ -188,31 +242,39 @@ def _best_openalex(
     returns nothing useful: search with the page's English name, or with
     romanization variants of the Korean name when the page has none.
     """
+    rejected = load_rejections()
     candidates: dict[str, dict] = {}
     for query in _search_queries(name_ko, name_en, fallback_name, surname_hint):
         # OpenAlexUnavailable propagates so the caller can stop and retry later.
         data = client._get("authors", {"search": query, "per-page": 25})
         for author in data.get("results", []) or []:
+            if normalize_openalex_id(str(author.get("id", ""))) in rejected:
+                continue
             candidates.setdefault(str(author.get("id", "")), author)
 
     if not candidates:
         return None, "no OpenAlex candidates"
 
-    target = _tokens(university)
     passing: list[tuple[int, int, float, dict]] = []
-    name_hits = 0
+    name_hits = past_only = 0
     for author in candidates.values():
         ok, sim = _name_matches(author, name_ko, name_en)
         if not ok:
             continue
         name_hits += 1
-        current = len(target & _tokens(_affiliation(author)))
-        ever = len(target & _tokens(_all_affiliations(author)))
-        if university and not ever:
+        current = int(_matches_any(university, _affiliation(author)))
+        ever = int(current or _matches_any(university, _all_affiliations(author)))
+        if university and not current:
+            # A past affiliation alone is too weak by name: OpenAlex lists
+            # every institution a co-author list ever touched, and run #26
+            # matched 44 people that way, many of them wrong.
+            past_only += bool(ever)
             continue
         passing.append((current, ever, sim, author))
 
     if not passing:
+        if past_only:
+            return None, f"{past_only} name match(es) at {university} only in past affiliations"
         if name_hits:
             return None, f"{name_hits} name match(es) but none at {university}"
         return None, "no romanization-consistent name match"
@@ -256,7 +318,9 @@ def resolve_person(
         if cand:
             orcid = cand["orcid"]
             status, confidence = "verified", "high"
-            authors = client.authors_by_orcid(orcid)
+            rejected = load_rejections()
+            authors = [a for a in client.authors_by_orcid(orcid)
+                       if normalize_openalex_id(str(a.get("id", ""))) not in rejected]
             reasons.append(orcid_reason)
             reasons.append(f"{len(authors)} OpenAlex profile(s) by ORCID" if authors else "no OpenAlex profile for ORCID")
             share = _bio_share(*authors)
@@ -435,13 +499,16 @@ def import_verified_faculty_v2() -> int:
             nums.append(int(m.group(1)))
     next_num = max(nums) + 1 if nums else 1
 
+    rejected = load_rejections()
     new_rows: dict[str, dict[str, str]] = {}
     for _, row in identity.iterrows():
         if row.get("identity_status", "") not in IMPORT_STATUSES:
             continue
         ids = [normalize_openalex_id(x) for x in str(row.get("openalex_ids", "") or row.get("openalex_id", "")).split(";")]
-        ids = [x for x in ids if x]
+        ids = [x for x in ids if x and x not in rejected]
         orcid = str(row.get("orcid", "")).strip()
+        if not ids and not orcid:
+            continue
         person = f"orcid:{orcid}" if orcid else (f"openalex:{ids[0]}" if ids else "")
         if not person:
             continue

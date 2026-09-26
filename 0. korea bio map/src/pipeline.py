@@ -21,6 +21,7 @@ from config import (
 from classify import Classifier, position
 from keywords import KeywordCollector
 from lineage import Authorship, infer_lineage, lineage_relationships
+from name_extraction import name_compatible
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
 
@@ -46,6 +47,10 @@ AUTHOR_BATCH = 50
 # Collaboration strength (see collaboration_weight): a pair is drawn only at or
 # above this. 0.5 = one recent paper with <= 3 authors, two with 5, ~5 with 10.
 MIN_COLLAB_STRENGTH = float(os.getenv("MIN_COLLAB_STRENGTH", "0.5"))
+# ...or this many shared papers, whatever their size: two professors who keep
+# publishing together collaborate even when each paper has 15 authors (run #26
+# kept only 248 of 1,422 pairs on strength alone). Weak pairs are drawn faint.
+MIN_COLLAB_PAPERS = int(os.getenv("MIN_COLLAB_PAPERS", "2"))
 RECENCY_HALF_LIFE_YEARS = 8.0
 RECENT_YEARS = 2
 SENIOR_BONUS = 1.5
@@ -139,15 +144,25 @@ def resolve_professors(client: OpenAlexClient) -> pd.DataFrame:
         if not current_id and not item.get("orcid", ""):
             # Hand-entered rows: same matcher as imported faculty (romanization
             # variants, institution acronyms like POSTECH, past affiliations).
-            from faculty_identity_v2 import _best_openalex
+            from faculty_identity_v2 import MIN_BIO_SHARE, _best_openalex, _bio_share
 
             try:
                 match, _ = _best_openalex(client, item.get("name_ko", ""), item.get("name_en", ""),
                                           item.get("university", ""), item.get("name_en") or item.get("name_ko", ""))
             except OpenAlexUnavailable:
                 match = None
-            if match:
+            name_ok = not item.get("name_ko") or name_compatible(str((match or {}).get("display_name", "")),
+                                                                 item["name_ko"])
+            # Same checks as imported faculty: run #26 gave 김원종 (POSTECH,
+            # polymers) a marketing researcher's profile.
+            if match and name_ok and _bio_share(match) >= MIN_BIO_SHARE:
                 current_id = normalize_openalex_id(match.get("id", ""))
+
+        if current_id:
+            from faculty_identity_v2 import load_rejections
+
+            rejected = load_rejections()
+            current_id = ";".join(x for x in _openalex_ids(current_id) if x not in rejected)
 
         item["openalex_id"] = current_id
         if current_id and not item.get("primary_field", ""):
@@ -345,8 +360,10 @@ def collect_collaborations(
         print(f"[scopus] {len(scopus_pairs)} professor pairs from Scopus", flush=True)
 
     auto_rows = []
-    kept = sorted(p for p in pair_to_works if pair_strength[p] >= MIN_COLLAB_STRENGTH)
+    kept = sorted(p for p in pair_to_works
+                  if pair_strength[p] >= MIN_COLLAB_STRENGTH or len(pair_to_works[p]) >= MIN_COLLAB_PAPERS)
     print(f"[collect] {len(kept)} of {len(pair_to_works)} co-author pairs pass "
+          f"{MIN_COLLAB_PAPERS}+ shared papers or "
           f"collaboration strength >= {MIN_COLLAB_STRENGTH}", flush=True)
     for index, pair in enumerate(kept, start=1):
         professor_a_id, professor_b_id = pair

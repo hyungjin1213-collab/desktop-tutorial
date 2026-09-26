@@ -28,6 +28,9 @@ MAJOR_MESH_BONUS = 1.5
 HALF_LIFE_YEARS = 6.0
 TOP_KEYWORDS = 12
 TOP_TECHNIQUES = 8
+# A technique must show up in at least this many of the professor's papers:
+# one co-authored paper that used organoids does not make an organoid lab.
+MIN_TECHNIQUE_WORKS = 2
 
 # MeSH check tags and study-design terms: true for most papers, say nothing about a lab.
 GENERIC_TERMS = {t.casefold() for t in [
@@ -73,6 +76,7 @@ class KeywordCollector:
         self.label_en = {ko: en for ko, en, _ in self.techniques}
         self.topics: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
         self.methods: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+        self.method_works: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
         self.display: dict[str, str] = {}
         self._technique_cache: dict[str, str] = {}
 
@@ -89,7 +93,12 @@ class KeywordCollector:
         seen.add(key)
         technique = self.technique_of(name)
         if technique:
+            # Several spellings in one paper (Flow Cytometry + FACS) count once.
+            if "\0" + technique in seen:
+                return
+            seen.add("\0" + technique)
             self.methods[professor_id][technique] += weight
+            self.method_works[professor_id][technique] += 1
         else:
             self.display.setdefault(key, name)
             self.topics[professor_id][key] += weight
@@ -121,7 +130,11 @@ class KeywordCollector:
 
     def top_terms(self) -> dict[str, dict[str, list[tuple[str, float]]]]:
         """{professor_id: {"keywords": [(term, score)], "techniques": [(label, score)]}}."""
-        topics, methods = self._tfidf(self.topics), self._tfidf(self.methods)
+        frequent = {
+            pid: {t: w for t, w in terms.items() if self.method_works[pid][t] >= MIN_TECHNIQUE_WORKS}
+            for pid, terms in self.methods.items()
+        }
+        topics, methods = self._tfidf(self.topics), self._tfidf({p: t for p, t in frequent.items() if t})
         out = {}
         for pid in set(topics) | set(methods):
             out[pid] = {

@@ -98,15 +98,16 @@ def test_weak_coauthorships_are_not_drawn(tmp_path, monkeypatch):
 
     works = [
         work("W1", 3, "A", "B"),                                  # A-B: one small paper -> drawn
-        work("W2", 40, "A", "C"), work("W3", 40, "A", "C"),       # A-C: two big papers -> not drawn
-        *[work(f"W{i}", 6, "B", "C") for i in range(4, 7)],      # B-C: three 6-author papers -> drawn
+        work("W2", 40, "A", "C"),                                 # A-C: one big paper -> not drawn
+        work("W3", 40, "C", "D"), work("W4", 40, "C", "D"),       # C-D: two big papers -> drawn (repeat)
+        *[work(f"W{i}", 6, "B", "C") for i in range(5, 8)],      # B-C: three 6-author papers -> drawn
     ]
 
     class Client:
         def iter_works_by_authors(self, ids):
             return iter(works)
 
-    professors = pd.DataFrame([{"professor_id": p, "openalex_id": p} for p in "ABC"])
+    professors = pd.DataFrame([{"professor_id": p, "openalex_id": p} for p in "ABCD"])
     auto, _ = pipeline.collect_collaborations(Client(), professors)
     got = {(r.professor_a_id, r.professor_b_id): r.collaboration_paper_count for r in auto.itertuples()}
-    assert got == {("A", "B"): 1, ("B", "C"): 3}
+    assert got == {("A", "B"): 1, ("B", "C"): 3, ("C", "D"): 2}

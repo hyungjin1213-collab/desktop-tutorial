@@ -17,7 +17,6 @@ AUTO000015,P0008,P0010,collaboration,9,,auto,OpenAlex coauthorship between confi
 AUTO000016,P0008,P0015,collaboration,8,,auto,OpenAlex coauthorship between confirmed professors,1.102,2013,2024,P0008,P0015
 AUTO000017,P0008,P0018,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,1.451,2021,2025,P0008,P0018
 AUTO000018,P0010,P0015,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,0.911,2013,2025,P0010,P0015
-AUTO000019,P0012,P0167,collaboration,4,,auto,OpenAlex coauthorship between confirmed professors,0.511,2020,2022,P0012,P0167
 AUTO000020,P0013,P0014,collaboration,236,,auto,OpenAlex coauthorship between confirmed professors,11.232,2000,2025,P0013,P0014
 AUTO000021,P0013,P0016,collaboration,27,,auto,OpenAlex coauthorship between confirmed professors,1.247,2006,2025,P0013,P0016
 AUTO000022,P0013,P0019,collaboration,42,,auto,OpenAlex coauthorship between confirmed professors,2.586,2014,2025,P0013,P0019
@@ -79,7 +78,6 @@ AUTO000077,P0204,P0205,collaboration,37,,auto,OpenAlex coauthorship between conf
 AUTO000078,P0205,P0218,collaboration,11,,auto,OpenAlex coauthorship between confirmed professors,2.573,2016,2023,P0205,P0218
 AUTO000079,P0205,P0219,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,1.498,2017,2023,P0205,P0219
 AUTO000080,P0207,P0212,collaboration,113,,auto,OpenAlex coauthorship between confirmed professors,41.056,2009,2026,P0207,P0212
-AUTO000081,P0208,P0332,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,0.688,2023,2023,P0208,P0332
 AUTO000082,P0210,P0466,collaboration,16,,auto,OpenAlex coauthorship between confirmed professors,0.883,2007,2019,P0210,P0466
 AUTO000083,P0218,P0219,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,1.249,2019,2024,P0218,P0219
 AUTO000084,P0223,P0226,collaboration,3,,auto,OpenAlex coauthorship between confirmed professors,0.6,2014,2024,P0223,P0226
@@ -98,7 +96,6 @@ AUTO000096,P0268,P0269,collaboration,5,,auto,OpenAlex coauthorship between confi
 AUTO000097,P0274,P0537,collaboration,29,,auto,OpenAlex coauthorship between confirmed professors,6.766,2004,2026,P0274,P0537
 AUTO000098,P0277,P0399,collaboration,4,,auto,OpenAlex coauthorship between confirmed professors,0.517,2020,2026,P0277,P0399
 AUTO000099,P0279,P0282,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,0.967,2016,2023,P0279,P0282
-AUTO000100,P0279,P0360,collaboration,9,,auto,OpenAlex coauthorship between confirmed professors,1.234,2006,2026,P0279,P0360
 AUTO000101,P0280,P0465,collaboration,5,,auto,OpenAlex coauthorship between confirmed professors,1.85,2021,2026,P0280,P0465
 AUTO000102,P0284,P0285,collaboration,4,,auto,OpenAlex coauthorship between confirmed professors,0.535,2016,2023,P0284,P0285
 AUTO000103,P0285,P0594,collaboration,4,,auto,OpenAlex coauthorship between confirmed professors,0.708,2024,2025,P0285,P0594
@@ -110,7 +107,6 @@ AUTO000108,P0322,P0394,collaboration,13,,auto,OpenAlex coauthorship between conf
 AUTO000109,P0322,P0414,collaboration,22,,auto,OpenAlex coauthorship between confirmed professors,3.144,2017,2023,P0322,P0414
 AUTO000110,P0325,P0399,collaboration,10,,auto,OpenAlex coauthorship between confirmed professors,0.832,2015,2019,P0325,P0399
 AUTO000111,P0326,P0389,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,1.309,2022,2026,P0326,P0389
-AUTO000112,P0327,P0357,collaboration,8,,auto,OpenAlex coauthorship between confirmed professors,0.925,2020,2024,P0327,P0357
 AUTO000113,P0327,P0409,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,1.479,2021,2025,P0327,P0409
 AUTO000114,P0328,P0341,collaboration,18,,auto,OpenAlex coauthorship between confirmed professors,1.887,2009,2023,P0328,P0341
 AUTO000115,P0328,P0431,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,1.216,2015,2024,P0328,P0431
@@ -132,7 +128,6 @@ AUTO000130,P0346,P0367,collaboration,18,,auto,OpenAlex coauthorship between conf
 AUTO000131,P0346,P0379,collaboration,14,,auto,OpenAlex coauthorship between confirmed professors,3.114,2020,2026,P0346,P0379
 AUTO000132,P0346,P0416,collaboration,4,,auto,OpenAlex coauthorship between confirmed professors,0.883,2020,2022,P0346,P0416
 AUTO000133,P0347,P0444,collaboration,24,,auto,OpenAlex coauthorship between confirmed professors,2.34,2014,2025,P0347,P0444
-AUTO000134,P0349,P0368,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,0.538,2014,2022,P0349,P0368
 AUTO000135,P0349,P0393,collaboration,13,,auto,OpenAlex coauthorship between confirmed professors,0.954,2012,2022,P0349,P0393
 AUTO000136,P0349,P0422,collaboration,17,,auto,OpenAlex coauthorship between confirmed professors,1.163,2012,2025,P0349,P0422
 AUTO000137,P0349,P0456,collaboration,19,,auto,OpenAlex coauthorship between confirmed professors,1.316,2012,2022,P0349,P0456
@@ -142,17 +137,12 @@ AUTO000140,P0354,P0394,collaboration,9,,auto,OpenAlex coauthorship between confi
 AUTO000141,P0354,P0414,collaboration,25,,auto,OpenAlex coauthorship between confirmed professors,2.316,2011,2025,P0354,P0414
 AUTO000142,P0355,P0429,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,0.552,2015,2021,P0355,P0429
 AUTO000143,P0355,P0449,collaboration,40,,auto,OpenAlex coauthorship between confirmed professors,3.291,2003,2021,P0355,P0449
-AUTO000144,P0357,P0409,collaboration,18,,auto,OpenAlex coauthorship between confirmed professors,0.637,2009,2026,P0357,P0409
 AUTO000145,P0358,P0394,collaboration,1,,auto,OpenAlex coauthorship between confirmed professors,0.892,2018,2018,P0358,P0394
 AUTO000146,P0358,P0452,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,1.499,2016,2020,P0358,P0452
 AUTO000147,P0359,P0442,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,1.353,2019,2023,P0359,P0442
-AUTO000148,P0364,P0421,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,0.699,2013,2018,P0364,P0421
 AUTO000149,P0364,P0441,collaboration,4,,auto,OpenAlex coauthorship between confirmed professors,0.511,2014,2021,P0364,P0441
 AUTO000150,P0367,P0379,collaboration,9,,auto,OpenAlex coauthorship between confirmed professors,2.896,2022,2026,P0367,P0379
 AUTO000151,P0367,P0416,collaboration,3,,auto,OpenAlex coauthorship between confirmed professors,0.864,2022,2025,P0367,P0416
-AUTO000152,P0368,P0393,collaboration,10,,auto,OpenAlex coauthorship between confirmed professors,0.875,2014,2022,P0368,P0393
-AUTO000153,P0368,P0422,collaboration,14,,auto,OpenAlex coauthorship between confirmed professors,0.879,2005,2019,P0368,P0422
-AUTO000154,P0368,P0456,collaboration,12,,auto,OpenAlex coauthorship between confirmed professors,1.083,2014,2024,P0368,P0456
 AUTO000155,P0375,P0381,collaboration,17,,auto,OpenAlex coauthorship between confirmed professors,5.163,2014,2026,P0375,P0381
 AUTO000156,P0375,P0412,collaboration,18,,auto,OpenAlex coauthorship between confirmed professors,6.346,2021,2026,P0375,P0412
 AUTO000157,P0376,P0440,collaboration,65,,auto,OpenAlex coauthorship between confirmed professors,9.584,2006,2026,P0376,P0440
@@ -193,16 +183,13 @@ AUTO000191,P0536,P0547,collaboration,6,,auto,OpenAlex coauthorship between confi
 AUTO000192,P0536,P0673,collaboration,10,,auto,OpenAlex coauthorship between confirmed professors,0.982,2019,2021,P0536,P0673
 AUTO000193,P0542,P0547,collaboration,78,,auto,OpenAlex coauthorship between confirmed professors,11.805,2011,2026,P0542,P0547
 AUTO000194,P0542,P0550,collaboration,11,,auto,OpenAlex coauthorship between confirmed professors,2.697,2021,2026,P0542,P0550
-AUTO000195,P0542,P0553,collaboration,3,,auto,OpenAlex coauthorship between confirmed professors,0.79,2022,2023,P0542,P0553
 AUTO000196,P0542,P0610,collaboration,12,,auto,OpenAlex coauthorship between confirmed professors,1.313,2016,2022,P0542,P0610
 AUTO000197,P0547,P0550,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,0.938,2021,2023,P0547,P0550
 AUTO000198,P0547,P0610,collaboration,16,,auto,OpenAlex coauthorship between confirmed professors,1.696,2017,2022,P0547,P0610
 AUTO000199,P0548,P0550,collaboration,22,,auto,OpenAlex coauthorship between confirmed professors,3.473,2008,2026,P0548,P0550
 AUTO000200,P0548,P0558,collaboration,8,,auto,OpenAlex coauthorship between confirmed professors,1.305,2023,2026,P0548,P0558
 AUTO000201,P0550,P0552,collaboration,7,,auto,OpenAlex coauthorship between confirmed professors,0.691,2015,2021,P0550,P0552
-AUTO000202,P0550,P0553,collaboration,36,,auto,OpenAlex coauthorship between confirmed professors,11.873,2013,2025,P0550,P0553
 AUTO000203,P0550,P0558,collaboration,44,,auto,OpenAlex coauthorship between confirmed professors,11.665,2022,2026,P0550,P0558
-AUTO000204,P0553,P0558,collaboration,4,,auto,OpenAlex coauthorship between confirmed professors,0.907,2022,2023,P0553,P0558
 AUTO000205,P0560,P0562,collaboration,6,,auto,OpenAlex coauthorship between confirmed professors,0.658,2019,2024,P0560,P0562
 AUTO000206,P0564,P0565,collaboration,8,,auto,OpenAlex coauthorship between confirmed professors,0.726,2018,2024,P0564,P0565
 AUTO000207,P0567,P0572,collaboration,2,,auto,OpenAlex coauthorship between confirmed professors,0.792,2019,2023,P0567,P0572
@@ -254,7 +241,6 @@ LIN000004,P0440,P0376,advisor_student,4,,auto,inferred from 4 first-author paper
 LIN000005,P0550,P0558,advisor_student,4,https://doi.org/10.5187/jast.2023.e116,auto,inferred from 4 first-author papers (2023-2024) with A as last author,,,,P0550,P0558
 LIN000006,P0185,P0184,advisor_student,4,https://doi.org/10.1021/jf903939y,auto,inferred from 4 first-author papers (2010-2011) with A as last author,,,,P0185,P0184
 LIN000007,P0590,P0644,advisor_student,3,https://doi.org/10.5021/ad.2018.30.3.382,auto,inferred from 3 first-author papers (2018-2022) with A as last author,,,,P0590,P0644
-LIN000008,P0357,P0327,postdoc_mentor,3,https://doi.org/10.4285/atw2020.or-1157,auto,inferred from 3 first-author papers (2020-2021) with A as last author,,,,P0357,P0327
 LIN000009,P0597,P0620,advisor_student,3,https://doi.org/10.3904/kjim.2017.050,auto,inferred from 3 first-author papers (2017-2020) with A as last author,,,,P0597,P0620
 LIN000010,P0379,P0416,advisor_student,3,,auto,inferred from 3 first-author papers (2014-2018) with A as last author,,,,P0379,P0416
 LIN000011,P0532,P0535,advisor_student,3,https://doi.org/10.5853/kjs.2012.14.1.12,auto,inferred from 3 first-author papers (2012-2016) with A as last author,,,,P0532,P0535

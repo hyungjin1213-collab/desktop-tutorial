@@ -6,7 +6,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import faculty_identity_v2 as fi  # noqa: E402
-from faculty_identity_v2 import _best_openalex, resolve_person  # noqa: E402
+from faculty_identity_v2 import _best_openalex, institution_matches, resolve_person  # noqa: E402
 from orcid_client import KoreanORCIDSearch, korean_orcid_query  # noqa: E402
 
 BIO = [{"count": 40, "domain": {"display_name": "Life Sciences"}, "subfield": {"display_name": "Immunology"}}]
@@ -108,10 +108,31 @@ def test_wrong_surname_rejected():
     assert _best_openalex(client, "김경수", "", "Seoul National University")[0] is None
 
 
-def test_past_affiliation_used_when_current_differs():
+def test_past_affiliation_alone_is_not_enough():
+    # Run #26: OpenAlex past affiliations matched many same-name people.
     client = FakeOpenAlex([_author("A1", "Jaewon Lee", "Harvard University", past=["Pusan National University"])])
     best, reason = _best_openalex(client, "이재원", "Jaewon Lee", "Pusan National University")
-    assert best is not None and "past" in reason
+    assert best is None and "past" in reason
+
+
+def test_institution_match_needs_every_word_and_not_a_longer_university():
+    assert institution_matches("Seoul National University", "Seoul National University Hospital")
+    assert institution_matches("postech", "Pohang University of Science and Technology")
+    assert institution_matches("Korea University", "Korea University Anam Hospital")
+    assert not institution_matches("Seoul National University", "Korea University")
+    assert not institution_matches("Seoul National University", "University of Seoul")
+    assert not institution_matches("Seoul National University",
+                                   "Seoul National University of Science and Technology")
+    assert not institution_matches("Korea University", "Korea Advanced Institute of Science and Technology")
+
+
+def test_rejected_openalex_ids_are_never_chosen(monkeypatch):
+    import faculty_identity_v2 as fi
+
+    monkeypatch.setattr(fi, "load_rejections", lambda: {"A1"})
+    client = FakeOpenAlex([_author("A1", "Jaewon Lee", "Pusan National University")])
+    best, _ = _best_openalex(client, "이재원", "Jaewon Lee", "Pusan National University")
+    assert best is None
 
 
 # ------------------------------------------------------------- ORCID first

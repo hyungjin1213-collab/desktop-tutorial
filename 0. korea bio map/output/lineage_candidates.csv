@@ -1,4 +1,4 @@
-﻿professor_a_id,a_name,professor_b_id,b_name,relationship_type,evidence_papers,b_first_year,years,b_institution,example_title,evidence_url,status
+professor_a_id,a_name,professor_b_id,b_name,relationship_type,evidence_papers,b_first_year,years,b_institution,example_title,evidence_url,status
 P0013,Je‐Jung Lee,P0020,Sung‐Hoon Jung,advisor_student,14,2010,2012-2015,Chonnam National University Hwasun Hospital,Lymphocytopenia Is Associated with an Increased Risk of Severe Infections in Patients with Multiple Myeloma Treated with Bortezomib-Based Regimens,https://doi.org/10.1182/blood.v120.21.5042.5042,auto
 P0587,모지훈,P0636,유신혁,postdoc_mentor,12,2015,2021-2026,Dankook University,Understanding the Patterns and Clustering of Inhalant Allergic Sensitization,https://doi.org/10.21053/ceo.2021.00073,auto
 P0194,정기홍,P0181,홍우종,advisor_student,10,2017,2017-2022,Kyung Hee University,Genome-wide identification and extensive analysis of rice-endosperm preferred genes using reference expression database,https://doi.org/10.1007/s12374-016-0552-z,auto
@@ -6,7 +6,6 @@ P0440,최유원,P0376,변지연,advisor_student,4,2006,2006-2011,Ewha Womans Uni
 P0550,김인호,P0558,조성보,advisor_student,4,2019,2023-2024,Dankook University,"Marine-derived Ca-Mg complex influences lipid and glucose metabolism, serum metabolites, colostrum profile, and stress hormone in sows over four-parity periods",https://doi.org/10.5187/jast.2023.e116,auto
 P0185,백무열,P0184,김현석,advisor_student,4,2006,2010-2011,Purdue University West Lafayette,Characterization of Acetylated Corn Starch Prepared under Ultrahigh Pressure (UHP),https://doi.org/10.1021/jf903939y,auto
 P0590,박병철,P0644,최미수,advisor_student,3,2017,2018-2022,Dankook University,Treatment of Hair Loss in the Trichorhinophalangeal Syndrome,https://doi.org/10.5021/ad.2018.30.3.382,auto
-P0357,박무석,P0327,김남은,postdoc_mentor,3,2011,2020-2021,Severance Hospital,"Low 25-OH vitamin D level are associated with increased postoperative acute kidney injury, broch pleural fistula after lung transplantation",https://doi.org/10.4285/atw2020.or-1157,auto
 P0597,신정은,P0620,남광우,advisor_student,3,2015,2017-2020,Dankook University Hospital,Acute gastric dilatation and ischemia associated with portal vein gas caused by binge eating,https://doi.org/10.3904/kjim.2017.050,auto
 P0379,송태진,P0416,장윤경,advisor_student,3,2014,2014-2018,Ewha Womans University,Levator Palpebrae and Inferior Rectus Palsy From Thalamo-Mesencephalic Infarction,,auto
 P0532,이수주,P0535,김재국,advisor_student,3,2011,2012-2016,"Daejeon Eulji Medical Center, Eulji University",Stroke Update: Risk Factors and Primary Prevention of Stroke,https://doi.org/10.5853/kjs.2012.14.1.12,auto

@@ -50,8 +50,10 @@ def test_frame_output():
 
 def test_spellings_of_one_technique_are_merged_and_kept_apart_from_topics():
     c = KeywordCollector(now_year=2026)
-    c.add_work("A", "last", work(2025, [("Flow Cytometry", False), ("T-Lymphocytes", True)],
-                                 [("FACS analysis", 0.8), ("single-cell RNA sequencing", 0.9), ("scaffold protein", 0.7)]))
+    for _ in range(2):  # a technique needs two papers
+        c.add_work("A", "last", work(2025, [("Flow Cytometry", False), ("T-Lymphocytes", True)],
+                                     [("FACS analysis", 0.8), ("single-cell RNA sequencing", 0.9),
+                                      ("scaffold protein", 0.7)]))
     c.add_work("B", "last", work(2025, [("Stroke", True)]))
     top = c.top_terms()["A"]
     assert sorted(t for t, _ in top["techniques"]) == ["단일세포 분석", "유세포분석"]
@@ -59,3 +61,18 @@ def test_spellings_of_one_technique_are_merged_and_kept_apart_from_topics():
     assert "T-Lymphocytes" in kws and "scaffold protein" in kws and "Flow Cytometry" not in kws
     df = c.to_frame()
     assert set(df[df.kind == "technique"].term_en) == {"Flow Cytometry", "Single-cell Analysis"}
+
+
+def test_technique_from_a_single_paper_is_dropped():
+    c = KeywordCollector(now_year=2026)
+    c.add_work("A", "last", work(2025, [("Organoids", False)]))
+    c.add_work("A", "last", work(2025, [("Flow Cytometry", False)]))
+    c.add_work("A", "last", work(2024, [("Flow Cytometry", False)]))
+    assert [t for t, _ in c.top_terms()["A"]["techniques"]] == ["유세포분석"]
+
+
+def test_scar_tissue_is_not_car_t():
+    c = KeywordCollector(now_year=2026)
+    assert c.technique_of("Scar tissue") == ""
+    assert c.technique_of("CAR-T cells") == "CAR-T·입양세포치료"
+    assert c.technique_of("PET bottles") == ""

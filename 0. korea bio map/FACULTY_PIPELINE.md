@@ -49,6 +49,8 @@ ORCID가 확정되면 OpenAlex는 ORCID로 조회하므로 한 사람이 OpenAle
 - 두 교수가 모두 1저자/마지막 저자(연구실 대 연구실)면 x1.5
 - 최근 2년 논문은 그대로, 그 이전은 8년마다 절반
 - 강도 합이 `MIN_COLLAB_STRENGTH`(기본 0.5) 이상인 쌍만 선을 긋는다
+  **또는** 같이 쓴 논문이 `MIN_COLLAB_PAPERS`(기본 2)편 이상이면 선을 긋는다 — 저자가 많은 논문이라도
+  반복해서 같이 쓰면 실제 공동연구다 (강도가 낮으면 선이 흐리게 그려진다)
   (최근 소규모 논문 1편, 5인 논문 2편, 10인 논문 약 5편 수준)
 - `relationships_auto.csv`에 `collaboration_strength`, `first_year`, `last_year`가 남고,
   지도에서는 강도에 따라 선 밝기/굵기가 달라진다. 선에 마우스를 올리면 논문 수·최근 연도·강도가 보인다.
@@ -243,3 +245,20 @@ GitHub Actions mode:
 - ORCID/OpenAlex 신원 매칭
 
 까지 실행한다. 처음에는 각 단계 결과를 확인하기 위해 개별 실행을 권장한다.
+
+
+## 신원 확인 강화 (run #26 이후)
+
+- 이름으로만 찾은 OpenAlex 프로필은 **현재 소속**이 그 대학일 때만 받는다. 예전 소속만 맞는 경우는
+  동명이인이 많아 manual_review로 보낸다.
+- 대학 이름은 단어 전체가 맞아야 한다: "Seoul National University"는 seoul·national 둘 다 필요하고,
+  더 긴 다른 대학명(서울과기대, KAIST 등)은 제외한다 (`institution_matches`).
+- 직접 입력한 교수도 같은 검사(이름 일치, 바이오 비중 50% 이상)를 거친다.
+- 틀린 프로필은 `data/identity_rejections.csv`에 적으면 다시는 쓰지 않는다:
+
+```csv
+openalex_id,name_ko,university,reason
+A5068130767,김원종,POSTECH,마케팅 논문 프로필 - 다른 사람
+```
+
+- 기술 키워드는 논문 2편 이상에서 나와야 붙는다 ("Scar tissue"가 CAR-T로 잡히던 문제도 수정).
