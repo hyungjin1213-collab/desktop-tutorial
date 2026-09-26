@@ -9,32 +9,14 @@ The Catholic University of Korea,crawl,2,2026-09-24,
 University of Ulsan,crawl,1,2026-09-24,
 Konkuk University,crawl,8,2026-09-24,
 Dongguk University,crawl,4,2026-09-24,
-Sogang University,serpapi,0,2026-09-24,
 Kookmin University,crawl,5,2026-09-24,
-Sejong University,serpapi,0,2026-09-24,
-University of Seoul,serpapi,0,2026-09-24,
-Incheon National University,serpapi,0,2026-09-24,
-Sookmyung Women's University,serpapi,0,2026-09-24,
-Duksung Women's University,serpapi,0,2026-09-25,
 Dongduk Women's University,crawl,1,2026-09-25,
 Sahmyook University,crawl,1,2026-09-25,
 CHA University,crawl,40,2026-09-25,
-Gachon University,serpapi,0,2026-09-25,
-Hallym University,serpapi,0,2026-09-25,
-Soonchunhyang University,serpapi,0,2026-09-25,
-Inje University,serpapi,0,2026-09-25,
 Eulji University,crawl,33,2026-09-25,
 Dankook University,crawl,3,2026-09-25,
-Catholic Kwandong University,serpapi,0,2026-09-25,
 Seoul National University of Science and Technology,crawl,8,2026-09-25,
-Pusan National University,serpapi,0,2026-09-25,
-Kosin University,serpapi,0,2026-09-25,
-Kyungsung University,serpapi,0,2026-09-25,
 Kyungpook National University,crawl,3,2026-09-25,
-Keimyung University,serpapi,0,2026-09-25,
-Yeungnam University,serpapi,0,2026-09-25,
-Daegu Catholic University,serpapi,0,2026-09-25,
-Chonnam National University,serpapi,0,2026-09-25,
 Chosun University,crawl,0,2026-09-26,100 pages fetched; 0 faculty-like pages checked; 7 blocked by robots.txt; errors: ConnectTimeout x1
 Sunchon National University,crawl,1,2026-09-26,100 pages fetched; 5 faculty-like pages checked
 Mokpo National University,crawl,2,2026-09-26,100 pages fetched; 2 faculty-like pages checked
@@ -53,5 +35,23 @@ GIST,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; 2 blocked
 DGIST,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; errors: HTTPError x1
 Yonsei University,crawl,1,2026-09-26,100 pages fetched; 1 faculty-like pages checked
 Korea University,crawl,2,2026-09-26,100 pages fetched; 12 faculty-like pages checked
-Ajou University,crawl,0,2026-09-26,"100 pages fetched; 7 faculty-like pages checked; 1 blocked by robots.txt; errors: ConnectTimeout x49, HTTPError x1"
+Ajou University,crawl,0,2026-09-26,100 pages fetched; 16 faculty-like pages checked; errors: ConnectTimeout x59
 Inha University,crawl,0,2026-09-26,100 pages fetched; 0 faculty-like pages checked; 1 blocked by robots.txt
+Sogang University,crawl,1,2026-09-26,"100 pages fetched; 8 faculty-like pages checked; errors: ConnectTimeout x1, HTTPError x1"
+Sejong University,crawl,0,2026-09-26,100 pages fetched; 0 faculty-like pages checked; errors: SSLError x9
+University of Seoul,crawl,1,2026-09-26,40 pages fetched; 1 faculty-like pages checked
+Incheon National University,crawl,0,2026-09-26,100 pages fetched; 0 faculty-like pages checked; 1 blocked by robots.txt; errors: ConnectTimeout x53
+Sookmyung Women's University,crawl,0,2026-09-26,100 pages fetched; 37 faculty-like pages checked; errors: HTTPError x1
+Duksung Women's University,crawl,0,2026-09-26,100 pages fetched; 2 faculty-like pages checked; 106 blocked by robots.txt; errors: HTTPError x1
+Gachon University,crawl,0,2026-09-26,1 pages fetched; 0 faculty-like pages checked; errors: SSLError x1
+Hallym University,crawl,0,2026-09-26,3 pages fetched; 0 faculty-like pages checked
+Soonchunhyang University,crawl,3,2026-09-26,100 pages fetched; 8 faculty-like pages checked; 6 blocked by robots.txt
+Inje University,crawl,5,2026-09-26,"100 pages fetched; 10 faculty-like pages checked; errors: HTTPError x2, ConnectTimeout x1"
+Catholic Kwandong University,crawl,0,2026-09-26,2 pages fetched; 0 faculty-like pages checked
+Pusan National University,crawl,0,2026-09-26,8 pages fetched; 0 faculty-like pages checked
+Kosin University,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; 2 blocked by robots.txt
+Kyungsung University,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; errors: ConnectTimeout x1
+Keimyung University,crawl,10,2026-09-26,100 pages fetched; 13 faculty-like pages checked
+Yeungnam University,crawl,1,2026-09-26,"100 pages fetched; 6 faculty-like pages checked; 1 blocked by robots.txt; errors: ConnectTimeout x38, HTTPError x1, ConnectionError x1"
+Daegu Catholic University,crawl,0,2026-09-26,"100 pages fetched; 19 faculty-like pages checked; errors: ConnectTimeout x2, ReadTimeout x2"
+Chonnam National University,crawl,3,2026-09-26,100 pages fetched; 10 faculty-like pages checked; 2 blocked by robots.txt

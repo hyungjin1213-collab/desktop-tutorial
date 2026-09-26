@@ -1,1 +1,2 @@
 ﻿source_id,faculty_url,error
+AUTO_HANYANG_7EF04A,https://site.hanyang.ac.kr/ko/web/medix/-02-2-4-faculty,"ConnectTimeout: HTTPSConnectionPool(host='site.hanyang.ac.kr', port=443): Max retries exceeded with url: /ko/web/medix/-02-2-4-faculty (Caused by ConnectTimeoutError(<HTTPSConnection(host='site.hanyang.ac.kr', port=443) at 0x7ff8c22b7c10>, 'Connection to site.hanyang.ac.kr timed out. (connect timeout=12)'))"
