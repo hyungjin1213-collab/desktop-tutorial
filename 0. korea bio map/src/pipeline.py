@@ -22,6 +22,7 @@ from classify import Classifier, position
 from keywords import KeywordCollector
 from lineage import Authorship, infer_lineage, lineage_relationships
 from name_extraction import name_compatible
+from sectors import SectorCollector, SectorTable
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
 
@@ -262,6 +263,7 @@ def collect_collaborations(
     seen_works: set[str] = set()
     lineage_records: dict[str, list[Authorship]] = defaultdict(list)
     keyword_collector = KeywordCollector(CURRENT_YEAR)
+    sector_collector = SectorCollector(CURRENT_YEAR)
     for start in range(0, len(all_ids), AUTHOR_BATCH):
         batch = all_ids[start:start + AUTHOR_BATCH]
         print(f"[collect] authors {start + 1}-{start + len(batch)} of {len(all_ids)}", flush=True)
@@ -308,6 +310,7 @@ def collect_collaborations(
                 pid_on = confirmed_by_openalex.get(normalize_openalex_id((a.get("author") or {}).get("id", "")))
                 if pid_on:
                     keyword_collector.add_work(pid_on, str(a.get("author_position", "")), work)
+                    sector_collector.add(pid_on, year, a.get("institutions") or [])
                     lineage_records[pid_on].append(Authorship(
                         year=_safe_int(work.get("publication_year"), 0),
                         position=str(a.get("author_position", "")),
@@ -443,6 +446,7 @@ def collect_collaborations(
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     lineage.to_csv(OUTPUT_DIR / "lineage_candidates.csv", index=False, encoding="utf-8-sig")
     keyword_collector.to_frame().to_csv(OUTPUT_DIR / "professor_keywords.csv", index=False, encoding="utf-8-sig")
+    sector_collector.to_frame().to_csv(OUTPUT_DIR / "professor_sectors.csv", index=False, encoding="utf-8-sig")
     lineage_relationships(lineage).to_csv(OUTPUT_DIR / "relationships_lineage.csv", index=False)
     auto_df.to_csv(OUTPUT_DIR / "relationships_auto.csv", index=False)
     all_candidates_df.to_csv(OUTPUT_DIR / "collaborator_candidates_all.csv", index=False)
@@ -553,6 +557,7 @@ def _titles_by_professor(nodes: pd.DataFrame) -> dict[str, str]:
 def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
     classifier = Classifier(DATA_DIR)
+    sector_table = SectorTable(DATA_DIR, OUTPUT_DIR)
     titles = _titles_by_professor(nodes)
     terms: dict[str, dict[str, list[str]]] = defaultdict(lambda: {"keyword": [], "technique": []})
     kw = _read_csv(OUTPUT_DIR / "professor_keywords.csv")
@@ -573,6 +578,9 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                 "category": classifier.category(row.get("professor_id", ""), row.get("primary_field", ""),
                                                 row.get("department", "")),
                 "region": classifier.region(row.get("university", "")),
+                # 산학연병 (industry / academia / institute / hospital) set membership
+                "sectors": sector_table.sectors(row.get("professor_id", ""), row.get("university", ""),
+                                                row.get("department", "")),
                 "university_ko": classifier.university_ko(row.get("university", "")),
                 "position": titles.get(row.get("professor_id", ""), ""),
                 "keywords": terms[row.get("professor_id", "")]["keyword"][:8],

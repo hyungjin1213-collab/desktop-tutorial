@@ -53,6 +53,9 @@
     .empty{color:#7f8aa8;font-size:12px;padding:10px 6px}
     .open-side{position:fixed;top:14px;right:14px;z-index:21;background:rgba(3,7,18,.78);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:8px 13px;font:600 13px Arial,sans-serif;cursor:pointer}
     .open-side[hidden]{display:none}
+    .viewbar{position:fixed;left:14px;bottom:14px;z-index:21;display:flex;gap:3px;background:rgba(3,7,18,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:4px}
+    .viewbar button{background:none;border:0;color:#9aa7c7;font:600 12px Arial,sans-serif;padding:6px 12px;border-radius:999px;cursor:pointer}
+    .viewbar button.on{background:rgba(251,191,36,.16);color:#fff}
     @media (max-width:640px){
       .panel{max-width:calc(100vw - 150px);padding:9px 11px}
       .panel .lines,.panel .legend,.panel p{display:none}
@@ -60,6 +63,7 @@
       .side{top:auto;bottom:52px;left:10px;right:10px;width:auto;max-height:52vh}
       .list{max-height:calc(52vh - 110px)}
       .hint{display:none}
+      .viewbar{left:10px;bottom:10px}
     }
   </style>
 </head>
@@ -93,6 +97,7 @@
       <div class="filter-head"><span id="filter-count"></span><button class="reset" id="filter-reset">초기화</button></div>
       <div class="list filters-scroll">
         <div class="fgroup"><h4>분야</h4><div class="chips" id="f-category"></div></div>
+        <div class="fgroup"><h4>산학연병</h4><div class="chips" id="f-sector"></div></div>
         <div class="fgroup"><h4>지역</h4><div class="chips" id="f-region"></div></div>
         <div class="fgroup"><h4>기술</h4><div class="chips" id="f-technique"></div></div>
         <div class="fgroup"><h4>직위</h4><div class="chips" id="f-position"></div></div>
@@ -113,6 +118,10 @@
   </div>
   <div class="hint">드래그: 회전 · 두 손가락: 줌 · 별 터치: 정보·공동연구 강조 · 빈 곳 터치: 해제</div>
   <div id="graph"></div>
+  <div class="viewbar" id="viewbar" role="radiogroup" aria-label="보기">
+    <button data-view="galaxy" class="on">은하</button>
+    <button data-view="sectors">산학연병</button>
+  </div>
 
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="https://unpkg.com/3d-force-graph@1.76.1/dist/3d-force-graph.min.js"></script>
@@ -127,6 +136,16 @@
     const CATEGORY_ORDER=Object.keys(CATEGORY_COLORS);
     const REGION_ORDER=["서울","경기·인천","강원","대전·충청","대구·경북","부산·울산·경남","광주·전라","제주","기타"];
     const POSITION_ORDER=["교수","부교수","조교수","미상"];
+    // 산학연병: academia / hospital / research institute / industry (src/sectors.py).
+    // In the 산학연병 view each is a circle; a professor sits in the overlap of their sets.
+    const SECTORS=["학","병","연","산"];
+    const SECTOR_INFO={
+      "학":{label:"학 · 대학",color:"#60a5fa",c:[-1,1]},
+      "병":{label:"병 · 병원",color:"#f472b6",c:[1,1]},
+      "연":{label:"연 · 연구소",color:"#34d399",c:[-1,-1]},
+      "산":{label:"산 · 기업",color:"#fbbf24",c:[1,-1]}
+    };
+    const sectorsOf=n=>(n.sectors&&n.sectors.length)?n.sectors:["학"];
     const fieldColor=n=>CATEGORY_COLORS[n.category]||CATEGORY_COLORS["기타"];
     const NODE_COUNT=(window.KOREA_BIO_MAP.nodes||[]).length;
     const SEG=NODE_COUNT>800?8:NODE_COUNT>200?14:24;
@@ -202,7 +221,7 @@
         }
         return group;
       })
-      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${esc(n.name)}</b>${n.name_en&&n.name_en!==n.name?` (${esc(n.name_en)})`:""}<br>${esc(n.university_ko||n.university)}${n.department?` · ${esc(n.department)}`:""}${n.position?` · ${esc(n.position)}`:""}<br>${esc(n.category||"")}${n.field?` <span style="color:#9aa7c7">(${esc(n.field)})</span>`:""} · ${esc(n.region||"")}<br>Score: ${n.score} · 공동연구 ${n.collaborator_count}명${n.faculty_trainee_count?` · 교수 된 제자 ${n.faculty_trainee_count}`:""}${n.postdoc_PI_count?` · PI 된 포닥 ${n.postdoc_PI_count}`:""}${(n.keywords||[]).length?`<br><span class="kw">연구 분야: ${n.keywords.slice(0,6).map(esc).join(", ")}</span>`:""}${(n.techniques||[]).length?`<br><span class="kw">주요 기술: ${n.techniques.slice(0,4).map(esc).join(", ")}</span>`:""}${n.orcid?`<br>ORCID: ${esc(n.orcid)}`:""}</div>`)
+      .nodeLabel(n=>`<div style="padding:6px 8px"><b>${esc(n.name)}</b>${n.name_en&&n.name_en!==n.name?` (${esc(n.name_en)})`:""}<br>${esc(n.university_ko||n.university)}${n.department?` · ${esc(n.department)}`:""}${n.position?` · ${esc(n.position)}`:""}<br>${sectorsOf(n).map(x=>`<span style="color:${SECTOR_INFO[x].color}">${esc(SECTOR_INFO[x].label)}</span>`).join(" ∩ ")}<br>${esc(n.category||"")}${n.field?` <span style="color:#9aa7c7">(${esc(n.field)})</span>`:""} · ${esc(n.region||"")}<br>Score: ${n.score} · 공동연구 ${n.collaborator_count}명${n.faculty_trainee_count?` · 교수 된 제자 ${n.faculty_trainee_count}`:""}${n.postdoc_PI_count?` · PI 된 포닥 ${n.postdoc_PI_count}`:""}${(n.keywords||[]).length?`<br><span class="kw">연구 분야: ${n.keywords.slice(0,6).map(esc).join(", ")}</span>`:""}${(n.techniques||[]).length?`<br><span class="kw">주요 기술: ${n.techniques.slice(0,4).map(esc).join(", ")}</span>`:""}${n.orcid?`<br>ORCID: ${esc(n.orcid)}`:""}</div>`)
       .linkLabel(l=>isLineage(l)
         ?`<div style="padding:5px 7px">${l.type==="advisor_student"?"지도교수 → 제자":"포닥 멘토 → 포닥"}<br>${l.verified==="auto"?`자동 추정 · 근거 논문 ${l.paper_count}편`:"확인됨"}</div>`
         :`<div style="padding:5px 7px">공동연구 · 논문 ${l.paper_count}편${l.last_year?` · 최근 ${l.last_year}년`:""}<br>협업 강도 ${(Number(l.strength)||0).toFixed(2)}</div>`)
@@ -380,10 +399,11 @@
       recent:{label:"최근 5년 공동연구",test:n=>recentIds.has(n.id)},
       verified:{label:"신원 확인됨 (ORCID 등)",test:n=>n.identity==="verified"}
     };
-    const FILTERS={category:new Set(),region:new Set(),position:new Set(),technique:new Set(),extra:new Set()};
+    const FILTERS={category:new Set(),region:new Set(),position:new Set(),technique:new Set(),sector:new Set(),extra:new Set()};
     const valueOf={category:n=>n.category||"기타",region:n=>n.region||"기타",position:n=>n.position||"미상"};
     const passes=n=>["category","region","position"].every(k=>!FILTERS[k].size||FILTERS[k].has(valueOf[k](n)))
       &&(!FILTERS.technique.size||(n.techniques||[]).some(t=>FILTERS.technique.has(t)))
+      &&(!FILTERS.sector.size||sectorsOf(n).some(x=>FILTERS.sector.has(x)))
       &&[...FILTERS.extra].every(k=>EXTRA[k].test(n));
 
     function chip(group,value,label,count,color){
@@ -400,6 +420,7 @@
     function buildFilters(){
       const count=(k,v)=>NODES.filter(n=>valueOf[k](n)===v).length;
       document.getElementById("f-category").replaceChildren(...CATEGORY_ORDER.map(v=>chip("category",v,v,count("category",v),CATEGORY_COLORS[v])));
+      document.getElementById("f-sector").replaceChildren(...SECTORS.map(v=>chip("sector",v,SECTOR_INFO[v].label,NODES.filter(n=>sectorsOf(n).includes(v)).length,SECTOR_INFO[v].color)));
       document.getElementById("f-region").replaceChildren(...REGION_ORDER.map(v=>chip("region",v,v,count("region",v))));
       const techCount={};
       NODES.forEach(n=>(n.techniques||[]).forEach(t=>{techCount[t]=(techCount[t]||0)+1;}));
@@ -447,6 +468,71 @@
     q.addEventListener("keydown",e=>{if(e.key==="Enter"){const first=searchList.querySelector(".row");if(first)first.click();}});
     rankBy.addEventListener("change",runRank);
     rankUni.addEventListener("change",runRank);
+    // ---------- 산학연병 view: four overlapping circles (Venn) ----------
+    const VENN_R=165, VENN_D=85;    // diagonal pairs (학∩산, 병∩연) still overlap near the centre
+    const distTo=(x,y,s)=>Math.hypot(x-SECTOR_INFO[s].c[0]*VENN_D,y-SECTOR_INFO[s].c[1]*VENN_D);
+    function placeInVenn(n){
+      // Random point whose circles are exactly the professor's sectors (clear of
+      // other circles' edges); if no such region exists, the closest one.
+      const want=new Set(sectorsOf(n));
+      let best=[0,0],bestBad=Infinity;
+      const span=VENN_D+VENN_R;
+      for(let i=0;i<600&&bestBad>0;i++){
+        const x=(Math.random()*2-1)*span, y=(Math.random()*2-1)*span;
+        const inside=SECTORS.filter(s=>distTo(x,y,s)<VENN_R*0.9);
+        if(!inside.length) continue;
+        const near=SECTORS.filter(s=>distTo(x,y,s)<VENN_R*1.06);
+        const bad=10*[...want].filter(s=>!inside.includes(s)).length+near.filter(s=>!want.has(s)).length;
+        if(bad<bestBad){bestBad=bad;best=[x,y];}
+      }
+      n.fx=best[0];n.fy=best[1];n.fz=(Math.random()*2-1)*16;
+    }
+    function textSprite(text,color){
+      const c=document.createElement("canvas");c.width=512;c.height=96;
+      const g=c.getContext("2d");
+      g.font="bold 46px Arial, sans-serif";g.fillStyle=color;g.textAlign="center";g.textBaseline="middle";
+      g.fillText(text,256,48);
+      const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));
+      sp.scale.set(150,28,1);
+      return sp;
+    }
+    let vennGroup=null;
+    function buildVenn(){
+      const group=new THREE.Group();
+      SECTORS.forEach(s=>{
+        const {color,label,c}=SECTOR_INFO[s];
+        const cx=c[0]*VENN_D, cy=c[1]*VENN_D;
+        const disc=new THREE.Mesh(new THREE.CircleGeometry(VENN_R,96),
+          new THREE.MeshBasicMaterial({color,transparent:true,opacity:.05,side:THREE.DoubleSide,depthWrite:false}));
+        disc.position.set(cx,cy,-20);group.add(disc);
+        const ring=new THREE.Mesh(new THREE.RingGeometry(VENN_R-1.2,VENN_R,128),
+          new THREE.MeshBasicMaterial({color,transparent:true,opacity:.6,side:THREE.DoubleSide,depthWrite:false}));
+        ring.position.set(cx,cy,-20);group.add(ring);
+        const count=NODES.filter(n=>sectorsOf(n).includes(s)).length;
+        const tag=textSprite(`${label}  ${count}명`,color);
+        tag.position.set(c[0]*(VENN_D+VENN_R*0.62),c[1]*(VENN_D+VENN_R*0.9),0);
+        group.add(tag);
+      });
+      return group;
+    }
+    function setView(view){
+      document.querySelectorAll("#viewbar button").forEach(b=>b.classList.toggle("on",b.dataset.view===view));
+      if(view==="sectors"){
+        NODES.forEach(placeInVenn);
+        vennGroup=vennGroup||buildVenn();
+        Graph.scene().add(vennGroup);
+        controls.autoRotate=false;
+        Graph.cameraPosition({x:0,y:-20,z:720},{x:0,y:-20,z:0},900);
+      }else{
+        NODES.forEach(n=>{delete n.fx;delete n.fy;delete n.fz;});
+        if(vennGroup) Graph.scene().remove(vennGroup);
+        controls.autoRotate=true;
+        Graph.cameraPosition({x:0,y:0,z:115},{x:0,y:0,z:0},900);
+      }
+      Graph.d3ReheatSimulation();
+    }
+    document.querySelectorAll("#viewbar button").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
+
     buildFilters();applyFilters();
     if(window.matchMedia("(max-width:640px)").matches) setSide(false);
   </script>
