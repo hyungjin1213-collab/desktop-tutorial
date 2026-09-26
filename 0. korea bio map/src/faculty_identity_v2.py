@@ -421,6 +421,13 @@ def import_verified_faculty_v2() -> int:
         for ids in professors["openalex_id"] for x in str(ids).split(";") if normalize_openalex_id(x)
     }
     existing_orcid = {str(x).strip() for x in professors["orcid"] if str(x).strip()}
+    # Hand-entered seed rows often have no OpenAlex ID / ORCID yet, so also
+    # treat the same Korean name at the same university as the same person.
+    def _name_key(name_ko: str, university: str) -> str:
+        return f"{str(name_ko).strip()}|{str(university).split(';')[0].strip().casefold()}"
+    existing_names = {
+        _name_key(n, u) for n, u in zip(professors["name_ko"], professors["university"]) if str(n).strip()
+    }
     nums = []
     for pid in professors.get("professor_id", []):
         m = re.fullmatch(r"P(\d+)", str(pid).strip(), flags=re.I)
@@ -446,6 +453,10 @@ def import_verified_faculty_v2() -> int:
         if (orcid and orcid in existing_orcid) or any(x in existing_openalex for x in ids):
             continue
         name_ko = row.get("name_ko", "") or (row.get("name", "") if re.search(r"[가-힣]", row.get("name", "")) else "")
+        if name_ko and _name_key(name_ko, row.get("university", "")) in existing_names:
+            continue
+        if name_ko:
+            existing_names.add(_name_key(name_ko, row.get("university", "")))
         new_rows[person] = {
             "professor_id": f"P{next_num:04d}",
             "name_ko": name_ko,

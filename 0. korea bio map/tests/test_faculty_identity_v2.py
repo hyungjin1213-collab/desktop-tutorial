@@ -183,3 +183,18 @@ def test_import_merges_departments_and_skips_review(tmp_path, monkeypatch):
     kim = seed[seed.name_ko == "김경수"].iloc[0]
     assert kim.professor_id == "P0002" and kim.department == "약학대학; 의과학과" and kim.openalex_id == "A1;A9"
     assert "이재원" not in set(seed.name_ko)
+
+
+def test_import_skips_hand_entered_professor_without_ids(tmp_path, monkeypatch):
+    """서형석 was hand-entered (P0003, no OpenAlex ID) and imported again as P0039."""
+    (tmp_path / "out").mkdir()
+    (tmp_path / "data").mkdir()
+    monkeypatch.setattr(fi, "OUTPUT_DIR", tmp_path / "out")
+    monkeypatch.setattr(fi, "DATA_DIR", tmp_path / "data")
+    pd.DataFrame([{"professor_id": "P0003", "name_ko": "서형석", "university": "seoul national university",
+                   "openalex_id": "", "orcid": ""}]).to_csv(tmp_path / "data" / "professors_seed.csv", index=False)
+    base = {c: "" for c in fi.COLUMNS}
+    pd.DataFrame([{**base, "name_ko": "서형석", "university": "Seoul National University",
+                   "orcid": "0000-0003-2303-7415", "openalex_ids": "A5077018885", "identity_status": "probable"}]
+                 ).to_csv(tmp_path / "out" / "faculty_identity_v2.csv", index=False)
+    assert fi.import_verified_faculty_v2() == 0

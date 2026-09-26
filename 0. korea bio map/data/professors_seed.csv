@@ -1,7 +1,7 @@
 ﻿professor_id,name_ko,name_en,university,department,primary_field,openalex_id,source_url,orcid,identity_status,scopus_id
 P0001,도준상,junsang doh,seoul national university,공과대학,면역항암,,https://bmie.snu.ac.kr/,,,
 P0002,서상우,sangwoo seo,seoul national university,공과대학,합성생물학,,https://seolab.snu.ac.kr/,,,
-P0003,서형석,hyungseok Seo,seoul national university,약학대학,세포치료,,https://cgt.snu.ac.kr/home,,,
+P0003,서형석,hyungseok Seo,seoul national university,약학대학,세포치료,A5077018885,https://cgt.snu.ac.kr/home,0000-0003-2303-7415,probable,
 P0004,김원종,wonjong kim,postech,화학과,의료용 고분자,,http://bmpl.postech.ac.kr/,,,
 P0005,김성은,seongeun kim,kookmin university,화학과,체외면역 평가,,https://cite.kookmin.ac.kr/cite/index.do,,,
 P0006,조덕,Duck Cho,Samsung Medical Center; Sungkyunkwan University,,,A5068463807,,,,
@@ -36,7 +36,6 @@ P0034,권성원,Sung Won Kwon,Seoul National University,College of Pharmacy,Mole
 P0035,권용석,Yongseok Kwon,Seoul National University,College of Pharmacy,Organic Chemistry,A5051360291,https://yklab.snu.ac.kr,0000-0001-7812-9638,verified,
 P0036,노민수,Minsoo Noh,Seoul National University,College of Pharmacy,Dermatology,A5018847566,https://snupharm.snu.ac.kr/snu__professor/%eb%85%b8%eb%af%bc%ec%88%98/,0000-0002-4020-5372,verified,
 P0038,박형근,Hyeung‐geun Park,Seoul National University,College of Pharmacy,Organic Chemistry,A5089409756;A5110754181,http://hgpk.cafe24.com/wp,0000-0002-9645-8221,verified,
-P0039,서형석,Hyung Suk Seo,Seoul National University,College of Pharmacy,"Endocrinology, Diabetes and Metabolism",A5077018885,http://cgt.snu.ac.kr,0000-0003-2303-7415,probable,
 P0040,신영기,Young Kee Shin,Seoul National University,College of Pharmacy,Oncology,A5002243126,http://molpathlab.snu.ac.kr,0000-0003-0896-718X,verified,
 P0041,심상희,Sanghee Shim,Seoul National University,College of Pharmacy,Biophysics,A5077864017;A5125983657,http://npcl.snu.ac.kr/,0000-0001-9964-7231,verified,
 P0042,오원근,Won Keun Oh,Seoul National University,College of Pharmacy,Molecular Biology,A5002218943;A5128218887,http://pharmacognosy.snu.ac.kr,0000-0003-0761-3064,verified,
