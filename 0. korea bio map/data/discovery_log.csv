@@ -1,41 +1,57 @@
-﻿university,method,pages_found,run_at
-Seoul National University,crawl,9,2026-09-24
-Yonsei University,serpapi,0,2026-09-24
-Korea University,serpapi,0,2026-09-24
-Sungkyunkwan University,crawl,1,2026-09-24
-Hanyang University,crawl,6,2026-09-24
-Kyung Hee University,crawl,17,2026-09-24
-Ewha Womans University,crawl,1,2026-09-24
-Chung-Ang University,crawl,9,2026-09-24
-Ajou University,serpapi,0,2026-09-24
-Inha University,serpapi,0,2026-09-24
-The Catholic University of Korea,crawl,2,2026-09-24
-University of Ulsan,crawl,1,2026-09-24
-Konkuk University,crawl,8,2026-09-24
-Dongguk University,crawl,4,2026-09-24
-Sogang University,serpapi,0,2026-09-24
-Kookmin University,crawl,5,2026-09-24
-Sejong University,serpapi,0,2026-09-24
-University of Seoul,serpapi,0,2026-09-24
-Incheon National University,serpapi,0,2026-09-24
-Sookmyung Women's University,serpapi,0,2026-09-24
-Duksung Women's University,serpapi,0,2026-09-25
-Dongduk Women's University,crawl,1,2026-09-25
-Sahmyook University,crawl,1,2026-09-25
-CHA University,crawl,40,2026-09-25
-Gachon University,serpapi,0,2026-09-25
-Hallym University,serpapi,0,2026-09-25
-Soonchunhyang University,serpapi,0,2026-09-25
-Inje University,serpapi,0,2026-09-25
-Eulji University,crawl,33,2026-09-25
-Dankook University,crawl,3,2026-09-25
-Catholic Kwandong University,serpapi,0,2026-09-25
-Seoul National University of Science and Technology,crawl,8,2026-09-25
-Pusan National University,serpapi,0,2026-09-25
-Kosin University,serpapi,0,2026-09-25
-Kyungsung University,serpapi,0,2026-09-25
-Kyungpook National University,crawl,3,2026-09-25
-Keimyung University,serpapi,0,2026-09-25
-Yeungnam University,serpapi,0,2026-09-25
-Daegu Catholic University,serpapi,0,2026-09-25
-Chonnam National University,serpapi,0,2026-09-25
+﻿university,method,pages_found,run_at,note
+Seoul National University,crawl,9,2026-09-24,
+Sungkyunkwan University,crawl,1,2026-09-24,
+Hanyang University,crawl,6,2026-09-24,
+Kyung Hee University,crawl,17,2026-09-24,
+Ewha Womans University,crawl,1,2026-09-24,
+Chung-Ang University,crawl,9,2026-09-24,
+The Catholic University of Korea,crawl,2,2026-09-24,
+University of Ulsan,crawl,1,2026-09-24,
+Konkuk University,crawl,8,2026-09-24,
+Dongguk University,crawl,4,2026-09-24,
+Sogang University,serpapi,0,2026-09-24,
+Kookmin University,crawl,5,2026-09-24,
+Sejong University,serpapi,0,2026-09-24,
+University of Seoul,serpapi,0,2026-09-24,
+Incheon National University,serpapi,0,2026-09-24,
+Sookmyung Women's University,serpapi,0,2026-09-24,
+Duksung Women's University,serpapi,0,2026-09-25,
+Dongduk Women's University,crawl,1,2026-09-25,
+Sahmyook University,crawl,1,2026-09-25,
+CHA University,crawl,40,2026-09-25,
+Gachon University,serpapi,0,2026-09-25,
+Hallym University,serpapi,0,2026-09-25,
+Soonchunhyang University,serpapi,0,2026-09-25,
+Inje University,serpapi,0,2026-09-25,
+Eulji University,crawl,33,2026-09-25,
+Dankook University,crawl,3,2026-09-25,
+Catholic Kwandong University,serpapi,0,2026-09-25,
+Seoul National University of Science and Technology,crawl,8,2026-09-25,
+Pusan National University,serpapi,0,2026-09-25,
+Kosin University,serpapi,0,2026-09-25,
+Kyungsung University,serpapi,0,2026-09-25,
+Kyungpook National University,crawl,3,2026-09-25,
+Keimyung University,serpapi,0,2026-09-25,
+Yeungnam University,serpapi,0,2026-09-25,
+Daegu Catholic University,serpapi,0,2026-09-25,
+Chonnam National University,serpapi,0,2026-09-25,
+Chosun University,crawl,0,2026-09-26,100 pages fetched; 0 faculty-like pages checked; 7 blocked by robots.txt; errors: ConnectTimeout x1
+Sunchon National University,crawl,1,2026-09-26,100 pages fetched; 5 faculty-like pages checked
+Mokpo National University,crawl,2,2026-09-26,100 pages fetched; 2 faculty-like pages checked
+Jeonbuk National University,crawl,4,2026-09-26,100 pages fetched; 12 faculty-like pages checked
+Wonkwang University,crawl,0,2026-09-26,100 pages fetched; 6 faculty-like pages checked; 4 blocked by robots.txt
+Woosuk University,crawl,0,2026-09-26,100 pages fetched; 1 faculty-like pages checked; 2 blocked by robots.txt; errors: ConnectTimeout x29
+Chungnam National University,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; 2 blocked by robots.txt
+Chungbuk National University,crawl,2,2026-09-26,100 pages fetched; 18 faculty-like pages checked; errors: HTTPError x5
+Gyeongsang National University,crawl,0,2026-09-26,5 pages fetched; 0 faculty-like pages checked
+Kangwon National University,crawl,0,2026-09-26,"100 pages fetched; 20 faculty-like pages checked; 2 blocked by robots.txt; errors: ConnectionError x2, ReadTimeout x1, ConnectTimeout x1"
+Jeju National University,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; 3 blocked by robots.txt
+POSTECH,crawl,0,2026-09-26,100 pages fetched; 13 faculty-like pages checked
+KAIST,crawl,3,2026-09-26,100 pages fetched; 34 faculty-like pages checked; errors: ConnectTimeout x1
+UNIST,crawl,2,2026-09-26,100 pages fetched; 16 faculty-like pages checked
+GIST,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; 2 blocked by robots.txt
+DGIST,crawl,0,2026-09-26,0 pages fetched; 0 faculty-like pages checked; errors: HTTPError x1
+Yonsei University,crawl,1,2026-09-26,100 pages fetched; 1 faculty-like pages checked
+Korea University,crawl,2,2026-09-26,100 pages fetched; 12 faculty-like pages checked
+Ajou University,crawl,0,2026-09-26,"100 pages fetched; 7 faculty-like pages checked; 1 blocked by robots.txt; errors: ConnectTimeout x49, HTTPError x1"
+Inha University,crawl,0,2026-09-26,100 pages fetched; 0 faculty-like pages checked; 1 blocked by robots.txt
