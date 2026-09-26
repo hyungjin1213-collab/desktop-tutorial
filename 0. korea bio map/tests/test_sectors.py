@@ -34,6 +34,7 @@ def test_table_override_and_fallbacks(tmp_path):
     pd.DataFrame([{"professor_id": "A", "sectors": "연"}]).to_csv(out / "professor_sectors.csv", index=False)
     pd.DataFrame([{"professor_id": "B", "sectors": "학;산"}]).to_csv(data / "sector_overrides.csv", index=False)
     t = SectorTable(data, out)
-    assert t.sectors("A", "KAIST", "") == ["학", "연"]          # faculty page -> 학, papers -> 연
-    assert t.sectors("B", "SNU", "") == ["학", "산"]            # override wins
-    assert t.sectors("C", "SNU", "내과학교실") == ["학", "병"]  # clinical department fallback
+    assert t.sectors("A", "학", "") == ["학", "연"]            # faculty page -> 학, papers -> 연
+    assert t.sectors("B", "학", "") == ["학", "산"]            # override wins
+    assert t.sectors("C", "학", "내과학교실") == ["학", "병"]  # clinical department fallback
+    assert t.sectors("D", "연", "") == ["연"]                  # listed on a research institute page

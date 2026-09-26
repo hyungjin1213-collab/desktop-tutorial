@@ -166,7 +166,7 @@ NON_NAME_WORDS = {
     "초빙교수", "연구교수", "기금교수", "임상교수", "강의교수", "주임교수", "교수진",
     "교수명", "교수소개", "교수님", "전임교수", "학장", "부학장", "학과장", "원장", "센터장",
     "주임", "석좌", "전임", "겸무", "겸직", "특임", "산학", "기금", "임상", "명예", "초빙", "겸임",
-    "연구원", "구성원", "직원", "조교", "행정실", "사무실", "대학원생", "박사후", "연구소",
+    "연구원", "구성원", "직원", "연구위원", "단장", "부단장", "그룹리더", "연구진", "조교", "행정실", "사무실", "대학원생", "박사후", "연구소",
     # menu / layout
     "소개", "인사말", "학장소개", "학과소개", "대학소개", "주소", "연락처", "전화", "전화번호",
     "이메일", "메일", "홈페이지", "사이트", "상세보기", "더보기", "전체", "목록", "검색",
@@ -188,14 +188,25 @@ NON_NAME_WORDS = {
     "진화", "생태", "식물", "동물", "미생물", "바이러스", "암", "종양", "면역항암",
 }
 
-TITLE_WORDS = [
+# Research institutes (KIST, 생명연, IBS ...) list PIs as 책임/선임연구원,
+# 연구위원 or 단장 / 그룹리더. Postdocs and students are listed too, and
+# excluded. Longer titles first: the first match decides.
+RESEARCHER_TITLES = [
+    "선임연구위원", "책임연구위원", "수석연구위원", "연구위원", "수석연구원", "책임연구원", "선임연구원",
+    "원급연구원", "단장", "부단장", "그룹리더", "책임기술원",
+]
+EXCLUDED_RESEARCHER_TITLES = ["박사후연구원", "박사후 연구원", "학생연구원", "위촉연구원", "연수연구원", "인턴연구원"]
+TITLE_WORDS = EXCLUDED_RESEARCHER_TITLES + [
     "명예교수", "석좌교수", "겸임교수", "겸직교수", "초빙교수", "연구교수", "기금교수",
     "임상교수", "강의교수", "정교수", "부교수", "조교수", "교수",
-]
-EXCLUDED_TITLES = {"명예교수", "겸임교수", "초빙교수", "연구교수", "강의교수", "기금교수"}
+] + RESEARCHER_TITLES
+EXCLUDED_TITLES = {"명예교수", "겸임교수", "초빙교수", "연구교수", "강의교수", "기금교수",
+                   *EXCLUDED_RESEARCHER_TITLES, "Postdoctoral Researcher", "Postdoc"}
 EN_TITLE_RE = re.compile(
     r"(?:Distinguished\s+|Full\s+|Associate\s+|Assistant\s+|Adjunct\s+|Visiting\s+|"
-    r"Research\s+|Emeritus\s+|Clinical\s+)?Professor",
+    r"Research\s+|Emeritus\s+|Clinical\s+)?Professor"
+    r"|(?:Principal|Senior|Chief)\s+Research(?:er|\s+Scientist)|Group\s+Leader|Principal\s+Investigator"
+    r"|Postdoctoral\s+Researcher|Postdoc",
     re.I,
 )
 
@@ -215,7 +226,7 @@ EN_NAME_PATTERNS = [
     re.compile(rf"\b(?P<last>{EN_WORD})\s+(?P<first>{EN_WORD}(?:\s+{EN_WORD})?)\b"),
 ]
 EN_NOISE = {
-    "professor", "assistant", "associate", "full", "adjunct", "visiting", "research",
+    "professor", "principal", "senior", "chief", "researcher", "scientist", "group", "leader", "investigator", "postdoctoral", "postdoc", "assistant", "associate", "full", "adjunct", "visiting", "research",
     "emeritus", "clinical", "distinguished", "tel", "email", "fax", "office", "major",
     "contact", "lab", "laboratory", "university", "college", "school", "department",
     "seoul", "national", "institute", "science", "technology", "medicine", "medical",
@@ -410,9 +421,15 @@ def _english_only(text: str) -> tuple[str, str]:
     m = re.match(rf"\s*({EN_WORD}(?:\s+{EN_WORD}){{1,2}})\s*(?:\(([가-힣]{{2,4}})\))?", text)
     if m:
         words = m.group(1).split()
-        # Stop at the first noise word ("Seunghee Professor Lee" -> keep nothing).
-        if not {w.casefold() for w in words} & EN_NOISE:
-            return m.group(1), "leading English name"
+        # Stop at the first noise word: "Minsu Park Principal ..." -> "Minsu Park",
+        # "Seunghee Professor Lee" -> nothing (one word left).
+        kept = []
+        for w in words:
+            if w.casefold() in EN_NOISE:
+                break
+            kept.append(w)
+        if len(kept) >= 2:
+            return " ".join(kept), "leading English name"
     return "", ""
 
 

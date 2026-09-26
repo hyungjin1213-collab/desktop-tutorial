@@ -8,6 +8,7 @@ window.KOREA_BIO_MAP = {
       "field": "면역항암",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -34,6 +35,7 @@ window.KOREA_BIO_MAP = {
       "field": "합성생물학",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -75,6 +77,7 @@ window.KOREA_BIO_MAP = {
       "field": "세포치료",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -101,6 +104,7 @@ window.KOREA_BIO_MAP = {
       "field": "의료용 고분자",
       "category": "의공학·바이오소재",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -127,6 +131,7 @@ window.KOREA_BIO_MAP = {
       "field": "체외면역 평가",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -153,6 +158,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -194,6 +200,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "기타",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -235,6 +242,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "제주",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -276,6 +284,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "강원",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -317,6 +326,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -358,6 +368,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -399,6 +410,7 @@ window.KOREA_BIO_MAP = {
       "field": "Materials Chemistry",
       "category": "의공학·바이오소재",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -440,6 +452,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -481,6 +494,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "광주·전라",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -522,6 +536,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -563,6 +578,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -604,6 +620,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "광주·전라",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -645,6 +662,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "광주·전라",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -686,6 +704,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "광주·전라",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -727,6 +746,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomaterials",
       "category": "의공학·바이오소재",
       "region": "기타",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -768,6 +788,7 @@ window.KOREA_BIO_MAP = {
       "field": "Materials Chemistry",
       "category": "의공학·바이오소재",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -809,6 +830,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -850,6 +872,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -891,6 +914,7 @@ window.KOREA_BIO_MAP = {
       "field": "Reproductive Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -932,6 +956,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -973,6 +998,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1011,6 +1037,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1052,6 +1079,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1093,6 +1121,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1134,6 +1163,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1175,6 +1205,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1216,6 +1247,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hepatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1257,6 +1289,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1298,6 +1331,7 @@ window.KOREA_BIO_MAP = {
       "field": "Organic Chemistry",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1339,6 +1373,7 @@ window.KOREA_BIO_MAP = {
       "field": "Dermatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1380,6 +1415,7 @@ window.KOREA_BIO_MAP = {
       "field": "Organic Chemistry",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1421,6 +1457,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1462,6 +1499,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biophysics",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1503,6 +1541,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1544,6 +1583,7 @@ window.KOREA_BIO_MAP = {
       "field": "Transplantation",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1585,6 +1625,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1626,6 +1667,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1667,6 +1709,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1702,6 +1745,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1741,6 +1785,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1767,6 +1812,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomaterials",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1808,6 +1854,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1849,6 +1896,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1890,6 +1938,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1925,6 +1974,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -1966,6 +2016,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2007,6 +2058,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2048,6 +2100,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2089,6 +2142,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2130,6 +2184,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2156,6 +2211,7 @@ window.KOREA_BIO_MAP = {
       "field": "Materials Chemistry",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2197,6 +2253,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2238,6 +2295,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2279,6 +2337,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2320,6 +2379,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2361,6 +2421,7 @@ window.KOREA_BIO_MAP = {
       "field": "Parasitology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2402,6 +2463,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2443,6 +2505,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2484,6 +2547,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2525,6 +2589,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2566,6 +2631,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2607,6 +2673,7 @@ window.KOREA_BIO_MAP = {
       "field": "Sensory Systems",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2648,6 +2715,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2689,6 +2757,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2730,6 +2799,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2767,6 +2837,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2793,6 +2864,7 @@ window.KOREA_BIO_MAP = {
       "field": "Orthopedics and Sports Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2834,6 +2906,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2875,6 +2948,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2915,6 +2989,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2956,6 +3031,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ceramics and Composites",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -2994,6 +3070,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3033,6 +3110,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3074,6 +3152,7 @@ window.KOREA_BIO_MAP = {
       "field": "Organic Chemistry",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3115,6 +3194,7 @@ window.KOREA_BIO_MAP = {
       "field": "Geriatrics and Gerontology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3153,6 +3233,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3194,6 +3275,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3235,6 +3317,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3276,6 +3359,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3317,6 +3401,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3358,6 +3443,7 @@ window.KOREA_BIO_MAP = {
       "field": "Public Health, Environmental and Occupational Health",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3397,6 +3483,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3438,6 +3525,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3479,6 +3567,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3514,6 +3603,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3555,6 +3645,7 @@ window.KOREA_BIO_MAP = {
       "field": "Geriatrics and Gerontology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3596,6 +3687,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3637,6 +3729,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3678,6 +3771,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3704,6 +3798,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3742,6 +3837,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3768,6 +3864,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3809,6 +3906,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3835,6 +3933,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3876,6 +3975,7 @@ window.KOREA_BIO_MAP = {
       "field": "Rheumatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3917,6 +4017,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3955,6 +4056,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cultural Studies",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -3993,6 +4095,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4028,6 +4131,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4065,6 +4169,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4091,6 +4196,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4132,6 +4238,7 @@ window.KOREA_BIO_MAP = {
       "field": "Materials Chemistry",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4167,6 +4274,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4193,6 +4301,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology, Evolution, Behavior and Systematics",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4234,6 +4343,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4271,6 +4381,7 @@ window.KOREA_BIO_MAP = {
       "field": "Water Science and Technology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4308,6 +4419,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4345,6 +4457,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology, Evolution, Behavior and Systematics",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4383,6 +4496,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cellular and Molecular Neuroscience",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4424,6 +4538,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology, Evolution, Behavior and Systematics",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4464,6 +4579,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4505,6 +4621,7 @@ window.KOREA_BIO_MAP = {
       "field": "Rheumatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4546,6 +4663,7 @@ window.KOREA_BIO_MAP = {
       "field": "Aging",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4587,6 +4705,7 @@ window.KOREA_BIO_MAP = {
       "field": "Health, Toxicology and Mutagenesis",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4628,6 +4747,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4669,6 +4789,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4709,6 +4830,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4750,6 +4872,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4791,6 +4914,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4832,6 +4956,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4873,6 +4998,7 @@ window.KOREA_BIO_MAP = {
       "field": "Geriatrics and Gerontology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4910,6 +5036,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4951,6 +5078,7 @@ window.KOREA_BIO_MAP = {
       "field": "Organic Chemistry",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -4984,6 +5112,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5010,6 +5139,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5051,6 +5181,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmaceutical Science",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5092,6 +5223,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5118,6 +5250,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5155,6 +5288,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5196,6 +5330,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5235,6 +5370,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5276,6 +5412,7 @@ window.KOREA_BIO_MAP = {
       "field": "Gastroenterology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5317,6 +5454,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5358,6 +5496,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5399,6 +5538,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5440,6 +5580,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5475,6 +5616,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5516,6 +5658,7 @@ window.KOREA_BIO_MAP = {
       "field": "Civil and Structural Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5557,6 +5700,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5598,6 +5742,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology, Evolution, Behavior and Systematics",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5635,6 +5780,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5676,6 +5822,7 @@ window.KOREA_BIO_MAP = {
       "field": "Electrical and Electronic Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5717,6 +5864,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5758,6 +5906,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5784,6 +5933,7 @@ window.KOREA_BIO_MAP = {
       "field": "Demography",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5821,6 +5971,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5847,6 +5998,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5888,6 +6040,7 @@ window.KOREA_BIO_MAP = {
       "field": "Sensory Systems",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5929,6 +6082,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomaterials",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -5970,6 +6124,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6011,6 +6166,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6051,6 +6207,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6092,6 +6249,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6133,6 +6291,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biochemistry",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6174,6 +6333,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6215,6 +6375,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biochemistry",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6256,6 +6417,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6282,6 +6444,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nutrition and Dietetics",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6323,6 +6486,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nutrition and Dietetics",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6364,6 +6528,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6405,6 +6570,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6446,6 +6612,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology, Evolution, Behavior and Systematics",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6487,6 +6654,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6522,6 +6690,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrine and Autonomic Systems",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6557,6 +6726,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6598,6 +6768,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6635,6 +6806,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6676,6 +6848,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomaterials",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6717,6 +6890,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6758,6 +6932,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cognitive Neuroscience",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6799,6 +6974,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6840,6 +7016,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6881,6 +7058,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6922,6 +7100,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cellular and Molecular Neuroscience",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -6963,6 +7142,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7004,6 +7184,7 @@ window.KOREA_BIO_MAP = {
       "field": "Leadership and Management",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7045,6 +7226,7 @@ window.KOREA_BIO_MAP = {
       "field": "Organic Chemistry",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7082,6 +7264,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmaceutical Science",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7123,6 +7306,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7164,6 +7348,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7205,6 +7390,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7246,6 +7432,7 @@ window.KOREA_BIO_MAP = {
       "field": "Organic Chemistry",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7287,6 +7474,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7328,6 +7516,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7369,6 +7558,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmaceutical Science",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7408,6 +7598,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7449,6 +7640,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7487,6 +7679,7 @@ window.KOREA_BIO_MAP = {
       "field": "Geriatrics and Gerontology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7524,6 +7717,7 @@ window.KOREA_BIO_MAP = {
       "field": "Rheumatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7565,6 +7759,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7606,6 +7801,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7646,6 +7842,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7687,6 +7884,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7728,6 +7926,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7769,6 +7968,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7808,6 +8008,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7849,6 +8050,7 @@ window.KOREA_BIO_MAP = {
       "field": "Agronomy and Crop Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7890,6 +8092,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7931,6 +8134,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7957,6 +8161,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biotechnology",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -7998,6 +8203,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8039,6 +8245,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8080,6 +8287,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8121,6 +8329,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biotechnology",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8162,6 +8371,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8203,6 +8413,7 @@ window.KOREA_BIO_MAP = {
       "field": "Analytical Chemistry",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8241,6 +8452,7 @@ window.KOREA_BIO_MAP = {
       "field": "Insect Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8278,6 +8490,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8318,6 +8531,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8359,6 +8573,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8400,6 +8615,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8441,6 +8657,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8482,6 +8699,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8523,6 +8741,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8564,6 +8783,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8605,6 +8825,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8642,6 +8863,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8677,6 +8899,7 @@ window.KOREA_BIO_MAP = {
       "field": "Spectroscopy",
       "category": "약학·신약",
       "region": "부산·울산·경남",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8718,6 +8941,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "부산·울산·경남",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8759,6 +8983,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8800,6 +9025,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8841,6 +9067,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8882,6 +9109,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8923,6 +9151,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -8964,6 +9193,7 @@ window.KOREA_BIO_MAP = {
       "field": "Small Animals",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9005,6 +9235,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9046,6 +9277,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9087,6 +9319,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9127,6 +9360,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9168,6 +9402,7 @@ window.KOREA_BIO_MAP = {
       "field": "Parasitology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9201,6 +9436,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9242,6 +9478,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrine and Autonomic Systems",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9278,6 +9515,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9319,6 +9557,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9360,6 +9599,7 @@ window.KOREA_BIO_MAP = {
       "field": "Developmental Neuroscience",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9401,6 +9641,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9442,6 +9683,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9483,6 +9725,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9509,6 +9752,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nephrology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9544,6 +9788,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9585,6 +9830,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9623,6 +9869,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9664,6 +9911,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9705,6 +9953,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9731,6 +9980,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9772,6 +10022,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9813,6 +10064,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9854,6 +10106,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biochemistry",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9895,6 +10148,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9936,6 +10190,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biochemistry",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -9976,6 +10231,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10017,6 +10273,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10058,6 +10315,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10099,6 +10357,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10140,6 +10399,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10179,6 +10439,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10220,6 +10481,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10261,6 +10523,7 @@ window.KOREA_BIO_MAP = {
       "field": "Aging",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10302,6 +10565,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10343,6 +10607,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10382,6 +10647,7 @@ window.KOREA_BIO_MAP = {
       "field": "Mechanics of Materials",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10417,6 +10683,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10458,6 +10725,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10499,6 +10767,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10534,6 +10803,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cellular and Molecular Neuroscience",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10575,6 +10845,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10614,6 +10885,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10655,6 +10927,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmaceutical Science",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10689,6 +10962,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10730,6 +11004,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomaterials",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10771,6 +11046,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10809,6 +11085,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10844,6 +11121,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10885,6 +11163,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nature and Landscape Conservation",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10920,6 +11199,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10955,6 +11235,7 @@ window.KOREA_BIO_MAP = {
       "field": "Global and Planetary Change",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -10992,6 +11273,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11018,6 +11300,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11055,6 +11338,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biotechnology",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11096,6 +11380,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11131,6 +11416,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biochemistry",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11172,6 +11458,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nephrology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11213,6 +11500,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11251,6 +11539,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11292,6 +11581,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11325,6 +11615,7 @@ window.KOREA_BIO_MAP = {
       "field": "Public Health, Environmental and Occupational Health",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11360,6 +11651,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11401,6 +11693,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11439,6 +11732,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11480,6 +11774,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11521,6 +11816,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11561,6 +11857,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11599,6 +11896,7 @@ window.KOREA_BIO_MAP = {
       "field": "Obstetrics and Gynecology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11640,6 +11938,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11681,6 +11980,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oral Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11722,6 +12022,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11763,6 +12064,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11804,6 +12106,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nephrology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11841,6 +12144,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11867,6 +12171,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pediatrics, Perinatology and Child Health",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11908,6 +12213,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oral Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11949,6 +12255,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -11990,6 +12297,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12028,6 +12336,7 @@ window.KOREA_BIO_MAP = {
       "field": "Obstetrics and Gynecology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12069,6 +12378,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12106,6 +12416,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hepatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12147,6 +12458,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12188,6 +12500,7 @@ window.KOREA_BIO_MAP = {
       "field": "Clinical Biochemistry",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12227,6 +12540,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12253,6 +12567,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12294,6 +12609,7 @@ window.KOREA_BIO_MAP = {
       "field": "Public Health, Environmental and Occupational Health",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12335,6 +12651,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12376,6 +12693,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12417,6 +12735,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12443,6 +12762,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12484,6 +12804,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12525,6 +12846,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12566,6 +12888,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12607,6 +12930,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12648,6 +12972,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12689,6 +13014,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12726,6 +13052,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12752,6 +13079,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12793,6 +13121,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pediatrics, Perinatology and Child Health",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12834,6 +13163,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12875,6 +13205,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12916,6 +13247,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12951,6 +13283,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -12991,6 +13324,7 @@ window.KOREA_BIO_MAP = {
       "field": "Otorhinolaryngology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13032,6 +13366,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Medicine",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13058,6 +13393,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13097,6 +13433,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13136,6 +13473,7 @@ window.KOREA_BIO_MAP = {
       "field": "Sensory Systems",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13174,6 +13512,7 @@ window.KOREA_BIO_MAP = {
       "field": "Dermatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13215,6 +13554,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13249,6 +13589,7 @@ window.KOREA_BIO_MAP = {
       "field": "Transplantation",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13290,6 +13631,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13331,6 +13673,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13369,6 +13712,7 @@ window.KOREA_BIO_MAP = {
       "field": "Sensory Systems",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13409,6 +13753,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13435,6 +13780,7 @@ window.KOREA_BIO_MAP = {
       "field": "General Health Professions",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13473,6 +13819,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13514,6 +13861,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13540,6 +13888,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13579,6 +13928,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13620,6 +13970,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13660,6 +14011,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13701,6 +14053,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13736,6 +14089,7 @@ window.KOREA_BIO_MAP = {
       "field": "General Health Professions",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13774,6 +14128,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13815,6 +14170,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13856,6 +14212,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13891,6 +14248,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13917,6 +14275,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13958,6 +14317,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cognitive Neuroscience",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -13999,6 +14359,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hepatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14040,6 +14401,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14079,6 +14441,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14105,6 +14468,7 @@ window.KOREA_BIO_MAP = {
       "field": "Critical Care and Intensive Care Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14146,6 +14510,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14187,6 +14552,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14225,6 +14591,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14251,6 +14618,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pediatrics, Perinatology and Child Health",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14292,6 +14660,7 @@ window.KOREA_BIO_MAP = {
       "field": "Rheumatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14333,6 +14702,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14374,6 +14744,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14412,6 +14783,7 @@ window.KOREA_BIO_MAP = {
       "field": "Sensory Systems",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14453,6 +14825,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14488,6 +14861,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14529,6 +14903,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14570,6 +14945,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14611,6 +14987,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14649,6 +15026,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14690,6 +15068,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14716,6 +15095,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14753,6 +15133,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14785,6 +15166,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14826,6 +15208,7 @@ window.KOREA_BIO_MAP = {
       "field": "Gastroenterology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14867,6 +15250,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Medicine",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14908,6 +15292,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14945,6 +15330,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -14986,6 +15372,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ophthalmology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15023,6 +15410,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15064,6 +15452,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15105,6 +15494,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15146,6 +15536,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15185,6 +15576,7 @@ window.KOREA_BIO_MAP = {
       "field": "Health",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15222,6 +15614,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15263,6 +15656,7 @@ window.KOREA_BIO_MAP = {
       "field": "Dermatology",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15304,6 +15698,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15345,6 +15740,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15386,6 +15782,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15427,6 +15824,7 @@ window.KOREA_BIO_MAP = {
       "field": "Critical Care and Intensive Care Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15468,6 +15866,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15509,6 +15908,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15550,6 +15950,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15591,6 +15992,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15628,6 +16030,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15669,6 +16072,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15710,6 +16114,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15749,6 +16154,7 @@ window.KOREA_BIO_MAP = {
       "field": "Reproductive Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15790,6 +16196,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15831,6 +16238,7 @@ window.KOREA_BIO_MAP = {
       "field": "Orthopedics and Sports Medicine",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15872,6 +16280,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15913,6 +16322,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15948,6 +16358,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrine and Autonomic Systems",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -15985,6 +16396,7 @@ window.KOREA_BIO_MAP = {
       "field": "Complementary and alternative medicine",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16016,6 +16428,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16057,6 +16470,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16098,6 +16512,7 @@ window.KOREA_BIO_MAP = {
       "field": "Computational Theory and Mathematics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16139,6 +16554,7 @@ window.KOREA_BIO_MAP = {
       "field": "Microbiology",
       "category": "면역·감염",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16180,6 +16596,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biochemistry",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16219,6 +16636,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16260,6 +16678,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16286,6 +16705,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16325,6 +16745,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16365,6 +16786,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16406,6 +16828,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16441,6 +16864,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16482,6 +16906,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16523,6 +16948,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16564,6 +16990,7 @@ window.KOREA_BIO_MAP = {
       "field": "Reproductive Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16601,6 +17028,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16642,6 +17070,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16683,6 +17112,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pediatrics, Perinatology and Child Health",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16724,6 +17154,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16764,6 +17195,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16805,6 +17237,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16846,6 +17279,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16887,6 +17321,7 @@ window.KOREA_BIO_MAP = {
       "field": "Rehabilitation",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16928,6 +17363,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -16969,6 +17405,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17010,6 +17447,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomaterials",
       "category": "의공학·바이오소재",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17047,6 +17485,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17085,6 +17524,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17126,6 +17566,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17167,6 +17608,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17206,6 +17648,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17247,6 +17690,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17288,6 +17732,7 @@ window.KOREA_BIO_MAP = {
       "field": "Clinical Biochemistry",
       "category": "분자·세포생물",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17329,6 +17774,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17370,6 +17816,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cognitive Neuroscience",
       "category": "신경과학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17408,6 +17855,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17447,6 +17895,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17488,6 +17937,7 @@ window.KOREA_BIO_MAP = {
       "field": "Dermatology",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17529,6 +17979,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cellular and Molecular Neuroscience",
       "category": "신경과학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17570,6 +18021,7 @@ window.KOREA_BIO_MAP = {
       "field": "Reproductive Medicine",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17611,6 +18063,7 @@ window.KOREA_BIO_MAP = {
       "field": "Occupational Therapy",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17644,6 +18097,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17685,6 +18139,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17720,6 +18175,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17761,6 +18217,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17798,6 +18255,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nephrology",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17839,6 +18297,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nephrology",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17878,6 +18337,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17916,6 +18376,7 @@ window.KOREA_BIO_MAP = {
       "field": "Public Health, Environmental and Occupational Health",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17954,6 +18415,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cellular and Molecular Neuroscience",
       "category": "신경과학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -17995,6 +18457,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18036,6 +18499,7 @@ window.KOREA_BIO_MAP = {
       "field": "Public Health, Environmental and Occupational Health",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18071,6 +18535,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18112,6 +18577,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18151,6 +18617,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18191,6 +18658,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18232,6 +18700,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학",
         "병"
@@ -18272,6 +18741,7 @@ window.KOREA_BIO_MAP = {
       "field": "General Health Professions",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학",
         "병"
@@ -18314,6 +18784,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학",
         "병"
@@ -18356,6 +18827,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18395,6 +18867,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18436,6 +18909,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18473,6 +18947,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18514,6 +18989,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18555,6 +19031,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18594,6 +19071,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대전·충청",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18635,6 +19113,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18676,6 +19155,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18716,6 +19196,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18757,6 +19238,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18794,6 +19276,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology and Allergy",
       "category": "면역·감염",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18835,6 +19318,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18876,6 +19360,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18917,6 +19402,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Medicine",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18955,6 +19441,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -18996,6 +19483,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19027,6 +19515,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19068,6 +19557,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19109,6 +19599,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19150,6 +19641,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19191,6 +19683,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19232,6 +19725,7 @@ window.KOREA_BIO_MAP = {
       "field": "Public Health, Environmental and Occupational Health",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19273,6 +19767,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19314,6 +19809,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19340,6 +19836,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19377,6 +19874,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19418,6 +19916,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19459,6 +19958,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19500,6 +20000,7 @@ window.KOREA_BIO_MAP = {
       "field": "Health, Toxicology and Mutagenesis",
       "category": "약학·신약",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19541,6 +20042,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nutrition and Dietetics",
       "category": "생리·대사",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19578,6 +20080,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19619,6 +20122,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmacology",
       "category": "약학·신약",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19658,6 +20162,7 @@ window.KOREA_BIO_MAP = {
       "field": "Aging",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19699,6 +20204,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmaceutical Science",
       "category": "약학·신약",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19740,6 +20246,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cellular and Molecular Neuroscience",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19775,6 +20282,7 @@ window.KOREA_BIO_MAP = {
       "field": "Sensory Systems",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19816,6 +20324,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19857,6 +20366,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cell Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19898,6 +20408,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19939,6 +20450,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -19974,6 +20486,7 @@ window.KOREA_BIO_MAP = {
       "field": "Physiology",
       "category": "생리·대사",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20012,6 +20525,7 @@ window.KOREA_BIO_MAP = {
       "field": "General Health Professions",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20049,6 +20563,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20090,6 +20605,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20116,6 +20632,7 @@ window.KOREA_BIO_MAP = {
       "field": "Animal Science and Zoology",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20157,6 +20674,7 @@ window.KOREA_BIO_MAP = {
       "field": "Otorhinolaryngology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20195,6 +20713,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20221,6 +20740,7 @@ window.KOREA_BIO_MAP = {
       "field": "Anesthesiology and Pain Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20262,6 +20782,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20303,6 +20824,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20329,6 +20851,7 @@ window.KOREA_BIO_MAP = {
       "field": "Dermatology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20370,6 +20893,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pharmaceutical Science",
       "category": "약학·신약",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20405,6 +20929,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20431,6 +20956,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20472,6 +20998,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20510,6 +21037,7 @@ window.KOREA_BIO_MAP = {
       "field": "Otorhinolaryngology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20551,6 +21079,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20592,6 +21121,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20633,6 +21163,7 @@ window.KOREA_BIO_MAP = {
       "field": "Urology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20674,6 +21205,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20715,6 +21247,7 @@ window.KOREA_BIO_MAP = {
       "field": "Orthopedics and Sports Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20752,6 +21285,7 @@ window.KOREA_BIO_MAP = {
       "field": "Orthopedics and Sports Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20784,6 +21318,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20825,6 +21360,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20862,6 +21398,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hepatology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20903,6 +21440,7 @@ window.KOREA_BIO_MAP = {
       "field": "Gastroenterology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20944,6 +21482,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -20984,6 +21523,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21023,6 +21563,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21061,6 +21602,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21102,6 +21644,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21143,6 +21686,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pathology and Forensic Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21184,6 +21728,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21224,6 +21769,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21262,6 +21808,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cancer Research",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21302,6 +21849,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21343,6 +21891,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21384,6 +21933,7 @@ window.KOREA_BIO_MAP = {
       "field": "Radiology, Nuclear Medicine and Imaging",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21419,6 +21969,7 @@ window.KOREA_BIO_MAP = {
       "field": "Emergency Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21456,6 +22007,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21495,6 +22047,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21521,6 +22074,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21562,6 +22116,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21603,6 +22158,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nephrology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21640,6 +22196,7 @@ window.KOREA_BIO_MAP = {
       "field": "Emergency Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21681,6 +22238,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21722,6 +22280,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21760,6 +22319,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21801,6 +22361,7 @@ window.KOREA_BIO_MAP = {
       "field": "Endocrinology, Diabetes and Metabolism",
       "category": "생리·대사",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21842,6 +22403,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21880,6 +22442,7 @@ window.KOREA_BIO_MAP = {
       "field": "Sensory Systems",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21921,6 +22484,7 @@ window.KOREA_BIO_MAP = {
       "field": "General Health Professions",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -21960,6 +22524,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22000,6 +22565,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pediatrics, Perinatology and Child Health",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22037,6 +22603,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22075,6 +22642,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hepatology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22116,6 +22684,7 @@ window.KOREA_BIO_MAP = {
       "field": "Pulmonary and Respiratory Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22157,6 +22726,7 @@ window.KOREA_BIO_MAP = {
       "field": "Emergency Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22194,6 +22764,7 @@ window.KOREA_BIO_MAP = {
       "field": "Microbiology",
       "category": "면역·감염",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22231,6 +22802,7 @@ window.KOREA_BIO_MAP = {
       "field": "Psychiatry and Mental health",
       "category": "신경과학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22272,6 +22844,7 @@ window.KOREA_BIO_MAP = {
       "field": "Otorhinolaryngology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22313,6 +22886,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22350,6 +22924,7 @@ window.KOREA_BIO_MAP = {
       "field": "Nephrology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22390,6 +22965,7 @@ window.KOREA_BIO_MAP = {
       "field": "Infectious Diseases",
       "category": "면역·감염",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22429,6 +23005,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22467,6 +23044,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cardiology and Cardiovascular Medicine",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22504,6 +23082,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22543,6 +23122,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22581,6 +23161,7 @@ window.KOREA_BIO_MAP = {
       "field": "Urology",
       "category": "임상의학",
       "region": "경기·인천",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22622,6 +23203,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22663,6 +23245,7 @@ window.KOREA_BIO_MAP = {
       "field": "Catalysis",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22700,6 +23283,7 @@ window.KOREA_BIO_MAP = {
       "field": "Electrical and Electronic Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22741,6 +23325,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22782,6 +23367,7 @@ window.KOREA_BIO_MAP = {
       "field": "Electrical and Electronic Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22823,6 +23409,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biotechnology",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22861,6 +23448,7 @@ window.KOREA_BIO_MAP = {
       "field": "Ecology",
       "category": "농생명·식품·생태",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22902,6 +23490,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22943,6 +23532,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -22984,6 +23574,7 @@ window.KOREA_BIO_MAP = {
       "field": "Public Health, Environmental and Occupational Health",
       "category": "보건·역학",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23025,6 +23616,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23066,6 +23658,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23107,6 +23700,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23145,6 +23739,7 @@ window.KOREA_BIO_MAP = {
       "field": "Genetics",
       "category": "유전체·생물정보",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23186,6 +23781,7 @@ window.KOREA_BIO_MAP = {
       "field": "Transportation",
       "category": "분자·세포생물",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23223,6 +23819,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23262,6 +23859,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23288,6 +23886,7 @@ window.KOREA_BIO_MAP = {
       "field": "Aerospace Engineering",
       "category": "약학·신약",
       "region": "서울",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23327,6 +23926,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23368,6 +23968,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oral Surgery",
       "category": "임상의학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23409,6 +24010,7 @@ window.KOREA_BIO_MAP = {
       "field": "Cellular and Molecular Neuroscience",
       "category": "신경과학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23446,6 +24048,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oral Surgery",
       "category": "임상의학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23484,6 +24087,7 @@ window.KOREA_BIO_MAP = {
       "field": "Neurology",
       "category": "신경과학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23525,6 +24129,7 @@ window.KOREA_BIO_MAP = {
       "field": "Hematology",
       "category": "암·종양",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23566,6 +24171,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23606,6 +24212,7 @@ window.KOREA_BIO_MAP = {
       "field": "",
       "category": "분자·세포생물",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23632,6 +24239,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23673,6 +24281,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23714,6 +24323,7 @@ window.KOREA_BIO_MAP = {
       "field": "Epidemiology",
       "category": "보건·역학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23740,6 +24350,7 @@ window.KOREA_BIO_MAP = {
       "field": "Surgery",
       "category": "임상의학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23781,6 +24392,7 @@ window.KOREA_BIO_MAP = {
       "field": "Oncology",
       "category": "암·종양",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23822,6 +24434,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23863,6 +24476,7 @@ window.KOREA_BIO_MAP = {
       "field": "Immunology",
       "category": "면역·감염",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23904,6 +24518,7 @@ window.KOREA_BIO_MAP = {
       "field": "Geriatrics and Gerontology",
       "category": "임상의학",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23945,6 +24560,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biomedical Engineering",
       "category": "의공학·바이오소재",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -23986,6 +24602,7 @@ window.KOREA_BIO_MAP = {
       "field": "Plant Science",
       "category": "농생명·식품·생태",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -24027,6 +24644,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -24064,6 +24682,7 @@ window.KOREA_BIO_MAP = {
       "field": "Molecular Biology",
       "category": "분자·세포생물",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -24105,6 +24724,7 @@ window.KOREA_BIO_MAP = {
       "field": "Organic Chemistry",
       "category": "약학·신약",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -24146,6 +24766,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biochemistry",
       "category": "분자·세포생물",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -24187,6 +24808,7 @@ window.KOREA_BIO_MAP = {
       "field": "Food Science",
       "category": "농생명·식품·생태",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],
@@ -24228,6 +24850,7 @@ window.KOREA_BIO_MAP = {
       "field": "Biotechnology",
       "category": "의공학·바이오소재",
       "region": "대구·경북",
+      "home_sector": "학",
       "sectors": [
         "학"
       ],

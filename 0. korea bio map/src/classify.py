@@ -66,6 +66,12 @@ class Classifier:
             {r["university"].strip().casefold(): r.get("region", "").strip() for _, r in unis.iterrows()}
             if not unis.empty else {}
         )
+        # university / institute / hospital / company: the home circle in the 산학연병 view
+        self.org_type_by_uni = (
+            {r["university"].strip().casefold(): (r.get("org_type", "") or "university").strip()
+             for _, r in unis.iterrows()}
+            if not unis.empty else {}
+        )
         self.name_ko_by_uni = (
             {r["university"].strip().casefold(): r.get("name_ko", "").strip() for _, r in unis.iterrows()}
             if not unis.empty else {}
@@ -95,13 +101,21 @@ class Classifier:
                 return name
         return UNKNOWN_REGION
 
+    def org_type(self, university: str) -> str:
+        return self.org_type_by_uni.get(self.main_university(university).casefold(), "university")
+
     def university_ko(self, university: str) -> str:
         return self.name_ko_by_uni.get(self.main_university(university).casefold(), "")
 
 
 def position(title: str) -> str:
-    """Normalise a faculty-page title to 교수 / 부교수 / 조교수 (or "")."""
+    """Normalise a faculty-page title to 교수 / 부교수 / 조교수 / 책임연구원 / 선임연구원 (or "")."""
     t = (title or "").casefold()
+    if any(w in t for w in ("책임연구원", "수석연구원", "연구위원", "단장", "그룹리더", "principal", "chief",
+                            "group leader")):
+        return "책임연구원"
+    if "선임연구원" in t or "senior research" in t:
+        return "선임연구원"
     if "부교수" in t or "associate" in t:
         return "부교수"
     if "조교수" in t or "assistant" in t:

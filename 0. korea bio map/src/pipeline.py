@@ -22,7 +22,7 @@ from classify import Classifier, position
 from keywords import KeywordCollector
 from lineage import Authorship, infer_lineage, lineage_relationships
 from name_extraction import name_compatible
-from sectors import SectorCollector, SectorTable
+from sectors import ORG_TYPE_SECTOR, SectorCollector, SectorTable
 from openalex_client import OpenAlexClient, OpenAlexUnavailable, normalize_openalex_id
 from scopus_client import ScopusClient, ScopusUnavailable, normalize_doi
 
@@ -579,8 +579,11 @@ def export_web_data(nodes: pd.DataFrame, links: pd.DataFrame) -> None:
                                                 row.get("department", "")),
                 "region": classifier.region(row.get("university", "")),
                 # 산학연병 (industry / academia / institute / hospital) set membership
-                "sectors": sector_table.sectors(row.get("professor_id", ""), row.get("university", ""),
-                                                row.get("department", "")),
+                "home_sector": ORG_TYPE_SECTOR.get(classifier.org_type(row.get("university", "")), "학"),
+                "sectors": sector_table.sectors(
+                    row.get("professor_id", ""),
+                    ORG_TYPE_SECTOR.get(classifier.org_type(row.get("university", "")), "학"),
+                    row.get("department", "")),
                 "university_ko": classifier.university_ko(row.get("university", "")),
                 "position": titles.get(row.get("professor_id", ""), ""),
                 "keywords": terms[row.get("professor_id", "")]["keyword"][:8],

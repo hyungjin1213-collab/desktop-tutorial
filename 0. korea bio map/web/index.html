@@ -56,6 +56,13 @@
     .viewbar{position:fixed;left:14px;bottom:14px;z-index:21;display:flex;gap:3px;background:rgba(3,7,18,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:4px}
     .viewbar button{background:none;border:0;color:#9aa7c7;font:600 12px Arial,sans-serif;padding:6px 12px;border-radius:999px;cursor:pointer}
     .viewbar button.on{background:rgba(251,191,36,.16);color:#fff}
+    .setbar{position:fixed;left:14px;bottom:62px;z-index:21;display:flex;flex-wrap:wrap;align-items:center;gap:6px;max-width:calc(100vw - 360px);background:rgba(3,7,18,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:7px 9px}
+    .setbar[hidden]{display:none}
+    .setbar button{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:#d7def0;border-radius:999px;padding:5px 10px;font:600 12px Arial,sans-serif;cursor:pointer}
+    .setbar button.on{border-color:#fbbf24;background:rgba(251,191,36,.14);color:#fff}
+    .setbar button small{color:#9aa7c7;font-weight:400}
+    .setbar label{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#d7def0;cursor:pointer;padding:0 4px;border-left:1px solid rgba(255,255,255,.14);margin-left:2px}
+    .setbar input{accent-color:#fbbf24;margin:0 0 0 6px}
     @media (max-width:640px){
       .panel{max-width:calc(100vw - 150px);padding:9px 11px}
       .panel .lines,.panel .legend,.panel p{display:none}
@@ -64,6 +71,7 @@
       .list{max-height:calc(52vh - 110px)}
       .hint{display:none}
       .viewbar{left:10px;bottom:10px}
+      .setbar{left:10px;right:10px;max-width:none;bottom:54px}
     }
   </style>
 </head>
@@ -118,6 +126,10 @@
   </div>
   <div class="hint">드래그: 회전 · 두 손가락: 줌 · 별 터치: 정보·공동연구 강조 · 빈 곳 터치: 해제</div>
   <div id="graph"></div>
+  <div class="setbar" id="setbar" hidden>
+    <span id="set-buttons"></span>
+    <label><input type="checkbox" id="set-overlap">교집합 보기</label>
+  </div>
   <div class="viewbar" id="viewbar" role="radiogroup" aria-label="보기">
     <button data-view="galaxy" class="on">은하</button>
     <button data-view="sectors">산학연병</button>
@@ -135,7 +147,7 @@
     };
     const CATEGORY_ORDER=Object.keys(CATEGORY_COLORS);
     const REGION_ORDER=["서울","경기·인천","강원","대전·충청","대구·경북","부산·울산·경남","광주·전라","제주","기타"];
-    const POSITION_ORDER=["교수","부교수","조교수","미상"];
+    const POSITION_ORDER=["교수","부교수","조교수","책임연구원","선임연구원","미상"];
     // 산학연병: academia / hospital / research institute / industry (src/sectors.py).
     // In the 산학연병 view each is a circle; a professor sits in the overlap of their sets.
     const SECTORS=["학","병","연","산"];
@@ -443,11 +455,16 @@
       document.getElementById("filter-count").textContent=`${shown} / ${NODES.length}명 표시 중`;
       const badge=document.getElementById("filter-badge");
       badge.hidden=!active;badge.textContent=active;
-      const byId=new Map(NODES.map(n=>[n.id,n]));
-      Graph.nodeVisibility(n=>n._pass!==false)
-        .linkVisibility(l=>byId.get(endId(l.source))?._pass!==false&&byId.get(endId(l.target))?._pass!==false);
+      refreshVisibility();
       if(selected&&selected._pass===false){selected=null;setFocus(null);}
       runSearch();runRank();
+    }
+    // Shown = passes the filters and, in the 산학연병 view, belongs to the zoomed-in set.
+    const shownNode=n=>n._pass!==false&&n._inSet!==false;
+    function refreshVisibility(){
+      const byId=new Map(NODES.map(n=>[n.id,n]));
+      Graph.nodeVisibility(shownNode)
+        .linkVisibility(l=>{const a=byId.get(endId(l.source)),b=byId.get(endId(l.target));return a&&b&&shownNode(a)&&shownNode(b);});
     }
     document.getElementById("filter-reset").addEventListener("click",()=>{
       Object.values(FILTERS).forEach(x=>x.clear());
@@ -468,12 +485,47 @@
     q.addEventListener("keydown",e=>{if(e.key==="Enter"){const first=searchList.querySelector(".row");if(first)first.click();}});
     rankBy.addEventListener("change",runRank);
     rankUni.addEventListener("change",runRank);
-    // ---------- 산학연병 view: four overlapping circles (Venn) ----------
+    // ---------- 산학연병 view ----------
+    // Default: one galaxy disc per set (학 · 병 · 연 · 산), each professor in their
+    // home set (the page they are listed on). "교집합 보기" turns the discs into
+    // an overlapping Venn diagram and moves people with several affiliations into
+    // the overlaps. Clicking a set zooms into it and hides everyone else.
+    const homeOf=n=>SECTOR_INFO[n.home_sector]?n.home_sector:sectorsOf(n)[0];
+    const setCount=(s,overlap)=>NODES.filter(n=>overlap?sectorsOf(n).includes(s):homeOf(n)===s).length;
     const VENN_R=165, VENN_D=85;    // diagonal pairs (학∩산, 병∩연) still overlap near the centre
-    const distTo=(x,y,s)=>Math.hypot(x-SECTOR_INFO[s].c[0]*VENN_D,y-SECTOR_INFO[s].c[1]*VENN_D);
-    function placeInVenn(n){
-      // Random point whose circles are exactly the professor's sectors (clear of
-      // other circles' edges); if no such region exists, the closest one.
+    let viewMode="galaxy", overlapOn=false, zoomSet=null, setGroup=null, circles={};
+
+    function layoutCircles(){
+      circles={};
+      if(overlapOn){
+        SECTORS.forEach(s=>{const [a,b]=SECTOR_INFO[s].c;circles[s]={x:a*VENN_D,y:b*VENN_D,r:VENN_R};});
+        return;
+      }
+      // Separate discs sized by how many people they hold: one row on wide
+      // screens, 2 x 2 on portrait phones.
+      const radius=s=>Math.max(55,Math.min(300,40+10*Math.sqrt(setCount(s,false))));
+      const gap=40;
+      const rows=window.innerWidth<window.innerHeight?[SECTORS.slice(0,2),SECTORS.slice(2)]:[SECTORS];
+      const rowH=rows.map(r=>2*Math.max(...r.map(radius)));
+      let y=(rowH.reduce((a,b)=>a+b,0)+gap*(rows.length-1))/2;
+      rows.forEach((row,i)=>{
+        const total=row.reduce((t,s)=>t+2*radius(s),0)+gap*(row.length-1);
+        let x=-total/2;
+        const cy=y-rowH[i]/2;
+        row.forEach(s=>{const r=radius(s);circles[s]={x:x+r,y:cy,r};x+=2*r+gap;});
+        y-=rowH[i]+gap;
+      });
+    }
+    const distTo=(x,y,s)=>Math.hypot(x-circles[s].x,y-circles[s].y);
+    function placeNode(n){
+      if(!overlapOn){
+        // Galaxy disc: denser towards the centre.
+        const c=circles[homeOf(n)], a=Math.random()*Math.PI*2, r=c.r*0.92*Math.pow(Math.random(),0.75);
+        n.fx=c.x+r*Math.cos(a);n.fy=c.y+r*Math.sin(a);n.fz=(Math.random()*2-1)*c.r*0.15;
+        return;
+      }
+      // Random point whose circles are exactly the person's sets (clear of other
+      // circles' edges); if no such region exists, the closest one.
       const want=new Set(sectorsOf(n));
       let best=[0,0],bestBad=Infinity;
       const span=VENN_D+VENN_R;
@@ -496,41 +548,85 @@
       sp.scale.set(150,28,1);
       return sp;
     }
-    let vennGroup=null;
-    function buildVenn(){
-      const group=new THREE.Group();
+    function clearSetGroup(){
+      if(!setGroup) return;
+      Graph.scene().remove(setGroup);
+      setGroup.traverse(o=>{o.geometry?.dispose();if(o.material){o.material.map?.dispose();o.material.dispose();}});
+      setGroup=null;
+    }
+    function drawCircles(){
+      clearSetGroup();
+      setGroup=new THREE.Group();
       SECTORS.forEach(s=>{
-        const {color,label,c}=SECTOR_INFO[s];
-        const cx=c[0]*VENN_D, cy=c[1]*VENN_D;
-        const disc=new THREE.Mesh(new THREE.CircleGeometry(VENN_R,96),
-          new THREE.MeshBasicMaterial({color,transparent:true,opacity:.05,side:THREE.DoubleSide,depthWrite:false}));
-        disc.position.set(cx,cy,-20);group.add(disc);
-        const ring=new THREE.Mesh(new THREE.RingGeometry(VENN_R-1.2,VENN_R,128),
-          new THREE.MeshBasicMaterial({color,transparent:true,opacity:.6,side:THREE.DoubleSide,depthWrite:false}));
-        ring.position.set(cx,cy,-20);group.add(ring);
-        const count=NODES.filter(n=>sectorsOf(n).includes(s)).length;
-        const tag=textSprite(`${label}  ${count}명`,color);
-        tag.position.set(c[0]*(VENN_D+VENN_R*0.62),c[1]*(VENN_D+VENN_R*0.9),0);
-        group.add(tag);
+        const {color,label,c}=SECTOR_INFO[s], {x,y,r}=circles[s];
+        const dim=zoomSet&&zoomSet!==s;
+        const disc=new THREE.Mesh(new THREE.CircleGeometry(r,96),
+          new THREE.MeshBasicMaterial({color,transparent:true,opacity:dim?.015:.05,side:THREE.DoubleSide,depthWrite:false}));
+        disc.position.set(x,y,-20);setGroup.add(disc);
+        const ring=new THREE.Mesh(new THREE.RingGeometry(r-1.2,r,128),
+          new THREE.MeshBasicMaterial({color,transparent:true,opacity:dim?.15:.6,side:THREE.DoubleSide,depthWrite:false}));
+        ring.position.set(x,y,-20);setGroup.add(ring);
+        const tag=textSprite(`${label}  ${setCount(s,overlapOn)}명`,color);
+        if(overlapOn) tag.position.set(c[0]*(VENN_D+VENN_R*0.62),c[1]*(VENN_D+VENN_R*0.9),0);
+        else tag.position.set(x,y+r+24,0);
+        setGroup.add(tag);
       });
-      return group;
+      Graph.scene().add(setGroup);
+    }
+    function buildSetButtons(){
+      const box=document.getElementById("set-buttons");
+      const mk=(key,label,count,color)=>{
+        const b=document.createElement("button");
+        b.className=(zoomSet===key||(!zoomSet&&key==="all"))?"on":"";
+        b.innerHTML=`${color?`<span class="dot" style="background:${color};color:${color}"></span>`:""}${esc(label)}${count!==undefined?` <small>${count}</small>`:""}`;
+        b.addEventListener("click",()=>zoomTo(key==="all"?null:key));
+        return b;
+      };
+      box.replaceChildren(mk("all","전체"),...SECTORS.map(s=>mk(s,SECTOR_INFO[s].label,setCount(s,overlapOn),SECTOR_INFO[s].color)));
+    }
+    // Camera distance at which a w x h box fills the screen (both orientations).
+    function fitZ(w,h){
+      const fov=(Graph.camera().fov||40)*Math.PI/180, aspect=window.innerWidth/window.innerHeight;
+      return 1.12*Math.max(h,w/aspect)/(2*Math.tan(fov/2));
+    }
+    function cameraOverview(){
+      const xs=SECTORS.map(s=>[circles[s].x-circles[s].r,circles[s].x+circles[s].r]).flat();
+      const ys=SECTORS.map(s=>[circles[s].y-circles[s].r,circles[s].y+circles[s].r+40]).flat();
+      const cx=(Math.max(...xs)+Math.min(...xs))/2, cy=(Math.max(...ys)+Math.min(...ys))/2;
+      const z=fitZ(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys));
+      Graph.cameraPosition({x:cx,y:cy,z},{x:cx,y:cy,z:0},900);
+    }
+    function zoomTo(set){
+      zoomSet=set;
+      NODES.forEach(n=>{n._inSet=!set||(overlapOn?sectorsOf(n).includes(set):homeOf(n)===set);});
+      refreshVisibility();drawCircles();buildSetButtons();
+      if(!set) return cameraOverview();
+      const c=circles[set];
+      Graph.cameraPosition({x:c.x,y:c.y-c.r*0.3,z:fitZ(2*c.r,2*c.r+60)},{x:c.x,y:c.y,z:0},1000);
+    }
+    function relayout(){
+      layoutCircles();NODES.forEach(placeNode);
+      Graph.d3ReheatSimulation();
+      zoomTo(zoomSet);
     }
     function setView(view){
+      viewMode=view;
       document.querySelectorAll("#viewbar button").forEach(b=>b.classList.toggle("on",b.dataset.view===view));
+      document.getElementById("setbar").hidden=view!=="sectors";
       if(view==="sectors"){
-        NODES.forEach(placeInVenn);
-        vennGroup=vennGroup||buildVenn();
-        Graph.scene().add(vennGroup);
         controls.autoRotate=false;
-        Graph.cameraPosition({x:0,y:-20,z:720},{x:0,y:-20,z:0},900);
+        if(window.matchMedia("(max-width:640px)").matches) setSide(false);  // room for the set bar
+        relayout();
       }else{
-        NODES.forEach(n=>{delete n.fx;delete n.fy;delete n.fz;});
-        if(vennGroup) Graph.scene().remove(vennGroup);
+        zoomSet=null;
+        NODES.forEach(n=>{delete n.fx;delete n.fy;delete n.fz;n._inSet=true;});
+        clearSetGroup();refreshVisibility();
         controls.autoRotate=true;
         Graph.cameraPosition({x:0,y:0,z:115},{x:0,y:0,z:0},900);
+        Graph.d3ReheatSimulation();
       }
-      Graph.d3ReheatSimulation();
     }
+    document.getElementById("set-overlap").addEventListener("change",e=>{overlapOn=e.target.checked;relayout();});
     document.querySelectorAll("#viewbar button").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
 
     buildFilters();applyFilters();

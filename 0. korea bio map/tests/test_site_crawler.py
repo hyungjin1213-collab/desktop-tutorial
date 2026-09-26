@@ -162,3 +162,18 @@ def test_empty_universities_retried_after_new_ones_and_serpapi_off(tmp_path, mon
     assert list(log.university) == ["Done", "New", "Old Empty"]  # New first, then the retry
     assert searches == []  # SerpAPI fallback is opt-in
     assert "pages fetched" in log.set_index("university").loc["New", "note"]
+
+
+def test_research_institute_researcher_pages():
+    # Institutes: no bio college in the path, PIs are 책임/선임연구원, postdocs are listed too.
+    researchers = [("홍길동", "책임연구원"), ("김철수", "선임연구원"), ("이영희", "책임연구원"),
+                   ("박민수", "선임연구원"), ("최지훈", "박사후연구원")]
+    site = {
+        "https://www.kist.re.kr/": '<title>KIST</title><a href="/org">연구조직</a> <a href="/news">뉴스</a>',
+        "https://www.kist.re.kr/org": '<title>연구조직</title><a href="/brain">뇌과학연구소</a>',
+        "https://www.kist.re.kr/brain": '<title>뇌과학연구소</title><a href="/brain/people">연구진</a>',
+        "https://www.kist.re.kr/brain/people": "<title>연구진 | 뇌과학연구소</title>" + _cards(*researchers),
+    }
+    pages = _crawler(FakeWeb(site)).crawl("kist.re.kr", ["https://www.kist.re.kr/"], bio_site=True)
+    assert [p.url for p in pages] == ["https://www.kist.re.kr/brain/people"]
+    assert pages[0].faculty_count == 4   # the postdoc is not a PI

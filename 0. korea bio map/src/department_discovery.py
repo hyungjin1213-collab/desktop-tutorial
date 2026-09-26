@@ -149,9 +149,9 @@ def _count_faculty(html: str, url: str) -> int:
         return 0
 
 
-def _crawl_university(domain: str, name_ko: str, crawler) -> list[dict[str, str]]:
+def _crawl_university(domain: str, name_ko: str, crawler, bio_site: bool = False) -> list[dict[str, str]]:
     rows = []
-    for page in crawler.crawl(domain, start_urls(domain)):
+    for page in crawler.crawl(domain, start_urls(domain), bio_site=bio_site):
         rows.append({
             "page_title": page.title,
             "department_url": page.url,
@@ -214,7 +214,10 @@ def discover_departments(search=None, crawler=None) -> pd.DataFrame:
         searched += 1
         print(f"[discover] {university} ({domain})", flush=True)
 
-        found = _crawl_university(domain, name_ko, crawler)
+        # Research institutes / hospitals: the whole site is bio, so every
+        # 연구진 page counts, not only ones under a bio college.
+        org_type = str(uni.get("org_type", "") or "university").strip().casefold()
+        found = _crawl_university(domain, name_ko, crawler, bio_site=org_type != "university")
         method = "crawl"
         note = crawler.stats.summary() if getattr(crawler, "stats", None) else ""
         if not found and SERPAPI_KEY and DISCOVERY_USE_SERPAPI and not _serpapi_down:

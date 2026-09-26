@@ -38,9 +38,12 @@ NON_BIO_LINK_WORDS = [
     "공지", "notice", "뉴스", "news", "게시판", "board", "행사", "event", "login", "로그인",
     "english", "中文", "日本語",
 ]
-FACULTY_LINK_WORDS = ["교수진", "교수소개", "교수 소개", "전임교수", "교원", "교수", "faculty", "professor", "people"]
+FACULTY_LINK_WORDS = ["교수진", "교수소개", "교수 소개", "전임교수", "교원", "교수", "faculty", "professor", "people",
+                      # research institutes
+                      "연구진", "연구인력", "연구원 소개", "연구자", "researchers", "research staff", "members"]
 FACULTY_EXCLUDE_WORDS = ["보직", "겸임", "명예", "초빙", "퇴임", "emeritus", "adjunct", "visiting"]
-NAV_WORDS = ["대학", "대학원", "학과", "학부", "전공", "교실", "college", "school", "department", "학사", "조직"]
+NAV_WORDS = ["대학", "대학원", "학과", "학부", "전공", "교실", "college", "school", "department", "학사", "조직",
+             "연구단", "연구센터", "연구부", "연구본부", "연구소", "division", "center"]
 # Korean university sites often link through JavaScript:
 #   onclick="goPage('/sub/faculty.do')"  href="javascript:location.href='/x'"
 JS_URL_RE = re.compile(r"""['"]((?:https?://|/)[^'"\s]{2,200})['"]""")
@@ -178,7 +181,8 @@ class SiteCrawler:
         rp = self._robots[base]
         return rp is None or rp.can_fetch(USER_AGENT, url)
 
-    def crawl(self, domain: str, start_urls: list[str]) -> list[FoundPage]:
+    def crawl(self, domain: str, start_urls: list[str], bio_site: bool = False) -> list[FoundPage]:
+        """bio_site: the whole site is bio (a research institute), not only some colleges."""
         domain = domain.casefold().removeprefix("www.")
         self.stats = CrawlStats()
         queue: list[_Item] = []
@@ -189,7 +193,7 @@ class SiteCrawler:
         optional = {_normalize(u) for u in start_urls[2:]} | {_normalize(start_urls[1])} if len(start_urls) > 1 else set()
         for i, url in enumerate(start_urls):
             guessed = i >= 2
-            heapq.heappush(queue, _Item(0.5 if guessed else 0, url, 1 if guessed else 0, (), False))
+            heapq.heappush(queue, _Item(0.5 if guessed else 0, url, 1 if guessed else 0, (), bio_site))
             seen.add(_normalize(url))
 
         found: list[FoundPage] = []

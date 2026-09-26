@@ -41,3 +41,18 @@ def test_position():
     assert position("Associate Professor") == "부교수"
     assert position("교수(대학장)") == "교수"
     assert position("") == ""
+
+
+def test_institute_titles_and_org_type(tmp_path):
+    from classify import Classifier, position
+
+    assert position("책임연구원") == "책임연구원" and position("그룹리더") == "책임연구원"
+    assert position("선임연구원") == "선임연구원" and position("부교수") == "부교수"
+    (tmp_path / "universities_seed.csv").write_text(
+        "university,name_ko,official_domain,region,org_type\n"
+        "Seoul National University,서울대학교,snu.ac.kr,서울,university\n"
+        "Korea Institute of Science and Technology,한국과학기술연구원,kist.re.kr,서울,institute\n", encoding="utf-8")
+    c = Classifier(tmp_path)
+    assert c.org_type("Korea Institute of Science and Technology") == "institute"
+    assert c.org_type("Seoul National University") == "university"
+    assert c.org_type("Unknown") == "university"

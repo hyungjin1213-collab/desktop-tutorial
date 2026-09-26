@@ -5,8 +5,9 @@ collaboration graph, no extra requests). OpenAlex gives every institution a
 type: education -> 학, healthcare -> 병, company -> 산, facility / government /
 nonprofit -> 연. A sector counts when it appears on at least MIN_SHARE of the
 professor's recent papers (and on MIN_WORKS of them), so one visiting stint
-does not move anyone. Professors listed on a university faculty page are
-always 학; a clinical professor at the university hospital is 학 + 병.
+does not move anyone. The page a person is listed on sets their home sector
+(university faculty page -> 학, research institute -> 연; universities_seed.csv
+org_type); a clinical professor at the university hospital is 학 + 병.
 
 data/sector_overrides.csv (professor_id, sectors e.g. "학;산") always wins.
 """
@@ -19,6 +20,8 @@ import pandas as pd
 
 SECTORS = ["학", "병", "연", "산"]
 SECTOR_LABELS = {"학": "대학", "병": "병원", "연": "연구소", "산": "기업"}
+# universities_seed.csv org_type -> home sector (where the person is listed)
+ORG_TYPE_SECTOR = {"university": "학", "hospital": "병", "institute": "연", "company": "산"}
 TYPE_TO_SECTOR = {
     "education": "학",
     "healthcare": "병",
@@ -94,12 +97,12 @@ class SectorTable:
             if not overrides.empty else {}
         )
 
-    def sectors(self, professor_id: str, university: str, department: str) -> list[str]:
+    def sectors(self, professor_id: str, home: str, department: str) -> list[str]:
+        """home: the sector of the page the person is listed on (학 for a university)."""
         if professor_id in self.overrides:
             return self.overrides[professor_id]
         found = set(self.from_papers.get(professor_id, []))
-        if university:
-            found.add("학")  # listed on a university faculty page
+        found.add(home or "학")
         if any(w in (department or "") for w in CLINICAL_DEPARTMENT_WORDS):
             found.add("병")
-        return [s for s in SECTORS if s in found] or ["학"]
+        return [s for s in SECTORS if s in found]
